@@ -256,7 +256,7 @@ def puissance(x, n):
     return r
 ```
 
-Avant l'écriture du corps de la fonction, on a ajouté une assertion (ligne 4) qui va au préalable tester si le paramètre `n` est bien un entier et que c'est bien un entier positif. Si ce n'est pas le cas, la fonction va lever une erreur le message d'erreur sera affiché.
+Avant l'écriture du corps de la fonction, on a ajouté une assertion (ligne 5) qui va au préalable tester si le paramètre `n` est bien un entier et que c'est bien un entier positif. Si ce n'est pas le cas, la fonction va lever une erreur le message d'erreur sera affiché.
 
 
 ```python
@@ -272,15 +272,16 @@ puissance(2, -3)
     ----> 1 puissance(2, -3)
     
 
-    <ipython-input-14-d03c61cb7b75> in puissance(x, n)
-          2     '''Renvoie la valeur de x^n. 
-          3     n est un entier positif ou nul'''
-    ----> 4     assert type(n) == int and n >= 0, "n n'est pas un entier positif ou nul"
-          5     r = 1
-          6     for i in range(n):
+    <ipython-input-14-600cf4b80289> in puissance(x, n)
+          3     Renvoie la valeur de x^n, où n est un entier positif ou nul
+          4     '''
+    ----> 5     assert type(n) == int and n >= 0, "n n'est pas un entier positif ou nul"
+          6     r = 1
+          7     for i in range(n):
     
 
     AssertionError: n n'est pas un entier positif ou nul
+
 
 
 En écrivant cette assertion, le programmeur teste au préalable si les *préconditions sont valides* avant d'exécuter le reste du programme. On parle alors de *programmation défensive*.
