@@ -1,4 +1,4 @@
-﻿
+
 # Documentation et mise au point de programmes - EXERCICES
 
 ## Documenter son programme
@@ -6,6 +6,8 @@
 ### Exercice 1
 
 Donnez un meilleur nom et une chaîne de documentation à la fonction suivante.
+
+
 ```python
 def f(a, b):
     return a + b
@@ -15,12 +17,13 @@ def f(a, b):
 
 Donnez un meilleur nom et une chaîne de documentation à la fonction suivante, le paramètre `t` étant un tableau.
 
+
 ```python
 def f(t):
     s = 0
     for i in range(len(t)):
         s = s + t[i]
-    return s / n
+    return s / len(t)
 ```
 
 ## Programmation défensive
@@ -28,6 +31,7 @@ def f(t):
 ### Exercice 3
 
 On considère la fonction `indice_maxi_tab(T)` suivante. A l'aide de la construction `assert`, proposez un test vérifiant si la précondition sur le tableau T est validée (*on ne cherchera pas à écrire la fonction*).
+
 
 ```python
 def indice_maxi_tab(T):
@@ -41,6 +45,7 @@ def indice_maxi_tab(T):
 ### Exercice 4
 
 On considère la fonction `quotient(a, b)` suivante. A l'aide de la construction `assert`, proposez un test vérifiant si les préconditions sont validées.
+
 
 ```python
 def quotient(a, b):
@@ -57,11 +62,13 @@ def quotient(a, b):
 1. En utilisant `assert`, donnez un jeu de tests de qualité pour la fonction suivante.
 2. Faites ensuite passer vos tests à la fonction.
 
+
 ```python
 def multiplication(a, b):
     '''
     Renvoie le produit de a par b, 
-    où a et b sont deux nombres quelconques.'''
+    où a et b sont deux nombres quelconques.
+    '''
     return a * b
 ```
 
@@ -69,6 +76,7 @@ def multiplication(a, b):
 
 1. En utilisant `assert`, donnez un jeu de tests de qualité pour la fonction suivante.
 2. Faites ensuite passer vos tests à la fonction.
+
 
 ```python
 def somme(t):
@@ -90,6 +98,11 @@ On cherche à écrire une fonction `est_croissant(t)` qui renvoie `True` si le t
 
 Un elève propose le code suivant pour la fonction `est_croissant(t)` de l'exercice précédent.
 
+1. Faites passer vos tests (de l'exercice prédédent) à cette fonction.
+2. Trouvez l'erreur en affichant l'état de certaines variables à des points stratégiques.
+3. Corrigez alors le code de la fonction et vérifiez que tous les tests sont valides.
+
+
 ```python
 def est_croissant(t):
     for i in range(len(t)):
@@ -98,13 +111,13 @@ def est_croissant(t):
     return True
 ```
 
-1. Faites passer vos tests (de l'exercice prédédent) à cette fonction.
-2. Trouvez l'erreur en affichant l'état de certaines variables à des points stratégiques.
-3. Corrigez alors le code de la fonction et vérifiez que tous les tests sont valides.
-
 ### Exercice 9
 
 Un élève prétend que la fonction suivante teste l'appartenance de la valeur `v` au tableau `t`.
+
+1. Donnez des tests pour cette fonction, et en particulier des tests montrant plusieurs raisons pour laquelle cette fonction est incorrecte.
+2. Vous corrigerez ensuite cette fonction.
+
 
 ```python
 def appartient(v, t):
@@ -119,12 +132,13 @@ def appartient(v, t):
     return trouvee
 ```
 
-1. Donnez des tests pour cette fonction, et en particulier des tests montrant plusieurs raisons pour laquelle cette fonction est incorrecte.
-2. Vous corrigerez ensuite cette fonction.
-
 ### Exercice 10
 
 On cherche à écrire une fonction `puissance(x, n)` dont la spécification est donnée dans la chaîne de documentation suivante.
+
+1. Intégrez un jeu de tests bien choisi directement dans la chaîne de documentation.
+2. Proposez ensuite un code pour cette fonction. Vous vérifiez que tous les tests sont valides et corrigerez la fonction si besoin.
+
 
 ```python
 def puissance(x, n):
@@ -132,9 +146,6 @@ def puissance(x, n):
     Renvoie la valeur de x^n, où n est un entier quelconque.
     '''
 ```
-
-1. Intégrez un jeu de tests bien choisi directement dans la chaîne de documentation.
-2. Proposez ensuite un code pour cette fonction. Vous vérifiez que tous les tests sont valides et corrigerez la fonction si besoin.
 
 **Références :**
 - Documents ressources du DIU EIL Nantes, C. DECLERCQ.
