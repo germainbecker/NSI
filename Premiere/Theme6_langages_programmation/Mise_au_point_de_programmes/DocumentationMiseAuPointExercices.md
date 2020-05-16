@@ -1,4 +1,3 @@
-
 # Documentation et mise au point de programmes - EXERCICES
 
 ## Documenter son programme
@@ -6,7 +5,6 @@
 ### Exercice 1
 
 Donnez un meilleur nom et une chaîne de documentation à la fonction suivante.
-
 
 ```python
 def f(a, b):
@@ -16,7 +14,6 @@ def f(a, b):
 ### Exercice 2
 
 Donnez un meilleur nom et une chaîne de documentation à la fonction suivante, le paramètre `t` étant un tableau.
-
 
 ```python
 def f(t):
@@ -32,7 +29,6 @@ def f(t):
 
 On considère la fonction `indice_maxi_tab(T)` suivante. A l'aide de la construction `assert`, proposez un test vérifiant si la précondition sur le tableau T est validée (*on ne cherchera pas à écrire la fonction*).
 
-
 ```python
 def indice_maxi_tab(T):
     """
@@ -45,7 +41,6 @@ def indice_maxi_tab(T):
 ### Exercice 4
 
 On considère la fonction `quotient(a, b)` suivante. A l'aide de la construction `assert`, proposez un test vérifiant si les préconditions sont validées.
-
 
 ```python
 def quotient(a, b):
@@ -62,7 +57,6 @@ def quotient(a, b):
 1. En utilisant `assert`, donnez un jeu de tests de qualité pour la fonction suivante.
 2. Faites ensuite passer vos tests à la fonction.
 
-
 ```python
 def multiplication(a, b):
     '''
@@ -76,7 +70,6 @@ def multiplication(a, b):
 
 1. En utilisant `assert`, donnez un jeu de tests de qualité pour la fonction suivante.
 2. Faites ensuite passer vos tests à la fonction.
-
 
 ```python
 def somme(t):
@@ -102,11 +95,10 @@ Un elève propose le code suivant pour la fonction `est_croissant(t)` de l'exerc
 2. Trouvez l'erreur en affichant l'état de certaines variables à des points stratégiques.
 3. Corrigez alors le code de la fonction et vérifiez que tous les tests sont valides.
 
-
 ```python
 def est_croissant(t):
     for i in range(len(t)):
-        if t[i+1] > t[i]:
+        if t[i+1] < t[i]:
             return False
     return True
 ```
@@ -117,7 +109,6 @@ Un élève prétend que la fonction suivante teste l'appartenance de la valeur `
 
 1. Donnez des tests pour cette fonction, et en particulier des tests montrant plusieurs raisons pour laquelle cette fonction est incorrecte.
 2. Vous corrigerez ensuite cette fonction.
-
 
 ```python
 def appartient(v, t):
@@ -139,7 +130,6 @@ On cherche à écrire une fonction `puissance(x, n)` dont la spécification est 
 1. Intégrez un jeu de tests bien choisi directement dans la chaîne de documentation.
 2. Proposez ensuite un code pour cette fonction. Vous vérifiez que tous les tests sont valides et corrigerez la fonction si besoin.
 
-
 ```python
 def puissance(x, n):
     '''
@@ -148,8 +138,10 @@ def puissance(x, n):
 ```
 
 **Références :**
+
 - Documents ressources du DIU EIL Nantes, C. DECLERCQ.
 - Numérique et Sciences Informatiques, 1re, T. BALABONSKI, S. CONCHON, J.-C. FILLIATRE, K. NGUYEN, éditions ELLIPSES : [Site du livre](https://www.nsi-premiere.fr/)
 
 ---
+
 Germain BECKER & Sébastien POINT, Lycée Mounier, ANGERS ![Licence Creative Commons](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
