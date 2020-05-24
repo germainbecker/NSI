@@ -3,13 +3,15 @@
 
 >*greedy algorithms* en anglais, l'adjectif "greedy" signifiant avare/glouton.
 
-Les *algorithmes gloutons* forment une catégorie d'algorithmes permettant de donner une solution à des problèmes d'optimisation qui visent à maximiser/minimiser une quantité (**plus court** chemin (GPS), **plus petit** temps d'exécution, **meilleure__ organisation** d'un emploi du temps, etc.)
+![monsieurGlouton](data/monsieurGlouton.jpg)
+
+Les *algorithmes gloutons* forment une catégorie d'algorithmes permettant de donner une solution à des problèmes d'optimisation qui visent à maximiser/minimiser une quantité (**plus court** chemin (GPS), **plus petit** temps d'exécution, **meilleure** organisation d'un emploi du temps, etc.)
 
 Le principe d'un algorithme glouton est le suivant :
 - résoudre un problème étape par étape
 - à chaque étape, faire le choix optimal de moindre coût (de meilleur gain)
 
-On utilise l'adjectif *greedy* (avare/glouton) pour désigner ces algorithmes car le choix effectué à chaque étape est celui permettant d'aboutir le plus rapidement possible à une solution globale et que ce choix n'est jamais remis en cause. On peut donc voir ce choix comme *avare*, car il permet d'aboutir à une solution sans trop d'efforts.
+Le choix effectué à chaque étape n'est jamais remis en cause, ce qui fait que cette stratégie permet d'aboutir rapidement à une solution au problème de départ. C'est en ce sens que l'adjectif *greedy* (glouton/avare) caractérise ces algorithmes : il terminent rapidement (*glouton*) sans fournir beaucoup d'efforts (*avare*).
 
 ## Le problème du rendu de monnaie
 
