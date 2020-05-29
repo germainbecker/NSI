@@ -23,7 +23,7 @@ Ce problème, qui demande à prédire à quelle catégorie, ou *classe*, apparti
 
 ## Algorithme naïf des kppv
 
-A partir d'un jeu de données (par exemple, les données sur nos 34 Pokémons) et d'une donnée *cible* (le nouveau Pokemon à classifier), l'algorithme de $k$ plus proches voisins déterminer les $k$ données les plus proches de la cible.
+A partir d'un jeu de données (par exemple, les données sur nos 34 Pokémons) et d'une donnée *cible* (le nouveau Pokemon à classifier), l'algorithme des $k$ plus proches voisins détermine les $k$ données les plus proches de la cible.
 
 Voici un algorithme permettant de résoudre ce problème :
 
@@ -71,7 +71,7 @@ On se rend compte que la classe majoritaire dans les 9 plus proches voisins est 
 
 ![graphique](data/9ppv.png)
 
-En poursuivant, si on choisit $k=34$ (le nombre total de données), alors la prédiction serait toujours "Psy" car c'est la classe majoritaire de l'échantillon. Il est donc incorrect de pense que plus la valeur de $k$ augmente meilleure sera la prédiction, c'est plus complexe que cela.
+En poursuivant, si on choisit $k=34$ (le nombre total de données), alors la prédiction serait toujours "Psy" car c'est la classe majoritaire de l'échantillon. Il est donc incorrect de penser que plus la valeur de $k$ augmente meilleure sera la prédiction, c'est plus complexe que cela.
 
 > C'est bien beau tout ça, mais quelle valeur de $k$ faut-il choisir ?
 
@@ -88,7 +88,7 @@ En appliquant ce protocole à différentes valeurs de $k$, on peut déterminer q
 
 ##  Choix de la distance
 
-L'algorithme des plus proches voisins repose presque entièrement sur la *distance* entre deux données. Dans les exemples vus précédemment, c'est la distance "naturelle" qui a été choisie (celle "à vol d'oiseau"). 
+L'algorithme des plus proches voisins repose sur la *distance* entre deux données. Dans les exemples vus précédemment, c'est la distance "naturelle" qui a été choisie (celle "à vol d'oiseau"). 
 
 Dans un repère orthonormé, si $A$ et $B$ ont pour coordonnées respectives $(x_A, y_A)$ et $(x_B, y_B)$ alors la distance entre ces deux points est donnée par la formule :
 
@@ -100,7 +100,7 @@ On parle alors de la *distance euclidienne*. Sachez cependant qu'il existe d'aut
 
 **Moralité :** On voit donc que le choix de la distance n'est pas anodin et que ce choix peut aboutir à des prédictions différentes.
 
-> **Remarque** : Nous n'avons parlé ici que de distances *géométriques* qui ne s'appliquent qu'à des données chiffrées. Toutes les données ne sont pas adaptées à ce type de distance : si on veut comparer la distance entre deux chaînes de caractères (dans le but de prédire la langue d'origine de certains mots par exemple) d'autres types de distances sont à considérer : *la distance de Hamming* ou la *distance d'édition* qui seront abordées en Terminale.
+> **Remarque** : Nous n'avons parlé ici que de distances *géométriques* qui ne s'appliquent qu'à des données chiffrées. Toutes les données ne sont pas adaptées à ce type de distance : si on veut comparer la distance entre deux chaînes de caractères, d'autres types de distances sont à considérer : *la distance de Hamming* ou la *distance d'édition* qui seront abordées en Terminale.
 
 ## Un algorithme d'*apprentissage* ? d'*IA* ?
 
@@ -142,14 +142,16 @@ La qualité des données est primordiale dans l'apprentissage automatique car ce
 - Aux Etats-unis, ils prédisent les taux de criminalité dans les quartiers et déploient les effectifs policiers en conséquence. Mais les données sur lesquelles les systèmes sont entrainés sont également biaisés car déséquilibrés avec davantage de personnes de couleurs par exemple (voir [source](https://www.technologyreview.com/2019/02/13/137444/predictive-policing-algorithms-ai-crime-dirty-data/)).
 - ...
 
-> “*Your system is only as good as the data that you use to train it on*”, Kate Crawford, cofounder and co-director of AI Now
+> &#8220; *Your system is only as good as the data that you use to train it on* &#8221;
+>
+> Kate Crawford, cofounder and co-director of AI Now
 
 ## Conclusion
 
 - Nous avons vu que l'algorithme des $k$ plus proches voisins faisait partie de la famille des algorithmes d'apprentissage automatique (*machnine learning* en anglais) qui se nourissent de données pour prédire des choses sur une donnée inconnue. En particulier, il permet de résoudre des problèmes de classification.
 - L'algorithme de kppv permet de trouver les $k$ voisins les plus proches d'une nouvelle donnée. Il est donc nécessaire de lui associer une distance pour apprécier cette notion de proximité.
 - On peut alors prédire la classe d'une nouvelle donnée en prenant celle qui est majoritaire parmi ses plus proches voisins.
-- Les prédictions varient selon la valeur de $k$ et selon la distance choisie : en pratique il est donc important de bien choisir ce deux données.
+- Les prédictions varient selon la valeur de $k$ et selon la distance choisie : en pratique, il est donc important de bien choisir cex deux données.
 - Les algorithmes d'apprentissage automatique (IA) se sont beaucoup développés depuis les années 2010 grâce au *big data* qui leur permet de s'entraîner sur un très grand nombre de données.
 - La qualité des résultats dépend grandement de la qualité des données d'entraînement : il est donc important de s'assurer de leur qualité pour éviter des *biais* pouvant être discriminants, racistes...
 
