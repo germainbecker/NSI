@@ -2,7 +2,7 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Algorithmes-gloutons">Algorithmes gloutons<a class="anchor-link" href="#Algorithmes-gloutons">&#182;</a></h1><blockquote><p><em>greedy algorithms</em> en anglais, l'adjectif "greedy" signifiant avare/glouton.</p>
+<blockquote><p><em>greedy algorithms</em> en anglais, l'adjectif "greedy" signifiant avare/glouton.</p>
 </blockquote>
 <p><img src="data/monsieurGlouton.jpg" alt="monsieurGlouton"></p>
 <p>Les <em>algorithmes gloutons</em> forment une catégorie d'algorithmes permettant de donner une solution à des problèmes d'optimisation qui visent à maximiser/minimiser une quantité (<strong>plus court</strong> chemin (GPS), <strong>plus petit</strong> temps d'exécution, <strong>meilleure</strong> organisation d'un emploi du temps, etc.)</p>
@@ -19,13 +19,13 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Le-probl&#232;me-du-rendu-de-monnaie">Le probl&#232;me du rendu de monnaie<a class="anchor-link" href="#Le-probl&#232;me-du-rendu-de-monnaie">&#182;</a></h2><h3 id="Enonc&#233;">Enonc&#233;<a class="anchor-link" href="#Enonc&#233;">&#182;</a></h3><p>Vous êtes commerçant et devez rendre de la monnaie à vos clients de façon optimale, c'est-à-dire avec le <strong>nombre minimal</strong> de pièces et de billets.</p>
+<h1 id="Le-probl&#232;me-du-rendu-de-monnaie">Le probl&#232;me du rendu de monnaie<a class="anchor-link" href="#Le-probl&#232;me-du-rendu-de-monnaie">&#182;</a></h1><h2 id="Enonc&#233;">Enonc&#233;<a class="anchor-link" href="#Enonc&#233;">&#182;</a></h2><p>Vous êtes commerçant et devez rendre de la monnaie à vos clients de façon optimale, c'est-à-dire avec le <strong>nombre minimal</strong> de pièces et de billets.</p>
 <ul>
 <li>On suppose que les clients ne vous donnent que des sommes entières en euros (pas de centimes pour simplifier).</li>
 <li>Les valeurs des pièces et billets à votre disposition sont : 1, 2, 5, 10, 20, 50, 100, 200 et 500. On suppose que vous avez autant d'exemplaires de chaque pièce et billet</li>
 <li>Dans la suite, afin de simplifier, nous désignerons par "pièces" à la fois les pièces et les billets.</li>
 </ul>
-<h3 id="Strat&#233;gie-&#224;-adopter">Strat&#233;gie &#224; adopter<a class="anchor-link" href="#Strat&#233;gie-&#224;-adopter">&#182;</a></h3><p><em>Exemple</em> : Myriam vous achète un objet qui coûte 53 euros. Elle paye avec un billet de 200 euros. Vous devez donc lui rendre 147 euros. La meilleure façon de lui rendre la monnaie est de le faire avec un billet de 100, deux billets de 20, un billet de 5 et une pièce de 2.</p>
+<h2 id="Strat&#233;gie-&#224;-adopter">Strat&#233;gie &#224; adopter<a class="anchor-link" href="#Strat&#233;gie-&#224;-adopter">&#182;</a></h2><p><em>Exemple</em> : Myriam vous achète un objet qui coûte 53 euros. Elle paye avec un billet de 200 euros. Vous devez donc lui rendre 147 euros. La meilleure façon de lui rendre la monnaie est de le faire avec un billet de 100, deux billets de 20, un billet de 5 et une pièce de 2.</p>
 <p>Pour minimiser le nombre de pièces à rendre, il apparaît la stratégie suivante :</p>
 <ul>
 <li>on commence par rendre la pièce de la plus grande valeur possible</li>
@@ -40,7 +40,7 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Impl&#233;mentation-en-Python">Impl&#233;mentation en Python<a class="anchor-link" href="#Impl&#233;mentation-en-Python">&#182;</a></h3><p>On peut implémenter cet algorithme avec une fonction de deux paramètres : la somme <code>s</code> à rendre et le tableau <code>pieces</code> contenant les valeurs des pièces à disposition rangées dans l'ordre croissant.</p>
+<h2 id="Impl&#233;mentation-en-Python">Impl&#233;mentation en Python<a class="anchor-link" href="#Impl&#233;mentation-en-Python">&#182;</a></h2><p>On peut implémenter cet algorithme avec une fonction de deux paramètres : la somme <code>s</code> à rendre et le tableau <code>pieces</code> contenant les valeurs des pièces à disposition rangées dans l'ordre croissant.</p>
 <p>Pour commencer, on se place sur la plus grande pièce et on reprend la stratégie précédente en plaçant au fur et à mesure les pièces à rendre dans une liste <code>solution</code>. Ne sachant pas à l'avance combien d'étapes seront nécessaires on utilise de manière logique une boucle <code>while</code> qui s'arrêtera lorsque toute la somme sera rendue (ou que toutes les pièces ont été testées).</p>
 
 </div>
@@ -116,9 +116,9 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Optimalit&#233;-d'un-algorithme-glouton">Optimalit&#233; d'un algorithme glouton<a class="anchor-link" href="#Optimalit&#233;-d'un-algorithme-glouton">&#182;</a></h2><p>La stratégie gloutonne consiste à trouver la <strong>solution optimale <em>locale</em></strong> à chaque étape, dans l'espoir de trouver la <strong>solution optimale <em>globale</em></strong>.</p>
+<h1 id="Optimalit&#233;-d'un-algorithme-glouton">Optimalit&#233; d'un algorithme glouton<a class="anchor-link" href="#Optimalit&#233;-d'un-algorithme-glouton">&#182;</a></h1><p>La stratégie gloutonne consiste à trouver la <strong>solution optimale <em>locale</em></strong> à chaque étape, dans l'espoir de trouver la <strong>solution optimale <em>globale</em></strong>.</p>
 <p>On peut se demander si cette stratégie donne nécessairement la meilleure solution globale, autrement dit si la solution globale obtenue est la meilleure ? Voici quelques exemples pour répondre à cette question.</p>
-<h3 id="Un-exemple-simple">Un exemple simple<a class="anchor-link" href="#Un-exemple-simple">&#182;</a></h3><ul>
+<h2 id="Un-exemple-simple">Un exemple simple<a class="anchor-link" href="#Un-exemple-simple">&#182;</a></h2><ul>
 <li>On part du point O. </li>
 <li>On doit atteindre le plus rapidement possible tous les points A, B, C, D, E, F. </li>
 <li>L'ordre de parcours des points n'est pas important.</li>
@@ -129,7 +129,7 @@
 <p>La réponse est NON. En effet, le chemin suivant permet d'atteindre tous les points plus rapidement :</p>
 <p><img src="data/pluscourt3.png" alt=""></p>
 <p>Voici donc un exemple pour lequel le meilleur choix local n'aboutit pas à la meilleure solution globale.</p>
-<h3 id="Rendu-de-monnaie">Rendu de monnaie<a class="anchor-link" href="#Rendu-de-monnaie">&#182;</a></h3><p>Ce n'est pas évident à montrer, mais l'algorithme glouton fournit bien la solution optimale au problème du rendu de monnaie... dans le cas où le système de monnaie est l'euro.</p>
+<h2 id="Rendu-de-monnaie">Rendu de monnaie<a class="anchor-link" href="#Rendu-de-monnaie">&#182;</a></h2><p>Ce n'est pas évident à montrer, mais l'algorithme glouton fournit bien la solution optimale au problème du rendu de monnaie... dans le cas où le système de monnaie est l'euro.</p>
 <p><strong>Et pour un autre système de monnaie ?</strong></p>
 <p>Imaginons qu'il faille rendre la somme 8 avec à notre disposition les pièces <code>[6, 4, 1]</code>.</p>
 <blockquote><p><strong>Questions</strong></p>
@@ -240,10 +240,10 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Le-probl&#232;me-du-sac-&#224;-dos-(version-Lupin)">Le probl&#232;me du sac &#224; dos (version Lupin)<a class="anchor-link" href="#Le-probl&#232;me-du-sac-&#224;-dos-(version-Lupin)">&#182;</a></h2><blockquote><p><em>Knapsack Problem</em> en anglais, souvent abrégé <strong>KP</strong>.</p>
+<h1 id="Le-probl&#232;me-du-sac-&#224;-dos-(version-Lupin)">Le probl&#232;me du sac &#224; dos (version Lupin)<a class="anchor-link" href="#Le-probl&#232;me-du-sac-&#224;-dos-(version-Lupin)">&#182;</a></h1><blockquote><p><em>Knapsack Problem</em> en anglais, souvent abrégé <strong>KP</strong>.</p>
 </blockquote>
 <p><img src="data/kp.svg" alt=""></p>
-<h3 id="Enonc&#233;-possible">Enonc&#233; possible<a class="anchor-link" href="#Enonc&#233;-possible">&#182;</a></h3><p>Vous êtes un voleur et souhaitez emporter les objets pour maximiser la valeur totale du butin. Cependant, votre sac ne peut supporter qu'une masse maximale de 10 kg.  On dispose d’un sac pouvant supporter un poids maximal donné et de divers objets ayant chacun une valeur et un poids. Il s’agit de choisir les objets à emporter dans le sac afin maximiser la valeur totale tout en respectant la contrainte du poids maximal. C’est un problème d’<em>optimisation avec contrainte</em>.</p>
+<h2 id="Enonc&#233;-possible">Enonc&#233; possible<a class="anchor-link" href="#Enonc&#233;-possible">&#182;</a></h2><p>Vous êtes un voleur et souhaitez emporter les objets pour maximiser la valeur totale du butin. Cependant, votre sac ne peut supporter qu'une masse maximale de 10 kg.  On dispose d’un sac pouvant supporter un poids maximal donné et de divers objets ayant chacun une valeur et un poids. Il s’agit de choisir les objets à emporter dans le sac afin maximiser la valeur totale tout en respectant la contrainte du poids maximal. C’est un problème d’<em>optimisation avec contrainte</em>.</p>
 <p>Considérons les objets suivants et un sac de capacité maximale 10 kg. Quels objets faut-il prendre ?</p>
 <table>
 <thead><tr>
@@ -277,7 +277,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="Strat&#233;gies-gloutonnes">Strat&#233;gies gloutonnes<a class="anchor-link" href="#Strat&#233;gies-gloutonnes">&#182;</a></h3><p>Il y a plusieurs choix possibles :</p>
+<h2 id="Strat&#233;gies-gloutonnes">Strat&#233;gies gloutonnes<a class="anchor-link" href="#Strat&#233;gies-gloutonnes">&#182;</a></h2><p>Il y a plusieurs choix possibles :</p>
 <ul>
 <li><strong>Stratégie 1</strong> : prendre toujours l'objet de plus grande valeur n'excédant pas la capacité restante (il faut trier préalablement par valeur décroissante)</li>
 <li><strong>Stratégie 2</strong> : prendre toujours l'objet de plus faible masse (il faut trier préalablement par masse croissante)</li>
@@ -315,8 +315,8 @@
 </tbody>
 </table>
 <p>On constate donc que <em>pour cet exemple</em>, la stratégie n°3 est la meilleure. Mais on peut faire mieux ! En effet, le sac $\{B, C\}$ fait 10 kg et possède une valeur de 12000 €. Il s'agit de la solution optimale au problème.</p>
-<h4 id="Moralit&#233;">Moralit&#233;<a class="anchor-link" href="#Moralit&#233;">&#182;</a></h4><p>On constate que la qualité de la solution dépend de la stratégie gloutonne utilisée. Selon les exemples, c'est l'une ou l'autre qui sera meilleure. Cependant, cette solution n'est pas forcément la solution optimale.</p>
-<h3 id="Impl&#233;mentation-en-Python">Impl&#233;mentation en Python<a class="anchor-link" href="#Impl&#233;mentation-en-Python">&#182;</a></h3><p>Faite en exercices.</p>
+<h3 id="Moralit&#233;">Moralit&#233;<a class="anchor-link" href="#Moralit&#233;">&#182;</a></h3><p>On constate que la qualité de la solution dépend de la stratégie gloutonne utilisée. Selon les exemples, c'est l'une ou l'autre qui sera meilleure. Cependant, cette solution n'est pas forcément la solution optimale.</p>
+<h2 id="Impl&#233;mentation-en-Python">Impl&#233;mentation en Python<a class="anchor-link" href="#Impl&#233;mentation-en-Python">&#182;</a></h2><p>Faite en exercices.</p>
 
 </div>
 </div>
@@ -324,7 +324,7 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Pourquoi-se-contenter-d'une-solution-non-optimale-?">Pourquoi se contenter d'une solution non optimale ?<a class="anchor-link" href="#Pourquoi-se-contenter-d'une-solution-non-optimale-?">&#182;</a></h2><p>Comme nous venons de le voir dans les deux problèmes du rendu de monnaie et du sac à dos, la stratégie gloutonne ne donne pas forcément un résultat optimal. On peut alors se demander s'il n'est pas possible de trouver la meilleure solution, à coup sûr, pour résoudre un problème d'optimisation.</p>
+<h1 id="Pourquoi-se-contenter-d'une-solution-non-optimale-?">Pourquoi se contenter d'une solution non optimale ?<a class="anchor-link" href="#Pourquoi-se-contenter-d'une-solution-non-optimale-?">&#182;</a></h1><p>Comme nous venons de le voir dans les deux problèmes du rendu de monnaie et du sac à dos, la stratégie gloutonne ne donne pas forcément un résultat optimal. On peut alors se demander s'il n'est pas possible de trouver la meilleure solution, à coup sûr, pour résoudre un problème d'optimisation.</p>
 <p>Une telle approche existe, il s'agit de la stratégie de <em>force brute</em> (ou <em>énumérative</em>) qui consiste à passer en revue toutes les options possibles et retenir la meilleure.</p>
 <blockquote><p>Pourquoi n'utilise-t-on pas toujours la <em>force brute</em> ?</p>
 </blockquote>
@@ -339,7 +339,7 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Autres-probl&#232;mes-classiques">Autres probl&#232;mes classiques<a class="anchor-link" href="#Autres-probl&#232;mes-classiques">&#182;</a></h2><p>Il existe de nombreux autres problèmes d'optimisation pouvant être résolu par un algorithme glouton (pas forcément de manière optimale) :</p>
+<h1 id="Autres-probl&#232;mes-classiques">Autres probl&#232;mes classiques<a class="anchor-link" href="#Autres-probl&#232;mes-classiques">&#182;</a></h1><p>Il existe de nombreux autres problèmes d'optimisation pouvant être résolu par un algorithme glouton (pas forcément de manière optimale) :</p>
 <ul>
 <li>problème du voyageur (plus court chemin)</li>
 <li>coloration d'un graphe</li>
@@ -355,7 +355,7 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h2><ul>
+<h1 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h1><ul>
 <li>Nous avons vu que les algorithmes gloutons fournissent une stratégie pour résoudre des problèmes d'optimisation : à chaque étape, faire le meilleur choix (local). </li>
 <li>Ils donnent rapidement une <em>solution satisfaisante</em> à un problème mais pas nécessairement la <em>solution optimale</em> puisque les choix successifs ne sont jamais remis en cause.</li>
 <li>La stratégie de <em>force brute</em> permettrait à coup sûr d'obtenir une solution optimale mais devient inapplicable dès que la taille des données est trop importante. C'est pourquoi une solution gloutonne est parfois privilégiée.</li>
@@ -389,19 +389,6 @@
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
 </div>
  
 
