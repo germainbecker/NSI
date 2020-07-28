@@ -1,0 +1,845 @@
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Introduction-sur-le-format-notebook">Introduction sur le format <em>notebook</em><a class="anchor-link" href="#Introduction-sur-le-format-notebook">&#182;</a></h1><p><img class="centre image-responsive" src="data/jupyter_logo.svg" alt="logo Jupyter" width="200"></p>
+<p>Nous utiliserons beaucoup cette année les <strong>notebooks</strong> de l'application web <em>Jupyter</em>. Il s'agit d'interfaces de programmation interactives permettant de mélanger du texte (écrit dans le format markdown) et du code en Python (entre autres). Ces notebooks sont très utilisés en science des données (<em>data science</em>) car ils facilitent le partage et la reproductibilité des résultats. Il sont très pratiques pour l'apprentissage du langage Python.</p>
+<p>On peut écrire en Python exactement comme avec n'importe quel éditeur et le code peut directement être exécuté dans le notebook. Pour cela, il suffit de se positionner sur la cellule de votre code et de cliquer sur le bouton <code>&gt;| Exécuter</code> de la barre d'outils ou de manière plus efficace directement au clavier avec le raccourci <code>Maj + Entrée</code>.</p>
+<p><strong>Petit point sur l'affichage de valeurs</strong></p>
+<p>Dans un <em>notebook</em>, tout comme dans une console, si on veut connaître la valeur d'une variable, il n'est pas nécessaire d'utiliser la fonction <code>print</code>. Il suffit pour cela de taper en dernière ligne le nom de la variable que l'on veut afficher.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">prix</span> <span class="o">=</span> <span class="mi">35</span>
+<span class="n">prix_remise</span> <span class="o">=</span> <span class="n">prix</span> <span class="o">*</span> <span class="mf">0.8</span> <span class="c1"># remise de 20 %</span>
+<span class="n">prix</span> <span class="c1"># ne sera pas affiché</span>
+<span class="n">prix_remise</span> <span class="c1"># sera renvoyée car en dernière ligne</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[1]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>28.0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut afficher les valeurs des deux variables <code>prix</code> et <code>prix_remise</code> en les séparant par une virgule en dernière ligne.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">prix</span> <span class="o">=</span> <span class="mi">35</span>
+<span class="n">prix_remise</span> <span class="o">=</span> <span class="n">prix</span> <span class="o">*</span> <span class="mf">0.8</span>
+<span class="n">prix</span><span class="p">,</span> <span class="n">prix_remise</span> <span class="c1"># ici un couple est renvoyé</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[2]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(35, 28.0)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut aussi utiliser la fonction <code>print</code> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">prix</span> <span class="o">=</span> <span class="mi">35</span>
+<span class="n">prix_remise</span> <span class="o">=</span> <span class="n">prix</span> <span class="o">*</span> <span class="mf">0.8</span> <span class="c1"># remise de 20 %</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prix</span><span class="p">,</span> <span class="n">prix_remise</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>35 28.0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En revanche, si vous souhaitez afficher des valeurs, à plusieurs endroits d'un programme, il faudra nécessairement utiliser la fonction <code>print</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">a</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>5
+10
+0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Variables-et-affectations-en-Python">Variables et affectations en Python<a class="anchor-link" href="#Variables-et-affectations-en-Python">&#182;</a></h1><p>Dans le langage Python, le symbole <code>=</code> correspondant à l'affectation (écrite $\leftarrow$ en pseudo-code).</p>
+<p>Pour affecter la valeur 2 à une variable <code>a</code> on écrit simplement :</p>
+<div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+</pre></div>
+<h1 id="Instructions-conditionnelles-:-if-elif-et-else">Instructions conditionnelles : <code>if elif</code> et <code>else</code><a class="anchor-link" href="#Instructions-conditionnelles-:-if-elif-et-else">&#182;</a></h1><p>En Python, les instructions conditionnelles se codent en utilisant les instructions <code>if</code>, <code>elif</code>, <code>else</code>.</p>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition1</span><span class="p">:</span>
+    <span class="n">bloc_instructions_1</span>
+<span class="k">elif</span> <span class="n">condition2</span><span class="p">:</span>
+    <span class="n">bloc_instructions_2</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">bloc_instructions_3</span>
+</pre></div>
+<p><strong>Remarques :</strong></p>
+<ul>
+<li>ne pas oublier les deux points à la fin des lignes avec <code>if</code>, <code>elif</code> et <code>else</code> qui permettent d'ouvrir le bloc d'instructions à effectuer dans chaque cas ;</li>
+<li>les instructions à effectuer sont indentées d'une tabulation par rapport aux <code>if</code>, <code>elif</code> et <code>else</code> : c'est la syntaxe Python, elle doit absolument être respectée ;</li>
+<li>les mot-clés <code>elif</code> et <code>else</code> ne sont pas obligatoires ;</li>
+<li>au contraire du pseudo-code, on n'écrit pas en Python de 'fin si' car celui-ci est matérialisé la fin des indentations.</li>
+</ul>
+<p>Dans le programme suivant, le dernier message s'affiche à chaque fois, en revanche les deux messages précédents ne s'affichent que si on entre dans le bloc <code>if</code>, autrement dit si la condition <code>a &gt;= 10</code> est vraie.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="k">if</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span> <span class="c1"># condition vraie</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Vous avez la moyenne&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Message dans le bloc d&#39;instructions du if&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Message en dehors du bloc d&#39;instruction du if&quot;</span><span class="p">)</span> <span class="c1"># en dehors du bloc d&#39;instructions du if</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Vous avez la moyenne
+Message dans le bloc d&#39;instructions du if
+Message en dehors du bloc d&#39;instruction du if
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="k">if</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span> <span class="c1"># condition fausse</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Vous avez la moyenne&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Message dans le bloc d&#39;instructions du if&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Message en dehors du bloc d&#39;instruction du if&quot;</span><span class="p">)</span> <span class="c1"># en dehors du bloc d&#39;instructions du if</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Message en dehors du bloc d&#39;instruction du if
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Boucles-born&#233;es-:-boucles-for">Boucles born&#233;es : boucles <code>for</code><a class="anchor-link" href="#Boucles-born&#233;es-:-boucles-for">&#182;</a></h1><p>En Python, les boucles 'Pour' se codent en utilisant l'instruction <code>for</code> :</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">sequence</span> <span class="p">:</span>
+    <span class="n">instruction1</span>
+    <span class="n">instruction2</span>
+    <span class="o">...</span>
+    <span class="n">instructionN</span>
+</pre></div>
+<p><strong>Remarques :</strong></p>
+<ul>
+<li><code>element</code> est une variable créée par le <code>for</code>, ce n'est pas à vous de l'instancier. Elle prend successicement chacune des valeurs figurant dans la <code>sequence</code> parcourue ;</li>
+<li>ne pas oublier les deux points à la fin de la ligne avec <code>for</code> qui permettent d'ouvrir le bloc d'instructions à exécuter (à répéter) ;</li>
+<li>les instructions à effectuer sont indentées d'une tabulation par rapport au <code>for</code> ;</li>
+<li>au contraire du pseudo-code, on n'écrit pas en Python de 'fin pour' car celui-ci est matérialisé la fin des indentations.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="La-fonction-range-pour-cr&#233;er-des-s&#233;quences-de-nombres">La fonction <code>range</code> pour cr&#233;er des s&#233;quences de nombres<a class="anchor-link" href="#La-fonction-range-pour-cr&#233;er-des-s&#233;quences-de-nombres">&#182;</a></h2><p>La fonction <code>range</code> permet de créer des séquences de nombres. Vous allez comprendre quels nombres sur les exemples qui suivent :</p>
+<ul>
+<li><code>range(5)</code> : permet de créer la séquence de nombres entiers de 0 inclus à 5 <strong>exclu</strong> : c'est-à-dire les nombres 0, 1, 2, 3, 4.</li>
+<li><code>range(2,8)</code> : permet de créer la séquence de nombres entiers de 2 inclus à 8 <strong>exclu</strong> : c'est-à-dire les nombres 2, 3, 4, 5, 6, 7.</li>
+<li><code>range(2,8,3)</code> : permet de créer la séquence de nombres entiers de 2 inclus à 8 <strong>exclu</strong>, <strong>par pas de 3</strong> : c'est-à-dire les nombres 2, 5.</li>
+</ul>
+<p>Ainsi, pour répéter un bloc d'instructions 36 fois, il suffit d'écrire :</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">36</span><span class="p">):</span>
+    <span class="n">bloc_instructions</span>
+</pre></div>
+<p>En effet, la variable <code>i</code> créée par la boucle va prendre successivement les valeurs : 0, 1, 2, 3, ..., 35. Elle prend donc 36 valeurs et le bloc <code>bloc_instructions</code> sera donc répété 36 fois.</p>
+<p>On aurait aussi pu écrire cela :</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">36</span><span class="p">):</span>
+    <span class="n">bloc_instructions</span>
+</pre></div>
+<p>ou encore :</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">37</span><span class="p">):</span>
+    <span class="n">bloc_instructions</span>
+</pre></div>
+<p>ou encore :</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">valeur</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">36</span><span class="p">):</span>
+    <span class="n">bloc_instructions</span>
+</pre></div>
+<p>car dans chaque cas, la variable créée (<code>i</code> ou <code>valeur</code>) parcoure 36 valeurs différentes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Parcourir-des-cha&#238;nes-de-caract&#232;res">Parcourir des cha&#238;nes de caract&#232;res<a class="anchor-link" href="#Parcourir-des-cha&#238;nes-de-caract&#232;res">&#182;</a></h2><p>Nous venons de voir que la fonction <code>range</code> permettait de créer des séquences de nombres que l'on pouvait parcourir avec l'instruction <code>for</code>.</p>
+<h3 id="Par-ses-caract&#232;res">Par ses caract&#232;res<a class="anchor-link" href="#Par-ses-caract&#232;res">&#182;</a></h3><p>Il se trouve que les chaînes de caractères sont également des séquences ... de caractères. On peut donc aussi les parcourir très simplement avec une boucle <code>for</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">chaine</span> <span class="o">=</span> <span class="s2">&quot;Bonjour les élèves !&quot;</span>
+<span class="k">for</span> <span class="n">caractere</span> <span class="ow">in</span> <span class="n">chaine</span> <span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">caractere</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>B
+o
+n
+j
+o
+u
+r
+ 
+l
+e
+s
+ 
+é
+l
+è
+v
+e
+s
+ 
+!
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>La variable <code>caractere</code> créée par le <code>for</code> prend successivement les valeurs de la séquence "Bonjour les élèves !", c'est-à-dire qu'elle prend la valeur 'B' puis la valeur 'o', puis la valeur 'n', etc. La boucle s'arrête lorsque toute la séquence a été parcourue.</p>
+<h3 id="Par-l'indice-de-ses-caract&#232;res">Par l'indice de ses caract&#232;res<a class="anchor-link" href="#Par-l'indice-de-ses-caract&#232;res">&#182;</a></h3><p>On peut aussi utiliser la fonction <code>range</code> pour parcourir les caractères par leurs indices.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">chaine</span> <span class="o">=</span> <span class="s2">&quot;Bonjour les élèves !&quot;</span>
+<span class="k">for</span> <span class="n">indice</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chaine</span><span class="p">))</span> <span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">chaine</span><span class="p">[</span><span class="n">indice</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>B
+o
+n
+j
+o
+u
+r
+ 
+l
+e
+s
+ 
+é
+l
+è
+v
+e
+s
+ 
+!
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>L'instruction <code>len(chaine)</code> revoie la longueur de la chaîne de caractères, soit 20 dans notre exemple. Donc <code>range(len(chaine))</code> est évaluée à <code>range(20)</code> qui crée la séquence d'entiers 0, 1, 2, ..., 19 qui vont être affectés successivement à la variable <code>indice</code>. On affiche ensuite, à chaque tour de boucle, le caractère en position <code>indice</code> dans <code>chaine</code> c'est-à-dire <code>chaine[0]</code>, puis <code>chaine[1]</code>, ... et enfin <code>chaine[19]</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Boucles-non-born&#233;es-:-boucles-while">Boucles non born&#233;es : boucles <code>while</code><a class="anchor-link" href="#Boucles-non-born&#233;es-:-boucles-while">&#182;</a></h1><p>En Python, les boucles 'Tant que' se codent en utilisant l'instruction <code>while</code> :</p>
+<div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">condition</span> <span class="p">:</span>
+    <span class="n">instruction1</span>
+    <span class="n">instruction2</span>
+    <span class="o">...</span>
+    <span class="n">instructionN</span>
+</pre></div>
+<p><strong>Remarques :</strong></p>
+<ul>
+<li><code>condition</code> est une variable booléenne qui est soit vraie (<code>True</code>) soit fausse (<code>False</code>) ;</li>
+<li>Tant que <code>condition</code> vaut <code>True</code> les instructions du bloc sont répétées ;</li>
+<li>On passe à la suite du programme dès que <code>condition</code> vaut <code>False</code>. Cela signifie que si <code>condition</code> reste vraie tout le temps, la boucle <code>while</code> boucle à l'infini, ce qui pourra causer des problèmes plus ou moins importants ;</li>
+<li>ne pas oublier les deux points à la fin de la ligne avec <code>while</code> qui permettent d'ouvrir le bloc d'instructions à exécuter (à répéter) ;</li>
+<li>les instructions à effectuer sont indentées d'une tabulation par rapport au <code>while</code> ;</li>
+<li>au contraire du pseudo-code, on n'écrit pas en Python de 'fin tant que' car celui-ci est matérialisé la fin des indentations.</li>
+</ul>
+<p><strong>Exemple</strong> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">while</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">14</span><span class="p">:</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">2</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># pour voir l&#39;évolution de la variable a</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>5
+7
+9
+11
+13
+15
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Les-fonctions">Les fonctions<a class="anchor-link" href="#Les-fonctions">&#182;</a></h1><p>En Python, on définit une fonction à l'aide du mot-clé <code>def</code> :</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">nom_de_la_fonction</span><span class="p">(</span><span class="n">parametre1</span><span class="p">,</span> <span class="n">parametre2</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">parametreN</span><span class="p">):</span>
+    <span class="n">instruction1</span>
+    <span class="n">instruction2</span>
+    <span class="o">...</span>
+    <span class="k">return</span> <span class="n">valeur1</span><span class="p">,</span> <span class="n">valeur2</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">valeurP</span>
+</pre></div>
+<ul>
+<li>le mot-clé <code>def</code> est suivi du nom de la fonction ;</li>
+<li>les <em>arguments</em> (ou <em>paramètres</em>) de la fonction sont ensuite écrits entre parenthèses et séparés par des virgules ;</li>
+<li>il existe des fonctions sans paramètre, les parenthèses sont néanmoins obligatoires et restent vides ;</li>
+<li>le mot-clé <code>return</code> permet de renvoyer une ou plusieurs valeurs (à séparer par des virgules) ;</li>
+<li>au premier <code>return</code> rencontré l'exécution de la fonction est stoppée : si on veut renvoyer plusieurs valeurs on ne peut pas utiliser plusieurs <code>return</code> ; il faut séparer les valeurs à renvoyer par des virgules ;</li>
+<li>comme d'habitude ne pas oublier les deux points à la fin de la ligne avec <code>def</code> qui permettent d'ouvrir le bloc d'instructions à exécuter (à répéter).</li>
+</ul>
+<p><strong>Exemple</strong> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">est_dans_chaine</span><span class="p">(</span><span class="n">chaine</span><span class="p">,</span> <span class="n">lettre</span><span class="p">):</span>
+    <span class="n">reponse</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">indice</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chaine</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">chaine</span><span class="p">[</span><span class="n">indice</span><span class="p">]</span> <span class="o">==</span> <span class="n">lettre</span><span class="p">:</span>
+            <span class="n">reponse</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">pos</span> <span class="o">=</span> <span class="n">indice</span>      
+    <span class="k">return</span> <span class="n">reponse</span><span class="p">,</span> <span class="n">pos</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut ensuite appeler une fonction par son nom en lui passant les arguments souhaités.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">est_dans_chaine</span><span class="p">(</span><span class="s1">&#39;Bonjour&#39;</span><span class="p">,</span> <span class="s1">&#39;j&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(True, 3)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">est_dans_chaine</span><span class="p">(</span><span class="s1">&#39;Bonjour&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[12]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(False, None)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Les-entr&#233;es-en-Python">Les entr&#233;es en Python<a class="anchor-link" href="#Les-entr&#233;es-en-Python">&#182;</a></h1><p>Pour que l'utilisateur puisse saisir des valeurs au clavier, on utilise la fonction <code>input</code>. Elle déclenche l’ouverture d’une boîte de dialogue dans laquelle on peut saisir la valeur souhaitée.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nom_utilisateur</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Veuillez saisir votre nom : &quot;</span><span class="p">)</span>
+<span class="n">age_utilisateur</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Veuillez saisir votre âge : &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nom_utilisateur</span><span class="p">,</span> <span class="n">age_utilisateur</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">age_utilisateur</span><span class="p">))</span> <span class="c1"># OBSERVEZ BIEN LE TYPE</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Veuillez saisir votre nom : Guido van Rossum
+Veuillez saisir votre âge : 64
+Guido van Rossum 64
+&lt;class &#39;str&#39;&gt;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote class="attention">
+
+**ATTENTION :** Par défaut, en Python, les variables saisies au clavier et récupérées par la fonction `input` sont des chaînes de caractères.
+
+</blockquote><p>Cela peut créer des erreurs :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">age_utilisateur</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Veuillez saisir votre âge : &quot;</span><span class="p">)</span>
+<span class="n">age_utilisateur</span> <span class="o">=</span> <span class="n">age_utilisateur</span> <span class="o">+</span> <span class="mi">2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Veuillez saisir votre âge : 16
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-14-8ae97b43fbf4&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">      1</span> age_utilisateur <span class="ansi-yellow-intense-fg ansi-bold">=</span> input<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#34;Veuillez saisir votre âge : &#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 2</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>age_utilisateur <span class="ansi-yellow-intense-fg ansi-bold">=</span> age_utilisateur <span class="ansi-yellow-intense-fg ansi-bold">+</span> <span class="ansi-cyan-intense-fg ansi-bold">2</span>
+
+<span class="ansi-red-intense-fg ansi-bold">TypeError</span>: can only concatenate str (not &#34;int&#34;) to str</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>L'erreur se situe ligne 2 comme l'indique la flèche verte. Le message d'erreur <code>TypeError: can only concatenate str (not "int") to str</code> indique que Python ne peut concaténer une chaîne de caractères qu'avec une autre chaîne de caractères (mais pas avec un entier).</p>
+<p>En effet, la variable <code>age_utilisateur</code> étant de type <code>str</code>, le symbole <code>+</code> qui suit est le symbole de concaténation, qui ne peut pas s'appliquer à l'entier 2 qui suit car celui-ci est de type <code>int</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>RÈGLE D'USAGE IMPORTANTE :</strong> pour éviter ces problèmes, il suffit de préciser le type de variable que l'utilisateur doit saisir avant la fonction <code>input</code> comme indiqué ci-dessous :</p>
+<ul>
+<li>pour saisir un entier : <code>nom_variable = int(input("message à afficher"))</code></li>
+<li>pour saisir un flottant : <code>nom_variable = float(input("message à afficher"))</code></li>
+<li>pour saisir un booléen : <code>nom_variable = bool(input("message à afficher"))</code></li>
+<li>pour saisir un entier long : <code>nom_variable = long(input("message à afficher"))</code></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ainsi, pour régler le problème précédent, il suffit d'écrire :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">age_utilisateur</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Veuillez saisir votre âge :&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dans deux ans, vous aurez :&quot;</span><span class="p">,</span> <span class="n">age_utilisateur</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;ans&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Veuillez saisir votre âge :16
+Dans deux ans, vous aurez : 18 ans
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote class="information">
+
+Nous n'utiliserons les instructions d'entrée en Python que dans les cas où cela s'avère nécessaire. Dans les autres cas, on privilégiera les appels de fonctions en modifiant leurs arguments.
+
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p>Germain BECKER &amp; Sébastien POINT, Lycée Mounier, ANGERS <img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+

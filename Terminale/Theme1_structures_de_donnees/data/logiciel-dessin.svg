@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="342.01mm" height="261.13mm" version="1.1" viewBox="0 0 1211.852 925.25612" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <linearGradient id="a" x1="571.43" x2="682.86" y1="517.01" y2="518.08" gradientTransform="matrix(1.3248 0 0 1.3248 -132.94 -68.801)" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#ffc107" offset="0"/>
+   <stop stop-color="#d4e157" offset="1"/>
+  </linearGradient>
+ </defs>
+ <g transform="translate(231.64 -60.312)">
+  <rect x="-231.64" y="60.312" width="1211.9" height="925.26" fill="#ff7043"/>
+  <g transform="matrix(1.3248 0 0 1.3248 -121.06 111.5)">
+   <path d="m298.81 493.84 151.57 3.4269 12.462 118.61h-177.11z" fill="#f2f2f2"/>
+   <path d="m298.81 493.84-3.9596 36.93h159.05l-3.52-33.502-151.57-3.428z" fill="#ccc"/>
+   <rect transform="scale(1,-1)" x="31.502" y="-522.27" width="685.57" height="450.14" ry="31.215" fill="#fff" fill-rule="evenodd"/>
+   <path d="m31.401 62.617v396.88h685.77v-396.88zm16.165 20.51h650.46l-87.235 326.89-487.45-32.603z" fill="#333" fill-rule="evenodd"/>
+   <rect x="31.419" y="33.554" width="685.72" height="188.97" ry="35.485" fill="#333"/>
+   <rect x="59.136" y="63.706" width="630.3" height="363.17" fill="#ececec" fill-rule="evenodd"/>
+   <rect x="234.62" y="597.91" width="279.33" height="17.969" ry="5.1943" fill="#fff"/>
+   <circle cx="374.29" cy="491.68" r="17.623" fill="#333"/>
+  </g>
+  <rect x="-42.83" y="195.77" width="836.42" height="481.93" fill="#666" fill-rule="evenodd"/>
+  <rect x="-42.83" y="195.77" width="836.42" height="91.754" fill="#f2f2f2" fill-rule="evenodd"/>
+  <rect x="585.17" y="195.77" width="208.42" height="481.93" fill="#f2f2f2" fill-rule="evenodd"/>
+  <rect x="-42.83" y="195.77" width="78.306" height="481.93" fill="#f2f2f2" fill-rule="evenodd"/>
+  <rect x="-42.83" y="195.77" width="836.42" height="75.091" fill="#4d4d4d" fill-rule="evenodd"/>
+  <rect x="-42.83" y="195.77" width="836.42" height="16.206" fill="#ccc" fill-rule="evenodd"/>
+  <rect x="767.86" y="216.55" width="22.013" height="14.492" ry="7.2458" color="#000000" color-rendering="auto" fill="#4fc3f7" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <path d="m-32.185 218.96h18.231l-9.5363 17.411z" fill="#ffa000" fill-rule="evenodd"/>
+  <rect x="-11.697" y="218.93" width="3.8849" height="17.534" ry="0" color="#000000" color-rendering="auto" fill="#ffa000" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="-42.83" y="270.71" width="64.382" height="406.99" fill="#424242" fill-rule="evenodd"/>
+  <rect x="-42.83" y="270.71" width="64.382" height="15.461" fill="#212121" fill-rule="evenodd"/>
+  <rect x="599.55" y="270.71" width="194.04" height="406.99" fill="#424242" fill-rule="evenodd"/>
+  <rect x="757.03" y="276.39" width="3.9964" height="146.75" fill="#333" fill-rule="evenodd"/>
+  <rect x="624.54" y="276.39" width="3.9964" height="146.75" fill="#333" fill-rule="evenodd"/>
+  <rect x="651.99" y="276.39" width="3.9964" height="146.75" fill="#26c6da" fill-rule="evenodd"/>
+  <rect x="599.55" y="270.71" width="194.04" height="17.544" fill="#212121" fill-rule="evenodd"/>
+  <rect x="599.55" y="411.71" width="194.04" height="17.544" fill="#212121" fill-rule="evenodd"/>
+  <rect x="599.55" y="546.09" width="194.04" height="17.544" fill="#212121" fill-rule="evenodd"/>
+  <rect x="-42.83" y="242.13" width="836.42" height="2.9575" fill="#1a1a1a" fill-rule="evenodd"/>
+  <path d="m612.65 293.19a10.549 10.466 0 0 0 -9.0837 5.1661 10.549 10.466 0 0 0 9.0837 5.1681 10.549 10.466 0 0 0 9.083 -5.1661 10.549 10.466 0 0 0 -9.083 -5.1681z" color="#000000" color-rendering="auto" fill="#808080" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <ellipse cx="612.52" cy="298.46" rx="2.7449" ry="3.2616" color="#000000" color-rendering="auto" fill="#333" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="599.55" y="309.52" width="194.04" height="3.8267" fill="#333" fill-rule="evenodd"/>
+  <path d="m612.65 320.12a10.549 10.466 0 0 0 -9.0837 5.1661 10.549 10.466 0 0 0 9.0837 5.1681 10.549 10.466 0 0 0 9.083 -5.1661 10.549 10.466 0 0 0 -9.083 -5.1681z" color="#000000" color-rendering="auto" fill="#808080" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <ellipse cx="612.52" cy="325.39" rx="2.7449" ry="3.2616" color="#000000" color-rendering="auto" fill="#333" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="599.55" y="336.45" width="194.04" height="3.8267" fill="#333" fill-rule="evenodd"/>
+  <path d="m612.65 344.97a10.549 10.466 0 0 0 -9.0837 5.1661 10.549 10.466 0 0 0 9.0837 5.1681 10.549 10.466 0 0 0 9.083 -5.1661 10.549 10.466 0 0 0 -9.083 -5.1681z" color="#000000" color-rendering="auto" fill="#808080" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <ellipse cx="612.52" cy="350.23" rx="2.7449" ry="3.2616" color="#000000" color-rendering="auto" fill="#333" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="599.55" y="361.29" width="194.04" height="3.8267" fill="#333" fill-rule="evenodd"/>
+  <path d="m612.65 370.75a10.549 10.466 0 0 0 -9.0837 5.1661 10.549 10.466 0 0 0 9.0837 5.1681 10.549 10.466 0 0 0 9.083 -5.1661 10.549 10.466 0 0 0 -9.083 -5.1681z" color="#000000" color-rendering="auto" fill="#808080" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <ellipse cx="612.52" cy="376.02" rx="2.7449" ry="3.2616" color="#000000" color-rendering="auto" fill="#333" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="599.55" y="387.08" width="194.04" height="3.8267" fill="#333" fill-rule="evenodd"/>
+  <path d="m612.65 395.59a10.549 10.466 0 0 0 -9.0837 5.1661 10.549 10.466 0 0 0 9.0837 5.1681 10.549 10.466 0 0 0 9.083 -5.1661 10.549 10.466 0 0 0 -9.083 -5.1681z" color="#000000" color-rendering="auto" fill="#808080" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <ellipse cx="612.52" cy="400.86" rx="2.7449" ry="3.2616" color="#000000" color-rendering="auto" fill="#333" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <path d="m662.68 296.27h14.554l-7.4443 10.121z" fill="#fff" fill-rule="evenodd"/>
+  <rect x="684.26" y="291.92" width="15.725" height="14.721" color="#000000" color-rendering="auto" fill="#fff" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="703.42" y="317.47" width="15.725" height="14.721" color="#000000" color-rendering="auto" fill="#fff" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="703.42" y="343.26" width="15.725" height="14.721" color="#000000" color-rendering="auto" fill="#fff" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <path d="m683.73 346.9h14.554l-7.4443 10.121z" fill="#fff" fill-rule="evenodd"/>
+  <rect x="721.64" y="368.1" width="15.725" height="14.721" color="#000000" color-rendering="auto" fill="#fff" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="721.64" y="393.88" width="15.725" height="14.721" color="#000000" color-rendering="auto" fill="#fff" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <path d="m701.95 397.52h14.554l-7.4443 10.121z" fill="#fff" fill-rule="evenodd"/>
+  <circle cx="769.14" cy="299.37" r="4.0219" color="#000000" color-rendering="auto" fill="#9e9e9e" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <circle cx="769.14" cy="324.92" r="4.0219" color="#000000" color-rendering="auto" fill="#9e9e9e" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <circle cx="769.14" cy="350.71" r="4.0219" color="#000000" color-rendering="auto" fill="#9e9e9e" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <circle cx="769.14" cy="376.02" r="4.0219" color="#000000" color-rendering="auto" fill="#9e9e9e" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <circle cx="769.14" cy="400.63" r="4.0219" color="#000000" color-rendering="auto" fill="#9e9e9e" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="777.94" y="396.01" width="9.9127" height="9.28" color="#000000" color-rendering="auto" fill="#42a5f5" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="777.94" y="371.41" width="9.9127" height="9.28" color="#000000" color-rendering="auto" fill="#42a5f5" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="777.94" y="346.1" width="9.9127" height="9.28" color="#000000" color-rendering="auto" fill="#42a5f5" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="606.13" y="440.14" width="15.141" height="15.141" color="#000000" color-rendering="auto" fill="#f2f2f2" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="611.34" y="445.34" width="16.561" height="16.561" color="#000000" color-rendering="auto" fill="#ccc" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="635.24" y="469.55" width="55.514" height="12.81" color="#000000" color-rendering="auto" fill="#f2f2f2" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="635.24" y="492.19" width="55.514" height="12.81" color="#000000" color-rendering="auto" fill="#f2f2f2" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="635.24" y="516.53" width="41.656" height="12.81" color="#000000" color-rendering="auto" fill="#f2f2f2" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="612.77" y="469.55" width="11.983" height="12.81" color="#000000" color-rendering="auto" fill="#b3b3b3" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="612.77" y="491.31" width="11.983" height="12.81" color="#000000" color-rendering="auto" fill="#b3b3b3" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="612.77" y="515.68" width="11.983" height="12.81" color="#000000" color-rendering="auto" fill="#b3b3b3" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="635.24" y="469.55" width="7.488" height="12.81" color="#000000" color-rendering="auto" fill="#b3b3b3" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="635.24" y="492.19" width="7.488" height="12.81" color="#000000" color-rendering="auto" fill="#b3b3b3" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="635.24" y="516.53" width="7.3523" height="12.81" color="#000000" color-rendering="auto" fill="#b3b3b3" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="706.17" y="469.55" width="55.514" height="12.81" color="#000000" color-rendering="auto" fill="#f2f2f2" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="706.17" y="492.19" width="55.514" height="12.81" color="#000000" color-rendering="auto" fill="#f2f2f2" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="706.17" y="516.53" width="41.656" height="12.81" color="#000000" color-rendering="auto" fill="#f2f2f2" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="706.17" y="469.55" width="7.488" height="12.81" color="#000000" color-rendering="auto" fill="#b3b3b3" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="706.17" y="492.19" width="7.488" height="12.81" color="#000000" color-rendering="auto" fill="#b3b3b3" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="706.17" y="516.53" width="7.3523" height="12.81" color="#000000" color-rendering="auto" fill="#b3b3b3" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="634.09" y="442.67" width="106.56" height="13.884" color="#000000" color-rendering="auto" fill="#ccc" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="612.76" y="593.91" width="171.76" height="44.004" color="#000000" color-rendering="auto" fill="url(#a)" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <path d="m607.37 647.25h11.322l-5.7912-7.8734z" fill="#fff" fill-rule="evenodd"/>
+  <path d="m649.19 647.25h11.322l-5.7912-7.8734z" fill="#fff" fill-rule="evenodd"/>
+  <path d="m706.07 647.25h11.322l-5.7912-7.8734z" fill="#fff" fill-rule="evenodd"/>
+  <path d="m779.01 647.25h11.322l-5.7912-7.8734z" fill="#fff" fill-rule="evenodd"/>
+  <rect x="607.12" y="570.89" width="48.363" height="13.884" color="#000000" color-rendering="auto" fill="#ff7043" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="662.95" y="570.89" width="76.279" height="13.884" color="#000000" color-rendering="auto" fill="#ff7043" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="611.82" y="659.06" width="41.656" height="12.81" color="#000000" color-rendering="auto" fill="#ffecb3" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="611.82" y="659.06" width="7.3523" height="12.81" color="#000000" color-rendering="auto" fill="#ffca28" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="669.03" y="659.06" width="41.656" height="12.81" color="#000000" color-rendering="auto" fill="#bbdefb" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="669.03" y="659.06" width="7.3523" height="12.81" color="#000000" color-rendering="auto" fill="#2196f3" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="725.24" y="659.06" width="41.656" height="12.81" color="#000000" color-rendering="auto" fill="#c8e6c9" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="725.24" y="659.06" width="7.3523" height="12.81" color="#000000" color-rendering="auto" fill="#4caf50" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <path d="m-33.201 295.64 2.7059 16.368 3.9075-2.256 3.6763 6.3676 2.1319-1.2309-3.6763-6.3676 4.3126-2.4899-13.058-10.392z" fill="#999" fill-rule="evenodd"/>
+  <path d="m-2.8068 295.64 2.7059 16.368 3.9075-2.256 3.6763 6.3676 2.1319-1.2309-3.6763-6.3676 4.3126-2.4899-13.058-10.392z" fill="#999" fill-rule="evenodd"/>
+  <g transform="matrix(.79679 0 0 .79679 -91.34 85.265)" fill="#999" shape-rendering="auto">
+   <rect transform="matrix(.86603 -.5 .5 .86603 0 0)" x="-89.619" y="310.44" width="2.4552" height="19.72" color="#000000" color-rendering="auto" image-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+   <g transform="matrix(.62669 -.36182 .33263 .57613 -80.501 165.55)">
+    <circle cx="88.482" cy="312.99" r="6.3393" color="#000000" color-rendering="auto" image-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+    <rect x="87.82" y="304.28" width="1.5152" height="17.236" color="#000000" color-rendering="auto" image-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+    <rect transform="matrix(.86603 .5 -.5 .86603 0 0)" x="232.4" y="218.07" width="1.5152" height="17.236" color="#000000" color-rendering="auto" image-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+    <rect transform="matrix(.5 .86603 -.86603 .5 0 0)" x="314.51" y="71.121" width="1.5152" height="17.236" color="#000000" color-rendering="auto" image-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+    <rect transform="rotate(90)" x="312.14" y="-97.196" width="1.5152" height="17.236" color="#000000" color-rendering="auto" image-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+    <rect transform="matrix(-.5 .86603 -.86603 -.5 0 0)" x="225.93" y="-241.78" width="1.5152" height="17.236" color="#000000" color-rendering="auto" image-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+    <rect transform="matrix(-.86603 .5 -.5 -.86603 0 0)" x="78.981" y="-323.89" width="1.5152" height="17.236" color="#000000" color-rendering="auto" image-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+   </g>
+  </g>
+  <path d="m-3.533 330.01 6.3877 19.4 3.7853-7.8072 7.6889-3.3121z" fill="#999" fill-rule="evenodd"/>
+  <path d="m-30.096 368.49-3.9743 16.732 13.342-8.1398 0.28388-8.592 0.85164-1.5074 4.1162-0.15074 1.2774-1.9596-8.9807-5.5064-1.2389 1.8887 1.7033 3.0147-1.4194 2.4118z" fill="#999" fill-rule="evenodd"/>
+  <path d="m-2.4163 368.49-3.9743 16.732 13.342-8.1398 0.28389-8.592 0.85164-1.5074 4.1162-0.15074 1.2775-1.9596-8.9807-5.5064-1.2389 1.8887 1.7033 3.0147-1.4194 2.4118z" fill="#999" fill-rule="evenodd"/>
+  <text transform="scale(.95644 1.0455)" x="-36.219593" y="401.05493" fill="#b3b3b3" font-family="'Times New Roman'" font-size="30.034px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="line-height:125%">
+   <tspan x="-36.219593" y="401.05493">T</tspan>
+  </text>
+  <rect transform="matrix(.86603 .5 -.5 .86603 0 0)" x="205.95" y="340.75" width="2.3658" height="23.658" color="#000000" color-rendering="auto" fill="#b3b3b3" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="-37.082" y="433.08" width="18.067" height="17.398" color="#000000" color-rendering="auto" fill="#b3b3b3" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect transform="matrix(.86603 .5 -.5 .86603 0 0)" x="222.41" y="369.27" width="2.3658" height="23.658" color="#000000" color-rendering="auto" fill="#b3b3b3" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <circle cx="-27.384" cy="473.43" r="8.5317" color="#000000" color-rendering="auto" fill="#b3b3b3" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <path d="m4.9839 477.99c-9.1215 6.9497-8.5226 7.2001-9.9805-4.1741s-1.9742-10.981 8.6051-6.5563c10.579 4.4246 10.497 3.7808 1.3754 10.73z" color="#000000" color-rendering="auto" fill="#b3b3b3" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="-18.438" y="510.99" width="32.648" height="32.648" color="#000000" color-rendering="auto" fill="#fff" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="-8.1463" y="521.28" width="12.066" height="12.066" color="#000000" color-rendering="auto" fill="#616161" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="-34.052" y="495.02" width="32.648" height="32.648" color="#000000" color-rendering="auto" fill="#b3b3b3" image-rendering="auto" shape-rendering="auto" solid-color="#000000" stroke="#212121" stroke-width="1.3248px" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="-36.609" y="551.37" width="13.718" height="13.21" color="#000000" color-rendering="auto" fill="#b3b3b3" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="-17.499" y="551.37" width="13.718" height="13.21" color="#000000" color-rendering="auto" fill="#b3b3b3" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="1.3657" y="551.37" width="13.718" height="13.21" color="#000000" color-rendering="auto" fill="#b3b3b3" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="24.103" y="220.8" width="70.115" height="13.718" color="#000000" color-rendering="auto" fill="#b3b3b3" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="117.32" y="220.8" width="70.115" height="13.718" color="#000000" color-rendering="auto" fill="#b3b3b3" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="212.42" y="220.8" width="70.115" height="13.718" color="#000000" color-rendering="auto" fill="#b3b3b3" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="302.32" y="220.8" width="104.18" height="13.718" color="#000000" color-rendering="auto" fill="#b3b3b3" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="-37.881" y="199.98" width="70.115" height="8.986" color="#000000" color-rendering="auto" fill="#808080" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="-32.235" y="250.78" width="13.048" height="13.048" color="#000000" color-rendering="auto" fill="#808080" image-rendering="auto" shape-rendering="auto" solid-color="#000000" stroke="#212121" stroke-width="1.3248px" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="-18.541" y="249.55" width="14.992" height="15.661" color="#000000" color-rendering="auto" fill="#ececec" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <path d="m-16.594 254.45h11.376l-5.8185 7.9106z" fill="#666" fill-rule="evenodd"/>
+  <rect x="8.5748" y="250.78" width="13.048" height="13.048" color="#000000" color-rendering="auto" fill="#e91e63" image-rendering="auto" shape-rendering="auto" solid-color="#000000" stroke="#fff" stroke-width="1.3248px" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="22.269" y="249.55" width="14.992" height="15.661" color="#000000" color-rendering="auto" fill="#ececec" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <path d="m24.216 254.45h11.376l-5.8185 7.9106z" fill="#666" fill-rule="evenodd"/>
+  <rect x="52.405" y="251.45" width="64.57" height="11.707" color="#000000" color-rendering="auto" fill="#ccc" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="108.28" y="251.45" width="8.6963" height="11.707" color="#000000" color-rendering="auto" fill="#212121" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <path d="m109.5 255.26h6.5643l-3.3576 4.5648z" fill="#f2f2f2" fill-rule="evenodd"/>
+  <rect x="130.7" y="251.45" width="64.57" height="11.707" color="#000000" color-rendering="auto" fill="#d4e157" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="186.57" y="251.45" width="8.6963" height="11.707" color="#000000" color-rendering="auto" fill="#212121" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <path d="m187.79 255.26h6.5643l-3.3576 4.5648z" fill="#f2f2f2" fill-rule="evenodd"/>
+  <rect x="130.7" y="251.45" width="7.6925" height="11.707" color="#000000" color-rendering="auto" fill="#212121" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <path d="m131.9 257.69h5.1152l-2.6164 3.5571z" fill="#f2f2f2" fill-rule="evenodd"/>
+  <path d="m131.9 256.81h5.1152l-2.6164-3.5571z" fill="#f2f2f2" fill-rule="evenodd"/>
+  <rect x="206.31" y="251.45" width="64.57" height="11.707" color="#000000" color-rendering="auto" fill="#ffc107" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="262.18" y="251.45" width="8.6963" height="11.707" color="#000000" color-rendering="auto" fill="#212121" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <path d="m263.41 255.26h6.5643l-3.3576 4.5648z" fill="#f2f2f2" fill-rule="evenodd"/>
+  <rect x="299.66" y="251.45" width="64.57" height="11.707" color="#000000" color-rendering="auto" fill="#ccc" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="355.53" y="251.45" width="8.6963" height="11.707" color="#000000" color-rendering="auto" fill="#212121" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <path d="m356.75 255.26h6.5643l-3.3576 4.5648z" fill="#f2f2f2" fill-rule="evenodd"/>
+  <rect x="302.02" y="255.2" width="12.014" height="3.9003" color="#000000" color-rendering="auto" fill="#4d4d4d" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="316.21" y="255.2" width="3.446" height="3.9003" color="#000000" color-rendering="auto" fill="#4d4d4d" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="321.76" y="255.2" width="12.014" height="3.9003" color="#000000" color-rendering="auto" fill="#4d4d4d" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="335.95" y="255.2" width="3.446" height="3.9003" color="#000000" color-rendering="auto" fill="#4d4d4d" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="341.42" y="255.2" width="12.014" height="3.9003" color="#000000" color-rendering="auto" fill="#4d4d4d" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <circle cx="381.32" cy="257.91" r="5.8554" color="#000000" color-rendering="auto" fill="#ccc" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <circle cx="285.27" cy="257.91" r="5.8554" color="#000000" color-rendering="auto" fill="#ccc" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <g transform="matrix(1.3248 0 0 1.3248 -132.94 -68.801)" fill-rule="evenodd">
+   <rect x="146.39" y="288.4" width="368.32" height="258.3" fill="#424242"/>
+   <rect x="152.1" y="287" width="365.47" height="254.08" fill="#fff"/>
+   <rect x="151.21" y="287" width="3.0715" height="254.08" fill="#ececec"/>
+   <rect x="168.61" y="287" width="3.0715" height="254.08" fill="#ececec"/>
+   <rect x="185.12" y="287" width="3.0715" height="254.08" fill="#ececec"/>
+   <rect x="201.63" y="287" width="3.0715" height="254.08" fill="#ececec"/>
+   <rect x="218.14" y="287" width="3.0715" height="254.08" fill="#ececec"/>
+   <rect x="234.65" y="287" width="3.0715" height="254.08" fill="#ececec"/>
+   <rect x="251.16" y="287" width="3.0715" height="254.08" fill="#ececec"/>
+   <rect x="267.67" y="287" width="3.0715" height="254.08" fill="#ececec"/>
+   <rect x="284.18" y="287" width="3.0715" height="254.08" fill="#ececec"/>
+   <rect x="300.69" y="287" width="3.0715" height="254.08" fill="#ececec"/>
+   <rect x="317.2" y="287" width="3.0715" height="254.08" fill="#ececec"/>
+   <rect x="333.71" y="287" width="3.0715" height="254.08" fill="#ececec"/>
+   <rect x="350.22" y="287" width="3.0715" height="254.08" fill="#ececec"/>
+   <rect x="366.73" y="287" width="3.0715" height="254.08" fill="#ececec"/>
+   <rect x="383.24" y="287" width="3.0715" height="254.08" fill="#ececec"/>
+   <rect x="399.75" y="287" width="3.0715" height="254.08" fill="#ececec"/>
+   <rect x="416.26" y="287" width="3.0715" height="254.08" fill="#ececec"/>
+   <rect x="432.77" y="287" width="3.0715" height="254.08" fill="#ececec"/>
+   <rect x="449.28" y="287" width="3.0715" height="254.08" fill="#ececec"/>
+   <rect x="465.79" y="287" width="3.0715" height="254.08" fill="#ececec"/>
+   <rect x="482.3" y="287" width="3.0715" height="254.08" fill="#ececec"/>
+   <rect x="498.81" y="287" width="3.0715" height="254.08" fill="#ececec"/>
+   <rect x="515.32" y="287" width="3.0715" height="254.08" fill="#ececec"/>
+   <rect transform="rotate(90)" x="288.74" y="-516.85" width="3.0715" height="365.2" fill="#ececec"/>
+   <rect transform="rotate(90)" x="305.25" y="-516.85" width="3.0715" height="365.2" fill="#ececec"/>
+   <rect transform="rotate(90)" x="321.76" y="-516.85" width="3.0715" height="365.2" fill="#ececec"/>
+   <rect transform="rotate(90)" x="338.27" y="-516.85" width="3.0715" height="365.2" fill="#ececec"/>
+   <rect transform="rotate(90)" x="354.78" y="-516.85" width="3.0715" height="365.2" fill="#ececec"/>
+   <rect transform="rotate(90)" x="371.29" y="-516.85" width="3.0715" height="365.2" fill="#ececec"/>
+   <rect transform="rotate(90)" x="387.8" y="-516.85" width="3.0715" height="365.2" fill="#ececec"/>
+   <rect transform="rotate(90)" x="404.31" y="-516.85" width="3.0715" height="365.2" fill="#ececec"/>
+   <rect transform="rotate(90)" x="420.82" y="-516.85" width="3.0715" height="365.2" fill="#ececec"/>
+   <rect transform="rotate(90)" x="437.33" y="-516.85" width="3.0715" height="365.2" fill="#ececec"/>
+   <rect transform="rotate(90)" x="453.84" y="-516.85" width="3.0715" height="365.2" fill="#ececec"/>
+   <rect transform="rotate(90)" x="470.35" y="-516.85" width="3.0715" height="365.2" fill="#ececec"/>
+   <rect transform="rotate(90)" x="486.86" y="-516.85" width="3.0715" height="365.2" fill="#ececec"/>
+   <rect transform="rotate(90)" x="503.37" y="-516.85" width="3.0715" height="365.2" fill="#ececec"/>
+   <rect transform="rotate(90)" x="519.88" y="-516.85" width="3.0715" height="365.2" fill="#ececec"/>
+   <rect transform="rotate(90)" x="536.39" y="-516.85" width="3.0715" height="365.2" fill="#ececec"/>
+  </g>
+  <circle cx="308.13" cy="511.3" r="85.362" color="#000000" color-rendering="auto" fill="none" image-rendering="auto" shape-rendering="auto" solid-color="#000000" stroke="#b3b3b3" stroke-width="5.273" style="isolation:auto;mix-blend-mode:normal"/>
+  <circle cx="308.13" cy="423.64" r="85.362" color="#000000" color-rendering="auto" fill="none" image-rendering="auto" shape-rendering="auto" solid-color="#000000" stroke="#ccc" stroke-width="5.273" style="isolation:auto;mix-blend-mode:normal"/>
+  <circle cx="398.5" cy="511.3" r="85.362" color="#000000" color-rendering="auto" fill="none" image-rendering="auto" shape-rendering="auto" solid-color="#000000" stroke="#ccc" stroke-width="5.273" style="isolation:auto;mix-blend-mode:normal"/>
+  <circle cx="223.43" cy="511.3" r="85.362" color="#000000" color-rendering="auto" fill="none" image-rendering="auto" shape-rendering="auto" solid-color="#000000" stroke="#ccc" stroke-width="5.273" style="isolation:auto;mix-blend-mode:normal"/>
+  <path d="m223.43 425.94a85.362 85.362 0 0 0 -0.58222 0.0207 85.362 85.362 0 0 0 12.141 41.523 85.362 85.362 0 0 0 -12.224 43.818 85.362 85.362 0 0 0 85.362 85.362 85.362 85.362 0 0 0 85.362 -85.362 85.362 85.362 0 0 0 -12.265 -43.914 85.362 85.362 0 0 0 12.141 -41.264 85.362 85.362 0 0 0 -40.079 12.863 85.362 85.362 0 0 0 -45.159 -13.047 85.362 85.362 0 0 0 -42.341 11.365 85.362 85.362 0 0 0 -42.356 -11.365z" color="#000000" color-rendering="auto" fill="none" image-rendering="auto" shape-rendering="auto" solid-color="#000000" stroke="#1a1a1a" stroke-width="5.273" style="isolation:auto;mix-blend-mode:normal"/>
+  <circle cx="277.75" cy="505.21" r="19.238" color="#000000" color-rendering="auto" fill="none" image-rendering="auto" shape-rendering="auto" solid-color="#000000" stroke="#1a1a1a" stroke-width="5.1669" style="isolation:auto;mix-blend-mode:normal"/>
+  <circle cx="281.71" cy="508.86" r="5.5596" color="#000000" color-rendering="auto" fill="#1a1a1a" image-rendering="auto" shape-rendering="auto" solid-color="#000000" stroke="#1a1a1a" stroke-width="5.1669" style="isolation:auto;mix-blend-mode:normal"/>
+  <circle cx="338.31" cy="505.21" r="19.238" color="#000000" color-rendering="auto" fill="none" image-rendering="auto" shape-rendering="auto" solid-color="#000000" stroke="#1a1a1a" stroke-width="5.1669" style="isolation:auto;mix-blend-mode:normal"/>
+  <circle cx="342.28" cy="508.86" r="5.5596" color="#000000" color-rendering="auto" fill="#1a1a1a" image-rendering="auto" shape-rendering="auto" solid-color="#000000" stroke="#1a1a1a" stroke-width="5.1669" style="isolation:auto;mix-blend-mode:normal"/>
+  <path d="m282.54 558.43c13.714 15.492 19.922 6.5879 26.26-1.8926 11.074 13.869 18.617 9.5855 25.314 0.94633" fill="none" stroke="#000" stroke-width="3.3121"/>
+  <rect x="740.65" y="216.55" width="22.013" height="14.492" ry="7.2458" color="#000000" color-rendering="auto" fill="#4fc3f7" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+  <rect x="712.26" y="216.55" width="22.013" height="14.492" ry="7.2458" color="#000000" color-rendering="auto" fill="#4fc3f7" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal"/>
+ </g>
+</svg>

@@ -1,0 +1,1216 @@
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h1><p>Dans un algorithme, des variables sont utilisées pour stocker des valeurs. Les variables de base sont celles permettant de stocker :</p>
+<ul>
+<li>des nombres entiers ; </li>
+<li>des nombres réels ;</li>
+<li>des caractères ou des chaînes de caractères ; </li>
+<li>des booléens.</li>
+</ul>
+<p>Ces variables sont bien sûr de nature différente. Dans un langage de programmation, comme Python, on parle du <strong>type</strong> d'une variable. Les types et valeurs de base en Python sont donc :</p>
+<ul>
+<li><code>int</code>: nombres entiers (de l'anglais <em>integer</em>, signifiant &laquo; entier &raquo; en anglais)</li>
+<li><code>float</code> : nombres flottants (de l'anglais <em>floating</em>, signifiant &laquo; flottant &raquo; en anglais)</li>
+<li><code>str</code> : caractères et chaînes de caractères (de l'anglais <em>string</em>, signifiant &laquo; chaine &raquo; en anglais)</li>
+<li><code>bool</code> : booléens (de l'anglais <em>boolean</em>, signifiant &laquo; booléan &raquo; en anglais)</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Typage automatique en Python</strong></p>
+<p>Une des particularités du langage Python vient du fait que le <em>typage</em> des variables est automatique : cela signifie qu’il n’y a pas besoin de définir le type d'une variable, cela se fait automatiquement selon la façon dont on déclare la variable.</p>
+<p>C'est ce qui fait de Python (entre autre) un langage simple à apprendre. En revanche, cela a pour inconvénient de toujours avoir en tête la nature des variables manipulées, pour éviter par exemple d'additionner un nombre avec une chaîne de caractères.</p>
+<p>Pour connaître le type d'une variable Python, il suffit d'utiliser la fonction <code>type</code> qui renvoie le type de la variable passée en paramètre. Par exemple :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mf">3.14</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+<span class="n">t</span> <span class="o">=</span> <span class="s2">&quot;bonjour&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">A</span><span class="o">&gt;</span><span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;class &#39;int&#39;&gt;
+&lt;class &#39;float&#39;&gt;
+&lt;class &#39;str&#39;&gt;
+&lt;class &#39;bool&#39;&gt;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Le-type-int">Le type <code>int</code><a class="anchor-link" href="#Le-type-int">&#182;</a></h1><p>Les variables de type <code>int</code> représentent des entiers (naturels et relatifs). Les calculs mettant en jeu ce type de variables utilisent les opérateurs classiques.</p>
+<table>
+<thead><tr>
+<th><strong>Opération</strong></th>
+<th><strong>Opérateur Python</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Addition</td>
+<td><code>+</code></td>
+</tr>
+<tr>
+<td>Soustraction</td>
+<td><code>-</code></td>
+</tr>
+<tr>
+<td>Multiplication</td>
+<td><code>*</code></td>
+</tr>
+<tr>
+<td>Division</td>
+<td><code>/</code></td>
+</tr>
+<tr>
+<td>Puissance</td>
+<td><code>**</code></td>
+</tr>
+<tr>
+<td>Division entière</td>
+<td><code>//</code></td>
+</tr>
+<tr>
+<td>Reste entier</td>
+<td><code>%</code></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">age</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">age</span><span class="p">))</span>
+
+<span class="n">age</span> <span class="o">=</span> <span class="n">age</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+
+<span class="n">age</span> <span class="o">=</span> <span class="n">age</span> <span class="o">-</span> <span class="mi">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+
+<span class="n">age</span> <span class="o">=</span> <span class="n">age</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+
+<span class="n">age</span> <span class="o">=</span> <span class="n">age</span> <span class="o">/</span> <span class="mi">5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">age</span><span class="p">)</span> <span class="c1"># remarquez que la variable &#39;age&#39; est désormais de type float</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>16
+&lt;class &#39;int&#39;&gt;
+17
+14
+28
+5.6
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">b</span> <span class="o">+</span> <span class="n">a</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">b</span><span class="o">**</span><span class="mi">3</span> <span class="c1"># puissance 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>4 10 24 1000
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="mi">14</span> <span class="o">//</span> <span class="mi">5</span> <span class="c1"># division entière</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mi">14</span> <span class="o">%</span> <span class="mi">5</span> <span class="c1"># reste entier</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;14 = &quot;</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="s2">&quot;*5 +&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>2
+4
+14 =  2 *5 + 4
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Le-type-float">Le type <code>float</code><a class="anchor-link" href="#Le-type-float">&#182;</a></h1><p>Les nombres à virgule flottante sont des nombres décimaux. On les appelle <strong>nombres flottants</strong> et, pour simplier, on va considérer pour le moment qu'ils correspondent aux nombres réels (vous verrez plus tard dans l'année que c'est plus compliqué que cela).</p>
+<blockquote class="attention">
+
+**ATTENTION** : la virgule est codée par un point `.`, c'est la notation anglaise des nombres décimaux.
+
+</blockquote><p>Pour déclarer un nombre flottant, il suffit d'utiliser le <code>.</code> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mf">17.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="mf">14.0</span> <span class="o">/</span> <span class="mf">3.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="mf">14.0</span> <span class="o">//</span> <span class="mf">3.0</span> <span class="c1"># on peut aussi faire la division entière de deux flottants</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>17.0
+&lt;class &#39;float&#39;&gt;
+4.666666666666667
+4.0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Le quotient, avec l'opérateur <code>/</code>, de deux nombres entiers (de type <code>int</code>) renvoie un nombre de type <code>float</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="mi">14</span> <span class="o">/</span> <span class="mi">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="c1"># de type float</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>4.666666666666667 &lt;class &#39;float&#39;&gt;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Le-type-str">Le type <code>str</code><a class="anchor-link" href="#Le-type-str">&#182;</a></h1><p>Les chaînes de caractères sont énorméments utilisées en programmation. On dit <em>string</em> en anglais, d'où l'appelation <code>str</code>.</p>
+<p>C'est grâce à elles que l'on peut manipuler des mots, des phrases, des textes, des fichiers, etc.</p>
+<p>Pour déclarer une chaîne de caractères, il suffit d'utiliser les guillemets (simples ou doubles).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nom</span> <span class="o">=</span> <span class="s2">&quot;Dupont&quot;</span> <span class="c1"># guillements doubles</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nom</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">nom</span><span class="p">))</span>
+
+<span class="n">prenom</span> <span class="o">=</span> <span class="s1">&#39;Pierre&#39;</span> <span class="c1"># ou guillemets simples</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prenom</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">prenom</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">nom</span><span class="p">,</span> <span class="n">prenom</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Dupont
+&lt;class &#39;str&#39;&gt;
+Pierre
+&lt;class &#39;str&#39;&gt;
+Dupont Pierre
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remarque :</strong> on peut aussi utiliser des triples guillemets si on souhaite écrire une chaîne de caractères sur plusieurs lignes :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">chaine</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;on peut aussi utiliser des triples guillemets </span>
+<span class="s1">si on souhaite écrire une chaîne de caractères </span>
+<span class="s1">sur plusieurs lignes&#39;&#39;&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">chaine</span><span class="p">)</span> <span class="c1"># vous remarquerez que l&#39;affichage se fait aussi sur plusieurs lignes</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>on peut aussi utiliser des triples guillemets 
+si on souhaite écrire une chaîne de caractères 
+sur plusieurs lignes
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Concat&#233;nation-de-cha&#238;nes">Concat&#233;nation de cha&#238;nes<a class="anchor-link" href="#Concat&#233;nation-de-cha&#238;nes">&#182;</a></h2><p>La concaténation désigne la mise bout à bout de plusieurs chaînes de caractères. L'opérateur <code>+</code> permet de concaténer deux chaînes de caractères.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nom</span> <span class="o">=</span> <span class="s2">&quot;Dupont&quot;</span>
+<span class="n">prenom</span> <span class="o">=</span> <span class="s2">&quot;Pierre&quot;</span>
+
+<span class="n">chaine</span>  <span class="o">=</span> <span class="n">nom</span> <span class="o">+</span> <span class="n">prenom</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">chaine</span><span class="p">)</span>
+
+<span class="n">chaine</span> <span class="o">=</span> <span class="n">prenom</span> <span class="o">+</span> <span class="n">nom</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">chaine</span><span class="p">)</span>
+
+<span class="n">chaine</span> <span class="o">=</span> <span class="n">prenom</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">nom</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">chaine</span><span class="p">)</span>
+
+<span class="n">chaine</span> <span class="o">=</span> <span class="n">chaine</span> <span class="o">+</span> <span class="s1">&#39; a 18 ans &#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">chaine</span><span class="p">)</span>
+
+<span class="c1"># on ne peut pas concaténer une chaine est un nombre de type int ou float, une erreur est renvoyée</span>
+<span class="n">chaine</span> <span class="o">=</span> <span class="n">chaine</span> <span class="o">+</span> <span class="mi">15</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>DupontPierre
+PierreDupont
+Pierre Dupont
+Pierre Dupont a 18 ans 
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-9-1a44efdf30c5&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">     15</span> 
+<span class="ansi-green-fg">     16</span> <span class="ansi-red-intense-fg ansi-bold"># on ne peut pas concaténer une chaine est un nombre de type int ou float, une erreur est renvoyée</span>
+<span class="ansi-green-intense-fg ansi-bold">---&gt; 17</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>chaine <span class="ansi-yellow-intense-fg ansi-bold">=</span> chaine <span class="ansi-yellow-intense-fg ansi-bold">+</span> <span class="ansi-cyan-intense-fg ansi-bold">15</span>
+
+<span class="ansi-red-intense-fg ansi-bold">TypeError</span>: can only concatenate str (not &#34;int&#34;) to str</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Longueur-d'une-cha&#238;ne-de-caract&#232;res">Longueur d'une cha&#238;ne de caract&#232;res<a class="anchor-link" href="#Longueur-d'une-cha&#238;ne-de-caract&#232;res">&#182;</a></h2><p>La fonction <code>len</code> permet de renvoyer le nombre caractères d'une chaîne de caractères donnée en argument.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nom</span> <span class="o">=</span> <span class="s2">&quot;Dupont&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nom</span><span class="p">))</span>
+
+<span class="n">nom</span> <span class="o">=</span> <span class="s2">&quot;Dupont &quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nom</span><span class="p">))</span> <span class="c1"># les espaces sont aussi comptabilisés !</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>6
+7
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Indexage-des-caract&#232;res">Indexage des caract&#232;res<a class="anchor-link" href="#Indexage-des-caract&#232;res">&#182;</a></h2><p>Un texte ou une chaine de caractères est une suite de caractères dont chacun est numéroté. Voici un exemple :</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Apprendre_%C3%A0_programmer_avec_Python_31.png" alt="Index_chaines_de_caracatères"></p>
+<ul>
+<li>Les indices commencent à 0 !</li>
+<li>Le premier caractère &laquo; J &raquo; est celui d'<strong>indice</strong> 0. On dit aussi que &laquo; J &raquo; est d'<strong>index</strong> 0.</li>
+<li>Le caractère &laquo; i &raquo; est celui d'indice 3 (c'est le 4ème caractère)</li>
+</ul>
+<p>On peut facilement extraire le caractère souhaité en précisant sont index entre crochets <code>[]</code> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ch</span> <span class="o">=</span> <span class="s2">&quot;Juliette&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ch</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">ch</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ch</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>J
+i
+e
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ch</span> <span class="o">=</span> <span class="s2">&quot;Juliette&quot;</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">ch</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">ch</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+<span class="n">mot</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="n">mot</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[12]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;Je&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Extraire-un-groupe-de-caract&#232;res-(slicing)">Extraire un groupe de caract&#232;res (slicing)<a class="anchor-link" href="#Extraire-un-groupe-de-caract&#232;res-(slicing)">&#182;</a></h2><p>On peut également extraire un groupe de caractères d'une chaîne, on parle de <strong>slicing</strong>.</p>
+<p><code>chaine[debut : fin]</code> permet de récupérer les caractères d'indices compris entre <code>debut</code> et <strong><code>fin</code> - 1</strong>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nom</span> <span class="o">=</span> <span class="s2">&quot;Dupont&quot;</span>
+<span class="n">nom</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="c1"># extrait les 4 premiers caractères</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[13]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;Dupo&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nom</span> <span class="o">=</span> <span class="s2">&quot;Dupont&quot;</span>
+<span class="n">nom</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span> <span class="c1"># extrait les caractères d&#39;index 2, 3 et 4</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[14]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;pon&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut également récupérer un certain nombre de caractères en partant du début ou de la fin.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">prenom</span> <span class="o">=</span> <span class="s2">&quot;Stéphane&quot;</span>
+<span class="n">prenom</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># extrait les 3 premiers caractères</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[15]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;Sté&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">prenom</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span> <span class="c1"># extrait les 4 derniers caractères</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[16]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;hane&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="S&#233;quences-d'&#233;chappement">S&#233;quences d'&#233;chappement<a class="anchor-link" href="#S&#233;quences-d'&#233;chappement">&#182;</a></h2><p>Les séquences d'échappement sont des séquences de caractères jouant un rôle particulier dans une chaîne de caractères.</p>
+<p>Il en existe beaucoup, nous n'en citerons ici que trois.</p>
+<ul>
+<li>La séquence d'échappement <code>\n</code> : nouvelle ligne</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">chaine</span>  <span class="o">=</span> <span class="s2">&quot;Première ligne </span><span class="se">\n</span><span class="s2">Deuxième ligne&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">chaine</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Première ligne 
+Deuxième ligne
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>La séquence d'échappement <code>\'</code> : apostrophe</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">chaine</span> <span class="o">=</span> <span class="s1">&#39;Aujourd&#39;</span><span class="n">hui</span><span class="s1">&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">chaine</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-cyan-intense-fg ansi-bold">  File </span><span class="ansi-green-intense-fg ansi-bold">&#34;&lt;ipython-input-18-098542273c32&gt;&#34;</span><span class="ansi-cyan-intense-fg ansi-bold">, line </span><span class="ansi-green-intense-fg ansi-bold">1</span>
+<span class="ansi-yellow-intense-fg ansi-bold">    chaine = &#39;Aujourd&#39;hui&#39;</span>
+<span class="ansi-white-intense-fg ansi-bold">                        ^</span>
+<span class="ansi-red-intense-fg ansi-bold">SyntaxError</span><span class="ansi-red-intense-fg ansi-bold">:</span> invalid syntax
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">chaine</span> <span class="o">=</span> <span class="s1">&#39;Aujourd</span><span class="se">\&#39;</span><span class="s1">hui&#39;</span> <span class="c1"># permet d&#39;écrire un apostrophe dans une chaine définie par des apostrophes</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">chaine</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Aujourd&#39;hui
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>la séquence d'échappement <code>\t</code> : tabulation horizontale</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">chaine</span> <span class="o">=</span> <span class="s2">&quot;Dupont Pierre </span><span class="se">\t</span><span class="s2"> 0612345678&quot;</span> <span class="c1"># permet d&#39;ajouter une tabulation horizontale</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">chaine</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Dupont Pierre 	 0612345678
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Le-type-bool">Le type <code>bool</code><a class="anchor-link" href="#Le-type-bool">&#182;</a></h1><p>Une variable booléenne ne peut prendre que deux valeurs distinctes. En Python, ces deux valeurs sont notées <code>True</code> et <code>False</code> (avec un T et un F majuscules).</p>
+<p>Ces booléens (<em>boolean</em> en anglais) sont destinés à représenter les valeurs de vérité de la logique et l'algèbre booléenne, ce que vous étudierez un peu plus tard dans l'année.</p>
+<p>Le type de données booléen est principalement associé à des états conditionnels.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">choix</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">choix</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[21]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>bool</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Les-op&#233;rateurs-de-comparaison">Les op&#233;rateurs de comparaison<a class="anchor-link" href="#Les-op&#233;rateurs-de-comparaison">&#182;</a></h2><p>Voici les opérateurs de comparaisons classiques :</p>
+<table>
+<thead><tr>
+<th><strong>Opérateur</strong></th>
+<th><strong>Signification</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;</td>
+<td>strictement inférieur</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>inférieur ou égal</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>strictement supérieur</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>supérieur ou égal</td>
+</tr>
+<tr>
+<td>==</td>
+<td>égal</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>différent</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span> <span class="o">&gt;</span> <span class="mi">8</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span> <span class="c1"># double égal pour tester l&#39;égalité de deux expressions</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span> <span class="o">!=</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">5</span> <span class="o">&lt;=</span> <span class="n">b</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>True
+False
+False
+False
+True
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Les-op&#233;rateurs-logiques">Les op&#233;rateurs logiques<a class="anchor-link" href="#Les-op&#233;rateurs-logiques">&#182;</a></h2><p>Ce sont les opérateurs permettant d'effectuer des opérations sur les booléens.
+Avec les opérateurs <code>not</code>, <code>or</code> et <code>and</code> on peut effectuer toutes les opérations logiques que l'on souhaite. Vous étudierez cela plus en détails bientôt.</p>
+<p>Voici quelques exemples en Python.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span> <span class="o">==</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="ow">not</span><span class="p">(</span><span class="n">a</span><span class="p">))</span> <span class="c1"># renvoie la négation du booléen &#39;a&#39;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>True
+False
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">note</span> <span class="o">=</span> <span class="mf">13.0</span>
+<span class="n">mention_ab</span> <span class="o">=</span> <span class="n">note</span> <span class="o">&gt;=</span> <span class="mf">12.0</span> <span class="ow">and</span> <span class="n">note</span> <span class="o">&lt;</span> <span class="mf">14.0</span> <span class="c1"># renvoie Vrai uniquement si les deux conditions sont vraies</span>
+<span class="n">mention_ab</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[24]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">note</span> <span class="o">=</span> <span class="mf">13.0</span>
+<span class="n">booleen</span> <span class="o">=</span> <span class="n">note</span> <span class="o">&gt;</span> <span class="mi">10</span> <span class="ow">or</span> <span class="n">note</span> <span class="o">&gt;</span> <span class="mf">15.0</span> <span class="c1"># il suffit que l&#39;une ou l&#39;autre des conditions soit vraie pour renvoyer Vrai</span>
+<span class="n">booleen</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[25]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Références :</strong></p>
+<ul>
+<li><em>Apprenenez à programmer en Python</em>, Vincent LE GOFF, OpenClassrooms</li>
+<li>Documents ressources du DIU EIL, Université de Nantes, Christophe DECLERCQ.</li>
+<li>Fabrice Sincère : <a href="http://fsincere.free.fr/isn/python/cours_python_ch1.php">http://fsincere.free.fr/isn/python/cours_python_ch1.php</a></li>
+</ul>
+<hr>
+<p>Germain BECKER &amp; Sébastien POINT, Lycée Mounier, ANGERS <img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+

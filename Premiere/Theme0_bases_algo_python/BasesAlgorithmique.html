@@ -1,0 +1,146 @@
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Objectifs :</strong></p>
+<ul>
+<li>Connaître et écrire des instructions conditionnelles (si alors) et des répétitives (pour, tant que)</li>
+<li>Ecrire un algorithme en pseudo-code</li>
+<li>Faire fonctionner un algorithme à la main</li>
+<li>Compter le nombre d'opérations dans un algorithme (introduction au coût d'un algorithme)</li>
+<li>Compter le nombre d'itérations dans un algorithme (introduction au coût d'un algorithme)</li>
+</ul>
+<h1 id="Variables-et-affectations">Variables et affectations<a class="anchor-link" href="#Variables-et-affectations">&#182;</a></h1><p>Dans un algorithme, des variables sont utilisées pour stocker des valeurs qui peuvent être des nombres (entiers, réels, ...), des chaînes de caractères, des booléens et beaucoup d'autres choses encore.</p>
+<p>Le symbole $\leftarrow$ est celui de l'affectation. Par exemple, a $\leftarrow$ 2 signifie « la variable a prend la valeur 2 ».</p>
+<p>L'opération arithmétique <code>div</code> est le quotient de la division entière et <code>mod</code> est le reste de la division entière.</p>
+<p>Par exemple, 14 div 5 = 2 et 14 mod 5 = 4 car 14 = 5*2+4. Rappelez-vous :</p>
+<p><img class="centre image-responsive" src="data/division_posee.png" alt="division posée" width="50"></p>
+<p><strong>Dans toute la suite du document, toutes les variables sont des entiers ou des booléens.</strong></p>
+<h2 id="Exercice-1">Exercice 1<a class="anchor-link" href="#Exercice-1">&#182;</a></h2><p>Que valent <code>N</code> et <code>P</code> après l'exécution de cet algorithme ?</p>
+
+<pre><code>N ← 2
+P ← 3
+N ← P + 1
+P ← N</code></pre>
+<h2 id="Exercice-2">Exercice 2<a class="anchor-link" href="#Exercice-2">&#182;</a></h2><p>Que vaut <code>B</code> après l'exécution de cet algorithme ?</p>
+
+<pre><code>A ← 8
+B ← (A ≥ 10)</code></pre>
+<h2 id="Exercice-3">Exercice 3<a class="anchor-link" href="#Exercice-3">&#182;</a></h2><p>Supposons que <code>N</code> vaut 2 ; que vaut <code>P</code> après l'exécution de cet algorithme ?</p>
+
+<pre><code>P ← N mod 5
+P ← N div P</code></pre>
+<h2 id="Exercice-4">Exercice 4<a class="anchor-link" href="#Exercice-4">&#182;</a></h2><p>Pour chacun des trois algorithmes précédents, dénombrer le nombre d'affectations, le nombre d'opérations arithmétiques et le nombre de comparaisons.</p>
+<h1 id="Instructions-conditionnelles">Instructions conditionnelles<a class="anchor-link" href="#Instructions-conditionnelles">&#182;</a></h1><div class="important">
+<p>
+
+Une **instruction conditionnelle**, ou instruction de test, permet de faire des choix dans un algorithme en fonction de la valeur d'une condition. On parle souvent d'une instruction si-alors.
+Une **condition** est une expression qui est soit vraie, soit fausse, c'est donc un **booléen**.
+
+</p>
+</div><h2 id="Exercice-5">Exercice 5<a class="anchor-link" href="#Exercice-5">&#182;</a></h2><p>Supposons que <code>A</code> vaut 1 au début ; que vaut-il après l'exécution de cet algorithme ?</p>
+
+<pre><code>si A ≥ 0
+   alors A ← A - 1
+   sinon A ← A + 1
+fin si</code></pre>
+<h2 id="Exercice-6">Exercice 6<a class="anchor-link" href="#Exercice-6">&#182;</a></h2><p>L'algorithme ci-dessous (au sens ou une même valeur de A initiale induit une même valeur de A après leur exécution) à celui présenté dans l'exercice 5 ?</p>
+
+<pre><code>si A ≥ 0
+   alors A ← A - 1
+fin si
+si A &lt; 0
+   alors A ← A + 1
+finsi</code></pre>
+<h2 id="Exercice-7">Exercice 7<a class="anchor-link" href="#Exercice-7">&#182;</a></h2><p>Pour chacun des deux algorithmes précédents, dénombrer le nombre d'affectations, le nombre d'opérations arithmétiques et le nombre de comparaisons.</p>
+<h2 id="Exercice-8">Exercice 8<a class="anchor-link" href="#Exercice-8">&#182;</a></h2><p>Un site internet de développement de photos propose le tirage sur papier des photos au tarif de 0,11 € l'unité ; le tarif passe à 0,08 € l'unité pour une commande d'au moins 200 photos. Proposez un algorithme qui affiche le montant à payer selon le nombre de photos à développer.</p>
+<h1 id="R&#233;p&#233;titives-&#233;num&#233;r&#233;es-(boucles-Pour)">R&#233;p&#233;titives &#233;num&#233;r&#233;es (boucles Pour)<a class="anchor-link" href="#R&#233;p&#233;titives-&#233;num&#233;r&#233;es-(boucles-Pour)">&#182;</a></h1><div class="important">
+<p>
+
+La boucle Pour est une structure qui permet de répéter plusieurs fois l'exécution d'une ou plusieurs instructions. On parle de répétitive énumérée car on peut énumérer à l'avance les valeurs de l'itérateur de boucle.
+
+</p>
+</div><p><strong>Exemple</strong> : dans la boucle « pour i de 0 à 3 » ; on peut énumérer les valeurs de l'itérateur i qui prendra les valeurs 0, 1, 2 puis 3.</p>
+<p>Ainsi, une boucle Pour s'utilise lorsque l'on <strong>connaît à l'avance le nombre d'itérations</strong> à effectuer. Chaque passage dans la boucle Pour s'appelle une itération.</p>
+<h2 id="Exercice-9">Exercice 9<a class="anchor-link" href="#Exercice-9">&#182;</a></h2><p>Supposons que <code>A</code> vaut initialement 10 ; combien vaut-il après l'exécution de cet algorithme ?</p>
+
+<pre><code>pour i de 2 à 5 faire
+    A ← A + i
+fin pour</code></pre>
+<h2 id="Exercice-10">Exercice 10<a class="anchor-link" href="#Exercice-10">&#182;</a></h2><p>Supposons que <code>V</code> vaut 0 initialement ; combien vaut-il après l'exécution de cet algorithme ?</p>
+
+<pre><code>pour I de 1 à 4 par pas de 1 faire
+   si I est pair
+      alors V ← V + I*I
+   fin si
+fin pour</code></pre>
+<h2 id="Exercice-11">Exercice 11<a class="anchor-link" href="#Exercice-11">&#182;</a></h2><p>On considère l'algorithme précédent.</p>
+<ol>
+<li>Combien de fois la condition <code>I est pair</code> est-elle évaluée ?</li>
+<li>Combien de fois la variable <code>V</code> change-t-elle de valeur ?</li>
+<li>Dénombrez alors l'ensemble des opérations : opérations arithmétiques, comparaisons, affectations.</li>
+</ol>
+<h2 id="Exercice-12">Exercice 12<a class="anchor-link" href="#Exercice-12">&#182;</a></h2><p>Supposons que <code>A</code> vaut 1 initialement ; combien vaut-il après l'exécution
+de cet algorithme ?</p>
+
+<pre><code>pour i de 0 à 3 faire
+    pour j de 0 à 2 faire
+        A ← A + i*j
+    fin pour
+fin pour</code></pre>
+<h1 id="R&#233;p&#233;titives-conditionn&#233;es-(boucles-Tant-que)">R&#233;p&#233;titives conditionn&#233;es (boucles Tant que)<a class="anchor-link" href="#R&#233;p&#233;titives-conditionn&#233;es-(boucles-Tant-que)">&#182;</a></h1><div class="important">
+<p>
+
+La boucle Tant que est aussi une structure qui permet de répéter plusieurs fois l'exécution d'une ou plusieurs instructions. On parle de répétitive conditionnée car c'est une condition qui va déterminer le nombre d'itérations à effectuer. Ainsi, une boucle Tant que s'utilise lorsque le **nombre d'itérations n'est pas connu à l'avance**. Chaque passage dans la boucle Tant que s'appelle aussi une itération.
+
+</p>
+</div><h2 id="Exercice-13">Exercice 13<a class="anchor-link" href="#Exercice-13">&#182;</a></h2><p>Supposons que <code>D</code> vaut 7 initialement ; que vaut-il après l'exécution de cet algorithme ?</p>
+
+<pre><code>tant que D &gt; 3 faire
+   D ← D - 3
+fin tant que</code></pre>
+<h2 id="Exercice-14">Exercice 14<a class="anchor-link" href="#Exercice-14">&#182;</a></h2><p>On considère l'algorithme précédent.</p>
+<ol>
+<li>Supposons que <code>D</code> vaut 2 après l'exécution de cet algorithme. Quelles valeurs parmi celles proposées ci-dessous pouvait-il avoir initialement ? -2 ; 2 ; 6 ; 14 ; 25.</li>
+<li>Supposons que <code>D</code> vaut 25 initialement ; combien d'itérations (c'est-à-dire de passages dans la répétitive) ont lieu avant que l'exécution de cet algorithme ne se termine ?</li>
+</ol>
+<h2 id="Exercice-15">Exercice 15<a class="anchor-link" href="#Exercice-15">&#182;</a></h2><p>Proposez un algorithme qui utilise une boucle Tant que qui a pour but d'afficher le quotient de la division entière d'un entier naturel A par un entier naturel B.</p>
+<h1 id="Les-fonctions">Les fonctions<a class="anchor-link" href="#Les-fonctions">&#182;</a></h1><div class="important">
+
+<p>
+
+Une fonction est un ensemble d'instructions qui peut recevoir des **arguments** ou **paramètres** (qui sont des *valeurs* ou des *variables*) et qui peut renvoyer le contenu d'une ou plusieurs variables.
+
+</p>
+
+</div><p>Voyons comment écrire l'algorithme en pseudo-code d'une fonction. Prenons l'exemple d'une fonction nommée <code>maximum</code> qui prend deux nombres en paramètres et qui renvoie le maximum des deux. On l'écrit ainsi en pseudo-code :</p>
+
+<pre><code>fonction maximum(a,b)
+   si a &gt; b
+      alors renvoyer a
+      sinon renvoyer b
+   finsi</code></pre>
+<h2 id="Exercice-16">Exercice 16<a class="anchor-link" href="#Exercice-16">&#182;</a></h2><p>Proposez le pseudo-code d'une fonction <code>minimum</code> qui renvoie le minimum des deux nombres donnés en paramètres.</p>
+<h2 id="Exercice-17">Exercice 17<a class="anchor-link" href="#Exercice-17">&#182;</a></h2><p>Proposez le pseudo-code d'une fonction <code>minimum4</code> qui renvoie le minimum des 4 nombres donnés en paramètres. <strong>Contrainte</strong> : vous devez faire appel à la fonction <code>minimum</code> !</p>
+<h2 id="Exercice-18">Exercice 18<a class="anchor-link" href="#Exercice-18">&#182;</a></h2><p>Les élèves d'une classe ont eu 4 notes. Le professeur, très généreux, décide de retirer la note la plus basse avant de calculer la moyenne de chaque élève.</p>
+<p>Proposez le pseudo code d'une fonction <code>nouvelle_moyenne</code> qui prend les 4 notes en paramètres et qui renvoie la moyenne calculée après avoir retiré la moins bonne.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Références :</strong></p>
+<ul>
+<li>Cours d'algorithmique, DIU EIL, Nantes</li>
+</ul>
+<hr>
+<p>Germain BECKER &amp; Sébastien POINT, Lycée Mounier, ANGERS <img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+
