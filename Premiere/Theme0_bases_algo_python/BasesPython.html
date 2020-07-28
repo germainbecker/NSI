@@ -2,7 +2,7 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Introduction-sur-le-format-notebook">Introduction sur le format <em>notebook</em><a class="anchor-link" href="#Introduction-sur-le-format-notebook">&#182;</a></h1><p><img class="centre image-responsive" src="data/jupyter_logo.svg" alt="logo Jupyter" width="200"></p>
+<h1 id="Introduction-sur-les-notebooks">Introduction sur les <em>notebooks</em><a class="anchor-link" href="#Introduction-sur-les-notebooks">&#182;</a></h1><p><img class="centre image-responsive" src="data/jupyter_logo.svg" alt="logo Jupyter" width="200"></p>
 <p>Nous utiliserons beaucoup cette année les <strong>notebooks</strong> de l'application web <em>Jupyter</em>. Il s'agit d'interfaces de programmation interactives permettant de mélanger du texte (écrit dans le format markdown) et du code en Python (entre autres). Ces notebooks sont très utilisés en science des données (<em>data science</em>) car ils facilitent le partage et la reproductibilité des résultats. Il sont très pratiques pour l'apprentissage du langage Python.</p>
 <p>On peut écrire en Python exactement comme avec n'importe quel éditeur et le code peut directement être exécuté dans le notebook. Pour cela, il suffit de se positionner sur la cellule de votre code et de cliquer sur le bouton <code>&gt;| Exécuter</code> de la barre d'outils ou de manière plus efficace directement au clavier avec le raccourci <code>Maj + Entrée</code>.</p>
 <p><strong>Petit point sur l'affichage de valeurs</strong></p>
@@ -280,7 +280,7 @@ Message en dehors du bloc d&#39;instruction du if
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Boucles-born&#233;es-:-boucles-for">Boucles born&#233;es : boucles <code>for</code><a class="anchor-link" href="#Boucles-born&#233;es-:-boucles-for">&#182;</a></h1><p>En Python, les boucles 'Pour' se codent en utilisant l'instruction <code>for</code> :</p>
-<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">sequence</span> <span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
     <span class="n">instruction1</span>
     <span class="n">instruction2</span>
     <span class="o">...</span>
@@ -458,24 +458,11 @@ s
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Boucles-non-born&#233;es-:-boucles-while">Boucles non born&#233;es : boucles <code>while</code><a class="anchor-link" href="#Boucles-non-born&#233;es-:-boucles-while">&#182;</a></h1><p>En Python, les boucles 'Tant que' se codent en utilisant l'instruction <code>while</code> :</p>
-<div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">condition</span> <span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">condition</span><span class="p">:</span>
     <span class="n">instruction1</span>
     <span class="n">instruction2</span>
     <span class="o">...</span>
@@ -700,9 +687,7 @@ Guido van Rossum 64
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote class="attention">
-
-**ATTENTION :** Par défaut, en Python, les variables saisies au clavier et récupérées par la fonction `input` sont des chaînes de caractères.
-
+<p><strong>ATTENTION :</strong> Par défaut, en Python, les variables saisies au clavier et récupérées par la fonction <code>input</code> sont des chaînes de caractères.</p>
 </blockquote><p>Cela peut créer des erreurs :</p>
 
 </div>
