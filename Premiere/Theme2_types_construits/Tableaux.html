@@ -2,12 +2,29 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="D&#233;finition">D&#233;finition<a class="anchor-link" href="#D&#233;finition">&#182;</a></h1><p>Les <strong>tableaux</strong> sont des séquences (comme les tuples, comme les chaînes de caractères) qui permettent de contenir d'autres objets de n'importe quel type (et même de types différents) : des tableaux de nombres entiers, des tableaux de flottants, des tableaux de chaînes de caractères. Dit plus simplement, un tableau permet de stocker plusieurs variables dans une seule variable et d'y accéder ensuite facilement.</p>
+<h1 id="D&#233;finition">D&#233;finition<a class="anchor-link" href="#D&#233;finition">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="important">
+
+<p>Les <strong>tableaux</strong> sont des séquences (comme les tuples, comme les chaînes de caractères) qui permettent de contenir d'autres objets de n'importe quel type (et même de types différents). On peut donc avoir des tableaux de nombres entiers, des tableaux de flottants, des tableaux de chaînes de caractères, etc. Dit plus simplement, un tableau permet de stocker plusieurs variables dans une seule variable et d'y accéder ensuite facilement.</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <blockquote><p>Dans le langage Python, les tableaux sont implémentés par le type prédéfini <code>list</code>. Ainsi, on trouvera souvent dans la littérature le mot <em>liste</em> plutôt que le mot <em>tableau</em> alors qu'en réalité, ce sont deux types différents (les listes sont étudiées en classe de Terminale). Dans la suite du cours, on utilisera uniquement le terme <em>tableau</em> qui est celui qui apparaît dans le programme et on ne présentera que les notions usuelles des tableaux telles qu'on les trouve dans les autres langages.</p>
 </blockquote>
 <p><strong>Vidéo de cours</strong> :</p>
 <p>Voici une vidéo très bien faite sur les tableaux : <a href="http://www.lumni.fr/video/notion-de-listes-en-informatique-et-application-aux-images-numeriques">Lumni : cours sur les listes</a> (<em>pensez à remplacer le mot "liste" par le mot "tableau"</em>). Regardez cette vidéo en guise d'introduction à la notion de tableau.</p>
-<p>Le cours qui suit reprend les éléments présentés dans la vidéo avec quelques compléments sur le parcours de tableau par valeur et sur</p>
+<p>Le cours qui suit reprend les éléments présentés dans la vidéo avec quelques compléments sur le parcours de tableau par valeur et sur la représentation en mémoire d'un tableau qui est différente de celle des types de base.</p>
 <h1 id="Tableaux-index&#233;s">Tableaux index&#233;s<a class="anchor-link" href="#Tableaux-index&#233;s">&#182;</a></h1><h2 id="Cr&#233;er-un-tableau">Cr&#233;er un tableau<a class="anchor-link" href="#Cr&#233;er-un-tableau">&#182;</a></h2><p>Les tableaux se déclarent entre crochets et les valeurs sont séparées par des virgules.</p>
 
 </div>
@@ -15,7 +32,7 @@
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tab1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span> <span class="c1"># un tableau d&#39;entiers</span>
@@ -58,7 +75,7 @@
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tab5</span> <span class="o">=</span> <span class="p">[]</span>
@@ -79,7 +96,7 @@
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tab6</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">15</span>
@@ -96,7 +113,7 @@
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[10]:</div>
+    <div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -121,7 +138,7 @@
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tab1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
@@ -166,7 +183,7 @@ Baptiste 0611111111
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tab1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
@@ -190,7 +207,7 @@ Baptiste 0611111111
 <pre>
 <span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
 <span class="ansi-red-intense-fg ansi-bold">IndexError</span>                                Traceback (most recent call last)
-<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-17-0edc566a8abc&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-5-0edc566a8abc&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
 <span class="ansi-green-fg">      1</span> tab1 <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">5</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">10</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">20</span><span class="ansi-yellow-intense-fg ansi-bold">]</span>
 <span class="ansi-green-intense-fg ansi-bold">----&gt; 2</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>tab1<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">5</span><span class="ansi-yellow-intense-fg ansi-bold">]</span>
 
@@ -213,7 +230,7 @@ Baptiste 0611111111
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
@@ -231,7 +248,7 @@ Baptiste 0611111111
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[18]:</div>
+    <div class="prompt output_prompt">Out[6]:</div>
 
 
 
@@ -256,7 +273,7 @@ Baptiste 0611111111
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tab</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
@@ -273,7 +290,7 @@ Baptiste 0611111111
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[19]:</div>
+    <div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -290,7 +307,7 @@ Baptiste 0611111111
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Albert&quot;</span><span class="p">,</span> <span class="s2">&quot;Grégory&quot;</span><span class="p">,</span> <span class="s2">&quot;Justine&quot;</span><span class="p">,</span> <span class="s2">&quot;Anaïs&quot;</span><span class="p">,</span> <span class="s2">&quot;Myriam&quot;</span><span class="p">,</span> <span class="s2">&quot;Pascal&quot;</span><span class="p">]</span>
@@ -307,7 +324,7 @@ Baptiste 0611111111
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[21]:</div>
+    <div class="prompt output_prompt">Out[8]:</div>
 
 
 
@@ -340,7 +357,7 @@ Baptiste 0611111111
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="c1"># incomplet (trop long)</span>
@@ -362,7 +379,7 @@ Baptiste 0611111111
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span> <span class="c1"># création d&#39;un tableau de taille 100 avec que des zéros</span>
@@ -412,7 +429,7 @@ Baptiste 0611111111
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span> <span class="c1"># création et construction du tableau</span>
@@ -453,7 +470,7 @@ Baptiste 0611111111
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
@@ -500,7 +517,7 @@ Baptiste 0611111111
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<iframe width="800" height="500" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=t%20%3D%20%5B15,%2013,%208,%2018,%2010%5D%0Afor%20i%20in%20range%28len%28t%29%29%3A%20%23%20on%20utilise%20la%20fonction%20len%0A%20%20%20%20print%28t%5Bi%5D%29&codeDivHeight=400&codeDivWidth=350&cumulative=true&curInstr=0&heapPrimitives=false&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+<iframe width="600" height="500" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=t%20%3D%20%5B15,%2013,%208,%2018,%2010%5D%0Afor%20i%20in%20range%28len%28t%29%29%3A%20%23%20on%20utilise%20la%20fonction%20len%0A%20%20%20%20print%28t%5Bi%5D%29&codeDivHeight=400&codeDivWidth=350&cumulative=true&curInstr=0&heapPrimitives=false&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 </div>
 </div>
 </div>
@@ -514,7 +531,7 @@ Baptiste 0611111111
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
@@ -560,7 +577,7 @@ Baptiste 0611111111
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<iframe width="800" height="500" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=t%20%3D%20%5B15,%2013,%208,%2018,%2010%5D%0Afor%20e%20in%20t%3A%0A%20%20%20%20print%28e%29&codeDivHeight=400&codeDivWidth=350&cumulative=true&curInstr=0&heapPrimitives=false&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+<iframe width="600" height="500" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=t%20%3D%20%5B15,%2013,%208,%2018,%2010%5D%0Afor%20e%20in%20t%3A%0A%20%20%20%20print%28e%29&codeDivHeight=400&codeDivWidth=350&cumulative=true&curInstr=0&heapPrimitives=false&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 </div>
 </div>
 </div>
@@ -570,7 +587,7 @@ Baptiste 0611111111
 <p><strong>Remarques</strong> :</p>
 <ul>
 <li>On utilisera l'une ou l'autre de ces boucles selon le besoin. Si on a besoin de connaître l'indice auquel on se trouve à chaque tour de boucle il faudra opter pour le parcours par indice.</li>
-<li>Il est possible de ne parcourir qu'une partie du tableau. Pour cela il faut utiliser le parcours par indice en indiquant dans la fonction <code>range</code> les indices souhaités. Par exemple, pour parcourir seulement les éléments compris entre l'index 1 et l'index 3, on écrit :</li>
+<li>Il est possible de ne parcourir qu'une partie du tableau. Pour cela, il faut utiliser le parcours par indice en indiquant dans la fonction <code>range</code> les indices souhaités. Par exemple, pour parcourir seulement les éléments compris entre l'index 1 et l'index 3 (inclus), on écrit :</li>
 </ul>
 
 </div>
@@ -578,7 +595,7 @@ Baptiste 0611111111
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
@@ -622,7 +639,7 @@ Baptiste 0611111111
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[55]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]</span>
@@ -643,7 +660,7 @@ Baptiste 0611111111
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
@@ -676,7 +693,7 @@ Baptiste 0611111111
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -717,7 +734,7 @@ Baptiste 0611111111
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># élément d&#39;indice 2 de l&#39;élément d&#39;indice 1</span>
@@ -733,7 +750,7 @@ Baptiste 0611111111
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[34]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
@@ -758,7 +775,7 @@ Baptiste 0611111111
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">t1</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
@@ -775,7 +792,7 @@ Baptiste 0611111111
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[42]:</div>
+    <div class="prompt output_prompt">Out[19]:</div>
 
 
 
@@ -792,7 +809,7 @@ Baptiste 0611111111
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">t2</span> <span class="o">=</span> <span class="p">[[</span><span class="n">i</span><span class="o">*</span><span class="n">j</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
@@ -809,7 +826,7 @@ Baptiste 0611111111
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[39]:</div>
+    <div class="prompt output_prompt">Out[20]:</div>
 
 
 
@@ -834,7 +851,7 @@ Baptiste 0611111111
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]</span>
@@ -890,7 +907,7 @@ Baptiste 0611111111
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<iframe width="800" height="500" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=t%20%3D%20%5B%5B0,%205,%20-1%5D,%20%5B1,%202,%204%5D,%20%5B8,%20-5,%203%5D,%20%5B4,%200,%206%5D%5D%0Anb_lignes%20%3D%20len%28t%29%0Anb_colonnes%20%3D%20len%28t%5B0%5D%29%0Afor%20i%20in%20range%28nb_lignes%29%3A%0A%20%20%20%20for%20j%20in%20range%28nb_colonnes%29%3A%0A%20%20%20%20%20%20%20%20print%28t%5Bi%5D%5Bj%5D%29&codeDivHeight=400&codeDivWidth=350&cumulative=true&curInstr=0&heapPrimitives=false&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+<iframe width="600" height="500" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=t%20%3D%20%5B%5B0,%205,%20-1%5D,%20%5B1,%202,%204%5D,%20%5B8,%20-5,%203%5D,%20%5B4,%200,%206%5D%5D%0Anb_lignes%20%3D%20len%28t%29%0Anb_colonnes%20%3D%20len%28t%5B0%5D%29%0Afor%20i%20in%20range%28nb_lignes%29%3A%0A%20%20%20%20for%20j%20in%20range%28nb_colonnes%29%3A%0A%20%20%20%20%20%20%20%20print%28t%5Bi%5D%5Bj%5D%29&codeDivHeight=400&codeDivWidth=350&cumulative=true&curInstr=0&heapPrimitives=false&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 </div>
 </div>
 </div>
@@ -903,7 +920,7 @@ Baptiste 0611111111
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]</span>
@@ -957,7 +974,7 @@ Baptiste 0611111111
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<iframe width="800" height="500" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=t%20%3D%20%5B%5B0,%205,%20-1%5D,%20%5B1,%202,%204%5D,%20%5B8,%20-5,%203%5D,%20%5B4,%200,%206%5D%5D%0Afor%20ligne%20in%20t%3A%20%20%20%20%20%20%20%23%20pour%20chaque%20ligne%20de%20t%0A%20%20%20%20for%20e%20in%20ligne%3A%20%20%20%23%20pour%20chaque%20%C3%A9l%C3%A9ment%20e%20d'une%20ligne%0A%20%20%20%20%20%20%20%20print%28e%29&codeDivHeight=400&codeDivWidth=350&cumulative=true&curInstr=0&heapPrimitives=false&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+<iframe width="600" height="500" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=t%20%3D%20%5B%5B0,%205,%20-1%5D,%20%5B1,%202,%204%5D,%20%5B8,%20-5,%203%5D,%20%5B4,%200,%206%5D%5D%0Afor%20ligne%20in%20t%3A%20%20%20%20%20%20%20%23%20pour%20chaque%20ligne%20de%20t%0A%20%20%20%20for%20e%20in%20ligne%3A%20%20%20%23%20pour%20chaque%20%C3%A9l%C3%A9ment%20e%20d'une%20ligne%0A%20%20%20%20%20%20%20%20print%28e%29&codeDivHeight=400&codeDivWidth=350&cumulative=true&curInstr=0&heapPrimitives=false&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 </div>
 </div>
 </div>
@@ -975,7 +992,7 @@ Baptiste 0611111111
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
@@ -1019,7 +1036,7 @@ Baptiste 0611111111
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<iframe width="800" height="500" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=a%20%3D%205%0Ab%20%3D%20a%0Aa%20%3D%202%0Aprint%28a,%20b%29&codeDivHeight=400&codeDivWidth=350&cumulative=true&curInstr=0&heapPrimitives=false&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+<iframe width="600" height="500" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=a%20%3D%205%0Ab%20%3D%20a%0Aa%20%3D%202%0Aprint%28a,%20b%29&codeDivHeight=400&codeDivWidth=350&cumulative=true&curInstr=0&heapPrimitives=false&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 </div>
 </div>
 </div>
@@ -1033,7 +1050,7 @@ Baptiste 0611111111
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
@@ -1077,7 +1094,7 @@ Baptiste 0611111111
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<iframe width="800" height="500" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=t%20%3D%20%5B1,%202,%203%5D%0Au%20%3D%20t%0At%5B0%5D%20%3D%205%0Aprint%28t,%20u%29&codeDivHeight=400&codeDivWidth=350&cumulative=true&curInstr=0&heapPrimitives=false&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+<iframe width="600" height="500" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=t%20%3D%20%5B1,%202,%203%5D%0Au%20%3D%20t%0At%5B0%5D%20%3D%205%0Aprint%28t,%20u%29&codeDivHeight=400&codeDivWidth=350&cumulative=true&curInstr=0&heapPrimitives=false&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 </div>
 </div>
 </div>
@@ -1092,6 +1109,23 @@ Baptiste 0611111111
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Bilan">Bilan<a class="anchor-link" href="#Bilan">&#182;</a></h1><ul>
+<li>Un tableau est une variable qui permet de contenir et stocker plusieurs variables. En Python, il se déclare entre crochets (<code>[</code> et <code>]</code>), les éléments qu'il contient étant séparés par des virgules.  </li>
+<li>Les éléments d'un tableau sont <em>indicés</em>, ou <em>indexés</em>, c'est-à-dire que chaque élément possède une position dans le tableau (son indice, ou son index). Le premier élément est celui d'indice 0.</li>
+<li>Cela rend facile l'accès à n'importe quel élément du tableau : l'élément d'indice (ou d'index) <code>i</code> d'un tableau <code>t</code>, s'obtient avec l'instruction <code>t[i]</code>.</li>
+<li>Les éléments d'un tableau peuvent eux-mêmes être des tableaux, on parle alors d'un <em>tableau de tableaux</em> ou d'un tableau à deux dimensions.</li>
+<li>On a vu que l'on peut construire un tableau en utilisant une boucle <code>for</code> ou de manière plus rapide par <em>compréhension</em>.</li>
+<li>On peut itérer sur un tableau, c'est-à-dire passer en revue (certains de) ses éléments en utilisant une boucle <code>for</code> qui peut parcourir les éléments souhaités soit par leur indice, soit par leur valeur.</li>
+<li>Les tableaux sont réprésentés en mémoire par une suite de cases mémoires contiguës mais il faut se méfier car la valeur d'un tableau est son <em>adresse mémoire</em> (et non les valeurs de toutes ses cases mémoires).</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
 <p><strong>Ressources :</strong></p>
 <ul>
 <li>Documents ressources du DIU EIL, Université de Nantes, Christophe DECLERCQ.</li>
