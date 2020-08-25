@@ -1,0 +1,270 @@
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img class="centre image-responsive" src="data/pile_file.png" alt="une pile et une file" width="600"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Les piles et les files sont deux structures de données linéaires qui permettent, au même titre que les listes, de gérer des séquences d'éléments. Ainsi, dans une pile et dans une file chaque élément est également repéré par sa position, il y a un premier, un dernier, chaque élément a un successeur (sauf le premier) et un prédecesseur (sauf le dernier).</p>
+<p>Les opérations disponibles pour ces deux structures sont assez proches car dans les deux cas, on veut pouvoir :</p>
+<ul>
+<li>créer une pile/file vide</li>
+<li>connaître sa taille</li>
+<li>lui ajouter un élément</li>
+<li>lui retirer un élément</li>
+<li>(accéder à un élément particulier)</li>
+</ul>
+<p>Cependant, la politique d'ajout/retrait des éléments dans la séquence n'est pas la même. Le nom des opérations diffèrent également pour mieux distinguer les deux structures.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Les-piles">Les piles<a class="anchor-link" href="#Les-piles">&#182;</a></h1><p>Il faut se représenter une pile comme... une pile de livres ! Seul le livre disposé sur le dessus est accessible : l'ajout et le retrait d'un livre ne peut donc se faire que sur le <em>sommet</em> de la pile.</p>
+<p>On dit que les piles sont en mode <strong>LIFO</strong> (<em>Last In, First Out</em> qui signifie &laquo; dernier entré, premier sorti &raquo;).</p>
+<p><img class="centre image-responsive" src="data/lifo.png" alt="lifo" width="300"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Interface-d'une-pile">Interface d'une pile<a class="anchor-link" href="#Interface-d'une-pile">&#182;</a></h2><p>Le jeu d'opérations disponibles pour une pile est :</p>
+<ul>
+<li><code>construire_pile()</code> : crée une pile vide</li>
+<li><code>taille(P)</code> : accès au nombre d'éléments dans la pile <code>P</code></li>
+<li><code>empiler(P, e)</code> : ajoute l'élément <code>e</code> au sommet de la pile <code>P</code>.</li>
+<li><code>depiler(P)</code> : retire l'élément au sommet de la pile <code>P</code>. <strong>Précondition</strong> : <code>P</code> n'est pas vide.</li>
+<li><code>sommet(P)</code> : pour accéder (en lecture) au sommet de la pile <code>P</code> (sans le retirer de la pile). <strong>Précondition</strong> : <code>P</code> n'est pas vide.</li>
+</ul>
+<blockquote><p>En anglais, l'opération <code>empiler</code> est souvent notée <code>push</code>, l'opération <code>depiler</code> est souvent notée <code>pop</code> et l'opération <code>taille</code> est souvent notée <code>top</code>.</p>
+</blockquote>
+<p><strong>Remarque</strong> : Certaines signatures algorithmiques peuvent légèrement varier. Par exemple, on peut parfois voir l'opération <code>est_vide</code> (qui teste si une pile est vide) à la place de <code>taille</code> (une pile est vide si et seulement si sa taille vaut 0) ou encore l'opération <code>depiler</code> qui renvoie également le sommet (donc l'opération <code>sommet</code> n'est plus nécessaire). C'est un choix libre qui ne change pas la nature de la structure de données abstraite mais la façon d'écrire des algorithmes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Repr&#233;sentation-d'une-pile-et-exemple">Repr&#233;sentation d'une pile et exemple<a class="anchor-link" href="#Repr&#233;sentation-d'une-pile-et-exemple">&#182;</a></h2><p>Une pile contenant les éléments $\text{'a'}$, $\text{'b'}$ et $\text{'c'}$ ($\text{'a'}$ étant le sommet et donc $\text{'c'}$ le fond de la pile) sera représentée :</p>
+$$\text{&gt;'a', 'b', 'c']}$$<p><strong>Exemple</strong> :  On considère la pile <code>P</code> :  $\text{&gt;'a', 'b', 'c']}$. Voici comment la manipuler :</p>
+<table>
+<thead><tr>
+<th style="text-align:center">Opération</th>
+<th>Contenu de la pile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>empiler(P, 'e')</code></td>
+<td>$\text{&gt;'e', 'a', 'b', 'c']}$</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>depiler(P)</code></td>
+<td>$\text{&gt;'a', 'b', 'c']}$</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>depiler(P)</code></td>
+<td>$\text{&gt;'b', 'c']}$</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>sommet(P)</code></td>
+<td>renvoie $\text{'b'}$</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>depiler(P)</code></td>
+<td>$\text{&gt;'c']}$</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>empiler(P, 'm')</code></td>
+<td>$\text{&gt;'m', 'c']}$</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>taille(P)</code></td>
+<td>renvoie 2</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Applications-des-piles">Applications des piles<a class="anchor-link" href="#Applications-des-piles">&#182;</a></h2><p>Les piles sont très utilisées en informatique. Voici quelques usages caractéristiques :</p>
+<ul>
+<li>Les algorithmes récursifs utilisent une pile d'appel pour mémoriser les contextes d'exécution de chaque appel. (déjà abordé)</li>
+<li>Dans un navigateur web, une pile sert à mémoriser les pages Web visitées. L'adresse de chaque nouvelle page visitée est empilée et l'utilisateur dépile l'adresse courante pour accéder à la page précédente en cliquant le bouton « Afficher la page précédente ».</li>
+<li>La fonction « Annuler la frappe » (en anglais Undo, le célèbre CTRL+F) d'un traitement de texte mémorise les modifications apportées au texte dans une pile.</li>
+<li>On peut aussi utiliser une pile pour parcourir (en profondeur) un graphe et mémoriser les sommets visités. (voir Thème 5 : Algorithmique)</li>
+<li>La vérification du bon parenthésage d'une expression peur également se faire à l'aide d'une pile.</li>
+<li>etc.</li>
+</ul>
+<blockquote><p>Certains de ces exemples seront abordés dans les activités.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Impl&#233;mentations">Impl&#233;mentations<a class="anchor-link" href="#Impl&#233;mentations">&#182;</a></h2><p>Une pile est généralement implémentée par :</p>
+<ul>
+<li>un tableau (redimensionnable ou non) </li>
+<li>ou par une liste chaînée. </li>
+</ul>
+<p>Selon le cas, il faudra veiller à ce que l'implémentation soit la plus efficace possible.</p>
+<ul>
+<li>Si on utilise un tableau, les opérations <code>empiler</code> et <code>depiler</code> seront plus efficaces si elles se font à la fin du tableau plutôt qu'au début car cela ne nécessite pas de décaler les autres éléments. </li>
+<li>En revanche, si on utilise une liste chaînée, elles seront plus efficaces si elles ont lieu au début (car pour accéder au dernier élément il faut parcourir tous les éléments de proche en proche à partir du premier qui est le seul accessible). </li>
+</ul>
+<blockquote><p>Nous implémenterons une pile dans les activités.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Les-files">Les files<a class="anchor-link" href="#Les-files">&#182;</a></h1><p>Il faut se représenter une file comme... une file d'attente ! On ne peut entrer dans la file qu'en dernière position et on ne peut la quitter que si on est le premier. L'ajout d'un élément dans une file ne peut se faire qu'à la fin (en dernière position) et le retrait d'un élément ne peut se faire qu'au début (en première position).</p>
+<p>On dit que les files sont en mode <strong>FIFO</strong> (<em>First In, First Out</em> qui signifie &laquo; premier entré, premier sorti &raquo;).</p>
+<p><img class="centre image-responsive" src="data/fifo.png" alt="lifo" width="400"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Interface-d'une-file">Interface d'une file<a class="anchor-link" href="#Interface-d'une-file">&#182;</a></h2><p>Le jeu d'opérations disponibles pour une file est :</p>
+<ul>
+<li><code>construire_file()</code> : crée une file vide</li>
+<li><code>taille(F)</code> : accès au nombre d'éléments dans la file <code>F</code></li>
+<li><code>enfiler(F, e)</code> : ajoute l'élément <code>e</code> en dernier dans la file <code>F</code>.</li>
+<li><code>defiler(F)</code> : retire le premier élément de la file <code>F</code>. <strong>Précondition</strong> : <code>F</code> n'est pas vide.</li>
+<li><code>premier(F)</code> : pour accéder (en lecture) au premier élément de la file <code>F</code> (sans le retirer de la file). <strong>Précondition</strong> : <code>F</code> n'est pas vide.</li>
+</ul>
+<blockquote><p>En anglais, l'opération <code>enfiler</code> est souvent notée <code>push</code>, l'opération <code>depiler</code> est souvent notée <code>pop</code> et l'opération <code>taille</code> est souvent notée <code>top</code>.</p>
+</blockquote>
+<p><strong>Remarque</strong> : Comme pour les piles, on pourrait remplacer l'opération <code>taille</code> par l'opération <code>est_vide</code> et choisir que <code>defiler</code> renvoie également le premier élément pour s'économiser l'opération <code>premier</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Repr&#233;sentation-d'une-file-et-exemple">Repr&#233;sentation d'une file et exemple<a class="anchor-link" href="#Repr&#233;sentation-d'une-file-et-exemple">&#182;</a></h2><p>Une file contenant les éléments $\text{'a'}$, $\text{'b'}$ et $\text{'c'}$ ($\text{'a'}$ étant le premier et $\text{'c'}$ le dernier) sera représentée :</p>
+$$\text{&lt;'a', 'b', 'c'&lt;}$$<p><strong>Exemple</strong> :  Voici comment manipuler une file F :</p>
+<table>
+<thead><tr>
+<th style="text-align:center">Opération</th>
+<th>Contenu de la file F</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>F = construire_file()</code></td>
+<td>$\text{&lt;&lt;}$</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>taille(F)</code></td>
+<td>renvoie 0</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>enfiler(F, 'a')</code></td>
+<td>$\text{&lt;'a'&lt;}$</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>enfiler(F, 'b')</code></td>
+<td>$\text{&lt;'a', 'b'&lt;}$</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>enfiler(F, 'c')</code></td>
+<td>$\text{&lt;'a', 'b', 'c'&lt;}$</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>premier(F)</code></td>
+<td>renvoie 'a'</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>defiler(F)</code></td>
+<td>$\text{&lt;'b', 'c'&lt;}$</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>enfiler(F, premier(F))</code></td>
+<td>$\text{&lt;'b', 'c', 'b'&lt;}$</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Applications-des-files">Applications des files<a class="anchor-link" href="#Applications-des-files">&#182;</a></h2><p>Les piles sont très utilisées en informatique. Leur usage caractéristique concerne les files d'attentes :</p>
+<ul>
+<li>Un système d'exploitation gère l'ordonnancement des processus par des files (voir Thème 3 : Architectures matérielles, systèmes d'exploitation et réseaux)</li>
+<li>Une imprimante gère les tâches d'impression avec des files : chaque nouvelle tâche est insérée dans une file d'attente, et celles-ci sont traitées dans l'ordre d'arrivée.</li>
+<li>On peut aussi utiliser une pile pour parcourir (en profondeur) un graphe et mémoriser les sommets visités. (voir Thème 5 : Algorithmique)</li>
+<li>etc.</li>
+</ul>
+<blockquote><p>Certains de ces exemples seront abordés dans les activités.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Impl&#233;mentations">Impl&#233;mentations<a class="anchor-link" href="#Impl&#233;mentations">&#182;</a></h2><p>Il existe différentes façons d'implémenter une file, on peut par exemple utiliser :</p>
+<ul>
+<li>un tableau (redimensionnable ou non)</li>
+<li>une liste chaînée</li>
+<li>deux piles</li>
+</ul>
+<p>Avec ces implémentations, il faudra en général faire un compromis sur l'efficacité des opérations car celles-ci nécessitent de travailler sur les deux extrémités de la file (pour enfiler/défiler).</p>
+<ul>
+<li>Si on utilise un tableau, les opérations en début sont coûteuses et celles à la fin ne le sont pas. On peut alors décider d'enfiler en fin de tableau (peu coûteux) mais il faudra défiler en début de tableau (coûteux). Si on fait le choix inverse, c'est l'opération <code>defiler</code> qui sera peu coûteuse et l'opération <code>enfiler</code> qui sera coûteuse.</li>
+<li>Si on utilise une liste chaînée, c'est l'inverse (efficace en tête et coûteux en queue) mais le problème reste le même : une des deux opérations sera moins efficace. </li>
+</ul>
+<blockquote><p>Il existe en réalité une implémentation plus efficace mais nous n'en parlerons pas ici.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Références :</strong></p>
+<ul>
+<li>Documents ressources de l'équipe éducative du DIU EIL, Université de Nantes, Christophe JERMANN et Christophe DECLERCQ.</li>
+<li><a href="https://fr.wikipedia.org/wiki/Pile_(informatique">Article Wikipédia sur les piles</a>) pour les exemples d'applications .</li>
+</ul>
+<hr>
+<p>Germain BECKER, Lycée Mounier, ANGERS</p>
+<p>Ressource éducative libre distribuée sous <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a></p>
+<p><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+

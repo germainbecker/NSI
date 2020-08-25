@@ -1,0 +1,391 @@
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Une <strong>liste</strong> est une structure de données permettant de regrouper des données. C'est une collection finie et ordonnée d'éléments, cela signifie que chaque élément d'une liste est repéré par son index (sa position). A la différence d'un tableau qui est de taille fixe, une liste est extensible : on peut lui ajouter, retirer des éléments ; sa taille n'est donc pas fixe.</p>
+<h1 id="Un-peu-d'histoire-pour-commencer">Un peu d'histoire pour commencer<a class="anchor-link" href="#Un-peu-d'histoire-pour-commencer">&#182;</a></h1><p><img class="centre image-responsive" src="data/mccarthy.jpg" alt="logo de LISP" width="400"></p>
+<p class="image-licence">
+Crédit image : — https://www.flickr.com/photos/null0/272015955/, CC BY-SA 2.0, https://commons.wikimedia.org/w/index.php?curid=1297606
+</p><p>Le langage LISP, inventé par John Mac Carthy (photo) en 1958, est un des premiers à utiliser la notion de <em>liste</em> (LISP vient de l'anglais <em>list processing</em> signifiant &laquo; traitement de listes &raquo;).</p>
+<p>Les listes du langage LISP sont composées de deux parties :</p>
+<ul>
+<li>une <strong>tête</strong> correspondant au premier élément de la liste</li>
+<li>une <strong>queue</strong> correspondant au reste de la liste</li>
+</ul>
+<p>On pouvait alors construire une liste à partir d'un premier élément (sa tête) et d'une liste (sa queue).</p>
+<h1 id="L'-interface-minimale-du-type-abstrait-Liste">L' interface minimale du type abstrait <code>Liste</code><a class="anchor-link" href="#L'-interface-minimale-du-type-abstrait-Liste">&#182;</a></h1><p>Le type abstrait <code>Liste</code> peut alors être défini par l'<em>interface</em> suivante contenant 5 opérations primitives :</p>
+<ul>
+<li>Des constructeurs :<ul>
+<li><code>listevide()</code> pour construire une liste vide</li>
+<li><code>construit(e, L)</code> pour construire une nouvelle liste contenant un premier élément <code>e</code> (sa tête) et une suite <code>L</code> (sa queue, qui est une liste). Cet opérateur est aussi souvent noté <code>cons</code>.</li>
+</ul>
+</li>
+<li>Des sélecteurs :<ul>
+<li><code>premier(L)</code> pour accéder au premier élément de la liste <code>L</code>, sa tête. Cet opérateur est aussi souvent noté <code>car</code>. </li>
+<li><code>reste(L)</code> pour accéder au reste de la liste <code>L</code> c'est-à-dire sa queue. Cet opérateur est aussi souvent noté <code>cdr</code>.</li>
+</ul>
+</li>
+<li>Un prédicat : <ul>
+<li><code>estvide(L)</code> pour tester si une liste est vide.</li>
+</ul>
+</li>
+</ul>
+<p>Ainsi, pour construire une liste formée par les nombres 5, 3, 8 (dans cet ordre) on fait :</p>
+<div class="highlight"><pre><span></span><span class="n">maliste1</span> <span class="o">=</span> <span class="n">construit</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">construit</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">construit</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">listevide</span><span class="p">())))</span>
+</pre></div>
+<p>Dans ce cas,</p>
+<ul>
+<li><code>premier(maliste1)</code> correspond à sa tête, c'est-à-dire <code>5</code></li>
+<li><code>reste(maliste1)</code> correspondant à sa queue, c'est-à-dire la liste correspondant à <code>construit(3, construit(8, listevide()))</code> formée des nombres 3 et 8.</li>
+</ul>
+<blockquote><p>On sait depuis les travaux de Mac Carthy sur le langage LISP, qu'avec ces 5 opérations on peut reconstruire toutes les opérations sur les listes (accéder à un élément, modifier un élément, ajouter/supprimer un élément, calculer la longueur, tester l'appartenance, etc.)</p>
+</blockquote>
+<h1 id="Impl&#233;mentations-possibles">Impl&#233;mentations possibles<a class="anchor-link" href="#Impl&#233;mentations-possibles">&#182;</a></h1><h2 id="Une-impl&#233;mentation-avec-des-couples-en-Python">Une impl&#233;mentation avec des couples en Python<a class="anchor-link" href="#Une-impl&#233;mentation-avec-des-couples-en-Python">&#182;</a></h2><p>Cette première implémentation est basée sur des paires (couples) qui comportent chacune un élément et la suite de la liste, qui elle-même peut être une paire... Elle réutilise le type <code>tuple</code> de Python.</p>
+<blockquote><p>On définit ainsi notre structure de données de manière <em>récursive</em> pour respecter la philosophie du langage LISP. Nous étudierons cette notion de récursivité plus tard dans l'année.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">listevide</span><span class="p">():</span>
+    <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># on utilise None pour une liste vide</span>
+
+<span class="k">def</span> <span class="nf">construit</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span> <span class="c1"># renvoie un tuple de deux éléments</span>
+
+<span class="k">def</span> <span class="nf">premier</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># accès au premier élément du couple (la tête de L)</span>
+
+<span class="k">def</span> <span class="nf">reste</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># accès au deuxième élément du couple (la queue de L)</span>
+
+<span class="k">def</span> <span class="nf">estvide</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">L</span> <span class="ow">is</span> <span class="kc">None</span>  <span class="c1"># L est égal à None ?</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut alors tester les instructions précédentes et en affichant le contenu de <code>maliste1</code>, on se rend compte de l'implémentation choisie avec des paires imbriquées.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">maliste1</span> <span class="o">=</span> <span class="n">construit</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">construit</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">construit</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">listevide</span><span class="p">())))</span>
+<span class="n">maliste1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[2]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(5, (3, (8, None)))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On a donc logiquement :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">premier</span><span class="p">(</span><span class="n">maliste1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">reste</span><span class="p">(</span><span class="n">maliste1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[4]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(3, (8, None))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Avec cette implémentation, il est intéressant de noter que la contruction de <code>maliste1</code> avec l'instruction</p>
+<div class="highlight"><pre><span></span><span class="n">construit</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">construit</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">construit</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">listevide</span><span class="p">())))</span>
+</pre></div>
+<p>nécessite la construction 3 paires intermédiaires qui sont construites de la plus imbriquée (liste vide) à la moins imbriquée. On peut visualiser facilement cela avec Python tutor <a href="http://www.pythontutor.com/visualize.html#code=def%20listevide%20%28%29%3A%0A%20%20%20%20return%20None%20%20%23%20on%20utilise%20None%20pour%20une%20liste%20vide%0A%0Adef%20construit%28e,L%29%3A%0A%20%20%20%20return%20%28e,L%29%20%23%20renvoie%20un%20tuple%20de%20deux%20%C3%A9l%C3%A9ments%0A%0Adef%20premier%28L%29%3A%0A%20%20%20%20return%20L%5B0%5D%20%23%20acc%C3%A8s%20au%20premier%20%C3%A9l%C3%A9ment%20du%20couple%20%28la%20t%C3%AAte%20de%20L%29%0A%0Adef%20reste%28L%29%3A%0A%20%20%20%20return%20L%5B1%5D%20%23%20acc%C3%A8s%20au%20deuxi%C3%A8me%20%C3%A9l%C3%A9ment%20du%20couple%20%28la%20queue%20de%20L%29%0A%0Adef%20estvide%28L%29%3A%0A%20%20%20%20return%20L%20%3D%3D%20None%0A%20%20%20%20%0Amaliste1%20%3D%20construit%285,%20construit%283,%20construit%288,%20listevide%28%29%29%29%29&amp;cumulative=true&amp;curInstr=0&amp;heapPrimitives=nevernest&amp;mode=display&amp;origin=opt-frontend.js&amp;py=3&amp;rawInputLstJSON=%5B%5D&amp;textReferences=false">ici</a>.</p>
+</blockquote>
+<p>Comme dit précédemment, on peut construire les autres opérations sur les listes à partir des cinq opérations définies plus haut.</p>
+<p>Par exemple, pour obtenir le dernier élément d'une liste, on peut implémenter l'opération <code>dernier(L)</code> à partir des autres :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">dernier</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Liste --&gt; Element</span>
+<span class="sd">    Précondition : L n&#39;est pas vide.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">while</span> <span class="n">reste</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="o">!=</span> <span class="n">listevide</span><span class="p">():</span> <span class="c1"># tant que le reste de la liste n&#39;est pas vide</span>
+        <span class="n">L</span> <span class="o">=</span> <span class="n">reste</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="c1"># on passe au reste</span>
+    <span class="k">return</span> <span class="n">premier</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="c1"># on renvoie le premier élément de la dernière paire</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En partant de la liste <code>L</code>, il suffit de passer au reste jusqu'à ce que le reste soit la liste vide. On sait alors que l'on est arrivé à la dernière paire et il suffit de renvoyer le premier élément de cette dernière paire.</p>
+<p>En appelant la fonction sur <code>maliste1</code> on peut vérifier qu'elle renvoie bien 8.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">maliste1</span> <span class="o">=</span> <span class="n">construit</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">construit</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">construit</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">listevide</span><span class="p">())))</span>
+<span class="n">dernier</span><span class="p">(</span><span class="n">maliste1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>8</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>A faire</strong> : Activités 1 et 2</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Une-impl&#233;mentation-avec-le-type-list-de-Python">Une impl&#233;mentation avec le type <code>list</code> de Python<a class="anchor-link" href="#Une-impl&#233;mentation-avec-le-type-list-de-Python">&#182;</a></h2><p>Il est possible d'implémenter les 5 opérations définissant le type abstrait <code>Liste</code> en utilisant le type prédéfini <code>list</code> de Python. Les fonctions sont très ressemblantes à celles utilisant les couples.  Cela fait l'objet des activités 3 et 4 qui proposent deux implémentations différentes : la première avec copie des listes intermédiaires (comme l'implémentation avec les couples) et la seconde avec modification de la liste en place.</p>
+<blockquote><p><strong>A faire</strong> : Activités 3 et 4</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Les-listes-en-pratique">Les listes en pratique<a class="anchor-link" href="#Les-listes-en-pratique">&#182;</a></h1><h2 id="Cr&#233;er-des-nouvelles-listes-ou-les-modifier-en-place-?">Cr&#233;er des nouvelles listes ou les modifier en place ?<a class="anchor-link" href="#Cr&#233;er-des-nouvelles-listes-ou-les-modifier-en-place-?">&#182;</a></h2><p>Dans certaines implémentations, les opérations créent des nouvelles listes par copie des listes passées en paramètre (la liste passée en paramètre n'est donc pas modifiée) et dans d'autres, les listes sont modifiées <em>en place</em> par les opérations (c'est la liste passée en paramètre qui est modifiée).</p>
+<p>Sans entrer dans les détails des avantages et inconvénients de chaque méthode, il est important d'en tenir compte pour que l'interface et l'implémentation soient cohérentes.</p>
+<p>Le fait que les modifications s'effectuent en place sur une liste ou non, doit être spécifié dans l'interface du type abstrait <code>Liste</code> car cela a un impact sur la façon de l'implémenter. De plus, il faut essayer d'être cohérent dans le nommage des opérations : si l'opération <code>construit(e, L)</code> définie au départ sous-entend qu'une nouvelle liste est <em>construite</em> par l'appel à cette fonction, le verbe <em>csontruire</em> n'est pas adapté à des modification en place de la liste passée en paramètre, on lui préférera par exemple le nom <code>ajouter_en_tete(e, L)</code> pour davantage de clarté.</p>
+<blockquote><p>Ceci a été abordé dans les activités 3 et 4.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Des-interfaces-plus-compl&#232;tes">Des interfaces plus compl&#232;tes<a class="anchor-link" href="#Des-interfaces-plus-compl&#232;tes">&#182;</a></h2><p>Il n'est pas rare de définir le type abstrait <code>Liste</code> par un jeu d'opérations différent et surtout plus complet. Par exemple, avec l'interface proposée au début, si l'utilisateur souhaite insérer un élément dans la liste, il doit programmer lui-même l'opération <code>inserer</code> à partir des 5 opérations de base.  C'est pourquoi certaines interfaces contiennent des opérations plus avancées, afin de faciliter le travail de l'utilisateur.</p>
+<h3 id="Exemple">Exemple<a class="anchor-link" href="#Exemple">&#182;</a></h3><p>L'interface suivante, qui spécifie aussi 5 opérations, permet également de définir le type abstrait <code>Liste</code> :</p>
+<ul>
+<li><code>listevide()</code> : pour construire une liste vide.</li>
+<li><code>taille(L)</code> : renvoie le nombre d'éléments de la liste <code>L</code>.</li>
+<li><code>lire(L, i)</code> : renvoie l'élément en position <code>i</code> dans <code>L</code>. <em>Précondition : <code>i</code> est dans 0..taille(L)-1</em>.</li>
+<li><code>inserer(L, e, i)</code> : insère l'élément <code>e</code> dans <code>L</code> en position <code>i</code> en incrémentant la position de tous les éléments à partir de <code>i</code>. <em>Précondition : i est dans 0 taille(L)</em>.</li>
+<li><code>supprimer(L, i)</code> : supprime l'élément en position <code>i</code>  dans <code>L</code>, en décrémentant la position des tous les éléments à partir de <code>i</code> + 1.</li>
+</ul>
+<p>Avec ces 5 opérations on peut également construire toutes les autres sur les listes. Cette interface ne change pas la nature du type abstrait <code>Liste</code> mais modifie la façon d'écrire des algorithmes l'utilisant : par exemple,</p>
+<ul>
+<li>pour accéder au premier élément, on ne va plus écrire <code>premier(L)</code> mais <code>lire(L, 0)</code>,</li>
+<li>pour accéder au dernier élément, on n'écrira plus <code>dernier(L)</code> mais <code>lire(L, taille(L)-1)</code>, </li>
+<li>etc.</li>
+</ul>
+<blockquote><p><strong>Remarque</strong> : les termes utilisés pour spécifier les opérations sont importants : ici, il faut bien comprendre que les modifications (d'insertion, suppression) se font <em>en place</em> : c'est la liste <code>L</code> elle-même qui est modifiée.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Les-deux-impl&#233;mentations-classiques">Les deux impl&#233;mentations classiques<a class="anchor-link" href="#Les-deux-impl&#233;mentations-classiques">&#182;</a></h2><p>En pratique, il y a classiquement deux manières pour implémenter efficacement des listes :</p>
+<ul>
+<li>à l’aide de tableaux (dynamiques) ou </li>
+<li>à l’aide de listes chaînées</li>
+</ul>
+<p>Chacune des deux implémentations rend plus ou moins efficaces (au sens de <em>coûteuses</em>) certaines des opérations.</p>
+<h3 id="Tableaux-(dynamiques)">Tableaux (dynamiques)<a class="anchor-link" href="#Tableaux-(dynamiques)">&#182;</a></h3><p>Un tableau est une suite contiguë de cases mémoires (les adresses mémoires se suivent).</p>
+<p><img class="centre image-responsive" src="data/tableau.png" alt="un tableau"></p>
+<p>Dans le cas d'une implémentation par un tableau dynamique, les éléments de la liste sont stockées dans ces cases mémoires contuguës. Comme un tableau possède une taille fixe, leur utilisation ne permet d'implémenter que des listes dont la taille maximale est définie à l'avance.</p>
+<p><img class="centre image-responsive" src="data/liste_tableau.png" alt="une liste"></p>
+<p>Pour pallier à cette limitation, il existe ce qu'on appelle des <strong>tableaux dynamiques</strong> qui sont des tableaux dont la taille peut varier en fonction des besoins. Une taille est définie au départ, et si le nombre d'éléments de la liste vient à dépasser celle-ci, il faut alors créer un tableau plus grand (le double en général) et y recopier tous les éléments du premier ainsi que la donnée supplémentaire au bon endroit.</p>
+<blockquote><p>Le type <code>list</code> de Python correspond en fait à un tableau dynamique dans la majorité des implémentations Python. Malgré ce nom ambiguë, il s'agit donc d'un type abstrait beaucoup plus complet que le type <code>Liste</code>.</p>
+</blockquote>
+<p><strong>Coût de quelques opérations</strong></p>
+<p>Si une liste <code>L</code> (de $n$ éléments) est implémentée par un tableau, pour insérer un nouvel élément <code>e</code> en position <code>i</code> (opération <code>inserer(L, e, i)</code>) il faut commencer par déplacer tous les éléments à partir de <code>i</code> d'une case vers la droite. Cette opération est coûteuse car dans le <em>pire cas</em> (insertion en tête) il faut déplacer les $n$ éléments de <code>L</code> d'un "cran" vers la droite : le coût est proportionnel à $n$, on parle de complexité $O(n)$.</p>
+<p><img class="centre image-responsive" src="data/liste_tableau_insertion.png" alt="insertion"></p>
+<p>En revanche, l'accès à un élément en position <code>i</code> (opération <code>lire(L, i)</code>) se fait de manière directe donc est peu coûteuse : elle se fait en temps constant ($O(1)$) car on accède à la case mémoire du tableau contenant l'élément en position <code>i</code> en ajoutant la valeur $i$ à l'adresse mémoire de la première case (cela revient à faire une simple addition).</p>
+<h3 id="Listes-cha&#238;n&#233;es">Listes cha&#238;n&#233;es<a class="anchor-link" href="#Listes-cha&#238;n&#233;es">&#182;</a></h3><p>L'autre manière classique d'implémenter des listes est d'utiliser ce qu'on appelle des <strong>listes chaînées</strong>. A la différence d'un tableau, il s'agit d'une représentation <em>non contiguë</em>. En effet, on utilise alors des <em>maillons</em> comportant chacun un élément et une référence au suivant (l'adresse mémoire du suivant), ces maillons pouvant être éloignés les uns des autres en mémoire. Le dernier maillon contient le dernier élément et une référence <code>None</code> vers le suivant puisqu'il n'y a pas.</p>
+<p><img class="centre image-responsive" src="data/liste_chainee.png" alt="liste chainée"></p>
+<blockquote><p>Il s'agit d'une implémentation récursive d'une liste, qui se rapproche de celle avec des couples.</p>
+</blockquote>
+<p><strong>Coût de quelques opérations</strong></p>
+<p>Si une liste <code>L</code> est implémentée par une liste chaînée, l'opération <code>inserer(L, e, i)</code> (et l'opération <code>supprimer(L, i)</code>) est beaucoup moins coûteuse quand l'insertion (la suppression) est proche du début de la liste : il faut atteindre la position <code>i</code> puis insérer un nouveau maillon en jouant sur les références au suivant.</p>
+<p><img class="centre image-responsive" src="data/liste_chainee_insertion.png" alt="insertion liste chainée"></p>
+<p>En revanche, comme la structure est récursive, pour accéder à un élément en position <code>i</code>, il faut parcourir la chaîne de maillon en maillon en commençant par le premier. L'opération <code>lire(L, i)</code> est donc coûteuse puisque dans le pire cas (accès au dernier élément), il faut parcourir les $n$ maillons de la liste de proche en proche : la complexité est donc $O(n)$.</p>
+<blockquote><p><strong>Moralité</strong> : l'implémentation choisie entraîne des coûts différents pour les opérations sur la structure. Le choix est donc à faire selon le contexte et les besoins algorithmiques.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Bilan">Bilan<a class="anchor-link" href="#Bilan">&#182;</a></h1><ul>
+<li>Nous avons que la structure de données <em>liste</em> permet de regrouper des éléments de manière ordonnée puisque chacun d'eux est repéré par sa position dans la liste.</li>
+<li>Il est possible de définir le type abstrait <code>Liste</code> en spécifiant son interface avec 5 <em>opérations primitives</em> qui permettent de reconstruire toutes les autres. Pour faciliter le travail des utilisateurs, on rencontre souvent des interfaces avec davantage d'opérations pour ne pas avoir besoin de les écrire soi-même.</li>
+<li>Les implémentations sont nombreuses et permettent selon les cas, de créer des listes <em>non mutables</em> ou <em>mutables</em>. Pour des raisons de coût mémoire, les implémentations les plus classiques permettent de créer des listes <em>mutables</em> permettant des transformations <em>en place</em> de celles-ci. </li>
+<li>Selon l'implémentation choisie, les opérations peuvent avoir des différences importantes en terme de complexité algorithmique des opérations. Il faut donc tenir compte du contexte pour privilégier ou limiter l'usage d'une implémentation.</li>
+<li>Nous aurons l'occasion de reparler des listes à d'autres moments au cours de l'année. </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Références :</strong></p>
+<ul>
+<li>Documents ressources de l'équipe éducative du DIU EIL, Université de Nantes, Christophe JERMANN et Christophe DECLERCQ.</li>
+<li>Document de Frédéric Mouton sur l'implémentation du type <code>list</code> de Python et les complexités des opérations : <a href="http://mathemouton.free.fr/Info/Cours/C00-Listes.pdf">ici</a>.</li>
+<li>Cours de David Roche pour les illustrations : <a href="https://pixees.fr/informatiquelycee/n_site/nsi_term_structDo_liste.html">ici</a>.</li>
+</ul>
+<hr>
+<p>Germain BECKER, Lycée Mounier, ANGERS</p>
+<p>Ressource éducative libre distribuée sous <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a></p>
+<p><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+
