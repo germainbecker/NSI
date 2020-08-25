@@ -1,0 +1,463 @@
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img class="centre image-responsive" src="data/album_pink_floyd.jpg" alt="pochette album"></p>
+<p>Commençons par quelques définitions trouvées sur Wikipédia :</p>
+<ul>
+<li><strong>Récursivité</strong> : démarche qui fait référence à l'objet même de la démarche à un moment du processus.</li>
+<li><strong>Récursivité</strong> (programmation informatique) : Fait pour un objet de s'appeler lui-même.</li>
+<li>Un objet est dit <strong>récursif</strong> s'il se définit à partir de lui-même, <em>s'il apparait dans sa définition</em>.</li>
+<li>Une construction est <strong>récursive</strong> si elle se définit à partir d’elle-même.</li>
+</ul>
+<p>Ainsi, les exemples suivants sont des cas concrets de récursivité :</p>
+<ul>
+<li>décrire un processus dépendant de données en faisant appel à ce même processus sur d'autres données plus &laquo; simples &raquo; ;</li>
+<li>montrer une image contenant des images similaires (comme la pochette de l'album <em>Ummagumma</em> de Pink Floyd ci-dessus) ;</li>
+<li>faire pointer un article de Wikipédia vers lui-même ou vers un article qui, par une succession de pointeurs, pointe vers l'article dont on est parti ; ainsi dans l'article que vous lisez, l'expression « pétition de principe » pointe vers un article qui pointe vers le présent article.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Retour-sur-les-listes">Retour sur les listes<a class="anchor-link" href="#Retour-sur-les-listes">&#182;</a></h1><h2 id="Des-constructions-r&#233;cursives">Des constructions <em>r&#233;cursives</em><a class="anchor-link" href="#Des-constructions-r&#233;cursives">&#182;</a></h2><p>Une des opérations primitives du type abstrait <code>Liste</code> est le constructeur <code>construit(e, L)</code> qui crée une liste dont la tête est l'élément <code>e</code> et la queue est la liste <code>L</code>. Pour construire la liste formée par les nombres 5, 3, 8 et 1 il fallait procéder ainsi :</p>
+<div class="highlight"><pre><span></span><span class="n">construit</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">construit</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">construit</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">construit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">listevide</span><span class="p">()))))</span>
+</pre></div>
+<p>Ceci est une construction <em>récursive</em> car l'opérateur <code>construit</code> s'appelle lui-même à plusieurs reprises. Dans le cas de notre implémentation avec des couples, cette construction mémorisait notre liste dans le <code>tuple</code> suivant :</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">None</span><span class="p">))))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Une-premi&#232;re-fonction-r&#233;cursive">Une premi&#232;re fonction r&#233;cursive<a class="anchor-link" href="#Une-premi&#232;re-fonction-r&#233;cursive">&#182;</a></h2><p>Nous avions également défini l'opération <code>dernier(L)</code> qui doit renvoyer le dernier élément d'une liste <code>L</code>. Cette opération était implémentée par la fonction suivante :</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dernier</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="k">while</span> <span class="n">reste</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="o">!=</span> <span class="n">listevide</span><span class="p">():</span> <span class="c1"># tant que le reste de la liste n&#39;est pas vide</span>
+        <span class="n">L</span> <span class="o">=</span> <span class="n">reste</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="c1"># on passe au reste</span>
+    <span class="k">return</span> <span class="n">premier</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="c1"># on renvoie le premier élément de la dernière paire</span>
+</pre></div>
+<p>Il s'agit d'une fonction écrite de manière <em>itérative</em> car elle ne s'appelle pas elle-même. On se propose d'écrire une version <em>récursive</em> de cette fonction. Il faut commencer par réfléchir un peu...</p>
+<blockquote><p>Comment obtenir le dernier élément d'une liste ?</p>
+</blockquote>
+<p>C'est assez simple en fait :</p>
+<ul>
+<li>si le reste est la liste vide, on a trouvé le dernier élément</li>
+<li>sinon, le dernier élément de <code>L</code> est égal au dernier élément du reste de <code>L</code> : <code>dernier(L) = dernier(reste(L))</code>. En effet, si <code>L</code> est la liste de nombres 5, 2, 8, 1 alors :<ul>
+<li><code>dernier(L)</code> vaut 1</li>
+<li><code>reste(L)</code> est la liste de nombres 2, 8, 1 qui a aussi pour dernier élément 1 donc <code>dernier(reste(L))</code> vaut aussi 1.</li>
+</ul>
+</li>
+</ul>
+<p>On vient de voir que pour trouver le dernier élément d'une liste il suffit de calculer le dernier élément du reste de la liste, et répéter ce processus jusqu'à ce que le reste soit vide.</p>
+<p>On ramène ainsi le calcul du dernier élément d'une liste au calcul du dernier élément d'une liste plus petite (<code>reste(L)</code>) jusqu'à ce que cela devienne impossible.</p>
+<p><strong>Illustration sur un exemple</strong> : pour calculer le dernier élément de la liste 5, 3, 8, 1 :</p>
+<ul>
+<li>on veut trouver <code>dernier(5, 3, 8, 1)</code></li>
+<li>cela revient à calculer <code>dernier(reste(5, 3, 8, 1))</code> c'est-à-dire <code>dernier(3, 8, 1)</code></li>
+<li>qui est égal à <code>dernier(reste(3, 8, 1))</code> c'est-à-dire <code>dernier(8, 1)</code></li>
+<li>qui est égal à <code>dernier(reste(8, 1))</code> c'est-à-dire <code>dernier(1)</code></li>
+<li>qui est égal à <code>1</code> est on s'arrête ici puisque <code>1</code> n'a plus de reste. La réponse est donc 1 !</li>
+</ul>
+<p><strong>Bilan</strong> : On peut récrire la fonction <code>dernier</code> de manière récursive de la façon suivante :</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dernier</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">reste</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="o">==</span> <span class="n">listevide</span><span class="p">():</span> <span class="c1"># si le reste est vide, c&#39;est terminé</span>
+        <span class="k">return</span> <span class="n">premier</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>       <span class="c1"># et on affiche alors sa tête</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">dernier</span><span class="p">(</span><span class="n">reste</span><span class="p">(</span><span class="n">L</span><span class="p">))</span> <span class="c1"># sinon la réponse est le dernier élément du reste</span>
+</pre></div>
+<p><strong>Analyse</strong> : Cette fonction est bien récursive puisqu'elle s'appelle elle-même. On trouve ici le schéma classique d'un algorithme récursif :</p>
+<ul>
+<li>On définit le <em>cas de base</em> (ici lorsque le reste est vide) qui est un cas pour lequel on peut donner le résultat facilement. Il n'est alors plus nécessaire de faire un appel récursif donc cela constitue notre <em>condition d'arrêt</em> (sinon la fonction s'appellerait à l'infini) ;</li>
+<li>Sinon, on fait un appel récursif à la fonction mais sur une donnée plus petite (ici une liste plus petite).</li>
+</ul>
+<blockquote><p>Comme les appels récursifs se font sur des données dont la taille diminue, on est sûr d'aboutir (au bout d'un certain nombre d'appels) au cas de base qui mettra fin aux appels récursifs, ce qui assure la terminaison de l'algorithme.</p>
+</blockquote>
+<p>La plupart des opérations sur les listes peuvent être implémentées par des fonctions récursives.</p>
+<blockquote><p><strong>A faire</strong> : Activité 1</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="D&#233;rouler-l'ex&#233;cution-d'une-fonction-r&#233;cursive">D&#233;rouler l'ex&#233;cution d'une fonction r&#233;cursive<a class="anchor-link" href="#D&#233;rouler-l'ex&#233;cution-d'une-fonction-r&#233;cursive">&#182;</a></h1><p>Il est important de comprendre que chaque appel récursif met &laquo; en pause &raquo; l'exécution en cours, en attente d'obtenir le résultat qui est déterminé par l'appel suivant. Concrètement :</p>
+<ul>
+<li>Les appels sont tour à tour mis &laquo; en pause &raquo; jusqu'au dernier appel qui fourni un résultat. On appelle cela le <em>dépliage</em> (ou la <em>descente</em>).</li>
+<li>Ce résultat est ensuite transmis à l'appel précédent qui l'utilise pour calculer son propre résultat et le transmettre à l'appel précédent, et ainsi de suite jusqu'au premier appel qui peut alors calculer le résultat final. On appelle cela l'<em>évaluation</em> (ou la <em>remontée</em>).</li>
+</ul>
+<p>Voici deux exemples qui illustrent ces deux étapes.</p>
+<h2 id="Exemple-de-la-fonction-dernier">Exemple de la fonction <code>dernier</code><a class="anchor-link" href="#Exemple-de-la-fonction-dernier">&#182;</a></h2><p>Nous récrivons cette fonction pour l'avoir sous les yeux et déroulons l'exécution de l'appel <code>dernier((5, (3, (8, None)))</code>.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dernier</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+<span class="mi">1</span>     <span class="k">if</span> <span class="n">reste</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="o">==</span> <span class="n">listevide</span><span class="p">():</span> <span class="c1"># si le reste est vide, c&#39;est terminé</span>
+<span class="mi">2</span>          <span class="k">return</span> <span class="n">premier</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>       <span class="c1"># et on affiche alors sa tête</span>
+<span class="mi">3</span>      <span class="k">else</span><span class="p">:</span>
+<span class="mi">4</span>          <span class="k">return</span> <span class="n">dernier</span><span class="p">(</span><span class="n">reste</span><span class="p">(</span><span class="n">L</span><span class="p">))</span> <span class="c1"># sinon la réponse est le dernier élément du reste</span>
+</pre></div>
+<p><strong>Phase de dépliage</strong> :</p>
+<ul>
+<li><strong>1er apppel</strong> : <code>dernier((5, (3, (8, None)))</code><ul>
+<li><code>reste(L) = (3, (8, None))</code></li>
+<li>ligne 4 : doit renvoyer la valeur <code>dernier((3, (8, None)))</code> qui nécessite un deuxième appel pour être évaluée. Le premier appel est donc mis en pause pour attendre le résultat du deuxième.</li>
+</ul>
+</li>
+<li><strong>2ème appel</strong> : <code>dernier((3, (8, None)))</code><ul>
+<li><code>reste(L) = (8, None)</code></li>
+<li>ligne 4 : doit renvoyer la valeur <code>dernier((8, None))</code> qui nécessite un troisième appel pour être évaluée. Le deuxième appel est donc mis en pause pour attendre le résultat du troisième.</li>
+</ul>
+</li>
+<li><strong>3ème appel</strong> : <code>dernier((8, None))</code><ul>
+<li><code>reste(L) = None</code></li>
+<li>ligne 2 : renvoie le résultat 8 (puisque le reste est vide) qui est celui attendu par le deuxième appel.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Phase d'évaluation</strong> :</p>
+<ul>
+<li><strong>2ème appel (suite et fin)</strong> : Le deuxième appel attendait la valeur de <code>dernier((8, None))</code> pour la renvoyer. Celle-ci a été évaluée à 8 par le troisième appel donc <code>dernier((3, (8, None)))</code> renvoie la valeur 8.</li>
+<li><strong>1er appel (suite et fin)</strong> : Le premier appel attendait la valeur de <code>dernier((3, (8, None)))</code> pour la renvoyer. Celle-ci a été évaluée à 8 par le second appel donc <code>dernier((5, (3, (8, None)))</code> renvoie la valeur 8 qui est le résultat final.</li>
+</ul>
+<p>On peut résumer ces étapes par le schéma ci-dessous :</p>
+<p><img class="centre" src="data/deroulement_execution.png" alt="pochette album"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Autre-exemple-:-calcul-de-puissances">Autre exemple : calcul de puissances<a class="anchor-link" href="#Autre-exemple-:-calcul-de-puissances">&#182;</a></h2><p>On se propose d'écrire une fonction récursive (naïve) qui calcule les puissances de 2 c'est-à-dire une fonction <code>deux_puissance(n)</code> qui renvoie la valeur de $2^n$, où <code>n</code> est un entier positif.</p>
+<h3 id="Ecriture-de-la-fonction-r&#233;cursive">Ecriture de la fonction r&#233;cursive<a class="anchor-link" href="#Ecriture-de-la-fonction-r&#233;cursive">&#182;</a></h3><p>Commençons par réfléchir à la façon dont on peut calculer $2^n$.</p>
+<ul>
+<li>Le <em>cas de base</em> correspond à $n=0$ et dans ce cas $2^n=2^0=1$.</li>
+<li>Sinon, on peut calculer $2^n$ en faisant $2 \times 2^{n-1}$. </li>
+</ul>
+<p>On a désormais tout ce qu'il faut car on sait comment passer du calcul de $2^n$ à celui de $2^{n-1}$ pour notre appel récursif et on connaît le cas de base qui sera notre condition d'arrêt de la récursion :</p>
+$$\text{deux_puissance}(n) = \left\{
+\begin{array}{l}
+  1 \textrm{ si } n = 0 \\
+  2 \times \text{deux_puissance}(n-1) \textrm{ si } n &gt; 0
+\end{array}
+\right.$$<p>Voici la fonction récursive que l'on peut écrire :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">deux_puissance</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>    <span class="c1"># cas de base</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>         <span class="c1"># sinon appel récursif avec un argument plus petit</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">deux_puissance</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">deux_puissance</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[2]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>8</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="D&#233;roulement-de-son-ex&#233;cution">D&#233;roulement de son ex&#233;cution<a class="anchor-link" href="#D&#233;roulement-de-son-ex&#233;cution">&#182;</a></h3><p>Nous allons représenter de différentes (autres) manières l'exécution de <code>deux_puissance(3)</code>.</p>
+<p><strong>Arbre d'appel</strong></p>
+
+<pre><code>                        DEPLIAGE                                        |   EVALUTATION
+                                                                        |
+deux_puissance(3) = return 2 * deux_puissance(2)                        |   2 * 4 = 8
+                                     |                                  |     |
+                               return 2 * deux_puissance(1)             |   2 * 2 = 4
+                                                |                       |     |
+                                          return 2 * deux_puissance(0)  |   2 * 1 = 2 
+                                                           |            |     |
+                                                        return 1        |     1</code></pre>
+<p><strong>Autre représentation</strong></p>
+
+<pre><code>deux_puissance(3)                          
+-&gt; 2 * deux_puissance(2)                -&gt; DEPLIAGE
+-&gt; -&gt; 2 * 2 * deux_puissance(1)          
+-&gt; -&gt; -&gt; 2 * 2 * 2 * deux_puissance(0)
+.......................................................
+&lt;- &lt;- &lt;- 2 * 2 * 2 * 1                    
+&lt;- &lt;- 2 * 2 * 2                         &lt;- EVALUATION
+&lt;- 2 * 4                                 
+8</code></pre>
+<p><strong>Autre représentation (bis)</strong></p>
+
+<pre><code>deux_puissance(3)
+    2 * deux_puissance(2) = ?
+    appel à deux_puissance(2)
+        2 * deux_puissance(1) = ?         DEPLIAGE
+        appel à deux_puissance(1)
+            2 * deux_puissance(0) = ?
+            appel à deux_puissance(0)
+......................................................
+            renvoie 1
+            2 * 1
+        renvoie 2
+        2 * 2                             EVALUATION
+    renvoie 4
+    2 * 4
+renvoie 8</code></pre>
+<p><strong>Empilement des appels</strong></p>
+<p><img class="centre" src="data/pile_execution.png" alt="pile d'exécution"></p>
+<p><strong>Utilisation d'outils</strong></p>
+<p>On peut visualiser avec <strong>Python Tutor</strong> le dépliage (descente) puis l'évaluation (remontée) : <a href="http://www.pythontutor.com/visualize.html#code=def%20deux_puissance%28n%29%3A%0A%20%20%20%20if%20n%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20return%201%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20return%202%20*%20deux_puissance%28n-1%29%0A%0Adeux_puissance%283%29&amp;cumulative=true&amp;curInstr=0&amp;heapPrimitives=nevernest&amp;mode=display&amp;origin=opt-frontend.js&amp;py=3&amp;rawInputLstJSON=%5B%5D&amp;textReferences=false">lien vers pythontutor</a>.</p>
+<iframe width="800" height="500" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=def%20deux_puissance%28n%29%3A%0A%20%20%20%20if%20n%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20return%201%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20return%202%20*%20deux_puissance%28n-1%29%0A%0Adeux_puissance%283%29&codeDivHeight=400&codeDivWidth=350&cumulative=true&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe><p>Mais le mieux est d'exécuter le programme avec l'environnement <strong>Thonny</strong> qui permet de voir en mode pas à pas les appels récursifs par ouverture d'une nouvelle fenêtre à chaque appel d'une fonction.</p>
+<p><img class="centre image-responsive" src="data/Thonny_logo.png" alt="logo Thonny" width="150"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="R&#233;cursif-vs-it&#233;ratif">R&#233;cursif <em>vs</em> it&#233;ratif<a class="anchor-link" href="#R&#233;cursif-vs-it&#233;ratif">&#182;</a></h1><p>Il est prouvé que tout programme récursif peut être transformé en un programme impératif et réciproquement (même si ce n'est pas toujours évident). Quel choix doit-on faire pour écrire un programme ?</p>
+<p><strong>Puissances de deux - version <em>itérative</em></strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">deux_puissance_iter</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">reponse</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">reponse</span> <span class="o">=</span> <span class="n">reponse</span> <span class="o">*</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">reponse</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Puissances de deux - version <em>récursive</em></strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">deux_puissance_rec</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">deux_puissance_rec</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Une-mani&#232;re-de-penser">Une mani&#232;re de penser<a class="anchor-link" href="#Une-mani&#232;re-de-penser">&#182;</a></h2><p>La façon de raisonner n'est pas la même selon la méthode :</p>
+<ul>
+<li>en itératif, on doit penser à la suite des ordres à appliquer pour progresser des données vers le résultat,</li>
+<li>en récursif, on commence par réfléchir à l'expression du résultat à calculer (dans le(s) cas de base et le cas récursif) </li>
+</ul>
+<p>Ces deux méthodes de raisonnement sont respectivement à la base de la <em>programmation impérative</em> (que nous avons utilisé jusqu'à présent) et de la <em>programmation fonctionnelle</em> que nous étudierons cette année. En particulier, vous verrez que les fonctions récursives se traduisent très facilement en des fonctions respectant le paradigme de programmation fonctionnelle.</p>
+<h2 id="Une-question-d'&#233;l&#233;gance-?">Une question d'&#233;l&#233;gance ?<a class="anchor-link" href="#Une-question-d'&#233;l&#233;gance-?">&#182;</a></h2><p>Même si la méthode impérative nous est plus familière, il faut reconnaître que la méthode récursive est plus élégante, plus lisible et souvent plus courte à écrire car elle évite d'utiliser de nombreuses structures itératives.</p>
+<p>De plus, la méthode récursive est très utile pour écrire des algorithmes sur des structures de données abstraites comme les listes, les arbres et les graphes. Elle est également souvent utilisée pour écrire des algorithmes de la catégorie &laquo; diviser pour régner &raquo;. Nous étudierons tout cela cette année.</p>
+<h2 id="Une-question-d'efficacit&#233;-?">Une question d'efficacit&#233; ?<a class="anchor-link" href="#Une-question-d'efficacit&#233;-?">&#182;</a></h2><h3 id="En-temps">En temps<a class="anchor-link" href="#En-temps">&#182;</a></h3><p>Le modèle électronique d'un ordinateur est impératif, donc tout programme doit être complilé en itératif. Un programme récursif doit donc être dérécursivé (traduit en itératif) par le compilateur pour être exécuté. Cette phase de dérécursivation implique qu'un programme récursif s'exécute toujours (un peu) plus lentement qu'un programme itératif, mais l'ordre de grandeur est le même.</p>
+<h3 id="En-espace">En espace<a class="anchor-link" href="#En-espace">&#182;</a></h3><p>Nous avons vu que l'exécution d'un programme récursif entraînait des appels récursifs qui sont successivement mis en attente du résultat de l'appel suivant. Il est donc nécessaire de stocker en mémoire le <em>contexte</em> dans lequel chaque appel de la fonction a lieu (la valeur de ses paramètres, l'adresse mémoire de retour). En pratique, lors de la descente (phase de dépliage), ces contextes sont empilés au fur et à mesure les uns au-dessus des autres et sont dépilés au fur et à mesure lors de la remontée (phase d'évalution) comme sur le dernier schéma d'exécution.</p>
+<blockquote><p>L'environnement <strong>Thonny</strong> permet de bien visualiser cet empilement/dépilement des différents contextes d'appels.</p>
+</blockquote>
+<p>Cet empilement (et dépilement) est assuré par une structure de données abstraite appelée <strong>pile</strong> que nous étudierons également cette année. Le dernier schéma proposé correspond à ce qu'on appelle la <em>pile d'exécution</em> de la fonction récursive. Cette pile est coûteuse en mémoire et rend les programmes récursifs plus coûteux en mémoire. De plus, cette pile n'a pas une taille infinie ce qui limite le nombre d'appels récursifs possibles : s'il y en a trop, la pile devient pleine et le programme terminera par une erreur.</p>
+<blockquote><p>Certains langages de programmation spécialisés dans l'écriture de programmes récursifs savent optimiser cela et ainsi éviter tout débordement de la pile. C'est le cas des langages fonctionnels (comme LISP) mais ce n'est le cas de Python.</p>
+</blockquote>
+<p>En Python, le nombre d'appels récursifs est limité. Si on le dépasse, une erreur de type <code>RecursionError</code> est levée. On peut le voir facilement :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">deux_puissance_rec</span><span class="p">(</span><span class="mi">3000</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">RecursionError</span>                            Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-5-c16e69cc0df9&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 1</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>deux_puissance_rec<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-cyan-intense-fg ansi-bold">3000</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-4-d73a50cbefbe&gt;</span> in <span class="ansi-cyan-fg">deux_puissance_rec</span><span class="ansi-blue-intense-fg ansi-bold">(n)</span>
+<span class="ansi-green-fg">      3</span>         <span class="ansi-green-intense-fg ansi-bold">return</span> <span class="ansi-cyan-intense-fg ansi-bold">1</span>
+<span class="ansi-green-fg">      4</span>     <span class="ansi-green-intense-fg ansi-bold">else</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 5</span><span class="ansi-yellow-intense-fg ansi-bold">         </span><span class="ansi-green-intense-fg ansi-bold">return</span> <span class="ansi-cyan-intense-fg ansi-bold">2</span> <span class="ansi-yellow-intense-fg ansi-bold">*</span> deux_puissance_rec<span class="ansi-yellow-intense-fg ansi-bold">(</span>n<span class="ansi-yellow-intense-fg ansi-bold">-</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+... last 1 frames repeated, from the frame below ...
+
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-4-d73a50cbefbe&gt;</span> in <span class="ansi-cyan-fg">deux_puissance_rec</span><span class="ansi-blue-intense-fg ansi-bold">(n)</span>
+<span class="ansi-green-fg">      3</span>         <span class="ansi-green-intense-fg ansi-bold">return</span> <span class="ansi-cyan-intense-fg ansi-bold">1</span>
+<span class="ansi-green-fg">      4</span>     <span class="ansi-green-intense-fg ansi-bold">else</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 5</span><span class="ansi-yellow-intense-fg ansi-bold">         </span><span class="ansi-green-intense-fg ansi-bold">return</span> <span class="ansi-cyan-intense-fg ansi-bold">2</span> <span class="ansi-yellow-intense-fg ansi-bold">*</span> deux_puissance_rec<span class="ansi-yellow-intense-fg ansi-bold">(</span>n<span class="ansi-yellow-intense-fg ansi-bold">-</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-red-intense-fg ansi-bold">RecursionError</span>: maximum recursion depth exceeded in comparison</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>La version itérative renvoie le résultat :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">deux_puissance_iter</span><span class="p">(</span><span class="mi">3000</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1230231922161117176931558813276752514640713895736833715766118029160058800614672948775360067838593459582429649254051804908512884180898236823585082482065348331234959350355845017413023320111360666922624728239756880416434478315693675013413090757208690376793296658810662941824493488451726505303712916005346747908623702673480919353936813105736620402352744776903840477883651100322409301983488363802930540482487909763484098253940728685132044408863734754271212592471778643949486688511721051561970432780747454823776808464180697103083861812184348565522740195796682622205511845512080552010310050255801589349645928001133745474220715013683413907542779063759833876101354235184245096670042160720629411581502371248008430447184842098610320580417992206662247328722122088513643683907670360209162653670641130936997002170500675501374723998766005827579300723253474890612250135171889174899079911291512399773872178519018229989376</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>A faire</strong> : Activités 2, 3, 4 et 5</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Bilan">Bilan<a class="anchor-link" href="#Bilan">&#182;</a></h1><ul>
+<li>Un programme (une fonction ici) est dit <em>récursif</em> lorsqu'il s'appelle lui-même.</li>
+<li>La récursivité est avant tout un principe algorithmique de description de la solution d’un problème dont le principe consiste à ramener la résolution du problème à la résolution du même problème mais sur un objet plus petit. La méthode récursive est souvent plus élégante, concise et compréhensible que la méthode itérative. </li>
+<li>Pour écrire une fonction récursive il est nécessaire de <em>penser récursif</em> : <ul>
+<li>commencer par trouver le(s) <em>cas de base</em> dans le(s)quel(s) on peut donner une réponse au problème</li>
+<li>déterminer ensuite l'expression des <em>cas récursifs</em> qui visent à trouver la réponse en fonction de la réponse au même problème mais sur des données de plus petite taille.</li>
+</ul>
+</li>
+<li>L'exécution d'une fonction récursive se déroule en deux phases : la phase de dépliage (ou descente) et la phase d'évaluation (remontée). Dans la première, chaque appel récursif fait à son tour un appel récursif jusqu'au(x) cas de base qui termine(nt) cette cascade d'appels. Commence ensuite la deuxième phase où les évaluations (des résultats) remontent jusqu'à l'appel initial qui termine l'exécution.</li>
+<li>Dans la phase de descente, comme l'exécution de chaque appel est &laquo; mis en pause &raquo; au moment de l'appel récursif suivant, on mémorise leurs états (<em>contextes</em>) en les empilant dans une <em>pile</em>. Ils sont ensuite dépilés successivement lors de la remontée. Cet empilement est coûteux en mémoire et, en Python, il faut veiller à ne pas dépasser la capacité maximale de la pile.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Références :</strong></p>
+<ul>
+<li>Documents ressources de l'équipe éducative du DIU EIL, Université de Nantes, Christophe JERMANN et Christophe DECLERCQ.</li>
+</ul>
+<hr>
+<p>Germain BECKER, Lycée Mounier, ANGERS</p>
+<p>Ressource éducative libre distribuée sous <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a></p>
+<p><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+

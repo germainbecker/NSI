@@ -1,0 +1,964 @@
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Le-paradigme-objet">Le paradigme objet<a class="anchor-link" href="#Le-paradigme-objet">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img class="centre image-responsive" src="data/oop.jpg" alt="illustration poo"></p>
+<p>Nous avons vu qu'il existait différentes manières de voir la programmation, on parle de différents <em>paradigmes de programmation</em>. L'un d'eux est le <strong>paradigme objet</strong>. Lorsque l'on programme en utilisant ce paradigme on parle de <strong>programmation objet</strong> ou de <strong>programmation orientée objet</strong> (abrégé <em>POO</em>, ou <em>OOP</em> en anglais pour &laquo; Object-oriented programming &raquo;.</p>
+<blockquote><p>Nous nous limiterons cette année, comme le programme l'indique, à une brève introduction de la programmation objet.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Vocabulaire-de-la-programmation-objet">Vocabulaire de la programmation objet<a class="anchor-link" href="#Vocabulaire-de-la-programmation-objet">&#182;</a></h1><p>La programmation objet consiste à regrouper données et traitements dans une même structure appelée <strong>objet</strong>. Elle possède l'avantage de localiser en un même endroit toute l'implémentation d'une structure de données abstraite.</p>
+<h2 id="Objets,-attributs,-m&#233;thodes">Objets, attributs, m&#233;thodes<a class="anchor-link" href="#Objets,-attributs,-m&#233;thodes">&#182;</a></h2><p>Concrètement, un objet est une structure de données abstraite regroupant :</p>
+<ul>
+<li>des <em>données</em> associées à l'objet que l'on appelle des <strong>attributs</strong>.</li>
+<li>des <em>fonctions</em> (ou procédures) s'appliquant sur l'objet que l'on appelle <strong>méthodes</strong>. </li>
+</ul>
+<p><em>Exemple</em> : Prenons une voiture, on peut la considérer comme un objet. On peut lui associer des informations comme sa couleur, sa marque et sa catégorie : il s'agit des attributs de notre objet. On peut également définir des mécanismes concernant cet objet : démarrer, accélérer, freiner, klaxonner : il s'agit des méthodes s'appliquant sur notre objet.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Classe">Classe<a class="anchor-link" href="#Classe">&#182;</a></h2><p>Ces attributs et méthodes sont réunis dans ce qu'on appelle une <strong>classe</strong> qui est donc un <em>modèle décrivant un objet</em>. Les objets sont ensuite créés à partir de cette classe (ce modèle) qui est donc aussi une <em>machine à fabriquer des objets</em>.</p>
+<p><em>Exemple</em> : On peut définir une classe <code>Voiture</code> décrivant un modèle pour tous les objets "voitures". On peut la schématiser ainsi :</p>
+<p><img class="centre image-responsive" src="data/classe_Voiture.png" alt="schéma de la classe Voiture"></p>
+<p>On peut facilement créer des objets grâce à ce modèle. Il suffit de les construire en utilisant le nom de la classe (qui est aussi le nom du constructeur d'objets de cette classe). Chaque objet ainsi créé est une <em>instance</em> de la classe.</p>
+<p><em>Exemple</em> : En Python, on peut créer deux objets <code>clio</code> et <code>c3</code> (deux instances) de la classe <code>Voiture</code> en écrivant simplement les deux instructions</p>
+<div class="highlight"><pre><span></span><span class="n">clio</span> <span class="o">=</span> <span class="n">Voiture</span><span class="p">()</span>
+<span class="n">c3</span> <span class="o">=</span> <span class="n">Voiture</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Acc&#232;s-aux-attributs-et-m&#233;thodes">Acc&#232;s aux attributs et m&#233;thodes<a class="anchor-link" href="#Acc&#232;s-aux-attributs-et-m&#233;thodes">&#182;</a></h2><p>Pour accéder aux attributs et aux méthodes d'une classe on utilise la <strong>notation pointée</strong>.</p>
+<p><em>Exemple</em> : L'instruction <code>clio.marque</code> renvoie la marque de l'objet (instance) <code>clio</code> et l'instruction <code>clio.klaxonner()</code> va faire klaxonner notre voiture (virtuelle). Nous reviendrons sur cela un peu plus loin.</p>
+<blockquote><p>Cette notation pointée ne vous dit rien ? Allons, vous l'avez déjà utilisée pourtant...</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Classes-et-objets-en-Python">Classes et objets en Python<a class="anchor-link" href="#Classes-et-objets-en-Python">&#182;</a></h1><h2 id="En-Python,-tout-est-objet-!">En Python, tout est objet !<a class="anchor-link" href="#En-Python,-tout-est-objet-!">&#182;</a></h2><blockquote><p>Vous ne le saviez sans doute pas, mais les objets vous connaissez déjà (et oui !)</p>
+</blockquote>
+<p>Vous avez manipulé des objets depuis que vous programmez en Python, tout simplement car dans ce langage tout est objet. On peut le voir facilement.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">2.1</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+<span class="n">c</span> <span class="o">=</span> <span class="s2">&quot;nsi&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+<span class="n">d</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+<span class="n">e</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+<span class="n">f</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;class &#39;int&#39;&gt;
+&lt;class &#39;float&#39;&gt;
+&lt;class &#39;str&#39;&gt;
+&lt;class &#39;tuple&#39;&gt;
+&lt;class &#39;list&#39;&gt;
+&lt;class &#39;dict&#39;&gt;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>L'affichage montre que tous les types en Python sont des classes. Les entiers sont des objets de la classe <code>int</code>, les flottants sont des objets de la classe <code>float</code>, etc.</p>
+<p>Pour créer un entier ou une liste il suffit de les construire en utilisant le nom de leurs classes respectives.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">entier</span> <span class="o">=</span> <span class="nb">int</span><span class="p">()</span> <span class="c1"># crée un entier (0 par défaut)</span>
+<span class="n">liste</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span> <span class="c1"># crée une liste (vide par défaut), équivalent à liste = []</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">entier</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">liste</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;class &#39;int&#39;&gt; &lt;class &#39;list&#39;&gt;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Interface-d'une-classe">Interface d'une classe<a class="anchor-link" href="#Interface-d'une-classe">&#182;</a></h2><p>En définissant une classe on définit un type abstrait de données (cf. chapitre en question). Comme tout type abstrait, une classe possède donc une <strong>interface</strong> qui décrit l'ensemble des méthodes auxquels on a accès pour manipuler les objets de cette classe.</p>
+<p>On peut utiliser la fonction <code>dir</code> pour lister tous les attributs et méthodes d'un objet.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="nb">dir</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="c1"># ou directement dir(list)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;__add__&#39;,
+ &#39;__class__&#39;,
+ &#39;__contains__&#39;,
+ &#39;__delattr__&#39;,
+ &#39;__delitem__&#39;,
+ &#39;__dir__&#39;,
+ &#39;__doc__&#39;,
+ &#39;__eq__&#39;,
+ &#39;__format__&#39;,
+ &#39;__ge__&#39;,
+ &#39;__getattribute__&#39;,
+ &#39;__getitem__&#39;,
+ &#39;__gt__&#39;,
+ &#39;__hash__&#39;,
+ &#39;__iadd__&#39;,
+ &#39;__imul__&#39;,
+ &#39;__init__&#39;,
+ &#39;__init_subclass__&#39;,
+ &#39;__iter__&#39;,
+ &#39;__le__&#39;,
+ &#39;__len__&#39;,
+ &#39;__lt__&#39;,
+ &#39;__mul__&#39;,
+ &#39;__ne__&#39;,
+ &#39;__new__&#39;,
+ &#39;__reduce__&#39;,
+ &#39;__reduce_ex__&#39;,
+ &#39;__repr__&#39;,
+ &#39;__reversed__&#39;,
+ &#39;__rmul__&#39;,
+ &#39;__setattr__&#39;,
+ &#39;__setitem__&#39;,
+ &#39;__sizeof__&#39;,
+ &#39;__str__&#39;,
+ &#39;__subclasshook__&#39;,
+ &#39;append&#39;,
+ &#39;clear&#39;,
+ &#39;copy&#39;,
+ &#39;count&#39;,
+ &#39;extend&#39;,
+ &#39;index&#39;,
+ &#39;insert&#39;,
+ &#39;pop&#39;,
+ &#39;remove&#39;,
+ &#39;reverse&#39;,
+ &#39;sort&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On retrouve ici les méthodes applicables sur les objets du type prédéfini <code>list</code>. Son interface est disponible dans la <a href="https://docs.python.org/fr/3/tutorial/datastructures.html#more-on-lists">documentation officielle</a>. Vous noterez que l'interface ne précise pas la façon dont sont implémentées ces méthodes mais juste la façon de les utiliser, ce qui suffit largement généralement.</p>
+<blockquote><p>On constate aussi qu'il y a de nombreuses méthodes spéciales repérables par leur nom encadré d'un double <strong>underscore</strong> (<code>__</code>). Nous reviendrons sur quelques-unes d'entre elles un peu plus tard.</p>
+</blockquote>
+<p>Par exemple, vous saviez déjà que pour ajouter un élément à une liste Python (qui est un objet) on pouvait utiliser la méthode <code>append</code> avec la notation pointée :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">L</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">L</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[4]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[2, 3, 5, 8]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Une-premi&#232;re-classe-en-Python">Une premi&#232;re classe en Python<a class="anchor-link" href="#Une-premi&#232;re-classe-en-Python">&#182;</a></h2><p>Nous allons voir comment implémenter une classe en Python.</p>
+<p>Nous reprenons pour cela l'exemple du type abstrait <code>Rationnel</code> abordé dans un chapitre précédent. Pour rappel, on souhaitait pouvoir effectuer les opérations suivantes sur cette structure de données :</p>
+<ul>
+<li>Créer un rationnel</li>
+<li>Accéder au numérateur et au dénominateur d'un rationnel</li>
+<li>Ajouter, soustraire, multiplier, diviser deux rationnels</li>
+<li>Vérifier si deux rationnels sont égaux ou non</li>
+</ul>
+<p>Nous avions déjà implémenté ce type abstrait (de plusieurs manières) dans le chapitre en question. L'objectif ici est de créer une classe appelée <code>Rationnel</code> dont le but est de pouvoir construire des objets de type <code>Rationnel</code> et les manipuler.</p>
+<p>On déclare une classe en Python à l'aide du mot clé <code>class</code> :</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Rationnel</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Manipulation de rationnels définis par leurs numérateur et dénominateur&quot;&quot;&quot;</span>
+</pre></div>
+<blockquote><p>Par convention, les noms de classes en Python sont écrits en capitales (première lettre en majuscule). On a documenté notre classe avec une docstring qui sera accessible à quiconque souhaite utiliser notre classe.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Cr&#233;ation-et-initialisation-d'un-objet-en-Python">Cr&#233;ation et initialisation d'un objet en Python<a class="anchor-link" href="#Cr&#233;ation-et-initialisation-d'un-objet-en-Python">&#182;</a></h3><p>La création standard d'un objet par la méthode de sa classe, crée des objets sans attributs. Pour que les méthodes puissent s'appliquer sans erreur, il faut cependant que tous les objets d'une classe possèdent certains attributs. C'est pour cette raison, qu'une méthode d'initialisation des objets créant des attributs est nécessaire. En Python, c'est la méthode spéciale <code>__init__</code>, si elle est définie dans la classe, qui est systématiquement appelée sur chaque nouvel objet juste après sa création.</p>
+<p>Dans l'exemple de la classe <code>Rationnel</code>, les méthodes d'addition, de test d'égalité, etc. ne peuvent s'appliquer qu'à des objets ayant des attributs égaux au numérateur et au dénominateur. Pour initialiser les attributs <code>num</code> et <code>den</code> de chaque objet à sa création on utilise la méthode <code>__init__</code> de la façon suivante :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Rationnel</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Manipulation de rationnels définis par leurs numérateur et dénominateur&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numerateur</span><span class="p">,</span> <span class="n">denominateur</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialise le rationnel avec les valeurs indiquées&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="n">numerateur</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">den</span> <span class="o">=</span> <span class="n">denominateur</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Remarques</strong> :</p>
+<ol>
+<li>En Python, le mot <code>self</code> n'est pas un mot clé. C'est une simple convention d'usage de nommer ainsi le premier paramètre d'une méthode qui désigne toujours l'objet auquel s'appliquera la méthode (l'objet précédant le <code>.</code>)</li>
+<li>C'est par la notation <code>self.num</code> que l'attribut <code>num</code> est créé pour l'objet sur lequel est appelée la méthode.</li>
+</ol>
+</blockquote>
+<p>On peut désormais créer un objet <code>r</code> par appel du constructeur en fournissant les valeurs des paramètres prévus dans la méthode spéciale d'initialisation. On peut accéder aux attributs de l'objet en utilisant la notation pointée.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">Rationnel</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">r</span><span class="o">.</span><span class="n">num</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">den</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(3, 4)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut modifier les attributs d'un objet en les redéfinissant.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># modification de la valeur du numérateur</span>
+<span class="n">r</span><span class="o">.</span><span class="n">num</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">den</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(2, 4)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Les attributs <code>num</code> et <code>den</code> sont propres à chaque objet. Dans la terminologie des langages à objet, on parle d'<em>attributs d'instance</em>.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notre objet est bien du type abstrait de données <code>Rationnel</code> que l'on vient de créer en définissant notre classe.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[8]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>__main__.Rationnel</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>On peut observer avec <a href="http://www.pythontutor.com/visualize.html#code=class%20Rationnel%3A%0A%20%20%20%20%22%22%22Manipulation%20de%20rationnels%20d%C3%A9finis%20par%20leurs%20num%C3%A9rateur%20et%20d%C3%A9nominateur%22%22%22%0A%20%20%20%20%0A%20%20%20%20def%20__init__%28self,%20numerateur,%20denominateur%29%3A%0A%20%20%20%20%20%20%20%20%22%22%22Initialise%20le%20rationnel%20avec%20les%20valeurs%20indiqu%C3%A9es%22%22%22%0A%20%20%20%20%20%20%20%20self.num%20%3D%20numerateur%0A%20%20%20%20%20%20%20%20self.den%20%3D%20denominateur%0A%20%20%20%20%0Ar1%20%3D%20Rationnel%281,%204%29%0Ar2%20%3D%20Rationnel%283,%202%29%0Ar1.num%20%3D%20-10&amp;cumulative=true&amp;curInstr=0&amp;heapPrimitives=false&amp;mode=display&amp;origin=opt-frontend.js&amp;py=3&amp;rawInputLstJSON=%5B%5D&amp;textReferences=false">python tutor</a> la création des différentes instances d'une classe, l'initialisation de leurs attributs et les modifications d'attributs.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Ecriture-des-m&#233;thodes-d&#233;di&#233;es">Ecriture des m&#233;thodes d&#233;di&#233;es<a class="anchor-link" href="#Ecriture-des-m&#233;thodes-d&#233;di&#233;es">&#182;</a></h3><p>Si on veut pouvoir manipuler nos objets, il faut ajouter à notre classe les méthodes souhaitées. Par exemple, on ajoute les méthodes <code>ajouter</code> et <code>egal</code> en définissant deux fonctions dans notre classe.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Rationnel</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Manipulation de rationnels définis par leurs numérateur et dénominateur&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numerateur</span><span class="p">,</span> <span class="n">denominateur</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialise le rationnel avec les valeurs indiquées&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="n">numerateur</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">den</span> <span class="o">=</span> <span class="n">denominateur</span>
+    
+    <span class="k">def</span> <span class="nf">ajouter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Renvoie un nouveau rationnel égal à la somme&quot;&quot;&quot;</span>
+        <span class="n">num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">den</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span>   <span class="c1"># calcul du numerateur</span>
+        <span class="n">den</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">den</span>                          <span class="c1"># calcul du dénominateur</span>
+        <span class="k">return</span> <span class="n">Rationnel</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">den</span><span class="p">)</span>   <span class="c1"># on renvoie un nouvel objet &#39;Rationnel&#39;</span>
+    
+    <span class="k">def</span> <span class="nf">egal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Renvoie Vrai si les deux rationnels sont égaux, Faux sinon.&quot;&quot;&quot;</span>        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">den</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span>  <span class="c1"># produit en croix</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut alors accéder à ces méthodes en utilisant également la notation pointée sur l'objet auquel s'applique la méthode.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r1</span> <span class="o">=</span> <span class="n">Rationnel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">Rationnel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">r3</span> <span class="o">=</span> <span class="n">r1</span><span class="o">.</span><span class="n">ajouter</span><span class="p">(</span><span class="n">r2</span><span class="p">)</span>  <span class="c1"># on ajoute r2 à r1</span>
+<span class="n">r3</span><span class="o">.</span><span class="n">num</span><span class="p">,</span> <span class="n">r3</span><span class="o">.</span><span class="n">den</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(6, 8)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r4</span> <span class="o">=</span> <span class="n">Rationnel</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">r3</span><span class="o">.</span><span class="n">egal</span><span class="p">(</span><span class="n">r4</span><span class="p">)</span>  <span class="c1"># pour vérifier si r3 = r4</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Remarque</strong> : Vous noterez que l'on fournit toujours un paramètre de moins lors de l'appel à une méthode que dans la définition de la méthode. En effet, le paramètre <code>self</code> n'est pas utilisé car il désigne la référence à l'objet auquel s'applique la méthode.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut utiliser la fonction <code>dir</code> pour lister tous les attributs et méthodes d'un objet.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r</span><span class="o">=</span> <span class="n">Rationnel</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">dir</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[12]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;__class__&#39;,
+ &#39;__delattr__&#39;,
+ &#39;__dict__&#39;,
+ &#39;__dir__&#39;,
+ &#39;__doc__&#39;,
+ &#39;__eq__&#39;,
+ &#39;__format__&#39;,
+ &#39;__ge__&#39;,
+ &#39;__getattribute__&#39;,
+ &#39;__gt__&#39;,
+ &#39;__hash__&#39;,
+ &#39;__init__&#39;,
+ &#39;__init_subclass__&#39;,
+ &#39;__le__&#39;,
+ &#39;__lt__&#39;,
+ &#39;__module__&#39;,
+ &#39;__ne__&#39;,
+ &#39;__new__&#39;,
+ &#39;__reduce__&#39;,
+ &#39;__reduce_ex__&#39;,
+ &#39;__repr__&#39;,
+ &#39;__setattr__&#39;,
+ &#39;__sizeof__&#39;,
+ &#39;__str__&#39;,
+ &#39;__subclasshook__&#39;,
+ &#39;__weakref__&#39;,
+ &#39;ajouter&#39;,
+ &#39;den&#39;,
+ &#39;egal&#39;,
+ &#39;num&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On constate qu'il y a de nombreuses méthodes spéciales repérables par leur nom encadré de <code>__</code>. Ces méthodes sont appelées dans des contextes particuliers et peuvent être redéfinies par le programmeur pour une classe particulière.</p>
+<p>L'usage de ces méthodes spéciales n'est pas un attendu du programme mais cela peut se révéler très utile. C'est pourquoi nous en présenterons quelques-unes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="M&#233;thodes-sp&#233;ciales-en-Python">M&#233;thodes sp&#233;ciales en Python<a class="anchor-link" href="#M&#233;thodes-sp&#233;ciales-en-Python">&#182;</a></h3><p>Nous nous contenterons ici de présenter deux méthodes spéciales (quelques autres seront évoquées dans les activités) :</p>
+<ul>
+<li>la méthode <code>__repr__(self)</code> est appelée pour convertir en une chaîne "évaluable" un objet ;</li>
+<li>la méthode <code>__eq__(self, other)</code> est appelée pour tester l'égalité entre deux objets.</li>
+</ul>
+<p>On pourrait être tenté d'afficher une instance ou de tester l'égalité entre deux instances d'une même classe. Par exemple, avec notre classe <code>Rationnel</code> on aimerait écrire.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r1</span> <span class="o">=</span> <span class="n">Rationnel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">Rationnel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">r1</span> <span class="c1"># ou print(r1) </span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[13]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;__main__.Rationnel at 0x19f317586d8&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r1</span> <span class="o">==</span> <span class="n">r2</span> <span class="c1"># test d&#39;égalité</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[14]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>False</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Nous ne pouvons nous satisfaire des résultats. L'évaluation d'un objet et le test d'égalité (avec les notations habituelles) font appel respectivement aux méthodes <code>__repr__</code> et <code>__eq__</code> que nous avons besoin de redéfinir pour obtenir des résultats cohérents.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Rationnel</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Manipulation de rationnels définis par leurs numérateur et dénominateur&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numerateur</span><span class="p">,</span> <span class="n">denominateur</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialise le rationnel avec les valeurs indiquées&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="n">numerateur</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">den</span> <span class="o">=</span> <span class="n">denominateur</span>
+    
+    <span class="k">def</span> <span class="nf">ajouter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Renvoie un nouveau rationnel égal à la somme&quot;&quot;&quot;</span>
+        <span class="n">num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">den</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span>   <span class="c1"># calcul du numerateur</span>
+        <span class="n">den</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">den</span>                          <span class="c1"># calcul du dénominateur</span>
+        <span class="k">return</span> <span class="n">Rationnel</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">den</span><span class="p">)</span>   <span class="c1"># on renvoie un nouvel objet &#39;Rationnel&#39;</span>
+    
+    <span class="k">def</span> <span class="nf">egal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Renvoie Vrai si les deux rationnels sont égaux, Faux sinon.&quot;&quot;&quot;</span>        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">den</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span>  <span class="c1"># produit en croix</span>
+    
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">den</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>  <span class="c1"># on pourrait aussi écrire simplement __eq__ = egal</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">den</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut désormais utiliser les instructions classiques d'évaluation (ou d'affichage) et de test d'égalité avec les objets de notre classe.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r1</span> <span class="o">=</span> <span class="n">Rationnel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">Rationnel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">r1</span> <span class="c1"># ou print(r1)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[16]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1/2</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r1</span> <span class="o">==</span> <span class="n">r2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[17]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Que se passe-t-il pour la dernière instruction ?</strong> Python reconnaît qu'il doit tester l'égalité entre deux instances de la classe <code>Rationnel</code>. Ce test (<code>==</code>) invoque la méthode spéciale <code>__eq__</code> de la classe <code>Rationnel</code>. Plus précisément, <code>r1 == r2</code> appelle <code>r1.__eq__(r2)</code> et comme nous venons de définir cette méthode, le résultat est cohérent. On peut désormais tester l'égalité de deux rationnels sans utiliser l'instruction un peu plus lourde <code>r1.egal(r2)</code>.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Bilan">Bilan<a class="anchor-link" href="#Bilan">&#182;</a></h1><p>La <em>paradigme objet</em> est une autre façon de voir la programmation qui consiste à utiliser un structure de donnée appelée <em>objet</em> qui réunit des données et des fonctionnalités. Les données sont appelées <strong>atributs</strong> et les fonctionnalités sont appelées <strong>méthodes</strong>.</p>
+<p>Une <strong>classe</strong> permet de définir un modèle d'objet en spécifiant des attributs et des méthodes. On peut ensuite utiliser cette classe pour fabriquer des objets selon ce modèle.</p>
+<p>En Python, on utilise le mot clé <code>class</code> pour définir une classe qui devient alors un nouveau type abstrait de données. On peut alors créer de nouveaux objets en appelant le constructeur qui porte le nom de la classe. Les objets ainsi créés s'appellent des <em>instances</em> de la classe.</p>
+<p>En Python, la méthode spéciale <code>__init__</code> est appelée à la construction d'un nouvel objet. C'est dans cette méthode que l'on définit les attributs de nos objets.</p>
+<p>Les attributs et méthodes d'une instance de classe sont accessibles en utilisant la notation pointée : <code>objet.attribut</code> et <code>objet.methode(arguments)</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Références :</strong></p>
+<ul>
+<li>Documents ressources de l'équipe éducative du DIU EIL, Université de Nantes, Christophe DECLERCQ.</li>
+<li>Documentation officielle de Python sur <a href="https://docs.python.org/fr/3/tutorial/classes.html">les classes</a>.</li>
+<li>Documentation officielle de Python sur <a href="https://docs.python.org/3/reference/datamodel.html#special-method-names">les méthodes spéciales</a>.</li>
+</ul>
+<hr>
+<p>Germain BECKER, Lycée Mounier, ANGERS</p>
+<p>Ressource éducative libre distribuée sous <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a></p>
+<p><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Notes</strong></p>
+<ul>
+<li>faire un lien vers python tutor pour observer les différents objets</li>
+<li>aborder les méthodes de classe dans les activités (utile pour des opérations comme milieu, longueur, etc.)</li>
+<li>parler des accesseurs et mutateurs dans les activités</li>
+<li>faire créer un module à partir d'une classe pour l'utiliser ailleurs</li>
+<li>en devoir : classe Voiture avec attribut vitesse et méthodes accélérer, freiner, s'arrêter, klaxonner</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+ 
+
