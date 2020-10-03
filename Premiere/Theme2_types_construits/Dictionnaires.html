@@ -1,0 +1,938 @@
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h1><p>Prenons l'exemple d'un répertoire téléhonique. Nous pouvons la modéliser simplement comme un tableau (ou liste) de tableaux <code>[nom,numéro]</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">liste_tel</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;Paul&quot;</span><span class="p">,</span> <span class="mi">5234</span><span class="p">],</span>
+             <span class="p">[</span><span class="s2">&quot;Emile&quot;</span><span class="p">,</span> <span class="mi">5345</span><span class="p">],</span>
+             <span class="p">[</span><span class="s2">&quot;Victor&quot;</span><span class="p">,</span> <span class="mi">5186</span><span class="p">],</span>
+             <span class="p">[</span><span class="s2">&quot;Rose&quot;</span><span class="p">,</span> <span class="mi">5678</span><span class="p">],</span>
+             <span class="p">[</span><span class="s2">&quot;Hélène&quot;</span><span class="p">,</span> <span class="mi">5432</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Si nous voulons appeler <em>Rose</em>, nous avons deux possibilités avec un tel tableau :</p>
+<ul>
+<li>soit il faut savoir que les informations la concernant sont dans le quatrième élément de la liste (ce qui ne semble pas très pratique et réaliste)</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">liste_tel</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># il faut savoir que l&#39;index de Rose est 3</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>5678
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>soit nous cherchons dans le tableau en partant du premier élément de la liste jusqu'à ce que nous trouvions <em>Rose</em> (ce qui revient à feuilleter son répertoire) : cela nécessite d'utiliser une boucle pour parcourir le tableau.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">liste_tel</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">element</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Rose&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">element</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>5678
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Vous conviendrez que ce n'est pas pratique pour accéder à son numéro de téléphone. De même, la modification ou l'ajout d'un information nécessiterait de devoir feuilleter tout le répertoire. Il semblerait plus pratique d'associer un nom à un numéro, autrement dit d'associer à une <strong>information</strong> à une <strong>clé</strong>.</p>
+<p>C'est ce que les dictionnaires permettent !</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Les-dictionnaires-en-Python">Les dictionnaires en Python<a class="anchor-link" href="#Les-dictionnaires-en-Python">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="important">
+    Un dictionnaire est un ensemble <strong>non ordonné</strong> de paires (clé, valeur) avec un accès très rapide à la valeur à partir de la clé.
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut ajouter des couples, si la clé figure déjà dans le dictionnaire alors le couple est remplacé par le nouveau. Une <strong>clé</strong> peut être de type alphabétique, numérique, ou même de type construit sous certaines conditions. Les <strong>valeurs</strong> pourront être de tout type sans exclusion. En Python, le dictionnaire est un objet <strong>mutable</strong>, autrement dit, on peut le modifier.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Cr&#233;ation-d'un-dictionnaire">Cr&#233;ation d'un dictionnaire<a class="anchor-link" href="#Cr&#233;ation-d'un-dictionnaire">&#182;</a></h2><p>Plusieurs méthodes permettent de créer soit un dictionnaire vide, soit de le noter en extension, soit par compréhension.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">d1</span> <span class="o">=</span> <span class="p">{}</span>     <span class="c1"># Création d&#39;un dictionnaire vide</span>
+<span class="n">d2</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span> <span class="c1"># Création d&#39;un dictionnaire vide (autre méthode)</span>
+<span class="n">d3</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;poires&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;bananes&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;abricots&#39;</span> <span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="c1"># création d&#39;un dictionnaire par extension</span>
+<span class="n">d4</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">k</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)}</span> <span class="c1"># création d&#39;un dictionnaire par compréhension</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">d1</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;class &#39;dict&#39;&gt;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;d1 =&gt;&quot;</span><span class="p">,</span> <span class="n">d1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;d2 =&gt;&quot;</span><span class="p">,</span> <span class="n">d2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;d3 =&gt;&quot;</span><span class="p">,</span> <span class="n">d3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;d4 =&gt;&quot;</span><span class="p">,</span> <span class="n">d4</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>d1 =&gt; {}
+d2 =&gt; {}
+d3 =&gt; {&#39;poires&#39;: 5, &#39;bananes&#39;: 7, &#39;abricots&#39;: 12}
+d4 =&gt; {1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Il est même possible de créer un dictionnaire à partir d'une liste de couples.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">liste</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;cle1&#39;</span><span class="p">,</span><span class="s1">&#39;valeur1&#39;</span><span class="p">),(</span><span class="s1">&#39;cle2&#39;</span><span class="p">,</span><span class="s1">&#39;valeur2&#39;</span><span class="p">)]</span>
+<span class="n">d5</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">liste</span><span class="p">)</span>
+<span class="n">liste_tel</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;Paul&quot;</span><span class="p">,</span> <span class="mi">5234</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;Emile&quot;</span><span class="p">,</span> <span class="mi">5345</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;Victor&quot;</span><span class="p">,</span> <span class="mi">5186</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;Rose&quot;</span><span class="p">,</span> <span class="mi">5678</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;Hélène&quot;</span><span class="p">,</span> <span class="mi">5432</span><span class="p">]]</span>
+<span class="n">d6</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">liste_tel</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;d5 =&gt;&quot;</span><span class="p">,</span> <span class="n">d5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;d6 =&gt;&quot;</span><span class="p">,</span> <span class="n">d6</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>d5 =&gt; {&#39;cle1&#39;: &#39;valeur1&#39;, &#39;cle2&#39;: &#39;valeur2&#39;}
+d6 =&gt; {&#39;Paul&#39;: 5234, &#39;Emile&#39;: 5345, &#39;Victor&#39;: 5186, &#39;Rose&#39;: 5678, &#39;Hélène&#39;: 5432}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Important</strong> : Vous aurez noté que les dictionnaires Python se représentent entre accolades <code>{}</code>. Les différentes paires sont séparées par des virgules et sont de la forme <code>clé: valeur</code>.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h3 id="Activit&#233;-1">Activit&#233; 1<a class="anchor-link" href="#Activit&#233;-1">&#182;</a></h3><p>Créez un dictionnaire appelé <code>notes</code> qui contient les paires (matières, moyenne) de vos trois spécialités. Affichez ensuite ce dictionnaire.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># à vous de jouer !</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h2 id="Acc&#232;s,-modification,-ajout,-suppression">Acc&#232;s, modification, ajout, suppression<a class="anchor-link" href="#Acc&#232;s,-modification,-ajout,-suppression">&#182;</a></h2><p>L'<strong>accès</strong> à une valeur d'un dictionnaire se fait par sa clé.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">d3</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;poires&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;bananes&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;abricots&#39;</span> <span class="p">:</span> <span class="mi">12</span><span class="p">}</span>
+<span class="n">d3</span><span class="p">[</span><span class="s1">&#39;abricots&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[39]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>12</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Le dictionnaire étant un objet <em>mutable</em> on peut <strong>modifier</strong> la valeur associée à une clé ou <strong>ajouter</strong> une nouvelle association et afficher le dictionnaire modifié.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Paul&#39;</span><span class="p">:</span> <span class="mi">5234</span><span class="p">,</span> <span class="s1">&#39;Emile&#39;</span><span class="p">:</span> <span class="mi">5345</span><span class="p">,</span> <span class="s1">&#39;Victor&#39;</span><span class="p">:</span> <span class="mi">5186</span><span class="p">,</span> <span class="s1">&#39;Rose&#39;</span><span class="p">:</span> <span class="mi">5678</span><span class="p">,</span> <span class="s1">&#39;Hélène&#39;</span><span class="p">:</span> <span class="mi">5432</span><span class="p">}</span>
+<span class="n">d</span><span class="p">[</span><span class="s1">&#39;Rose&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4921</span>    <span class="c1"># clé existante donc modification de la valeur</span>
+<span class="n">d</span><span class="p">[</span><span class="s1">&#39;Louane&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4118</span>  <span class="c1"># nouvelle clé donc ajout d&#39;une nouvelle association</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>{&#39;Paul&#39;: 5234, &#39;Emile&#39;: 5345, &#39;Victor&#39;: 5186, &#39;Rose&#39;: 4921, &#39;Hélène&#39;: 5432, &#39;Louane&#39;: 4118}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Pour <strong>supprimer</strong> une association d'un dictionnaire on peut utilise le mot clé <code>del</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="k">del</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;Paul&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>{&#39;Paul&#39;: 5234, &#39;Emile&#39;: 5345, &#39;Victor&#39;: 5186, &#39;Rose&#39;: 4921, &#39;Hélène&#39;: 5432, &#39;Louane&#39;: 4118}
+{&#39;Emile&#39;: 5345, &#39;Victor&#39;: 5186, &#39;Rose&#39;: 4921, &#39;Hélène&#39;: 5432, &#39;Louane&#39;: 4118}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Taille-d'un-dictionnaire">Taille d'un dictionnaire<a class="anchor-link" href="#Taille-d'un-dictionnaire">&#182;</a></h2><p>La fonction <code>len</code> renvoie la taille d'un dictionnaire.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">d3</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;poires&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;bananes&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;abricots&#39;</span> <span class="p">:</span> <span class="mi">12</span><span class="p">}</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">d3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[45]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h3 id="Activit&#233;-2">Activit&#233; 2<a class="anchor-link" href="#Activit&#233;-2">&#182;</a></h3><p>On reprend le dictionnaire <code>notes</code> de l'activité 1.</p>
+<ol>
+<li>Affichez la moyenne de NSI.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>Modifiez votre moyenne de NSI qui a gagné 2 points. Affichez le dictionnaire.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>Ajoutez la matière <code>Anglais</code> avec sa moyenne. Affichez le dictionnaire.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>Affichez la taille du dictionnaire.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>Supprimez une des trois spécialités et affichez le dictionnaire.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h1 id="Les-it&#233;rateurs-pour-les-dictionnaires">Les it&#233;rateurs pour les dictionnaires<a class="anchor-link" href="#Les-it&#233;rateurs-pour-les-dictionnaires">&#182;</a></h1><p>Il est possible de parcourir un dictionnaire de trois manières :</p>
+<ul>
+<li>parcourir l'ensemble des <strong>clés</strong> avec la méthode <code>keys()</code> ;</li>
+<li>parcourir l'ensemble des <strong>valeurs</strong> avec la méthode <code>values()</code> ;</li>
+<li>parcourir l'ensemble des <strong>paires clés-valeurs</strong> avec la méthode <code>items()</code>.</li>
+</ul>
+<p>On peut itérer sur un dictionnaire grâce à l'une de ces méthodes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Paul&#39;</span><span class="p">:</span> <span class="mi">5234</span><span class="p">,</span> <span class="s1">&#39;Emile&#39;</span><span class="p">:</span> <span class="mi">5345</span><span class="p">,</span> <span class="s1">&#39;Victor&#39;</span><span class="p">:</span> <span class="mi">5186</span><span class="p">,</span> <span class="s1">&#39;Rose&#39;</span><span class="p">:</span> <span class="mi">5678</span><span class="p">,</span> <span class="s1">&#39;Hélène&#39;</span><span class="p">:</span> <span class="mi">5432</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">prenom</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">prenom</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Paul
+Emile
+Victor
+Rose
+Hélène
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>5234
+5345
+5186
+5678
+5432
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">prenom</span><span class="p">,</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">prenom</span><span class="p">,</span> <span class="s1">&#39;-&gt;&#39;</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Paul -&gt; 5234
+Emile -&gt; 5345
+Victor -&gt; 5186
+Rose -&gt; 5678
+Hélène -&gt; 5432
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut aussi interroger l'appartenance d'une valeur ou d'une clé grâce au mot clé <code>in</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="s1">&#39;John&#39;</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[56]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>False</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="s1">&#39;Paul&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[59]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>False</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mi">5186</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[57]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h3 id="Activit&#233;-3">Activit&#233; 3<a class="anchor-link" href="#Activit&#233;-3">&#182;</a></h3><p>On considère le dictionnaire <code>fruits</code> suivant.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;poires&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;pommes&#39;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="s1">&#39;bananes&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;abricots&#39;</span> <span class="p">:</span> <span class="mi">12</span><span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>Affichez tous les fruits du dictionnaire.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>Affichez toutes les quantités du dictionnaire. </li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>Ecrivez un programme permettant d'obtenir l'affichage suivant.</li>
+</ol>
+
+<pre><code>Il reste 5 poires
+Il reste 11 pommes
+Il reste 7 bananes
+Il reste 12 abricots</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Références</strong></p>
+<ul>
+<li>Ressources pédagogiques du DIU EIL, Université de Nantes, C. DECLERQ.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p>Germain BECKER &amp; Sébastien POINT, Lycée Mounier, ANGERS <img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+
