@@ -1,0 +1,30 @@
+{
+    "name":  "Bob",
+    "favoriteNumber" : 3,
+    "isProgrammer": false,
+    "defaults": null,
+    "hobbies": {
+        "music": ["guitar", "piano", "trompet"],
+        "sport": ["football", "table tennis"]
+        },
+    "friends": [{
+        "name":  "Mary",
+        "favoriteNumber" : 100,
+        "isProgrammer": true,
+        "defaults": null,
+        "hobbies": {
+            "cinema": ["action movies", "romantic movies"],
+            "sport": ["baseball"]
+            }
+        },
+        {
+        "name":  "John",
+        "favoriteNumber" : 0,
+        "isProgrammer": true,
+        "defaults": ["sore loser", "impatient"],
+        "hobbies": {
+            "music": ["saxophone", "flute"],
+            "cinema": ["horror movies", "romantic movies"]
+            }
+        }]
+}
