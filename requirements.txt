@@ -4,5 +4,4 @@ seaborn==0.8.1
 pandas
 branca>=0.3.0
 jinja2>=2.9
-numpy
 requests
