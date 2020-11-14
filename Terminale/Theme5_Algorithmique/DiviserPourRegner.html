@@ -1,0 +1,141 @@
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>En anglais, <em>divide and conquer</em>.</p>
+</blockquote>
+<h1 id="D&#233;finition">D&#233;finition<a class="anchor-link" href="#D&#233;finition">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="important">
+<p>On appelle <strong>diviser pour régner</strong> une méthode algorithmique de résolution d'un problème consistant à :</p>
+<ol>
+    <li>DIVISER : découper le problème initial en sous-problèmes ;</li>
+    <li>REGNER : résoudre les sous-problèmes (récursivement ou directement s'ils sont assez petits) ;</li>
+    <li>COMBINER : calculer une solution au problème initial à partir des solutions des sous-problèmes.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exemples">Exemples<a class="anchor-link" href="#Exemples">&#182;</a></h1><h2 id="Premier-exemple">Premier exemple<a class="anchor-link" href="#Premier-exemple">&#182;</a></h2><p>On dispose d'une fonction efficace pour traduire une phrase et on veut traduire tout un texte : on décompose (phase "Diviser") alors le texte en phrases (terminées par certains signes de ponctuation) que l'on traduit avec la fonction connue (phase "Régner"), puis on juxtapose les phrases traduites (phase "Combiner").</p>
+<h2 id="La-recherche-dichotomique">La recherche dichotomique<a class="anchor-link" href="#La-recherche-dichotomique">&#182;</a></h2><p>La recherche dichotomique dans un tableau trié est un autre exemple d'application de la méthode <em>diviser pour régner</em>. En effet, l'idée de la recherche dichotomique est de comparer la valeur <code>v</code> cherchée à l'élément central et, selon le cas, on a trouvé <code>v</code> ou on poursuit la recherche dans la moitié de gauche ou de droite. On réduit ainsi le problème initial (recherche dans le tableau tout entier) à un problème plus simple (recherche dans une portion du tableau dont la taille est divisée par deux), jusqu'à trouver un cas simple (en trouvant la valeur <code>v</code> ou en arrivant à la dernière valeur du tableau sans la trouver).</p>
+<p>En classe de Première, l'algorithme de recherche dichotomique a été écrit avec une boucle <code>while</code> mais il s'écrit également de manière récursive assez naturellement.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Recherche récursive de v dans le tableau T[g..d]</span>
+<span class="k">def</span> <span class="nf">recherche</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Renvoie une position de v dans T[g..d], ou None si v ne s&#39;y trouve pas&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">g</span> <span class="o">&gt;</span> <span class="n">d</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">g</span> <span class="o">+</span> <span class="n">d</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="k">if</span> <span class="n">T</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">v</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">recherche</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">T</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">v</span> <span class="p">:</span>
+        <span class="k">return</span> <span class="n">recherche</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">m</span>
+
+<span class="c1"># Recherche dichotomique en commençant la recherche sur le tableau entier</span>
+<span class="k">def</span> <span class="nf">recherche_dichotomique</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Renvoie une position de v dans le tableau T, ou None si v ne s&#39;y trouve pas&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">recherche</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tab</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">recherche_dichotomique</span><span class="p">(</span><span class="n">tab</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">recherche_dichotomique</span><span class="p">(</span><span class="n">tab</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[2]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(4, None)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Autres-exemples">Autres exemples<a class="anchor-link" href="#Autres-exemples">&#182;</a></h2><p>Les algorithmes mettant en jeu la méthode <em>diviser pour régner</em> sont assez nombreux, certains seront abordés dans les activités. Citons par exemple :</p>
+<ul>
+<li>Recherche de la première occurrence d'un élément dans un tableau ;</li>
+<li>Des algorithmes de tri comme le <em>tri fusion</em> et le <em>tri rapide</em> (hors programme) qui s'avèrent plus efficaces que ceux abordés en classe de Première (tri par sélection, tri par insertion) ;</li>
+<li>Multiplication et exponentiation rapide ;</li>
+<li>Rotation d'une image d'un quart de tour ;</li>
+<li>etc.</li>
+</ul>
+<h1 id="Bilan">Bilan<a class="anchor-link" href="#Bilan">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>La méthode <em>diviser pour régner</em> consiste à décomposer un problème en plusieurs <strong>sous-problèmes</strong> de même nature mais plus petits (étape DIVISER), à résoudre ensuite chacun des sous-problèmes (étape REGNER) et enfin à combiner les résultats des sous-problèmes pour obtenir le résultat du problème initial (étape COMBINER).</li>
+<li>La résolution des sous-problèmes se fait en général récursivement en les décomposant à leur tour en problèmes plus petits encore jusqu'à arriver au(x) cas de base.</li>
+<li>Cette méthode permet d'écrire des algorithmes souvent plus efficaces mais elle reste parfois limitée par le nombre d'appels récursifs </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Références :</strong></p>
+<ul>
+<li>Equipe pédagogique DIU EIL, Université de Nantes.</li>
+</ul>
+<hr>
+<p>Germain BECKER, Lycée Mounier, ANGERS</p>
+<p><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+
