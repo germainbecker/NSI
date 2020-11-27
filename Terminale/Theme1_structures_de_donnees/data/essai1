@@ -1,0 +1,10 @@
+// Essai
+graph {
+	a
+	b
+	c
+	d
+	a -- b
+	a -- c
+	b -- d
+}
