@@ -305,8 +305,10 @@
 <span class="c1"># Construction par compréhension du tableau représentant la table</span>
 <span class="n">eleves</span> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="n">ligne</span><span class="p">)</span> <span class="k">for</span> <span class="n">ligne</span> <span class="ow">in</span> <span class="n">table</span><span class="p">]</span>  <span class="c1"># chaque élément est un dictionnaire</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">eleves</span><span class="p">)</span> <span class="c1"># pour afficher le contenu du tableau &#39;eleves&#39;</span>
+<span class="c1"># Fermeture du flux de lecture</span>
 <span class="n">fichier</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">eleves</span> <span class="c1"># pour voir le contenu du tableau &#39;eleves&#39;</span>
 </pre></div>
 
     </div>
@@ -319,13 +321,140 @@
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[3]:</div>
 
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[{&#39;prénom&#39;: &#39;Fathi&#39;, &#39;jour&#39;: &#39;3&#39;, &#39;mois&#39;: &#39;2&#39;, &#39;année&#39;: &#39;2003&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;projet&#39;: &#39;être heureux&#39;}, {&#39;prénom&#39;: &#39;Evan&#39;, &#39;jour&#39;: &#39;19&#39;, &#39;mois&#39;: &#39;8&#39;, &#39;année&#39;: &#39;2004&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;projet&#39;: &#39;manger une glace&#39;}, {&#39;prénom&#39;: &#39;Aline&#39;, &#39;jour&#39;: &#39;29&#39;, &#39;mois&#39;: &#39;10&#39;, &#39;année&#39;: &#39;2004&#39;, &#39;sexe&#39;: &#39;F&#39;, &#39;projet&#39;: &#39;gagner au loto&#39;}, {&#39;prénom&#39;: &#39;Baptiste&#39;, &#39;jour&#39;: &#39;6&#39;, &#39;mois&#39;: &#39;12&#39;, &#39;année&#39;: &#39;2002&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;projet&#39;: &#39;devenir quelqu’un de célèbre&#39;}, {&#39;prénom&#39;: &#39;Corentin&#39;, &#39;jour&#39;: &#39;8&#39;, &#39;mois&#39;: &#39;4&#39;, &#39;année&#39;: &#39;2004&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;projet&#39;: &#39;avoir une bonne note au prochain devoir&#39;}, {&#39;prénom&#39;: &#39;Estelle&#39;, &#39;jour&#39;: &#39;29&#39;, &#39;mois&#39;: &#39;3&#39;, &#39;année&#39;: &#39;2004&#39;, &#39;sexe&#39;: &#39;F&#39;, &#39;projet&#39;: &#39;devenir astronaute&#39;}, {&#39;prénom&#39;: &#39;Elisa&#39;, &#39;jour&#39;: &#39;7&#39;, &#39;mois&#39;: &#39;1&#39;, &#39;année&#39;: &#39;2004&#39;, &#39;sexe&#39;: &#39;F&#39;, &#39;projet&#39;: &#39;marcher sur la lune&#39;}, {&#39;prénom&#39;: &#39;Yanis&#39;, &#39;jour&#39;: &#39;17&#39;, &#39;mois&#39;: &#39;11&#39;, &#39;année&#39;: &#39;2004&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;projet&#39;: &#39;dormir plus longtemps le matin&#39;}, {&#39;prénom&#39;: &#39;Leonie&#39;, &#39;jour&#39;: &#39;28&#39;, &#39;mois&#39;: &#39;10&#39;, &#39;année&#39;: &#39;2004&#39;, &#39;sexe&#39;: &#39;F&#39;, &#39;projet&#39;: &#39;aider les autres&#39;}, {&#39;prénom&#39;: &#39;Lilian&#39;, &#39;jour&#39;: &#39;26&#39;, &#39;mois&#39;: &#39;10&#39;, &#39;année&#39;: &#39;2004&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;projet&#39;: &#39;apprendre à piloter une Formule 1&#39;}, {&#39;prénom&#39;: &#39;Justine&#39;, &#39;jour&#39;: &#39;10&#39;, &#39;mois&#39;: &#39;2&#39;, &#39;année&#39;: &#39;2004&#39;, &#39;sexe&#39;: &#39;F&#39;, &#39;projet&#39;: &#39;devenir présidente&#39;}, {&#39;prénom&#39;: &#39;Jules&#39;, &#39;jour&#39;: &#39;28&#39;, &#39;mois&#39;: &#39;6&#39;, &#39;année&#39;: &#39;2004&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;projet&#39;: &#39;créer un jeu vidéo&#39;}, {&#39;prénom&#39;: &#39;Baptiste&#39;, &#39;jour&#39;: &#39;12&#39;, &#39;mois&#39;: &#39;10&#39;, &#39;année&#39;: &#39;2004&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;projet&#39;: &#39;gérer sa propre entreprise&#39;}, {&#39;prénom&#39;: &#39;Thibault&#39;, &#39;jour&#39;: &#39;23&#39;, &#39;mois&#39;: &#39;10&#39;, &#39;année&#39;: &#39;2004&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;projet&#39;: &#39;gagner le Tour de France&#39;}, {&#39;prénom&#39;: &#39;Hugo&#39;, &#39;jour&#39;: &#39;28&#39;, &#39;mois&#39;: &#39;4&#39;, &#39;année&#39;: &#39;2004&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;projet&#39;: &#39;jouer dans le prochain James Bond&#39;}, {&#39;prénom&#39;: &#39;Amaury&#39;, &#39;jour&#39;: &#39;12&#39;, &#39;mois&#39;: &#39;7&#39;, &#39;année&#39;: &#39;2004&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;projet&#39;: &#39;devenir champion du monde de bras de fer&#39;}, {&#39;prénom&#39;: &#39;Esteban&#39;, &#39;jour&#39;: &#39;7&#39;, &#39;mois&#39;: &#39;5&#39;, &#39;année&#39;: &#39;2004&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;projet&#39;: &#39;devenir youtuber&#39;}, {&#39;prénom&#39;: &#39;Abdel-Waheb&#39;, &#39;jour&#39;: &#39;13&#39;, &#39;mois&#39;: &#39;10&#39;, &#39;année&#39;: &#39;2004&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;projet&#39;: &#39;avoir son émission de TV&#39;}, {&#39;prénom&#39;: &#39;Wesley&#39;, &#39;jour&#39;: &#39;7&#39;, &#39;mois&#39;: &#39;4&#39;, &#39;année&#39;: &#39;2004&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;projet&#39;: &#39;écrire un livre&#39;}, {&#39;prénom&#39;: &#39;Lubin&#39;, &#39;jour&#39;: &#39;4&#39;, &#39;mois&#39;: &#39;12&#39;, &#39;année&#39;: &#39;2004&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;projet&#39;: &#39;inventer la machine à voyager dans le temps&#39;}, {&#39;prénom&#39;: &#39;Teddy&#39;, &#39;jour&#39;: &#39;1&#39;, &#39;mois&#39;: &#39;12&#39;, &#39;année&#39;: &#39;2004&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;projet&#39;: &#39;devenir une rockstar&#39;}]
-</pre>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;prénom&#39;: &#39;Fathi&#39;,
+  &#39;jour&#39;: &#39;3&#39;,
+  &#39;mois&#39;: &#39;2&#39;,
+  &#39;année&#39;: &#39;2003&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;projet&#39;: &#39;être heureux&#39;},
+ {&#39;prénom&#39;: &#39;Evan&#39;,
+  &#39;jour&#39;: &#39;19&#39;,
+  &#39;mois&#39;: &#39;8&#39;,
+  &#39;année&#39;: &#39;2004&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;projet&#39;: &#39;manger une glace&#39;},
+ {&#39;prénom&#39;: &#39;Aline&#39;,
+  &#39;jour&#39;: &#39;29&#39;,
+  &#39;mois&#39;: &#39;10&#39;,
+  &#39;année&#39;: &#39;2004&#39;,
+  &#39;sexe&#39;: &#39;F&#39;,
+  &#39;projet&#39;: &#39;gagner au loto&#39;},
+ {&#39;prénom&#39;: &#39;Baptiste&#39;,
+  &#39;jour&#39;: &#39;6&#39;,
+  &#39;mois&#39;: &#39;12&#39;,
+  &#39;année&#39;: &#39;2002&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;projet&#39;: &#39;devenir quelqu’un de célèbre&#39;},
+ {&#39;prénom&#39;: &#39;Corentin&#39;,
+  &#39;jour&#39;: &#39;8&#39;,
+  &#39;mois&#39;: &#39;4&#39;,
+  &#39;année&#39;: &#39;2004&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;projet&#39;: &#39;avoir une bonne note au prochain devoir&#39;},
+ {&#39;prénom&#39;: &#39;Estelle&#39;,
+  &#39;jour&#39;: &#39;29&#39;,
+  &#39;mois&#39;: &#39;3&#39;,
+  &#39;année&#39;: &#39;2004&#39;,
+  &#39;sexe&#39;: &#39;F&#39;,
+  &#39;projet&#39;: &#39;devenir astronaute&#39;},
+ {&#39;prénom&#39;: &#39;Elisa&#39;,
+  &#39;jour&#39;: &#39;7&#39;,
+  &#39;mois&#39;: &#39;1&#39;,
+  &#39;année&#39;: &#39;2004&#39;,
+  &#39;sexe&#39;: &#39;F&#39;,
+  &#39;projet&#39;: &#39;marcher sur la lune&#39;},
+ {&#39;prénom&#39;: &#39;Yanis&#39;,
+  &#39;jour&#39;: &#39;17&#39;,
+  &#39;mois&#39;: &#39;11&#39;,
+  &#39;année&#39;: &#39;2004&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;projet&#39;: &#39;dormir plus longtemps le matin&#39;},
+ {&#39;prénom&#39;: &#39;Leonie&#39;,
+  &#39;jour&#39;: &#39;28&#39;,
+  &#39;mois&#39;: &#39;10&#39;,
+  &#39;année&#39;: &#39;2004&#39;,
+  &#39;sexe&#39;: &#39;F&#39;,
+  &#39;projet&#39;: &#39;aider les autres&#39;},
+ {&#39;prénom&#39;: &#39;Lilian&#39;,
+  &#39;jour&#39;: &#39;26&#39;,
+  &#39;mois&#39;: &#39;10&#39;,
+  &#39;année&#39;: &#39;2004&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;projet&#39;: &#39;apprendre à piloter une Formule 1&#39;},
+ {&#39;prénom&#39;: &#39;Justine&#39;,
+  &#39;jour&#39;: &#39;10&#39;,
+  &#39;mois&#39;: &#39;2&#39;,
+  &#39;année&#39;: &#39;2004&#39;,
+  &#39;sexe&#39;: &#39;F&#39;,
+  &#39;projet&#39;: &#39;devenir présidente&#39;},
+ {&#39;prénom&#39;: &#39;Jules&#39;,
+  &#39;jour&#39;: &#39;28&#39;,
+  &#39;mois&#39;: &#39;6&#39;,
+  &#39;année&#39;: &#39;2004&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;projet&#39;: &#39;créer un jeu vidéo&#39;},
+ {&#39;prénom&#39;: &#39;Baptiste&#39;,
+  &#39;jour&#39;: &#39;12&#39;,
+  &#39;mois&#39;: &#39;10&#39;,
+  &#39;année&#39;: &#39;2004&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;projet&#39;: &#39;gérer sa propre entreprise&#39;},
+ {&#39;prénom&#39;: &#39;Thibault&#39;,
+  &#39;jour&#39;: &#39;23&#39;,
+  &#39;mois&#39;: &#39;10&#39;,
+  &#39;année&#39;: &#39;2004&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;projet&#39;: &#39;gagner le Tour de France&#39;},
+ {&#39;prénom&#39;: &#39;Hugo&#39;,
+  &#39;jour&#39;: &#39;28&#39;,
+  &#39;mois&#39;: &#39;4&#39;,
+  &#39;année&#39;: &#39;2004&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;projet&#39;: &#39;jouer dans le prochain James Bond&#39;},
+ {&#39;prénom&#39;: &#39;Amaury&#39;,
+  &#39;jour&#39;: &#39;12&#39;,
+  &#39;mois&#39;: &#39;7&#39;,
+  &#39;année&#39;: &#39;2004&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;projet&#39;: &#39;devenir champion du monde de bras de fer&#39;},
+ {&#39;prénom&#39;: &#39;Esteban&#39;,
+  &#39;jour&#39;: &#39;7&#39;,
+  &#39;mois&#39;: &#39;5&#39;,
+  &#39;année&#39;: &#39;2004&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;projet&#39;: &#39;devenir youtuber&#39;},
+ {&#39;prénom&#39;: &#39;Abdel-Waheb&#39;,
+  &#39;jour&#39;: &#39;13&#39;,
+  &#39;mois&#39;: &#39;10&#39;,
+  &#39;année&#39;: &#39;2004&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;projet&#39;: &#39;avoir son émission de TV&#39;},
+ {&#39;prénom&#39;: &#39;Wesley&#39;,
+  &#39;jour&#39;: &#39;7&#39;,
+  &#39;mois&#39;: &#39;4&#39;,
+  &#39;année&#39;: &#39;2004&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;projet&#39;: &#39;écrire un livre&#39;},
+ {&#39;prénom&#39;: &#39;Lubin&#39;,
+  &#39;jour&#39;: &#39;4&#39;,
+  &#39;mois&#39;: &#39;12&#39;,
+  &#39;année&#39;: &#39;2004&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;projet&#39;: &#39;inventer la machine à voyager dans le temps&#39;},
+ {&#39;prénom&#39;: &#39;Teddy&#39;,
+  &#39;jour&#39;: &#39;1&#39;,
+  &#39;mois&#39;: &#39;12&#39;,
+  &#39;année&#39;: &#39;2004&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;projet&#39;: &#39;devenir une rockstar&#39;}]</pre>
 </div>
+
 </div>
 
 </div>
