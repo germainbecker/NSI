@@ -332,6 +332,7 @@
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">ajouter</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Renvoie un nouvel ABR contenant les clés de l&#39;ABR A ainsi que la clé e.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">A</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">Noeud</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">e</span> <span class="o">&lt;=</span> <span class="n">A</span><span class="o">.</span><span class="n">etiquette</span><span class="p">:</span>
@@ -366,7 +367,7 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Complexit&#233;s-(temporelles)">Complexit&#233;s (temporelles)<a class="anchor-link" href="#Complexit&#233;s-(temporelles)">&#182;</a></h2><h3 id="De-la-recherche">De la recherche<a class="anchor-link" href="#De-la-recherche">&#182;</a></h3><p>La recherche d'une clé dans un ABR conduit, dans le pire cas, à parcourir un chemin de la racine jusqu'à une feuille. Le coût de cet algorithme est donc de l'ordre de la hauteur $H$ de l'arbre (= profondeur maximale des feuilles).</p>
+<h2 id="Complexit&#233;s-(temporelles)">Complexit&#233;s (temporelles)<a class="anchor-link" href="#Complexit&#233;s-(temporelles)">&#182;</a></h2><h3 id="Co&#251;t-de-la-recherche">Co&#251;t de la recherche<a class="anchor-link" href="#Co&#251;t-de-la-recherche">&#182;</a></h3><p>La recherche d'une clé dans un ABR conduit, dans le pire cas, à parcourir un chemin de la racine jusqu'à une feuille. Le coût de cet algorithme est donc de l'ordre de la hauteur $H$ de l'arbre (= profondeur maximale des feuilles).</p>
 <blockquote><p><strong>Rappel</strong> : On a vu (voir <a href="http://info-mounier.fr/terminale_nsi/structures_donnees/arbres.php#Impl%C3%A9mentation">Thème 1 / Chapitre 4 : Les arbres</a>) que la hauteur $H$ d'un arbre binaire à $N$ noeuds vérifie :</p>
 $$ \left \lfloor \log_2(N) \right \rfloor \leq H \leq N - 1,$$<p>où $\left \lfloor \log_2(N) \right \rfloor$ est la partie entière du logarithme en base 2 de $N$ , c'est-à-dire le nombre de bits nécessaires à son écriture en base 2 diminué d'une unité (c'est la définition des informaticiens).</p>
 <p>Plus précisément, si l'arbre est <em>parfait</em> (tous les niveaux sont remplis) on a $H = \left \lfloor \log_2(N) \right \rfloor$ et si l'arbre est <em>filiforme</em> alors $H = N - 1$.</p>
@@ -400,7 +401,7 @@ $$ \left \lfloor \log_2(N) \right \rfloor \leq H \leq N - 1,$$<p>où $\left \lfl
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="De-l'insertion">De l'insertion<a class="anchor-link" href="#De-l'insertion">&#182;</a></h3><p>L'insertion d'une clé se fait au niveau d'une feuille, ce qui conduit toujours à parcourir un chemin de la racine jusqu'à une feuille. On en déduit que le pire cas est égal au meilleur cas et que le coût de l'insertion est donc le même que celui de la recherche : de l'ordre de $\log_2(N)$ dans le cas d'un AB bien <em>équilibré</em>.</p>
+<h3 id="Co&#251;t-de-l'insertion">Co&#251;t de l'insertion<a class="anchor-link" href="#Co&#251;t-de-l'insertion">&#182;</a></h3><p>L'insertion d'une clé se fait au niveau d'une feuille, ce qui conduit toujours à parcourir un chemin de la racine jusqu'à une feuille. On en déduit que le pire cas est égal au meilleur cas et que le coût de l'insertion est donc le même que celui de la recherche : de l'ordre de $\log_2(N)$ dans le cas d'un AB bien <em>équilibré</em>.</p>
 
 </div>
 </div>
