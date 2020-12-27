@@ -1,0 +1,440 @@
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h1><p>Un arbre binaire (abrégé AB dans la suite) est un arbre dont les noeuds possèdent au plus deux fils. Ainsi, un arbre binaire non vide peut être définit comme un noeud, appelé <em>racine</em> possédant un <em>sous-arbre gauche</em> et un <em>sous-arbre droit</em> (éventuellement vides) qui sont eux-mêmes des arbres binaires.</p>
+<p>Cette définition étant récursive, la plupart des traitements sur les AB sont naturellement récursifs : on traite un noeud courant et on demande à traiter les noeuds fils. On a déjà écrit de tels algorithmes pour calculer la taille ou la hauteur d'un AB (voir <a href="http://info-mounier.fr/terminale_nsi/structures_donnees/arbres.php#Impl%C3%A9mentation">Thème 1 / Chapitre 4 : Les arbres</a>). On ne s'était alors pas soucié de l'ordre dans lequel tous les noeuds étaient visités.</p>
+<p>Dans ce chapitre, nous allons notamment voir des algorithmes permettant d'explorer, récursivement ou non, tous les noeuds d'un AB mais dans un ordre prédéfini. Nous verrons dans un second temps une structure de données appelée <strong>arbre binaire de recherche</strong>, qui est un AB particulier permettant de stocker des éléments de façon à rendre leur recherche très efficace par la suite.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Parcours-d'un-arbre-binaire">Parcours d'un arbre binaire<a class="anchor-link" href="#Parcours-d'un-arbre-binaire">&#182;</a></h1><p>Parcourir un arbre, c'est visiter tous ses noeuds, afin de pouvoir opérer une action tour à tour sur eux. Un <em>parcours d'arbre</em> définit dans quel ordre les noeuds sont visités.</p>
+<h2 id="Parcours-en-largeur-d'abord">Parcours en largeur d'abord<a class="anchor-link" href="#Parcours-en-largeur-d'abord">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="important">
+    <p>Dans le cas où un arbre est parcouru niveau par niveau (en commençant par la racine est en lisant de gauche à droite) on parle d'un <strong>parcours en largeur d'abord</strong>. On utilise le terme <em>largeur</em> car dans ce cas on explore les noeuds en balayant en largeur chaque niveau de l'arbre.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Exemple">Exemple<a class="anchor-link" href="#Exemple">&#182;</a></h3><p><img src="data/ab2.png" alt="un arbre binaire"></p>
+<p>Dans le cas d'un parcours de cet AB en largeur d'abord, les noeuds sont visités dans l'ordre : 2 - 8 - 9 - 4 - 5 - 3.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Un parcours en largeur d'abord n'est pas récursif.</p>
+</blockquote>
+<h3 id="Algorithme-de-parcours-en-largeur">Algorithme de parcours en largeur<a class="anchor-link" href="#Algorithme-de-parcours-en-largeur">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="important">
+    <p>L'utilisation d'une <strong>file</strong> permet d'écrire facilement l'algorithme de parcours en largeur d'abord. Le principe est le suivant :</p>
+    <ul>
+        <li>On enfile l'arbre de départ</li>
+        <li>Tant que la file n'est pas vide :</li>
+        <ul>
+            <li>on défile un élément</li>
+            <li>si celui-ci n'est pas un arbre vide :</li>
+            <ul>
+                <li>on affiche son étiquette</li>
+                <li>on enfile ses fils gauche et droit (dont les racines sont les noeuds du niveau suivant)</li>
+            </ul>
+        </ul>
+    </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On utilise ainsi la file pour y insérer et donc traiter (en défilant) tour à tour les noeuds, niveau par niveau.</p>
+<p>Voici une implémentation qui utilise une classe <code>File</code> pour représenter une file et la classe <code>Noeud</code> (cf. <a href="http://info-mounier.fr/terminale_nsi/structures_donnees/arbres.php#Impl%C3%A9mentation">Thème 1 / Chapitre 4 : Les arbres</a>) pour représenter un AB :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">parcours_en_largeur</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Affiche les étiquettes de l&#39;arbre binaire A selon un parcours en largeur.&quot;&quot;&quot;</span>
+    <span class="n">F</span> <span class="o">=</span> <span class="n">File</span><span class="p">()</span>
+    <span class="n">F</span><span class="o">.</span><span class="n">enfiler</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">F</span><span class="o">.</span><span class="n">taille</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">defiler</span><span class="p">()</span> <span class="c1"># renvoie le sommet</span>
+        <span class="k">if</span> <span class="n">a</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">etiquette</span><span class="p">)</span>
+            <span class="n">F</span><span class="o">.</span><span class="n">enfiler</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">gauche</span><span class="p">)</span>
+            <span class="n">F</span><span class="o">.</span><span class="n">enfiler</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">droit</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Parcours-en-profondeur">Parcours en profondeur<a class="anchor-link" href="#Parcours-en-profondeur">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="important">
+    <p>Dans le cas où on explore complètement l'un des deux sous-arbres avant le second on parle d'un <strong>parcours en profondeur</strong>. On utilise le terme <em>profondeur</em> car dans ce cas on tente toujours de visiter le noeud le plus éloigné de la racine à condition qu'il soit le fils d'un noeud déjà visité.</p>
+    <p>On distingue trois ordres particuliers pour explorer en profondeur les sous-arbres gauche, droit et la racine du noeud courant :</p>
+    <ul>
+        <li><strong>ordre préfixe</strong> : le noeud courant est traité, puis son sous-arbre gauche et son sous-arbre droit.</li>
+        <li><strong>ordre infixe</strong> : le noeud courant est traité entre son sous-arbre gauche et son sous-arbre droit.</li>
+        <li><strong>ordre suffixe</strong> : le noeud courant est traité après son sous-arbre gauche et son sous-arbre droit.</li>
+    </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Exemple">Exemple<a class="anchor-link" href="#Exemple">&#182;</a></h3><p><img src="data/ab2.png" alt="un arbre binaire"></p>
+<p>Voici l'ordre des noeuds visités dans les 3 ordres de parcours en profondeur :</p>
+<ul>
+<li>Parcours préfixe : 2 - 8 - 4 - 5 - 9 - 3</li>
+<li>Parcours infixe : 4 - 8 - 5 - 2 - 9 - 3</li>
+<li>Parcours suffixe : 4 - 5 - 8 - 3 - 9 - 2</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Algorithmes-de-parcours-en-profondeur">Algorithmes de parcours en profondeur<a class="anchor-link" href="#Algorithmes-de-parcours-en-profondeur">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="important">
+    <p>Les algorithmes de parcours en profondeur s'écrivent facilement de manière récursive. Pour l'algorithme de parcours suivant l'ordre <strong>préfixe</strong> on procède ainsi :</p>
+    <ul>
+        <li>si l'arbre n'est pas vide :</li>
+        <ul>
+            <li>on affiche l'étiquette de sa racine</li>
+            <li>on parcourt récursivement son sous-arbre gauche</li>
+            <li>puis son sous-arbre droit</li>
+            <li>(sinon on ne fait rien)</li>
+        </ul>
+    </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Voici une fonction récursive qui implémente le parcours préfixe :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">parcours_prefixe</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Affiche les étiquettes de l&#39;arbre binaire A selon un parcours par ordre préfixe.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">A</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">etiquette</span><span class="p">)</span>
+        <span class="n">parcours_prefixe</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">gauche</span><span class="p">)</span>
+        <span class="n">parcours_prefixe</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">droit</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Remarque</strong> : Il suffit de changer l'ordre des lignes 4, 5 et  dans le <code>if</code> pour retrouver les ordres <em>infixe</em> et <em>suffixe</em> de parcours des noeuds.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Recherche-dans-un-AB">Recherche dans un AB<a class="anchor-link" href="#Recherche-dans-un-AB">&#182;</a></h2><p>Pour vérifier sur une étiquette <code>e</code> est présente dans un noeud d'un arbre binaire <code>A</code>, il faut le parcourir (en largeur ou en profondeur). Dans le pire cas, c'est-à-dire si l'étiquette est absente, il faut bien regarder tous les noeuds pour conclure. Ainsi, pour un arbre binaire de $N$ noeuds, l'algorithme de recherche a un coût en temps de l'ordre de $N$ (noté $O(N)$).</p>
+<blockquote><p><strong>Morale</strong> :</p>
+<ul>
+<li>La recherche dans un arbre binaire prend un temps similaire à la recherche dans un tableau ou dans une liste. </li>
+<li>Mais dans un tableau, on a vu que sous hypothèse de tri, on pouvait faire mieux : une recherche dichotomique ! (voir programme de Première NSI).</li>
+<li>Peut-on faire de même dans un arbre binaire ? Autrement dit, quelle hypothèse d'ordre faire pour permettre une recherche plus efficace ? &#x21E8; les arbres binaires de recherche</li>
+</ul>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Arbre-binaire-de-recherche">Arbre binaire de recherche<a class="anchor-link" href="#Arbre-binaire-de-recherche">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="important">
+    <p>Un <strong>arbre binaire de recherche</strong>, abrégé ABR, est un arbre binaire dans lequel tout noeud a une <strong>clé</strong> (= étiquette) :</p>
+    <ul>
+        <li>plus grande ou égale à celles de son sous-arbre gauche</li>
+        <li>plus petite strictement que celles de son sous-arbre droit</li>
+    </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Le schéma suivant permet de retenir ce qu'est un ABR :</p>
+<p><img src="data/schema_abr.png" alt="schéma d&#39;un ABR"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Exemples</strong> : Voici quelques exemples d'ABR :</p>
+<p><img src="data/abr.png" alt="3 ABR"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Rechercher-une-cl&#233;-dans-un-ABR">Rechercher une cl&#233; dans un ABR<a class="anchor-link" href="#Rechercher-une-cl&#233;-dans-un-ABR">&#182;</a></h2><p>La propriété d'ordre en chaque noeud d'un ABR assure qu'il existe un unique chemin pour toute clé stockée : la comparaison en chaque noeud indique si la recherche doit être poursuivie à gauche ou à droite. La recherche est fructueuse si la clé est trouvée en un noeud; infructueuse s'il est aboutit à un sous-arbre vide.</p>
+<p>Cela permet d'écrire facilement l'algorithme récursif de recherche d'une clé dans un ABR :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">etq_presente</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Renvoie True si l&#39;étiquette e est présente dans l&#39;ABR A, et False sinon.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">A</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="n">e</span> <span class="o">==</span> <span class="n">A</span><span class="o">.</span><span class="n">etiquette</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">elif</span> <span class="n">e</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">.</span><span class="n">etiquette</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">etq_presente</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">gauche</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">etq_presente</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">droit</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Exemples</strong> :</p>
+<ul>
+<li><code>etq_presente(A, 5)</code> renvoie Vrai
+<img src="data/abr_recherche.png" alt="recherche n°1"></li>
+<li><code>etq_presente(A, 0)</code> renvoie Faux
+<img src="data/abr_recherche2.png" alt="recherche n°2"></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remarques</strong> : La propriété d'ordre sur les clés d'un ABR implique :</p>
+<ul>
+<li>que l'on trouve le <em>minimum</em> en se déplaçant systématiquement à gauche : le dernier noeud atteint avant un sous-arbre gauche vide est le minimum ;</li>
+<li>que l'on trouve le <em>maximum</em> en se déplaçant systématiquement à droite : le dernier noeud atteint avant un sous-arbre droit vide est le maximum ;</li>
+<li>que le parcours par <em>ordre infixe</em> d'un ABR donne les clés dans l'ordre croissant. </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Ins&#233;rer-une-cl&#233;-dans-un-ABR">Ins&#233;rer une cl&#233; dans un ABR<a class="anchor-link" href="#Ins&#233;rer-une-cl&#233;-dans-un-ABR">&#182;</a></h2><p>Le principe de l'ajout d'une clé est simple : pour que l'élément qu'on va ajouter soit retrouvé lors d'une future recherche, il faut l'insérer à l'endroit où conduira cette recherche. Cela conduit à suivre un chemin unique dans l'ABR et on insère le nouveau noeud avec la clé dès qu'on aboutit à un sous-arbre vide.</p>
+<p>On présente ici une version qui renvoie un nouvel arbre à chaque insertion car elle est simple à écrire et permet de gérer facilement le cas de l'insertion dans un arbre vide représenté par <code>None</code>.</p>
+<blockquote><p>On peut écrire des versions avec <em>modification en place</em> de l'arbre passé en argument mais cela rend l'algorithme plus long à écrire et on doit réserver un cas particulier pour l'insertion dans un arbre vide (voir activités).</p>
+</blockquote>
+<p>Insérer une clé <code>e</code> dans un ABR <code>A</code> revient à construire un ABR qui contient <code>e</code> et toutes les clés de <code>A</code>. Le principe est relativement simple :</p>
+<ul>
+<li>si l'ABR est vide, on construit un ABR possédant un unique noeud de clé <code>e</code>.</li>
+<li>si <code>e</code> est inférieure ou égale à l'étiquette de <code>A</code> il faut insérer la clé dans le sous-arbre gauche de <code>A</code> ce qui revient à créer un <em>nouvel</em> ABR dont :<ul>
+<li>l'étiquette est celle de <code>A</code> (inchangée) ;</li>
+<li>le sous-arbre gauche est le sous-arbre gauche de <code>A</code> dans lequel on insère la clé <code>e</code> ⇒ appel récursif</li>
+<li>le sous-arbre droit est celui de <code>A</code> (inchangé).</li>
+</ul>
+</li>
+<li>si <code>e</code> est strictement supérieure à l'étiquette de <code>A</code> il faut insérer la clé dans le sous-arbre droit de <code>A</code> en procédédant de manière similaire.</li>
+</ul>
+<p>On aboutit à la fonction <code>ajouter</code> suivante :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">ajouter</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">A</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Noeud</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">e</span> <span class="o">&lt;=</span> <span class="n">A</span><span class="o">.</span><span class="n">etiquette</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Noeud</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">etiquette</span><span class="p">,</span> <span class="n">ajouter</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">gauche</span><span class="p">,</span> <span class="n">e</span><span class="p">),</span> <span class="n">A</span><span class="o">.</span><span class="n">droit</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Noeud</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">etiquette</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">gauche</span><span class="p">,</span> <span class="n">ajouter</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">droit</span><span class="p">,</span> <span class="n">e</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remarques et exemples</strong> :</p>
+<ul>
+<li><p>L'insertion revient à créer une feuille.</p>
+<p>Par exemple, <code>ajouter(A, 0)</code> :
+<img src="data/abr_insertion1.png" alt="insertion n°1"></p>
+</li>
+<li><p>Même en cas d'égalité, on descend toujours jusqu'à un sous-arbre vide.</p>
+<p>Par exemple, <code>ajouter(A, 2)</code> :
+<img src="data/abr_insertion2.png" alt="insertion n°2"></p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Complexit&#233;s-(temporelles)">Complexit&#233;s (temporelles)<a class="anchor-link" href="#Complexit&#233;s-(temporelles)">&#182;</a></h2><h3 id="De-la-recherche">De la recherche<a class="anchor-link" href="#De-la-recherche">&#182;</a></h3><p>La recherche d'une clé dans un ABR conduit, dans le pire cas, à parcourir un chemin de la racine jusqu'à une feuille. Le coût de cet algorithme est donc de l'ordre de la hauteur $H$ de l'arbre (= profondeur maximale des feuilles).</p>
+<blockquote><p><strong>Rappel</strong> : On a vu (voir <a href="http://info-mounier.fr/terminale_nsi/structures_donnees/arbres.php#Impl%C3%A9mentation">Thème 1 / Chapitre 4 : Les arbres</a>) que la hauteur $H$ d'un arbre binaire à $N$ noeuds vérifie :</p>
+$$ \left \lfloor \log_2(N) \right \rfloor \leq H \leq N - 1,$$<p>où $\left \lfloor \log_2(N) \right \rfloor$ est la partie entière du logarithme en base 2 de $N$ , c'est-à-dire le nombre de bits nécessaires à son écriture en base 2 diminué d'une unité (c'est la définition des informaticiens).</p>
+<p>Plus précisément, si l'arbre est <em>parfait</em> (tous les niveaux sont remplis) on a $H = \left \lfloor \log_2(N) \right \rfloor$ et si l'arbre est <em>filiforme</em> alors $H = N - 1$.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ainsi, le coût de la recherche est de l'ordre de :</p>
+<ul>
+<li>$N$ si l'arbre est <em>filiforme</em>, soit comme la recherche dans un tableau ou dans une liste ;</li>
+<li>$\log_2(N)$ si l'arbre est <em>parfait</em>, soit le même coût que la recherche dichotomique dans un tableau trié.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Moralité</strong> : Dans le cas où l'AB est bien <em>équilibré</em>, la recherche est donc efficace, comme une recherche dichotomique dans un tableau trié. En effet, la structure de l'ABR est similaire à l'organisation d'un tableau (ou liste) trié(e).</p>
+<p><img src="data/abr_dicho.png" alt="parallèle entre recherche dans un ABR et recherche dichotomique"></p>
+<p>Faire une recherche dans un ABR, c'est faire une recherche dans un tableau trié en sautant aux indices correspondant : ABR équilibré &lt;=&gt; recherche dichotomique.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="De-l'insertion">De l'insertion<a class="anchor-link" href="#De-l'insertion">&#182;</a></h3><p>L'insertion d'une clé se fait au niveau d'une feuille, ce qui conduit toujours à parcourir un chemin de la racine jusqu'à une feuille. On en déduit que le pire cas est égal au meilleur cas et que le coût de l'insertion est donc le même que celui de la recherche : de l'ordre de $\log_2(N)$ dans le cas d'un AB bien <em>équilibré</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Bilan">Bilan<a class="anchor-link" href="#Bilan">&#182;</a></h1><ul>
+<li>On peut parcourir un AB pour visiter tous ses noeuds. Il existe plusieurs parcours possibles : le <em>parcours en largeur</em> d'abord ou les parcours en profondeur selon l'<em>ordre préfixe</em>, <em>infixe</em> ou <em>suffixe</em>.</li>
+<li>Les <strong>arbres binaires de recherche</strong> sont des arbres binaires dans lesquels les étiquettes des noeuds, appelées <strong>clés</strong>, respectent une relation d'odre : <em>chaque</em> noeud possède une étiquette de valeur supérieure ou égale à toutes celles de son sous-arbre gauche et strictement supérieure à toutes celles de son sous-arbre droit. </li>
+<li>Les algorithmes de recherche ou d'insertion dans un ABR se rapprochent de la recherche dichotomique : en partant à droite ou à gauche à chaque étape, on élimine à chaque fois toute une partie de l'arbre.</li>
+<li>Le coût de la recherche ou de l'insertion dans un ABR à $N$ noeuds dépend de sa structure car celui-ci est de l'ordre de sa hauteur $H$. Si l'arbre est filiforme on ne gagne rien par rapport à la recherche ou l'insertion dans un tableau ou dans une liste car $H$ est de l'ordre de $N$. En revanche, si l'arbre est bien équilibré, la recherche et l'insertion deviennent efficaces car on élimine à chaque fois la moitié des noeuds environ et donc $H$ est de l'ordre de $\log_2(N)$.</li>
+<li>Il existe des techniques (hors programme NSI) qui permettent de maintenir l'arbre équilibré lors des insertions. Cela fait des ABR des structures de données efficaces pour rechercher et insérer des données.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Références :</strong></p>
+<ul>
+<li>Equipe éducative DIU EIL, Université de Nantes.</li>
+<li>Livre <em>Spécialité Numérique et sciences informatiques : 24 leçons avec exercices corrigés - Terminale</em>, éditions Ellipses, T. Balabonski, S. Conchon, J.-C. Filliâtre, K. Nguyen. Site du livre : <a href="http://www.nsi-terminale.fr/">http://www.nsi-terminale.fr/</a>.</li>
+</ul>
+<hr>
+<p>Germain BECKER, Lycée Mounier, ANGERS</p>
+<p>Ressource éducative libre distribuée sous <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a></p>
+<p><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+
