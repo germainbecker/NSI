@@ -1,0 +1,691 @@
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Les graphes sont une structure de données très riche permettant de modéliser des situations variées de relations entre un ensemble d'entités :</p>
+<ul>
+<li>entre les ordinateurs du réseau internet ;</li>
+</ul>
+<p><img class="centre image-responsive" alt="réseau Internet" src="data/internet.svg" width="400"></p>
+<p style="text-align: center; color: #888"><em>Source : <a href="https://fr.wikipedia.org/wiki/Internet#/media/Fichier:Internet-transit.svg" target="_blank">Wikipedia</a>, Mro, licence CC BY-SA 3.0</em></p><ul>
+<li>entre des personnes sur un réseau social ;</li>
+</ul>
+<p><img class="centre image-responsive" alt="réseau Internet" src="data/rs.svg" width="400"></p>
+<p style="text-align: center; color: #888"><em>Source : <a href="https://pixabay.com/fr/vectors/connexions-communications-social-2099068/" target="_blank">Pixabay</a></em></p><ul>
+<li>entre les villes dans un réseau routier ou de distribution ;</li>
+</ul>
+<p><img class="centre image-responsive" alt="réseau Internet" src="data/dijkstra.svg" width="400"></p>
+<p style="text-align: center; color: #888"><em>Source : <a href="https://fr.wikipedia.org/wiki/Algorithme_de_Dijkstra#/media/Fichier:DijkstraBis01.svg" target="_blank">Wikipedia</a>, HB, licence CC BY-SA 3.0</em></p><ul>
+<li>entre les atomes d'une molécule ;</li>
+</ul>
+<p><img class="centre image-responsive" alt="réseau Internet" src="data/molecule.svg" width="400"></p>
+<p style="text-align: center; color: #888"><em>Source : <a href="https://fr.wikipedia.org/wiki/Mol%C3%A9cule#/media/Fichier:Sucrose_molecule.svg" target="_blank">Wikipedia</a>, William Crochot, licence CC BY-SA 4.0</em></p><ul>
+<li>entre les ressources du Web (les relations sont les liens hypertextes) ;</li>
+<li>entre deux situations dans un jeu ;</li>
+<li>etc.</li>
+</ul>
+<p>Les relations peuvent être orientées ou non.</p>
+<h1 id="D&#233;finitions-et-vocabulaire">D&#233;finitions et vocabulaire<a class="anchor-link" href="#D&#233;finitions-et-vocabulaire">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p class="important">Un graphe est constitué d'un ensemble de <strong>sommets</strong> et dans le cas orienté d'un ensemble d'<strong>arcs</strong> reliant chacun un sommet à un autre, dans le cas non orienté d'un ensemble d'<strong>arêtes</strong> entre deux sommets.</p><p>Mathématiquement, un graphe $G$ est donc un couple formé de deux ensembles : $X = \{ x_1, x_2, \ldots, x_n \}$ dont les éléments sont appelés les sommets et un ensemble $A = \{a_1, a_2, \ldots, a_m\}$ dont les éléments sont appelés les arêtes dans le cas non orienté ou les arcs dans le cas orienté. Une arête (ou un arc) $a_i$ est un couple de deux sommets, par exemple : $a_i = (x_2, x_5)$ symbolise le lien (arête ou arc) entre les sommets $x_2$ et $x_5$. On peut noter $G = (X, A)$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Vocabulaire-des-graphes-non-orient&#233;s">Vocabulaire des graphes <em>non orient&#233;s</em><a class="anchor-link" href="#Vocabulaire-des-graphes-non-orient&#233;s">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="important">
+    <p>Dans le cas des graphes non orientés, les relations entre deux sommets se font dans les deux sens. On appelle ses relations des <strong>arêtes</strong> (<em>edges</em> en anglais), et on a les définitions suivantes.</p>
+    <ul>
+        <li><strong>Sommets adjacents</strong> : deux sommets sont adjacents s'ils sont reliés entre eux par une arête. On dit que l'arête est incidente aux deux sommets.</li>
+        <li><strong>Voisins d'un sommet $x$</strong> : ce sont tous les sommets reliés à $x$ par une arête.</li>
+        <li><strong>Degré d'un sommet $x$</strong> : nombre d’arêtes incidentes au sommet, on le note $d(x)$.</li>
+        <li><strong>Chaîne</strong> : séquence ordonnée d'arêtes telle que chaque arête a une extrémité en commun avec l'arête suivante.</li>
+        <li><strong>Cycle</strong> : dans un graphe non orienté, un cycle est une suite d'arêtes consécutives (chaîne) dont les deux sommets extrémités sont identiques.</li>
+        <li><strong>Boucle</strong> : il peut exister des arêtes entre un sommet $x$ et lui-même. Elles sont appelés <em>boucles</em>. </li>
+    </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Exemple">Exemple<a class="anchor-link" href="#Exemple">&#182;</a></h3><p><img class="centre image-responsive" alt="graphe non orienté" src="data/graphe_non_oriente.png" width="400"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Ce graphe <em>non orienté</em> est donné par :<ul>
+<li>un ensemble de sommets : $\{A, B, C, D, E, F, G\}$,</li>
+<li>un ensemble d'arêtes : $\{(A,B), (A,F), (A,G), (B,C), (B, F), \ldots \}$.</li>
+</ul>
+</li>
+<li>Les sommets $A$ et $B$ sont adjacents mais $B$ et $D$ ne le sont pas.</li>
+<li>Les voisins du sommet $A$ sont $B$, $F$ et $G$.</li>
+<li>Le degré du sommet $A$ est égal à 3 ($d(A)=3$).</li>
+<li>$A,B,C,D$ est une chaîne, $A,B,F$ aussi.</li>
+<li>$A,F, G,A$ est un cycle.</li>
+<li>Il y a une boucle $(E, E)$. Le degré de $E$ est égal à 4.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Vocabulaire-des-graphes-orient&#233;s">Vocabulaire des graphes <em>orient&#233;s</em><a class="anchor-link" href="#Vocabulaire-des-graphes-orient&#233;s">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="important">
+    <p>Dans le cas des graphes orientés, les arêtes ont un sens et elles sont appelées <strong>arcs</strong>. Par exemple, l'arête $a = (x, y)$ indique qu'il y a un arc d'origine $x$ et d'extrémité finale $y$. De plus, on a les définitions suivantes.</p>
+    <ul>
+        <li><strong>Successeurs et prédécesseurs d'un sommet $x$</strong> : dans un graphe orienté on ne parle plus de <em>voisins</em> d'un sommet mais de ses successeurs et de ses prédécesseurs : le successeurs de $x$ sont tous les sommets $y$ tels qu'il existe un arc $(x, y)$ (de $x$ vers $y$) et les prédécesseurs de $x$ sont tous les sommets $w$ tels qu'il existe un arc $(w, x)$ (de $w$ vers $x$).</li>
+        <li><strong>Chemin</strong> : séquence ordonnée d'arcs consécutifs (on parlait de <em>chaîne</em> dans un graphe non orienté).</li>
+        <li><strong>Circuit</strong> : dans un graphe orienté, un circuit est une suite d'arcs consécutifs (chemin) dont les deux sommets extrémités sont identiques.</li>
+        <li><strong>Degré d'un sommet $x$</strong> : cette notion existe aussi dans le cas des graphes orientés. On distingue le degré entrant d'un sommet $x$ (noté $d_-(x)$ = nombre de prédécesseurs de $x$) et le degré sortant d'un sommet $x$ (noté $d_+(x)$ = nombre de sucesseurs de $x$). Le degré d'un sommet $x$ vaut $d(x) = d_+(x) + d_-(x)$.</li>
+        <li><strong>Boucle</strong> : ce sont les arcs entre un sommet et lui-même.</li>
+    </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Exemple">Exemple<a class="anchor-link" href="#Exemple">&#182;</a></h3><p><img class="centre image-responsive" alt="graphe non orienté" src="data/graphe_oriente.png" width="400"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Ce graphe <em>orienté</em> est donné par :<ul>
+<li>un ensemble de sommets : $\{A, B, C, D, E, F, G\}$,</li>
+<li>un ensemble d'arcs : $\{(A,B), (A,F), (B,C), (C,F), (C, D), \ldots \}$.</li>
+</ul>
+</li>
+<li>Les successeurs de $A$ sont les sommets $B$ et $F$, le seul prédécesseur de $A$ est $G$.</li>
+<li>Le degré du sommet $A$ est égal à 3 ($d(A)= d_+(A) + d_-(A) = 2 + 1 = 3$).</li>
+<li>$A,B,C,D$ est un chemin mais $A,B,F$ n'en est pas un car il n'y a pas d'arc $(B,F)$ (de $B$ vers $F$).</li>
+<li>$A,F,G,A$ est un circuit.</li>
+<li>Il n'y a pas de boucle ici.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Graphes-valu&#233;s">Graphes valu&#233;s<a class="anchor-link" href="#Graphes-valu&#233;s">&#182;</a></h2><p>Certains graphes (orientés ou non) sont dits <em>valués</em> : on ajoute un coût (ou valuation, ou poids) à chaque arête/arc. Dans le cas d'un graphe représentant un réseau routier, le coût sur chaque arête pourrait, par exemple, être la distance entre deux villes.</p>
+<p><img class="centre image-responsive" alt="graphe non orienté" src="data/graphe_value.png" width="400"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Repr&#233;sentations-d'un-graphe">Repr&#233;sentations d'un graphe<a class="anchor-link" href="#Repr&#233;sentations-d'un-graphe">&#182;</a></h1><h2 id="Repr&#233;sentation-par-matrice-d'adjacence">Repr&#233;sentation par matrice d'adjacence<a class="anchor-link" href="#Repr&#233;sentation-par-matrice-d'adjacence">&#182;</a></h2><p>Une <strong>matrice</strong> $M$ est un tableau de nombres, qui peut être représenté en machine par un tableau de tableaux (ou une liste de listes) noté <code>matrice</code>. Chaque nombre de cette matrice est repéré par son numéro de ligne $i$ et son numéro de colonne $j$. On note ce nombre $M_{i,j}$ et on peut y accéder par l'instruction <code>matrice[i][j]</code>.</p>
+<p>Un graphe à $n$ sommets peut être représentée par une <strong>matrice d'adjacence</strong> de taille $n\times n$, où la valeur du coefficient d'indice $i,j$ dépend de l'existence d'une arête ou d'un arc reliant les sommets $i$ et $j$.</p>
+<p><strong>Exemple (graphe orienté)</strong> : Si les sommets $A, B, C, \ldots$ du graphe</p>
+<p><img class="centre image-responsive" alt="graphe non orienté" src="data/graphe_non_oriente.png" width="400"></p>
+<p>sont respectivement numérotés $0$, $1$, $2$, etc. alors sa matrice d'adjacence est</p>
+$$M = \left (\begin{array}{ccccccc} 
+0&amp; 1&amp; 0&amp; 0&amp; 0&amp; 1&amp; 1 \\
+1&amp; 0&amp; 1&amp; 0&amp; 0&amp; 1&amp; 0 \\
+0&amp; 1&amp; 0&amp; 1&amp; 0&amp; 1&amp; 0 \\
+0&amp; 0&amp; 1&amp; 0&amp; 1&amp; 0&amp; 0 \\
+0&amp; 0&amp; 0&amp; 1&amp; 1&amp; 1&amp; 0 \\
+1&amp; 1&amp; 1&amp; 0&amp; 1&amp; 0&amp; 1 \\
+1&amp; 0&amp; 0&amp; 0&amp; 0&amp; 1&amp; 0
+\end{array}\right)$$<p>Par exemple, le sommet $C$ correspond à la troisième ligne. Celle-ci contient dans cet ordre les nombres 0, 1, 0, 1, 0, 1, 0 donc cela signifie qu'il y a des <strong>arêtes</strong> $(C,B)$, $(C, D)$ et $(C,F)$ (les 1) mais pas entre $C$ et les sommets $A$, $C$, $E$ et $G$ (les 0).</p>
+<p>Cette matrice peut être mémorisée en machine par le tableau de tableaux suivant.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">matrice</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Dans le cas d'un graphe non orienté, la matrice d'adjacence est nécessairement <em>symétrique</em> par rapport à sa diagonale : on a $M_{i,j} = M_{j,i}$.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Exemple (graphe non orienté)</strong> :</p>
+<p>C'est le même principe en faisant attention au sens des arcs : $M_{i,j} = 1$ s'il y a un arc d'origine $i$ et d'extrémité $j$ et $M_{i,j} = 0$ sinon. Ainsi, le graphe</p>
+<p><img class="centre image-responsive" alt="graphe non orienté" src="data/graphe_oriente.png" width="400"></p>
+<p>a pour matrice d'adjacence</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$M = \left (\begin{array}{ccccccc} 
+0&amp; 1&amp; 0&amp; 0&amp; 0&amp; 1&amp; 0 \\
+0&amp; 0&amp; 1&amp; 0&amp; 0&amp; 0&amp; 0 \\
+0&amp; 0&amp; 0&amp; 1&amp; 0&amp; 1&amp; 0 \\
+0&amp; 0&amp; 1&amp; 0&amp; 0&amp; 0&amp; 0 \\
+0&amp; 0&amp; 0&amp; 1&amp; 0&amp; 0&amp; 0 \\
+0&amp; 1&amp; 0&amp; 0&amp; 1&amp; 0&amp; 1 \\
+1&amp; 0&amp; 0&amp; 0&amp; 0&amp; 0&amp; 0
+\end{array}\right)$$<p>Par exemple, le sommet $C$ correspond à la troisième ligne. Celle-ci contient dans cet ordre les nombres 0, 0, 0, 1, 0, 1, 0 donc cela signifie qu'il y a des <strong>arcs</strong> $(C,D)$ et $(C,F)$ (les 1) mais pas entre $C$ et les autres sommets (les 0).</p>
+<blockquote><p>Comme les arcs ont un sens, la matrice d'adjacence d'un graphe orienté n'est générallement pas symétrique.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Repr&#233;sentation-par-listes-des-successeurs">Repr&#233;sentation par listes des successeurs<a class="anchor-link" href="#Repr&#233;sentation-par-listes-des-successeurs">&#182;</a></h2><p>Une autre façon de représenter un graphe est d'associer à chaque sommet la liste des sommets auxquels il est relié. Dans le cas d'un graphe orienté, on parle de <strong>liste de successeurs</strong>, alors que dans le cas d'un graphe non orienté on parle de <strong>liste de voisins</strong>.</p>
+<p>Une façon simple et efficace est d'utiliser un <em>dictionnaire</em> où chaque sommet est associé à la liste de ses successeurs/voisins.</p>
+<p><strong>Exemples</strong> :</p>
+<ul>
+<li>Le graphe orienté
+<img class="centre image-responsive" alt="graphe non orienté" src="data/graphe_non_oriente.png" width="400">
+peut être représenté par le dictionnaire suivant, où les clés sont les sommets et les valeurs sont les listes de voisins.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dico1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;E&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;E&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="s2">&quot;E&quot;</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;F&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;E&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;G&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Le graphe orienté
+<img class="centre image-responsive" alt="graphe non orienté" src="data/graphe_oriente.png" width="400">
+peut être représenté par le dictionnaire suivant, où les clés sont les sommets et les valeurs sont les listes de successeurs.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dico2</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;E&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;D&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;F&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;E&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;G&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Efficacit&#233;-des-repr&#233;sentations">Efficacit&#233; des repr&#233;sentations<a class="anchor-link" href="#Efficacit&#233;-des-repr&#233;sentations">&#182;</a></h2><p>La matrice d'adjacence est simple à mettre en oeuvre mais nécessite un espace mémoire proportionnel à $n \times n$ (où $n$ est le nombre de sommets). Ainsi, un graphe de 1000 sommets nécessitent une matrice d'un million de nombres même si le graphe contient peu d'arêtes/arcs. Pour le même graphe contenant peu d'arêtes/arcs, le dictionnaire ne mémoriserait pour chaque sommet que les voisins/successeurs (les 1) sans avoir à mémoriser les autres (les 0). En revanche, pour un graphe contenant beaucoup d'arêtes/arcs, la dictionnaire occuperait plus d'espace mémoire que la matrice d'adjacence.</p>
+<p>Cela implique en outre que l'accès aux voisins/sucesseurs d'un sommet est plus rapide avec le dictionnaire car il n'est pas nécessaire de parcourir toute la ligne de la matrice ($n$ valeurs) alors même que celle-ci peut ne contenir que très peu de 1.</p>
+<p>De plus, l'utilisation d'un dictionnaire permet de nommer les sommets sans ambiguité et ne les limite pas à des entiers comme c'est le cas pour la matrice d'adjacence (même si on peut associer chacun de ces entiers au sommet correspondant, ce que nous avons fait précédemment).</p>
+<p>Enfin, au lieu d'utiliser le type liste (<code>list</code> de Python ici) pour mémoriser les voisins/successeurs, on peut avantageusement utiliser le type ensemble (type prédéfini <code>set</code> de Python) qui est une structure de données permettant un accès plus efficace aux éléments (l'implémentation se fait par des <em>tables de hachage</em>, hors programme de NSI).</p>
+<blockquote><p><strong>A faire</strong> : tous les exercices du notebook d'activités !</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Impl&#233;mentations">Impl&#233;mentations<a class="anchor-link" href="#Impl&#233;mentations">&#182;</a></h1><p>La fin de ce cours résume une partie de ce qui a été fait en exercices, notamment deux implémentations du type <code>GrapheNonOriente</code> défini par l'interface suivante :</p>
+<ul>
+<li><code>faire_graphe(sommets)</code> pour construire un graphe (sans les arêtes) à partir de la liste <code>sommets</code> de ses sommets.</li>
+<li><code>ajouter_arete(G, x, y)</code> pour ajouter une arête entre les sommets <code>x</code> et <code>y</code> du graphe <code>G</code>.</li>
+<li><code>sommets(G)</code> pour accéder à la liste des sommets du graphe <code>G</code>.</li>
+<li><code>voisins(G, x)</code> pour accéder à la liste des voisins du sommet <code>x</code> du graphe <code>G</code>.</li>
+</ul>
+<p>La première implémentation se fait par une classe <code>GrapheNoMa</code> s'appuyant sur la représentation par une matrice d'adjacence et la seconde par une classe <code>GrapheNoLs</code> s'appuyant sur les listes de successeurs (qui sont les voisins dans le cas d'un graphe non orienté).</p>
+<p>On termine en présentant comment passer d'une représentation à l'autre.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Par-une-matrice-d'adjacence">Par une matrice d'adjacence<a class="anchor-link" href="#Par-une-matrice-d'adjacence">&#182;</a></h2><p>Voici la classe <code>GrapheNoMa</code> s'appuyant sur une matrice d'adjacence.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">GrapheNoMa</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sommets</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">som</span> <span class="o">=</span> <span class="n">sommets</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dimension</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sommets</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">adjacence</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dimension</span><span class="p">)]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dimension</span><span class="p">)]</span>
+    
+    <span class="k">def</span> <span class="nf">ajouter_arete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">som</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">som</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">adjacence</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">adjacence</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    
+    <span class="k">def</span> <span class="nf">sommets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">som</span>
+    
+    <span class="k">def</span> <span class="nf">voisins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">som</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">som</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dimension</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">adjacence</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Par-une-liste-de-successeurs">Par une liste de successeurs<a class="anchor-link" href="#Par-une-liste-de-successeurs">&#182;</a></h2><p>Voici la classe <code>GrapheNoLs</code> s'appuyant sur un dictionnaire contenant les listes de successeurs de chaque sommet.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">GrapheNoLs</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sommets</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">som</span> <span class="o">=</span> <span class="n">sommets</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="n">sommet</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">sommet</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">som</span><span class="p">}</span> <span class="c1"># création par compréhension</span>
+    
+    <span class="k">def</span> <span class="nf">ajouter_arete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">y</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="n">x</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="n">y</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">sommets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">som</span>
+    
+    <span class="k">def</span> <span class="nf">voisins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut alors créer des graphes comme objets de ces deux classes et leur ajouter des arrêtes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># graphe g1 représenté par une matrice d&#39;adjacence</span>
+<span class="n">g1</span> <span class="o">=</span> <span class="n">GrapheNoMa</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">])</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">ajouter_arete</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">ajouter_arete</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">)</span>
+<span class="n">g1</span><span class="o">.</span><span class="n">ajouter_arete</span><span class="p">(</span><span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">)</span>
+
+<span class="c1"># graphe g2 représenté par liste de successeurs</span>
+<span class="n">g2</span> <span class="o">=</span> <span class="n">GrapheNoLs</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">])</span>
+<span class="n">g2</span><span class="o">.</span><span class="n">ajouter_arete</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
+<span class="n">g2</span><span class="o">.</span><span class="n">ajouter_arete</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">)</span>
+<span class="n">g2</span><span class="o">.</span><span class="n">ajouter_arete</span><span class="p">(</span><span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut accéder aux graphes à travers les fonctions de l'interface du type abstrait de manière totalement identique.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">g1</span><span class="o">.</span><span class="n">sommets</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">g1</span><span class="o">.</span><span class="n">voisins</span><span class="p">(</span><span class="s2">&quot;c&quot;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]
+[&#39;a&#39;, &#39;d&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">g2</span><span class="o">.</span><span class="n">sommets</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">g2</span><span class="o">.</span><span class="n">voisins</span><span class="p">(</span><span class="s2">&quot;c&quot;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]
+[&#39;a&#39;, &#39;d&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En Python, un utilisateur malin pourra observer la façon dont sont mémorisées les graphes dans les deux cas :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g1</span><span class="o">.</span><span class="n">adjacence</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[[0, 1, 1, 0], [1, 0, 0, 0], [1, 0, 0, 1], [0, 0, 1, 0]]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g2</span><span class="o">.</span><span class="n">dic</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;a&#39;: [&#39;b&#39;, &#39;c&#39;], &#39;b&#39;: [&#39;a&#39;], &#39;c&#39;: [&#39;a&#39;, &#39;d&#39;], &#39;d&#39;: [&#39;c&#39;]}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Mais nous avons vu qu'il est possible de palier à ce problème en définissant une méthode de représentation identique dans chacune des deux classes pour <em>masquer</em> cette différence d'implémentation, qui importe peu à l'utilisateur de la classe.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Passage-d'une-repr&#233;sentation-&#224;-l'autre">Passage d'une repr&#233;sentation &#224; l'autre<a class="anchor-link" href="#Passage-d'une-repr&#233;sentation-&#224;-l'autre">&#182;</a></h2><p>Les deux implémentations sont totalement équivalentes et on peut passer de l'une à l'autre simplement en énumérant les sommets et les voisins depuis une représentation tout en construisant l'autre représentation.</p>
+<p>Par exemple, la fonction suivante permet de passer d'une matrice d'adjacence à une liste de successeurs (la fonction de traduction réciproque est similaire).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">ma_to_ls</span><span class="p">(</span><span class="n">gma</span><span class="p">):</span>
+    <span class="n">gls</span> <span class="o">=</span> <span class="n">GrapheNoLs</span><span class="p">(</span><span class="n">gma</span><span class="o">.</span><span class="n">sommets</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">gma</span><span class="o">.</span><span class="n">sommets</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">gma</span><span class="o">.</span><span class="n">voisins</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="n">gls</span><span class="o">.</span><span class="n">ajouter_arete</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">gls</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g3</span> <span class="o">=</span> <span class="n">ma_to_ls</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;représentation de départ :&quot;</span><span class="p">,</span> <span class="n">g1</span><span class="o">.</span><span class="n">adjacence</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;traduction :&quot;</span><span class="p">,</span> <span class="n">g3</span><span class="o">.</span><span class="n">dic</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>représentation de départ : [[0, 1, 1, 0], [1, 0, 0, 0], [1, 0, 0, 1], [0, 0, 1, 0]]
+traduction : {&#39;a&#39;: [&#39;b&#39;, &#39;c&#39;], &#39;b&#39;: [&#39;a&#39;], &#39;c&#39;: [&#39;a&#39;, &#39;d&#39;], &#39;d&#39;: [&#39;c&#39;]}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>On peut implémenter le type abstrait <code>GrapheOriente</code> de façon quasiment similaire (fait en exercices).</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Bilan">Bilan<a class="anchor-link" href="#Bilan">&#182;</a></h1><ul>
+<li>Le <strong>graphe</strong> est une structure de données permettant de modéliser de nombreuses situations de la vie courante. </li>
+<li>Il est définit par un ensemble de <em>sommets</em> et de <em>liaisons</em>. Ces liaisons peuvent être orientées ou non et on les appelle alors respectivement des <strong>arcs</strong> ou des <strong>arêtes</strong>.</li>
+<li>On peut représenter en machine un graphe par une <em>matrice d'adjacence</em> ou par un dictionnaire contenant les <em>listes de successeurs</em> (de chaque sommet).</li>
+<li>La programmation par des classes de deux implémentations d'un graphe non orienté (resp. orienté) a prouvé que celles-ci étaient indépendantes de l'interface du type abstrait <code>GrapheNonOriente</code> (resp. <code>GrapheOriente</code>) et qu'elles sont équivalentes, on peut notamment passer de l'une à l'autre facilement.</li>
+<li>Nous verrons dans un prochaine chapitre différents algorithmes sur les graphes (parcours en profondeur d'abord, en largeur d'abord, repérer des cycles, recherche de chemin dans un graphe).</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Références :</strong></p>
+<ul>
+<li>Equipe pédagoqique DIU EIL, Université de Nantes.</li>
+</ul>
+<hr>
+<p>Germain BECKER, Lycée Mounier, ANGERS</p>
+<p><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+

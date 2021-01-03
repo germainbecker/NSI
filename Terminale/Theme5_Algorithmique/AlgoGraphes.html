@@ -1,0 +1,1065 @@
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h1><p>Un des premiers algorithmes qu’on doit savoir utiliser sur un graphe est celui de son parcours. Parcourir un graphe, c’est visiter ses différents sommets, afin de pouvoir opérer une action tour à tour sur eux.</p>
+<p>Les deux algorithmes fondamentaux permettant de parcourir un graphe s'appellent :</p>
+<ul>
+<li>le <em>parcours en profondeur</em> d'abord ;</li>
+<li>le <em>parcours en largeur</em> d'abord.</li>
+</ul>
+<p>Selon les actions opérées au cours d'un parcours, on peut détecter des cycles dans le graphe, trouver le chemin le plus court entre deux sommets, calculer la distance entre deux sommets, etc.</p>
+<p>Les algorithmes sur les graphes sont très utilisés dans la vie courante, ils permettent par exemple :</p>
+<ul>
+<li>le routage des paquets de données dans un réseau ;</li>
+<li>de trouver le chemin le plus court entre deux villes (utilisé par les GPS) ;</li>
+<li>de sortir d'un labyrinthe ;</li>
+<li>etc.</li>
+</ul>
+<p>Dans la suite, on considérera les deux graphes <code>g1</code> et <code>g2</code>suivants.</p>
+<p><img class="centre image-responsive" src="data/g12.png" alt="deux graphes"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ils seront représentés par listes de successeurs et implémentés par des dictionnaires.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;E&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;E&quot;</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;E&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;E&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;F&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;G&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">]</span>    
+<span class="p">}</span>
+
+<span class="n">g2</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;E&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;E&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;F&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Les sommets d'un graphe sont les clés du dictionnaire. En particulier, on peut accéder aux voisins/successeurs d'un sommet en utilisant sa clé.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g1</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">]</span> <span class="c1"># voisins du sommet A dans g1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[2]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;B&#39;, &#39;D&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Ces deux graphes sont disponibles sur le site <em>graphonline.ru</em> : <a href="http://graphonline.ru/en/?graph=TxKmfYfqYJumSCfhZZcst">graphe 1</a> et <a href="http://graphonline.ru/en/?graph=UkmEImsrxQHScoYDZZcst">graphe 2</a> . On pourra en particulier leur appliquer des algorithmes.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Parcours-en-profondeur-et-en-largeur">Parcours en profondeur et en largeur<a class="anchor-link" href="#Parcours-en-profondeur-et-en-largeur">&#182;</a></h1><h2 id="Comparaison-des-deux-algorithmes">Comparaison des deux algorithmes<a class="anchor-link" href="#Comparaison-des-deux-algorithmes">&#182;</a></h2><p>Ces deux algorithmes ont le même but : explorer tous les sommets atteignables d'un graphe à partir d'un sommet de départ. L'idée est d'explorer les voisins (ou successeurs) rencontrés au fur et à mesure en marquant les sommets visités pour ne pas tourner en rond.</p>
+<p><strong>Parcours en profondeur d'abord</strong> : à partir d'un sommet, on explore un de ses voisins (ou successeurs), et ainsi de suite. S'il n'y a plus de voisins, on revient au sommet précédent et on passe à un autre de ses enfants. Cette façon de faire implique que chaque "branche" est explorée jusqu'au bout, avant de revenir sur nos pas, d'où le nom de parcours en <em>profondeur</em>.</p>
+<p><strong>Parcours en largeur d'abord</strong> : à partir d'un sommet, on explore tous ses voisins (ou successeurs), puis on explore tous les voisins de ces voisins, et ainsi de suite. Le parcours balaie ainsi chaque "branche" au même rythme, d'où le nom de parcours en <em>largeur</em>.</p>
+<blockquote><p>La seule différence entre ces deux algorithmes est donc l'ordre dans lequel les voisins sont traités. Cela permet d'écrire le même algorithme pour les deux parcours, en changeant juste la collection qui stocke les sommets à visiter : une <em>pile</em> pour le parcours en profondeur et une <em>file</em> pour le parcours en largeur.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Principe-de-l'algorithme-de-parcours-en-profondeur">Principe de l'algorithme de parcours en profondeur<a class="anchor-link" href="#Principe-de-l'algorithme-de-parcours-en-profondeur">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="important">
+<ul>
+    <li>On choisit un sommet de départ</li>
+    <li>On l'empile</li>
+    <li>Tant que la pile n'est pas vide :</li>
+    <ul>
+        <li>On dépile son sommet</li>
+        <li>S'il n'a pas encore été visité on le marque et on empile tous ses voisins non encore visités</li>
+        <li>Sinon, on ne fait rien (on passe donc directement à l'itération suivante)</li>
+    </ul>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En stockant les sommets encore à visiter dans une <strong>pile</strong>, on s'assure que ce sont les derniers sommets découverts qui vont être visités en premier (LIFO, <em>Last In First Out</em>), cela correspond au parcours en profondeur :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">parcours_prof</span><span class="p">(</span><span class="n">graphe</span><span class="p">,</span> <span class="n">debut</span><span class="p">):</span>
+    <span class="n">visites</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">pile</span> <span class="o">=</span> <span class="p">[</span><span class="n">debut</span><span class="p">]</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">pile</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">pile</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">visites</span><span class="p">:</span>   <span class="c1"># si s a déjà été visité</span>
+            <span class="k">continue</span>       <span class="c1"># on passe à l&#39;itération suivante</span>
+        <span class="n">visites</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># sinon l&#39;itération en cours se poursuit</span>
+        <span class="k">for</span> <span class="n">voisin</span> <span class="ow">in</span> <span class="n">graphe</span><span class="p">[</span><span class="n">s</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">voisin</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visites</span><span class="p">:</span>
+                <span class="n">pile</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">voisin</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">visites</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>On a utilisé ici un dictionnaire pour marquer les sommets (en les ajoutant dans le dictionnaire). La valeur d'un sommet visité (ici <code>True</code>) n'a pas d'importance. On aurait donc pu utiliser ici une structure de données abstraite plus simple : l'<em>ensemble</em>.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Principe-de-l'algorithme-de-parcours-en-largeur">Principe de l'algorithme de parcours en largeur<a class="anchor-link" href="#Principe-de-l'algorithme-de-parcours-en-largeur">&#182;</a></h3><p>C'est simple, il suffit de remplace la pile par une file !</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="important">
+<ul>
+    <li>On choisit un sommet de départ</li>
+    <li>On l'enfile</li>
+    <li>Tant que la file n'est pas vide :</li>
+    <ul>
+        <li>On défile son premier élément</li>
+        <li>S'il n'a pas encore été visité on le marque et on enfile tous ses voisins non encore visités</li>
+        <li>Sinon, on ne fait rien (on passe donc directement à l'itération suivante)</li>
+    </ul>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En stockant les sommets encore à visiter dans une <strong>file</strong>, on s'assure que ce sont les premiers sommets découverts qui vont être visités en premier (FIFO, <em>First In First Out</em>), cela correspond au parcours en largeur :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">parcours_larg</span><span class="p">(</span><span class="n">graphe</span><span class="p">,</span> <span class="n">debut</span><span class="p">):</span>
+    <span class="n">visites</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="p">[</span><span class="n">debut</span><span class="p">]</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">visites</span><span class="p">:</span>   <span class="c1"># si s a déjà été visité</span>
+            <span class="k">continue</span>       <span class="c1"># on passe à l&#39;itération suivante</span>
+        <span class="n">visites</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># sinon l&#39;itération en cours se poursuit</span>
+        <span class="k">for</span> <span class="n">voisin</span> <span class="ow">in</span> <span class="n">graphe</span><span class="p">[</span><span class="n">s</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">voisin</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visites</span><span class="p">:</span>
+                <span class="n">file</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">voisin</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">visites</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Ici, les structures de pile et de file sont implémentées par des listes Python mais on peut bien sûr utiliser n'importe quelle autre implémentation (voir exercices).</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En observant l'ordre d'ajout des clés dans le dictionnaire (<em>valable à partir de Python 3.7 !</em>), on peut voir l'ordre des sommets visités par chaque parcours.</p>
+<p><img class="centre image-responsive" src="data/g1.png" alt="deux graphes"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">parcours_prof</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;A&#39;: True, &#39;D&#39;: True, &#39;E&#39;: True, &#39;C&#39;: True, &#39;G&#39;: True, &#39;F&#39;: True, &#39;B&#39;: True}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">parcours_larg</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;A&#39;: True, &#39;B&#39;: True, &#39;D&#39;: True, &#39;C&#39;: True, &#39;E&#39;: True, &#39;F&#39;: True, &#39;G&#39;: True}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Le parcours en profondeur donne l'ordre de parcours A --&gt; D --&gt; E --&gt; C --&gt; G --&gt; F --&gt; B.</p>
+<p>Le parcours en largeur donne l'ordre de parcours A --&gt; B --&gt; D --&gt; C --&gt; E --&gt; F --&gt; G.</p>
+<blockquote><p><strong>Attention</strong> : L'odre de parcours dépend de l'ordre dans lequel sont stockés les voisins dans les listes de voisins/successeurs car celui-ci détermine l'ordre d'ajout dans la pile ou la file. Il y a donc plusieurs réponses possibles pour un même parcours.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Version-r&#233;cursive-du-parcours-en-profondeur">Version r&#233;cursive du parcours en profondeur<a class="anchor-link" href="#Version-r&#233;cursive-du-parcours-en-profondeur">&#182;</a></h2><p>En réalité, le parcours en profondeur est naturellement <em>récursif</em>. En effet, un part du sommet de départ et on explore l'un de ses voisins, puis on explore l'un des voisins du voisin, ainsi de suite jusqu'à ce qu'on ne trouve plus de voisins (on arrive à un "cul-de-sac"), auquel cas on revient au sommet précédent.</p>
+<p>On peut traduire l'algorithme de parcours en profondeur de la façon très simple suivante : si un sommet n'est pas visité, on le marque et on parcourt récursivement tous ses voisins.</p>
+<p>Comme souvent, l'énoncé d'un programme récursif est plus concis (et plus "logique"). Voici une implémentation récursive de cet algorithme :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">parcours</span><span class="p">(</span><span class="n">graphe</span><span class="p">,</span> <span class="n">visites</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;parcours en profondeur depuis le sommet s&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">s</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visites</span><span class="p">:</span>
+        <span class="n">visites</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">for</span> <span class="n">voisin</span> <span class="ow">in</span> <span class="n">graphe</span><span class="p">[</span><span class="n">s</span><span class="p">]:</span>
+            <span class="n">parcours</span><span class="p">(</span><span class="n">graphe</span><span class="p">,</span> <span class="n">visites</span><span class="p">,</span> <span class="n">voisin</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">visites</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Il suffit alors de lancer le premier appel avec un dictionnaire <code>visites</code> vide, ce que fait la fonction d'interface <code>parcours_prof_rec</code> suivante.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">parcours_prof_rec</span><span class="p">(</span><span class="n">graphe</span><span class="p">,</span> <span class="n">debut</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">parcours</span><span class="p">(</span><span class="n">graphe</span><span class="p">,</span> <span class="p">{},</span> <span class="n">debut</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut vérifier que cela fonctionne tout autant.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">parcours_prof_rec</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;A&#39;: True, &#39;B&#39;: True, &#39;C&#39;: True, &#39;E&#39;: True, &#39;D&#39;: True, &#39;F&#39;: True, &#39;G&#39;: True}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>L'ordre des sommets visités n'est pas le même car ici c'est le premier voisin écrit dans la liste des sucesseurs (et pas encore visité) qui est exploré en premier. C'était le contraire avec la pile car les sommets étant empilés l'un après l'autre, celui en haut de la pile était le dernier écrit dans la liste de successeurs. On pourrait obtenir le même résultat si on empilait les voisins/successeurs dans l'ordre inverse.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Les algorithmes de parcours en profondeur ou en largeur permettent, selon les actions opérées sur les sommets découverts, à écrire de nouveaux algorithmes essentiels comme ceux permettant de :</p>
+<ul>
+<li>repérer la présence d'un cycle dans un graphe ;</li>
+<li>chercher un chemin dans un graphe</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Rep&#233;rer-la-pr&#233;sence-d'un-cycle-dans-un-graphe">Rep&#233;rer la pr&#233;sence d'un cycle dans un graphe<a class="anchor-link" href="#Rep&#233;rer-la-pr&#233;sence-d'un-cycle-dans-un-graphe">&#182;</a></h1><p>Rappelons la définition d'un <em>cycle</em> : dans un graphe non orienté, un <strong>cycle</strong> est une suite d'arêtes consécutives (chaîne) dont les deux sommets extrémités sont identiques.</p>
+<blockquote><p>Le terme <em>cycle</em> n'a de sens que dans un graphe <em>non orienté</em>, c'est pourquoi on ne considère dans ce paragraphe que des <strong>graphes <u>non orientés</u></strong>.</p>
+</blockquote>
+<h2 id="Principe-de-l'algorithme-de-d&#233;tection-de-cycle">Principe de l'algorithme de d&#233;tection de cycle<a class="anchor-link" href="#Principe-de-l'algorithme-de-d&#233;tection-de-cycle">&#182;</a></h2><p>Il suffit d'adapter légèrement, au choix, l'un des deux algorithmes de parcours du graphe. Si lors du parcours on rencontre (en dépilant ou en défilant) un sommet déjà visité (marqué grâce au dictionnaire <code>visites</code>), on a trouvé un cycle !
+En effet, cela signifie que ce sommet a été ajouté au moins deux fois dans la pile ou dans la file, ce qui veut dire que l'on peut l'atteindre par au moins deux sommets différents. Ces deux chemins ayant pour origine le sommet de départ du parcours, on a nécessairement un cycle.</p>
+<p>L'algorithme est identique à celui d'un parcours en stoppant le parcours si un cycle est trouvé :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="important">
+<ul>
+    <li>On choisit un sommet de départ</li>
+    <li>On l'empile</li>
+    <li>Tant que la pile n'est pas vide :</li>
+    <ul>
+        <li>On dépile son sommet</li>
+        <li>S'il n'a pas encore été visité on le marque et on empile tous ses voisins non encore visités</li>
+        <li>Sinon, <strong>on a trouvé un cycle et on renvoie Vrai</strong></li>
+    </ul>
+</ul>
+<p>Si le parcours se termine sans trouver de cycle, on renvoie Faux.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>L'écriture d'une fonction repérant un cycle est donc quasiment identique à celle d'un parcours en profondeur (ou en largeur) : si on rencontre un sommet déjà visité, au lieu de passer au suivant (avec le mot-clé <code>continue</code>), il faut renvoyer <code>True</code>. Si à l'issue du parcours on n'a pas trouvé de cycle, on renvoie <code>False</code>.</p>
+<p>La fonction <code>parcours_prof_cycle</code> qui suit renvoie <code>True</code> si et seulement si on trouve un cycle en partant du sommet <code>debut</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">parcours_prof_cycle</span><span class="p">(</span><span class="n">graphe</span><span class="p">,</span> <span class="n">debut</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Renvoie True ssi un cycle est détecté dans le parcours à partir du sommet debut.&quot;&quot;&quot;</span>
+    <span class="n">visites</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">pile</span> <span class="o">=</span> <span class="p">[</span><span class="n">debut</span><span class="p">]</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">pile</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">pile</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">visites</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>    <span class="c1"># on a remplacé continue</span>
+        <span class="n">visites</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span> 
+        <span class="k">for</span> <span class="n">voisin</span> <span class="ow">in</span> <span class="n">graphe</span><span class="p">[</span><span class="n">s</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">voisin</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visites</span><span class="p">:</span>
+                <span class="n">pile</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">voisin</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">False</span> <span class="c1"># on renvoie False et non plus le dictionnaire visites</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Le principe serait le même en utilisant un parcours en largeur.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut vérifier qu'un cycle est bien détecté dans le graphe <code>g1</code> mais pas dans le graphe <code>g2</code>.</p>
+<p><img class="centre image-responsive" src="data/g1.png" alt="deux graphes"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">parcours_prof_cycle</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img class="centre image-responsive" src="data/g2.png" alt="deux graphes"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">parcours_prof_cycle</span><span class="p">(</span><span class="n">g2</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[12]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>False</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Cas-d'un-graphe-non-connexe">Cas d'un graphe non connexe<a class="anchor-link" href="#Cas-d'un-graphe-non-connexe">&#182;</a></h2><p>Si le graphe (non orienté) est connexe, on peut tester la présence d'un cycle à partir de n'importe quel sommet de départ.  En revanche, pour un graphe non connexe (et toujours non orienté), il faut s'assurer de parcourir tous ses sommets. On peut par exemple lancer la détection à partir de chaque sommet. La fonction suivante permet de faire ce travail.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">possede_cycle</span><span class="p">(</span><span class="n">graphe</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">graphe</span><span class="p">:</span>  <span class="c1"># on lance le parcours à partir de chaque sommet x du graphe</span>
+        <span class="k">if</span> <span class="n">parcours_prof_cycle</span><span class="p">(</span><span class="n">graphe</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="c1"># si on trouve un cycle à partir d&#39;un sommet x la réponse est vrai</span>
+            <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># sinon il n&#39;y a pas de cycle</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Recherche-d'un-chemin-(ou-d'une-cha&#238;ne)-dans-un-graphe">Recherche d'un chemin (ou d'une cha&#238;ne) dans un graphe<a class="anchor-link" href="#Recherche-d'un-chemin-(ou-d'une-cha&#238;ne)-dans-un-graphe">&#182;</a></h1><p>Rappelons quelques définitions :</p>
+<ul>
+<li>Dans un graphe non orienté, une <strong>chaîne</strong> est une séquence ordonnée d'arêtes telle que chaque arête a une extrémité en commun avec l'arête suivante.</li>
+<li>Dans un graphe orienté, un <strong>chemin</strong> désigne une séquence ordonnée d'arcs consécutifs.</li>
+</ul>
+<blockquote><p>Dans la suite, on ne parlera que de chaînes ou de chemins <em>simples</em>, c'est-à-dire n'empruntant pas deux fois la même arête (ou le même arc).</p>
+</blockquote>
+<p>En utilisant un parcours en profondeur ou en largeur, on peut trouver tous les sommets accessibles à partir d'un sommet de départ. Cela permet d'écrire très facilement un algorithme qui renvoie Vrai s'il <em>existe un chemin</em> pour aller d'un point A à un point B. Il suffit de lancer l'un des deux parcours à partir du sommet A et de regarder à la fin du parcours si le sommet B a été atteint (s'il est dans le dictionnaire <code>visites</code>).</p>
+<p>Cependant, cet algorithme ne permet pas d'exhiber un tel chemin. Pour cela, il faut travailler un peu plus.</p>
+<h2 id="Principe-de-l'algorithme-de-recherche-d'un-chemin">Principe de l'algorithme de recherche d'un chemin<a class="anchor-link" href="#Principe-de-l'algorithme-de-recherche-d'un-chemin">&#182;</a></h2><p>Une idée est d'<strong>utiliser différemment le dictionnaire <code>visites</code></strong>. Celui-ci ne servira plus à marquer (à <code>True</code>) les sommets visités, mais associera à chaque sommet, le sommet qui permet de l'atteindre pour la première fois (le premier sommet duquel il est voisin dans le parcours).</p>
+<p>Autrement dit, dès qu'on visite un sommet, il faut l'associer à tous ses voisins (non encore visités) dans le dictionnaire <code>visites</code>. On intialisera à <code>None</code> le sommet initial dans le dictionnaire <code>visites</code>. A la fin du parcours, il suffira de "remonter" le dictionnaire du sommet de fin au sommet de début.</p>
+<p>Voici le principe plus en détail (en utilisant un parcours en profondeur) :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="important">
+<ul>
+    <li>On choisit le sommet de départ que l'on associe à <code>None</code></li>
+    <li>On l'empile</li>
+    <li>Tant que la pile n'est pas vide :</li>
+    <ul>
+        <li>On dépile son sommet <code>s</code></li>
+        <li>(On ne le marque plus)</li>
+        <li>On empile tous ses voisins non encore visités et on les associe à la valeur <code>s</code> dans le dictionnaire <code>visites</code></li>
+    </ul>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>La fonction <code>parcours_prof_ch</code> suivante permet de construire ce dictionnaire <code>visites</code>. Elle est basée sur un parcours en profondeur mais s'écrirait de la même manière avec un parcours en largeur (en remplaçant la pile par une file bien sûr).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">parcours_prof_ch</span><span class="p">(</span><span class="n">graphe</span><span class="p">,</span> <span class="n">debut</span><span class="p">):</span>
+    <span class="n">visites</span> <span class="o">=</span> <span class="p">{</span><span class="n">debut</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span> <span class="c1"># on associe le sommet de départ à None</span>
+    <span class="n">pile</span> <span class="o">=</span> <span class="p">[</span><span class="n">debut</span><span class="p">]</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">pile</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">pile</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="c1"># (on ne marque plus les sommets non visités)</span>
+        <span class="k">for</span> <span class="n">voisin</span> <span class="ow">in</span> <span class="n">graphe</span><span class="p">[</span><span class="n">s</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">voisin</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visites</span><span class="p">:</span>
+                <span class="n">pile</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">voisin</span><span class="p">)</span>
+                <span class="n">visites</span><span class="p">[</span><span class="n">voisin</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span> <span class="c1"># on associe s à tous les voisins de s pas encore visités</span>
+    <span class="k">return</span> <span class="n">visites</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut lancer le parcours sur le graphe <code>g1</code> à partir du sommet A.</p>
+<p><img class="centre image-responsive" src="data/g1.png" alt="deux graphes"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">parcours_prof_ch</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[15]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;A&#39;: None, &#39;B&#39;: &#39;A&#39;, &#39;D&#39;: &#39;A&#39;, &#39;E&#39;: &#39;D&#39;, &#39;C&#39;: &#39;E&#39;, &#39;F&#39;: &#39;C&#39;, &#39;G&#39;: &#39;C&#39;}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Pour trouver le chemin entre le sommet A et le sommet E, il faut "remonter" les sommets à partir de G :</p>
+<ul>
+<li>On cherche G : il est associé à la valeur C donc on a pu atteindre G à partir de C ;</li>
+<li>On cherche C : atteint à partir de E ;</li>
+<li>On cherche E : atteint à partir de D ;</li>
+<li>On cherche D : atteint à partir de A.</li>
+</ul>
+<p>On a terminé puisqu'on a fini par tomber sur A. Un chemin possible entre A et G est donc : A --&gt; D --&gt; E --&gt; C --&gt; G.</p>
+<blockquote><p><strong>Remarque</strong> : on était sûr de remonter jusqu'à A puisque G, se trouvant dans le dictionnaire <code>visites</code>, était nécessairement atteignable en partant de A. Si un sommet ne se trouve pas dans <code>visites</code>, on sait alors qu'il n'existe pas de chemin vers ce sommet en partant de A.</p>
+</blockquote>
+<p>La fonction <code>chemin_prof(graphe, debut, fin)</code> permet d'effectuer ce travail en renvoyant une liste <code>ch</code> contenant les sommets du chemin trouvé entre les sommets <code>debut</code> et <code>fin</code>. Elle ajoute les sommets à <code>ch</code> au fur et à mesure de la remontée jusqu'à tomber sur celui de départ et renvoie ensuite cette liste qui a été préalablement renversée pour obtenir les sommets dans le bon ordre.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">chemin_prof</span><span class="p">(</span><span class="n">graphe</span><span class="p">,</span> <span class="n">debut</span><span class="p">,</span> <span class="n">fin</span><span class="p">):</span>
+    <span class="n">visites</span> <span class="o">=</span> <span class="n">parcours_prof_ch</span><span class="p">(</span><span class="n">graphe</span><span class="p">,</span> <span class="n">debut</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">fin</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visites</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">fin</span>
+    <span class="n">ch</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="p">]</span>           <span class="c1"># on ajoute le sommet de fin à partir duquel commence la &quot;remontée&quot;</span>
+    <span class="k">while</span> <span class="n">s</span> <span class="o">!=</span> <span class="n">debut</span><span class="p">:</span>  <span class="c1"># tant qu&#39;on ne trouve pas le sommet de départ</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">visites</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="c1"># on remonte en passant au sommet associé</span>
+        <span class="n">ch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>   <span class="c1"># qu&#39;on ajoute au chemin</span>
+    <span class="n">ch</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>       <span class="c1"># ne pas oublier de renverse la liste pour renvoyer le chemin dans le bon ordre</span>
+    <span class="k">return</span> <span class="n">ch</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut vérifier qu'elle renvoie le chemin trouvé à la main entre A et G.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">chemin_prof</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[17]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;A&#39;, &#39;D&#39;, &#39;E&#39;, &#39;C&#39;, &#39;G&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img class="centre image-responsive" src="data/g1.png" alt="deux graphes"></p>
+<blockquote><p>On constate que le chemin n'est pas le plus court (en nombre d'arêtes) car on peut faire mieux : A --&gt; B --&gt; C --&gt; G. Peut-on trouver le chemin le plus court ? La réponse est oui !</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Recherche-d'un-plus-court-chemin">Recherche d'un plus court chemin<a class="anchor-link" href="#Recherche-d'un-plus-court-chemin">&#182;</a></h2><p>En faisant la même recherche à partir d'un parcours en largeur, on obtiendrait un plus court chemin (en nombre d'arêtes/arcs).</p>
+<p>En effet, l'algorithme de recherche en largeur explore d'abord les sommets à une distance 1 du sommet de départ, puis ceux à distance 2 du sommet de départ, etc. Ainsi, chacun des autres sommets est atteint en passant par un nombre minimal d'arêtes (ou arcs), ce qui assure de trouver un plus court chemin (en nombre d'arêtes/arcs) vers chacun des autres sommets.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># on remplace la pile par une file</span>
+<span class="k">def</span> <span class="nf">parcours_larg_ch</span><span class="p">(</span><span class="n">graphe</span><span class="p">,</span> <span class="n">debut</span><span class="p">):</span>
+    <span class="n">visites</span> <span class="o">=</span> <span class="p">{</span><span class="n">debut</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span> <span class="c1"># on associe le sommet de départ à None</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="p">[</span><span class="n">debut</span><span class="p">]</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="c1"># (on ne marque plus les sommets non visités)</span>
+        <span class="k">for</span> <span class="n">voisin</span> <span class="ow">in</span> <span class="n">graphe</span><span class="p">[</span><span class="n">s</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">voisin</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visites</span><span class="p">:</span>
+                <span class="n">file</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">voisin</span><span class="p">)</span>
+                <span class="n">visites</span><span class="p">[</span><span class="n">voisin</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span> <span class="c1"># on associe s à tous les voisins de s pas encore visités</span>
+    <span class="k">return</span> <span class="n">visites</span>
+
+<span class="c1"># exactement la même fonction que chemin_prof (en remplacant juste l&#39;appel à la première ligne)</span>
+<span class="k">def</span> <span class="nf">chemin_larg</span><span class="p">(</span><span class="n">graphe</span><span class="p">,</span> <span class="n">debut</span><span class="p">,</span> <span class="n">fin</span><span class="p">):</span>
+    <span class="n">visites</span> <span class="o">=</span> <span class="n">parcours_larg_ch</span><span class="p">(</span><span class="n">graphe</span><span class="p">,</span> <span class="n">debut</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">fin</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visites</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">fin</span>
+    <span class="n">ch</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="p">]</span>
+    <span class="k">while</span> <span class="n">s</span> <span class="o">!=</span> <span class="n">debut</span><span class="p">:</span>        
+        <span class="n">s</span> <span class="o">=</span> <span class="n">visites</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
+        <span class="n">ch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">ch</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ch</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">chemin_larg</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[19]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;G&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Nous venons de voir comment utiliser un parcours en largeur pour trouver le plus court chemin, en nombre d'arêtes/arcs, entre deux sommets d'un graphe.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Distances-entre-les-sommets">Distances entre les sommets<a class="anchor-link" href="#Distances-entre-les-sommets">&#182;</a></h2><p>En modifiant le rôle du dictionnaire <code>visites</code> dans la recherche de chemin <em>du parcours en largeur</em>, on peut très facilement trouver la distance du sommet de départ à tous les autres. On va utiliser <code>visites</code> pour associer à chaque sommet la distance qui le sépare du sommet d'origine. La distance d'un sommet découvert est celle du sommet d'où on vient, plus 1 !</p>
+<p>En initialisant une distance égale à 0 pour le sommet de départ on obtient, en changeant uniquement une ligne, les distances entre chaque sommet et le sommet de départ.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">parcours_larg_distance</span><span class="p">(</span><span class="n">graphe</span><span class="p">,</span> <span class="n">debut</span><span class="p">):</span>
+    <span class="n">visites</span> <span class="o">=</span> <span class="p">{</span><span class="n">debut</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span> <span class="c1"># debut est à distance 0 de lui-même</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="p">[</span><span class="n">debut</span><span class="p">]</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="c1"># (on ne marque plus les sommets non visités)</span>
+        <span class="k">for</span> <span class="n">voisin</span> <span class="ow">in</span> <span class="n">graphe</span><span class="p">[</span><span class="n">s</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">voisin</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visites</span><span class="p">:</span>
+                <span class="n">file</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">voisin</span><span class="p">)</span>
+                <span class="n">visites</span><span class="p">[</span><span class="n">voisin</span><span class="p">]</span> <span class="o">=</span> <span class="n">visites</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span> <span class="c1"># la distance est celle de s (d&#39;où l&#39;on vient) + 1</span>
+    <span class="k">return</span> <span class="n">visites</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut vérifier les distances entre le sommet A et les autres dans le graphe <code>g1</code>.</p>
+<p><img class="centre image-responsive" src="data/g1.png" alt="deux graphes"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">parcours_larg_distance</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[21]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;A&#39;: 0, &#39;B&#39;: 1, &#39;D&#39;: 1, &#39;C&#39;: 2, &#39;E&#39;: 2, &#39;F&#39;: 3, &#39;G&#39;: 3}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Les notions de plus <em>court</em> chemin ou de <em>distance</em> que l'on vient de voir, correspondent au nombre d'arêtes/arcs séparant les sommets. On suppose donc que chaque arête à le même coût dans ce calcul. Autrement dit, nos algorithmes s'appliquent sur des graphes <em>non pondérés</em> (ou des graphes dans lesquels toutes les arêtes ont le même poids).</p>
+<p>Avec des graphes <em>pondérés</em>, les arêtes n'ont pas toutes le même coût, ce qui redéfinit cette notion de <em>distance</em>. C'est le cas de la plupart des graphes rencontrés dans la vie courante. On ne peut donc plus appliquer l'algorithme de plus court chemin étudié. Il en existe heureusement d'autres : le plus connu d'entre eux est l'<em>algorithme de Dijskstra</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Algorithme-de-Dijskstra-:-pour-trouver-le-plus-court-chemin-pond&#233;r&#233;">Algorithme de Dijskstra : pour trouver le plus court chemin <em>pond&#233;r&#233;</em><a class="anchor-link" href="#Algorithme-de-Dijskstra-:-pour-trouver-le-plus-court-chemin-pond&#233;r&#233;">&#182;</a></h2><p>C'est l'algorithme qui permet de trouver le chemin le plus court (en km par exemple) entre deux villes ou pour router les paquets sur Internet, ou encore pour sortir d'un labyrinthe.</p>
+<blockquote><p><strong>Remarque</strong> : il ne s'applique que sur des graphes pondérés avec des poids positifs.</p>
+</blockquote>
+<p>Cet algorithme n'est pas au programme (a priori), il est un peu plus compliqué à écrire mais il est très simple à comprendre et à appliquer. La <a href="https://www.youtube.com/watch?v=JPeCmKFrKio&amp;feature=emb_logo&amp;ab_channel=%C3%80lad%C3%A9couvertedesgraphes">vidéo</a> suivante présente l'algorithme de Dijkstra.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="video-responsive">
+<iframe class="centre" width="560" height="315" src="https://www.youtube.com/embed/JPeCmKFrKio" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Bilan">Bilan<a class="anchor-link" href="#Bilan">&#182;</a></h1><ul>
+<li>Les algorithmes de parcours de graphe permettent de visiter tous les sommets d'un graphe. On a le choix entre un <strong>parcours en profondeur</strong> d'abord ou <strong>un parcours en largeur</strong> d'abord. </li>
+<li>La différence entre ces deux algorithmes est l'ordre dans lequel on visite tous les sommets. On peut donc les écrire de manière similaire en changeant juste la structure de données qui stocke les sommets à visiter : une <em>pile</em> pour poursuivre le parcours avec les derniers sommets rencontrés (parcours en profondeur) ou une <em>file</em> pour poursuivre le parcours avec les premiers sommets rencontrés (parcours en largeur).</li>
+<li>Pour ne pas tourner en rond, il faut <em>marquer les sommets visités</em> au cours du parcours. On a utilisé un dictionnaire pour faire ce travail.</li>
+<li>En modifiant le rôle et la façon d'utiliser ce dictionnaire, on peut facilement adapter les algorithmes de parcours pour repérer la présence d'un cycle, pour trouver un chemin entre deux sommets, voire le plus court d'entre eux.</li>
+<li>L'algorithme de parcours en largeur assure de trouver un plus court chemin dans un graphe <em>non pondéré</em> car il explore les différents sommets dans l'ordre de leur distance à celui de départ (ceux à distance 1, puis ceux à distance 2, etc.).</li>
+<li>Pour des graphes non pondérés, l'algorithme de Dijkstra (hors programme) permet de trouver le plus court chemin entre deux sommets dans un graphe <em>pondéré</em> : c'est celui utilisé pour router les paquets dans un réseau, pour nous guider avec un GPS, pour sortir d'un labyrinthe...</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Références :</strong></p>
+<ul>
+<li>Equipe pédagogique DIU EIL, Université de Nantes.</li>
+<li>Ressource Eduscol : <a href="https://cache.media.eduscol.education.fr/file/NSI/00/8/RA20_NSI_G_T_plus-court-chemin_1307008.pdf">Structures de données</a>, paragraphe 1.</li>
+<li>Livre <em>Spécialité Numérique et sciences informatiques : 24 leçons avec exercices corrigés - Terminale</em>, éditions Ellipses, T. Balabonski, S. Conchon, J.-C. Filliâtre, K. Nguyen pour l'exemple du graphe <code>g1</code> et pour la version récursive du parcours en profondeur : <a href="http://www.nsi-terminale.fr/">http://www.nsi-terminale.fr/</a>.</li>
+</ul>
+<hr>
+<p>Germain BECKER, Lycée Mounier, ANGERS</p>
+<p><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+
