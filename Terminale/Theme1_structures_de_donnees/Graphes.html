@@ -153,7 +153,7 @@
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Repr&#233;sentations-d'un-graphe">Repr&#233;sentations d'un graphe<a class="anchor-link" href="#Repr&#233;sentations-d'un-graphe">&#182;</a></h1><h2 id="Repr&#233;sentation-par-matrice-d'adjacence">Repr&#233;sentation par matrice d'adjacence<a class="anchor-link" href="#Repr&#233;sentation-par-matrice-d'adjacence">&#182;</a></h2><p>Une <strong>matrice</strong> $M$ est un tableau de nombres, qui peut être représenté en machine par un tableau de tableaux (ou une liste de listes) noté <code>matrice</code>. Chaque nombre de cette matrice est repéré par son numéro de ligne $i$ et son numéro de colonne $j$. On note ce nombre $M_{i,j}$ et on peut y accéder par l'instruction <code>matrice[i][j]</code>.</p>
 <p>Un graphe à $n$ sommets peut être représentée par une <strong>matrice d'adjacence</strong> de taille $n\times n$, où la valeur du coefficient d'indice $i,j$ dépend de l'existence d'une arête ou d'un arc reliant les sommets $i$ et $j$.</p>
-<p><strong>Exemple (graphe orienté)</strong> : Si les sommets $A, B, C, \ldots$ du graphe</p>
+<p><strong>Exemple (graphe non orienté)</strong> : Si les sommets $A, B, C, \ldots$ du graphe</p>
 <p><img class="centre image-responsive" alt="graphe non orienté" src="data/graphe_non_oriente.png" width="400"></p>
 <p>sont respectivement numérotés $0$, $1$, $2$, etc. alors sa matrice d'adjacence est</p>
 $$M = \left (\begin{array}{ccccccc} 
@@ -203,7 +203,7 @@ $$M = \left (\begin{array}{ccccccc}
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Exemple (graphe non orienté)</strong> :</p>
+<p><strong>Exemple (graphe orienté)</strong> :</p>
 <p>C'est le même principe en faisant attention au sens des arcs : $M_{i,j} = 1$ s'il y a un arc d'origine $i$ et d'extrémité $j$ et $M_{i,j} = 0$ sinon. Ainsi, le graphe</p>
 <p><img class="centre image-responsive" alt="graphe non orienté" src="data/graphe_oriente.png" width="400"></p>
 <p>a pour matrice d'adjacence</p>
