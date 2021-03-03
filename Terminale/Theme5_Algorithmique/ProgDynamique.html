@@ -534,7 +534,7 @@ fib(1) fib(0)</code></pre>
 </ul>
 </li>
 <li><strong>Utilisation de la formule de récurrence pour remplir le reste du tableau</strong> :<ul>
-<li>La formule de récurrence donne la solution d'un sous-problème à partir de celles de sous-problèmes plus petits et donc déjà traités ! Ici on a pour $2\leq i \leq n$ : $F_i =  F_{i-1}$ et $F_{i-2}$</li>
+<li>La formule de récurrence donne la solution d'un sous-problème à partir de celles de sous-problèmes plus petits et donc déjà traités ! Ici on a pour $2\leq i \leq n$ : $F_i =  F_{i-1} + F_{i-2}$</li>
 <li>On peut donc remplir le tableau <code>F</code> en parcourant les indices <strong>par ordre croissant</strong> : on va mettre dans <code>F[i]</code> la valeur <code>F[i-1] + F[i-2]</code> que l'on connaît puisque ces deux valeurs ont été calculés précédemment.</li>
 </ul>
 </li>
