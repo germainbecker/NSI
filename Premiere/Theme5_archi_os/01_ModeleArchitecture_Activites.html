@@ -1,0 +1,448 @@
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 style="font-size: 30px; text-align: center">Modèle d'architecture d'une machine - EXERCICES</h1><hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-1-:-Comprendre-l'ex&#233;cution-d'un-programme">Exercice 1 : Comprendre l'ex&#233;cution d'un programme<a class="anchor-link" href="#Exercice-1-:-Comprendre-l'ex&#233;cution-d'un-programme">&#182;</a></h1><p>Vous trouverez ci-dessous une capture d'écran du simulateur RISC développé par Peter Higginson : <a href="https://peterhigginson.co.uk/RISC/">https://peterhigginson.co.uk/RISC/</a></p>
+<p><img src="data/risc.png" alt="capture d&#39;écran simulateur RISC"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q1</strong> : Identifiez, en les entourant, les 4 parties de l'architecture de von Neumann sur ce simulateur. Entourez également le CPU et localisez les registres <span style="font-weight:bold;font-family:consolas;font-size:1.1em;">PC</span> et <span style="font-weight:bold;font-family:consolas;font-size:1.1em;">IR</span>.</p>
+<p><strong>Q2</strong> : Traduisez par des phrases chacune des instructions du programme en langage d'assemblage suivant (aidez-vous du tableau donné dans le cours) :</p>
+
+<pre><code>MOV R0,#34
+STR R0,33
+HLT</code></pre>
+<p>Ouvrez le simulateur à l'adresse <a href="https://peterhigginson.co.uk/RISC/">https://peterhigginson.co.uk/RISC/</a> et sélectionnez "binary" dans le menu déroulant "OPTIONS" afin d'obtenir une visualisation de la mémoire en binaire (comme c'est le cas en réalité). Vous devez obtenir un écran similaire à la capture donnée au-dessus.</p>
+<p><strong>Q3</strong> : Recopiez dans la partie de gauche "Assembly Language" le programme ci-dessus et validez en cliquant sur le bouton "Submit". Le programme a été traduit en langage machine et est stocké dans la mémoire à partir de l'adresse 0. Repérez et recopiez sur votre feuille les mots binaires de ce programme en langage machine.</p>
+<p><strong>Q4</strong> : Exécutez le programme pas à pas en cliquant sur le bouton STEP à chaque étape (vous pouvez diminuer ou augmenter la vitesse de l'animation) en prenant soin d'observer et comprendre ce qu'il se passe. Pour chaque instruction, rédigez de manière détaillés ce qu'il se passe en faisant le lien avec le cours.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-2-:-Comprendre-l'ex&#233;cution-d'un-programme-(suite)">Exercice 2 : Comprendre l'ex&#233;cution d'un programme (suite)<a class="anchor-link" href="#Exercice-2-:-Comprendre-l'ex&#233;cution-d'un-programme-(suite)">&#182;</a></h1><p><strong>Q1</strong> : Traduire par des phrases chacune des instructions machine du programme suivant :</p>
+
+<pre><code>MOV R0,#34
+MOV R1,#5
+SUB R0,#30
+ADD R0,R0,R1
+STR R0,12
+HLT</code></pre>
+<p><strong>Q2</strong> : Quels sont les états des registres à la fin du programme et quelle est la valeur stockée dans la case mémoire 12 ?</p>
+<p><strong>Q3</strong> : Recopiez le programme dans le simulateur, lancez l'exécution et observez ce qu'il se passe à chaque étape en faisant le lien avec le cours.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-3-:-Cas-des-instructions-conditionnelles">Exercice 3 : Cas des instructions conditionnelles<a class="anchor-link" href="#Exercice-3-:-Cas-des-instructions-conditionnelles">&#182;</a></h1><h2 id="Instructions-de-comparaisons-et-de-saut">Instructions de comparaisons et de saut<a class="anchor-link" href="#Instructions-de-comparaisons-et-de-saut">&#182;</a></h2><p>Il existe d'autres instructions que celles que l'on a vues (pour information, la liste complète est disponible à l'adresse <a href="http://www.peterhigginson.co.uk/RISC/instruction_set.pdf">http://www.peterhigginson.co.uk/RISC/instruction_set.pdf</a>).</p>
+<p>En voici quelques unes importantes concernant les <em>comparaisons</em> et <em>sauts</em> (ruptures de séquence) qui permettent de faire des tests (instructions conditionnelles).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table class="tg" style="border-collapse:collapse;border-spacing:0;margin:auto;font-size:1em;">
+    <thead>
+        <tr>
+            <td style="font-weight:bold; text-align:left;border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:5px 5px;word-break:normal;background-color:white;">Instruction en assembleur</td>
+            <td style="font-weight:bold; text-align:left;border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:5px 5px;word-break:normal;background-color:white;">Signification</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:5px 5px;word-break:normal;background:white;"><span style="font-family:consolas; font-size:1.1em;">BRA 42</span></td>
+            <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">Il s'agit d'un saut inconditionnel (<span style="font-family:consolas; font-size:1.1em;">BRA</span> pour <em>branch</em> que l'on peut traduire par "bifurcation") : indique que la prochaine instruction à exécuter se situe en mémoire à l'adresse <span style="font-family:consolas; font-size:1.1em;">45</span>.</td>
+        </tr>
+        <tr>
+            <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:5px 5px;word-break:normal;background:white;"><span style="font-family:consolas; font-size:1.1em;">CMP R0,#23</span></td>
+            <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">Compare (<span style="font-family:consolas; font-size:1.1em;">CMP</span> pour <em>compare</em>) la valeur stockée dans le registre <span style="font-family:consolas; font-size:1.1em;">R0</span> et le nombre 23. Cette instruction <span style="font-family:consolas; font-size:1.1em;">CMP</span> doit précéder une instruction de saut conditionnel <span style="font-family:consolas; font-size:1.1em;">BEQ</span>, <span style="font-family:consolas; font-size:1.1em;">BNE</span>, <span style="font-family:consolas; font-size:1.1em;">BGT</span>, <span style="font-family:consolas; font-size:1.1em;">BLT</span> (voir ci-dessous).</td>
+        </tr>
+        <tr>
+            <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:5px 5px;word-break:normal;background:white;"><span style="font-family:consolas; font-size:1.1em;">CMP R0,R1</span></td>
+            <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">Compare la valeur stockée dans le registre <span style="font-family:consolas; font-size:1.1em;">R0</span> et et la valeur stockée dans le registre <span style="font-family:consolas; font-size:1.1em;">R0</span>.</td>
+        </tr>
+        <tr>
+            <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">
+                <span style="font-family:consolas; font-size:1.1em;">CMP R0,#23</span>
+                <br>
+                <span style="font-family:consolas; font-size:1.1em;">BEQ 78</span>
+            </td>
+            <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">La prochaine instruction à exécuter se situe à l'adresse mémoire 78 si la valeur stockée dans le registre <span style="font-family:consolas; font-size:1.1em;">R0</span> est égale <span style="font-family:consolas; font-size:1.1em;">23</span>.
+                <br>
+                <span style="font-family:consolas; font-size:1.1em;">BEQ</span> signifie <em>Branch if EQual</em> (birfurcation si les deux opérandes sont égales).</td>
+        </tr>
+        <tr>
+            <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">
+                <span style="font-family:consolas; font-size:1.1em;">CMP R0,#23</span>
+                <br>
+                <span style="font-family:consolas; font-size:1.1em;">BNE 78</span>
+            </td>
+            <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">La prochaine instruction à exécuter se situe à l'adresse mémoire 78 si la valeur stockée dans le registre <span style="font-family:consolas; font-size:1.1em;">R0</span> n'est pas égale <span style="font-family:consolas; font-size:1.1em;">23</span>.
+                <br>
+                <span style="font-family:consolas; font-size:1.1em;">BNE</span> signifie <em>Branch if Not Equal</em> (birfurcation si les deux opérandes ne sont pas égales).</td>
+        </tr>
+        <tr>
+            <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">
+                <span style="font-family:consolas; font-size:1.1em;">CMP R0,#23</span>
+                <br>
+                <span style="font-family:consolas; font-size:1.1em;">BGT 78</span>
+            </td>
+            <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">La prochaine instruction à exécuter se situe à l'adresse mémoire 78 si la valeur stockée dans le registre <span style="font-family:consolas; font-size:1.1em;">R0</span> est supérieure ou égale <span style="font-family:consolas; font-size:1.1em;">23</span>.
+                <br>
+                <span style="font-family:consolas; font-size:1.1em;">BGT</span> signifie <em>Branch if Greater Than</em> (birfurcation si la première opérande est strictement supérieure à la deuxième.</td>
+        </tr>
+        <tr>
+            <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">
+                <span style="font-family:consolas; font-size:1.1em;">CMP R0,#23</span>
+                <br>
+                <span style="font-family:consolas; font-size:1.1em;">BLT 78</span>
+            </td>
+            <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">La prochaine instruction à exécuter se situe à l'adresse mémoire 78 si la valeur stockée dans le registre <span style="font-family:consolas; font-size:1.1em;">R0</span> est inférieure ou égale <span style="font-family:consolas; font-size:1.1em;">23</span>.
+                <br>
+                <span style="font-family:consolas; font-size:1.1em;">BLT</span> signifie <em>Branch if Less Than</em> (birfurcation si la première opérande est strictement inférieure à la deuxième.</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q1</strong> : En vous aidant du tableau ci-dessus, traduisez chacune des instructions suivantes.</p>
+<table class="tg" style="border-collapse:collapse;border-spacing:0;margin: auto;font-size:0.9em;">
+    <tbody>
+        <tr>
+            <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">
+            <span style="font-family:consolas; font-size:1.1em;">CMP R2,#100</span>
+            <br>
+            <span style="font-family:consolas; font-size:1.1em;">BNE 36</span>
+            </td>
+            <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">
+            <span style="font-family:consolas; font-size:1.1em;">CMP R1,R2</span>
+            <br>
+            <span style="font-family:consolas; font-size:1.1em;">BGT 36</span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q2</strong> : Donnez l'instruction en assembleur correspondant à la phrase suivante : <em>Si la valeur située dans le registre <span style="font-family:consolas; font-size:1.1em;">R3</span> est inférieure ou égale à la valeur 5, l'instruction suivante est située à l'adresse mémoire 40</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Utilisation-d'&#233;tiquettes">Utilisation d'&#233;tiquettes<a class="anchor-link" href="#Utilisation-d'&#233;tiquettes">&#182;</a></h2><p>En réalité, on va plutôt utiliser des <em>étiquettes</em> (ou <em>label</em> en anglais) avec les opérations <span style="font-family:consolas; font-size:1.1em;">BRA</span>,<span style="font-family:consolas; font-size:1.1em;">BRA</span>, <span style="font-family:consolas; font-size:1.1em;">BEQ</span>, <span style="font-family:consolas; font-size:1.1em;">BNE</span>, <span style="font-family:consolas; font-size:1.1em;">BGT</span>, <span style="font-family:consolas; font-size:1.1em;">BLT</span>, <span style="font-family:consolas; font-size:1.1em;">BRA</span> : on remplace l'adresse mémoire qui suit ces opérations par le nom de l'étiquette. On peut alors définir nous même les instructions de chaque étiquette et donc de chaque partie du programme correspondant à un saut.</p>
+<blockquote><p>C'est l'assembleur qui se charge lui-même de convertir une étiquette en adresse mémoire.</p>
+</blockquote>
+<p>Par exemple, voici un programme en assembleur dans lequel on utilise une étiquette appelée <span style="font-family:consolas; font-size:1.1em;">Sinon</span>. On a traduit chaque ligne :</p>
+
+<pre><code>        MOV R0,#5     // stocke le nombre 5 dans R0
+        MOV R2,#6     // stocke le nombre 6 dans R0
+        CMP R0,R2     // Compare R0 et R2
+        BNE Sinon     // Si R0 != R2, saute à l'étiquette Sinon 
+        ADD R0,R0,R2  // R0 &lt;- R0 + R2
+        STR R0,42     // stocke la valeur de R0 en mémoire à l'adresse 42
+        HLT           // arrête l'exécution du programme
+Sinon   SUB R0,R0,R2  // R0 &lt;- R0 - R2
+        STR R0,42     // stocke la valeur de R0 en mémoire à l'adresse 42
+        HLT           // arrête l'exécution du programme</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q3</strong> : Proposez un programme Python pouvant correspondre à ce programme en langage d'assemblage. On nommera <code>a</code> et <code>b</code> les variables correspondant aux registres R0 et R2. (<em>Indication</em> : il y a une instruction conditionnelle à bien formaliser).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q4</strong> : Traduisez en langage d'assemblage le programme Python suivant</p>
+<div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="k">if</span> <span class="n">a</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">3</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-4-:-D&#233;codage-du-code-machine">Exercice 4 : D&#233;codage du code machine<a class="anchor-link" href="#Exercice-4-:-D&#233;codage-du-code-machine">&#182;</a></h1><p>Le <a href="http://www.peterhigginson.co.uk/RISC/instruction_set.pdf">jeu d'instructions</a> du simulateur RISC donne le code binaire de toutes les opérations. On a regroupé dans le tableau ci-dessous certaines d'entre elles.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+<thead><tr>
+<th>Code d'opération</th>
+<th>En langage assembleur</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0000 0</td>
+<td>HLT</td>
+<td>Arrêt de l'exécution du programme</td>
+</tr>
+<tr>
+<td>0001 0</td>
+<td>ADD Rd,#nb</td>
+<td>Ajoute le nombre nb à la valeur du registre Rd et stocke le résultat dans Rd</td>
+</tr>
+<tr>
+<td>0001 1</td>
+<td>SUB Rd,#nb</td>
+<td>Soustrait le nombre nb à la valeur du registre Rd et stocke le résultat dans Rd</td>
+</tr>
+<tr>
+<td>0010 0</td>
+<td>CMP Rb,#nb</td>
+<td>Compare le nombre nb à la valeur du registre Rb</td>
+</tr>
+<tr>
+<td>0010 1</td>
+<td>MOV Rd,#nb</td>
+<td>Stocke le nombre nb dans le registre Rd</td>
+</tr>
+<tr>
+<td>0110 000</td>
+<td>ADD Rd,Rs,Rb</td>
+<td>Ajoute la valeur de Rb à celle de Rs et stocke le résultat dans Rd</td>
+</tr>
+<tr>
+<td>0110 001</td>
+<td>SUB Rd,Rs,Rb</td>
+<td>Soustrait la valeur de Rb à celle de Rs et stocke le résultat dans Rd</td>
+</tr>
+<tr>
+<td>100...</td>
+<td>BRA/B&lt;cond&gt;</td>
+<td>Instructions de saut --&gt; voir tableau suivant</td>
+</tr>
+<tr>
+<td>1110</td>
+<td>STR Rd,adr</td>
+<td>Stocke la valeur du registre Rd à l'adresse mémoire adr</td>
+</tr>
+<tr>
+<td>1111</td>
+<td>LDR Rd,adr</td>
+<td>Charge dans le registre Rd la valeur située à l'adresse mémoire adr</td>
+</tr>
+<tr>
+<td>0111 0110 10</td>
+<td>CMP Rd,Rs</td>
+<td>Compare la valeur de Rs à celle de Rd</td>
+</tr>
+</tbody>
+</table>
+<p>Les instructions de saut ont un code de la forme <span style="font-family:consolas; font-size:1.1em;">100x xxxa aaaa aaaa</span> où xxxx correspond au type de comparaison (sur 4 bits) et aaaaaaaaa correspond à l'adresse mémoire (de l'étiquette en général) sur 9 bits. Voici un tableau récapitulatif :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+<thead><tr>
+<th>Code d'opération</th>
+<th>En langage assembleur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1000 000</td>
+<td>BRA</td>
+</tr>
+<tr>
+<td>1000 001</td>
+<td>BEQ</td>
+</tr>
+<tr>
+<td>1000 010</td>
+<td>BNE</td>
+</tr>
+<tr>
+<td>1001 100</td>
+<td>BGT</td>
+</tr>
+<tr>
+<td>1001 101</td>
+<td>BLT</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Tous ces codes d'opérations traduisent les opérations HTL, ADD, SUB, CMP, etc. Elles sont à compléter par les valeurs binaires des opérandes.</p>
+<p>Dans le cas du simulateur RISC :</p>
+<ul>
+<li>il y a 8 régistres, de R0 à R7, chacun étant codé sur 3 bits : 000 pour R0, 001 pour R1, 010 pour R2, ..., 111 pour R7.</li>
+<li>les adresses mémoires sont codées par leur numéro en binaire</li>
+<li>chaque adresse mémoire (donc chaque instruction) est codée sur 16 bits</li>
+</ul>
+<p><strong>Q1</strong> : Identifiez dans chaque instruction machine, le code d'opération et la valeur des opérandes du langage assembleur.</p>
+<table>
+<thead><tr>
+<th>Instruction machine</th>
+<th>En langage assembleur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0010101000001011</td>
+<td>MOV R2,#8</td>
+</tr>
+<tr>
+<td>0110001011000001</td>
+<td>ADD R5,R4,R1</td>
+</tr>
+<tr>
+<td>1000010000110100</td>
+<td>BNE 50</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q2</strong> : Traduisez en langage machine les instructions correspondant à l'instruction : <span style="font-family:consolas; font-size:1.1em;">CMP R3,#13</span>.</p>
+<p>Même question avec : <span style="font-family:consolas; font-size:1.1em;">BLT 20</span>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q3</strong> : Retrouvez les instructions en assembleur correspondant au code machine suivant en jouant le rôle de l'unité de contrôle (UC) lors de la phase de <em>décodage</em>.</p>
+
+<pre><code>0010100000000101
+1111001000001100
+0110000001001000
+1110001000001101
+0000000000000000</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-5-(Bonus)">Exercice 5 (Bonus)<a class="anchor-link" href="#Exercice-5-(Bonus)">&#182;</a></h1><p>Écrivez en assembleur les instructions correspondant à l'algorithme suivant :</p>
+
+<pre><code>s ← 0
+Lire x
+Tant que x &gt;= 0 faire
+    s ← s + x
+    Lire x
+fin Tant que
+Afficher s</code></pre>
+<p>On supposera que les variables <code>s</code> et <code>x</code> sont stockées respectivement dans les registres R0 et R1.</p>
+<p>Vous utiliserez à bon escient la documentation du simulateur RISC : <a href="http://www.peterhigginson.co.uk/RISC/instruction_set.pdf">http://www.peterhigginson.co.uk/RISC/instruction_set.pdf</a>.</p>
+<p>Par exemple, l'instruction <span style="font-family:consolas; font-size:1.1em;">Lire x</span> s'écrit <span style="font-family:consolas; font-size:1.1em;">INP R1,2</span>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Références :</strong></p>
+<ul>
+<li>Equipe pédagogique DIU EIL, Université de Nantes.</li>
+<li><a href="http://www.peterhigginson.co.uk/RISC/instruction_set.pdf">Jeu d'instructions</a> du simulateur RISC de Peter Higgison </li>
+<li>Cours de David Roche sur le <a href="https://pixees.fr/informatiquelycee/prem/c8c.html">Modèle d'architecture de von Neumann</a></li>
+</ul>
+<hr>
+<p>Germain BECKER, Lycée Mounier, ANGERS</p>
+<p><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+ 
+
