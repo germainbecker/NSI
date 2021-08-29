@@ -1,0 +1,3 @@
+Je suis un fichier contenant du texte.
+Vous allez apprendre à m'ouvrir avec Python pour analyser mon contenu.
+Bon courage !
