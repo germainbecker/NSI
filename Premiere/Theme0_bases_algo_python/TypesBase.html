@@ -1,8 +1,187 @@
-
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h1><p>Dans un algorithme, des variables sont utilisées pour stocker des valeurs. Les variables de base sont celles permettant de stocker :</p>
+<p><strong>Un petit point sur les <em>notebooks</em> avant de démarrer !</strong></p>
+<p><img class="centre image-responsive" src="data/jupyter_logo.svg" alt="logo Jupyter" width="100"></p>
+<p>Nous utiliserons beaucoup cette année les <strong>notebooks</strong> de l'application web <em>Jupyter</em>. Il s'agit d'interfaces de programmation interactives permettant de mélanger du texte (écrit dans le format markdown) et du code en Python (entre autres). Ces notebooks sont très utilisés en science des données (<em>data science</em>) car ils facilitent le partage et la reproductibilité des résultats. Il sont très pratiques pour l'apprentissage du langage Python.</p>
+<p>On peut écrire en Python exactement comme avec n'importe quel éditeur et le code peut directement être exécuté dans le notebook. Pour cela, il suffit de se positionner sur la cellule de votre code et de cliquer sur le bouton <code>▶ Exécuter</code> de la barre d'outils ou de manière plus efficace directement au clavier avec le raccourci <code>Maj + Entrée</code>.</p>
+<p><strong>Petit point sur l'affichage de valeurs</strong></p>
+<p>Dans un <em>notebook</em>, tout comme dans une console, si on veut connaître la valeur d'une variable, il n'est pas nécessaire d'utiliser la fonction <code>print</code>. Il suffit pour cela de taper en dernière ligne le nom de la variable que l'on veut évaluer.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">prix</span> <span class="o">=</span> <span class="mi">35</span>
+<span class="n">prix_remise</span> <span class="o">=</span> <span class="n">prix</span> <span class="o">*</span> <span class="mf">0.8</span> <span class="c1"># remise de 20 %</span>
+<span class="n">prix</span> <span class="c1"># ne sera pas affiché</span>
+<span class="n">prix_remise</span> <span class="c1"># sera évalué et renvoyé car en dernière ligne</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[1]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>28.0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut afficher les valeurs des deux variables <code>prix</code> et <code>prix_remise</code> en les séparant par une virgule en dernière ligne.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">prix</span> <span class="o">=</span> <span class="mi">35</span>
+<span class="n">prix_remise</span> <span class="o">=</span> <span class="n">prix</span> <span class="o">*</span> <span class="mf">0.8</span>
+<span class="n">prix</span><span class="p">,</span> <span class="n">prix_remise</span> <span class="c1"># ici un couple est renvoyé</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[2]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(35, 28.0)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut aussi utiliser la fonction <code>print</code> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">prix</span> <span class="o">=</span> <span class="mi">35</span>
+<span class="n">prix_remise</span> <span class="o">=</span> <span class="n">prix</span> <span class="o">*</span> <span class="mf">0.8</span> <span class="c1"># remise de 20 %</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prix</span><span class="p">,</span> <span class="n">prix_remise</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>35 28.0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En revanche, si vous souhaitez afficher des valeurs, à plusieurs endroits d'un programme, il faudra nécessairement utiliser la fonction <code>print</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">a</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>5
+10
+0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h1 style="font-size: 30px; text-align: center">Les types de base en Python</h1><h1 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h1><p>Dans un algorithme, des variables sont utilisées pour stocker des valeurs. Les variables de base sont celles permettant de stocker :</p>
 <ul>
 <li>des nombres entiers ; </li>
 <li>des nombres réels ;</li>
@@ -42,7 +221,7 @@
 <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
 <span class="n">t</span> <span class="o">=</span> <span class="s2">&quot;bonjour&quot;</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
-<span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">A</span><span class="o">&gt;</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">A</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
 </pre></div>
 
@@ -75,7 +254,7 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Le-type-int">Le type <code>int</code><a class="anchor-link" href="#Le-type-int">&#182;</a></h1><p>Les variables de type <code>int</code> représentent des entiers (naturels et relatifs). Les calculs mettant en jeu ce type de variables utilisent les opérateurs classiques.</p>
+<h1 id="Le-type-int">Le type <code>int</code><a class="anchor-link" href="#Le-type-int">&#182;</a></h1><p>Les variables de type <code>int</code> représentent des entiers (naturels et relatifs). Les calculs mettant en jeu ce type de variables utilisent les opérateurs classiques, regroupés dans le tableau ci-dessous.</p>
 <table>
 <thead><tr>
 <th><strong>Opération</strong></th>
@@ -113,6 +292,8 @@
 </tr>
 </tbody>
 </table>
+<blockquote><p>Vous devez absolument connaître ces opérateurs, notamment les trois derniers, vous l'aurez compris.</p>
+</blockquote>
 
 </div>
 </div>
@@ -169,14 +350,14 @@
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="n">b</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">c</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">b</span> <span class="o">+</span> <span class="n">a</span>
-<span class="n">d</span> <span class="o">=</span> <span class="n">b</span><span class="o">**</span><span class="mi">3</span> <span class="c1"># puissance 3</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">b</span> <span class="o">**</span> <span class="mi">3</span> <span class="c1"># puissance 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="c1"># on peut afficher plusieurs valeurs en les séparant par des virgules</span>
 </pre></div>
 
     </div>
@@ -641,7 +822,7 @@ e
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Extraire-un-groupe-de-caract&#232;res-(slicing)">Extraire un groupe de caract&#232;res (slicing)<a class="anchor-link" href="#Extraire-un-groupe-de-caract&#232;res-(slicing)">&#182;</a></h2><p>On peut également extraire un groupe de caractères d'une chaîne, on parle de <strong>slicing</strong>.</p>
-<p><code>chaine[debut : fin]</code> permet de récupérer les caractères d'indices compris entre <code>debut</code> et <strong><code>fin</code> - 1</strong>.</p>
+<p><code>chaine[debut:fin]</code> permet de récupérer les caractères d'indices compris entre <code>debut</code> et <strong><code>fin</code> - 1</strong>.</p>
 
 </div>
 </div>
