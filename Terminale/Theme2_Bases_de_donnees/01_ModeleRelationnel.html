@@ -1,0 +1,870 @@
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Le développement de traitements informatiques nécessite la manipulation de données de plus en plus nombreuses. Leur organisation et leur stockage constituent un enjeu essentiel de performance.</p>
+<blockquote class="question">
+    <p>Comment gérer (mémoriser et traiter) un ensemble volumineux de données ?</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/iu8z5QtDQhY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En classe de Première, on a vu comment gérer des données représentées de manière tabulaire (avec des fichiers CSV). Il était possible d'utiliser un langage de programmation pour effectuer les traitements. Cette façon de faire convient pour des requêtes simples dès lors que les données ne sont pas trop nombreuses, mais devient rapidement insuffisante pour répondre aux attentes actuelles :</p>
+<ul>
+<li>souvent le volume des données est gigantesque (voir l'article : <a href="https://www.numerama.com/politique/653217-16-000-anglais-malades-du-covid-ont-ete-oublies-a-cause-dune-feuille-excel-trop-pleine.html">16000 malades oubliés à cause d'Excel</a>);</li>
+<li>les requêtes peuvent être complexes ;</li>
+<li>les données peuvent être simultanément utilisées par différents programmes ou différents utilisateurs (exemples : sites marchands, réservations en ligne, etc.)</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Il est donc nécessaire d'utiliser des solutions plus performantes et l'utilisation de <strong>bases de données relationnelles</strong> est aujourd'hui la solution la plus répandue.</p>
+<p><img class="centre image-responsive" src="data/database.svg" alt="diagramme" width="150"></p>
+<blockquote class="remarque">
+    <p>Seules les bases de données <em>relationnelles</em> sont au programme de Terminale NSI, mais il existe d'autres types de bases de données : les <a href="https://fr.wikipedia.org/wiki/Base_de_donn%C3%A9es_r%C3%A9seau" target="_blank">bases réseaux</a>, les <a href="https://fr.wikipedia.org/wiki/Base_de_donn%C3%A9es_orient%C3%A9e_objet" target="_blank">bases objets</a>, les <a href="https://fr.wikipedia.org/wiki/NoSQL" target="_blank">bases &laquo; no-sql &raquo;</a>, etc.</p>
+</blockquote><p>Dans une base de données, les informations sont stockées dans des fichiers, mais à la différence des fichiers au format CSV, il est impossible de travailler avec ces fichiers avec un éditeur de texte. Pour manipuler les données présentes dans une base de données, il faut utiliser un logiciel appelé <em>système de gestion de bases de données</em>, abrégé SGBD. Il en existe plusieurs, des gratuits, des payants, des libres, des propriétaires (nous en utiliserons dans le chapitre suivant).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Mod&#232;le-relationnel">Mod&#232;le relationnel<a class="anchor-link" href="#Mod&#232;le-relationnel">&#182;</a></h1><p>Les bases de données relationnelles sont basées sur ce qu'on appelle le <strong>modèle relationnel</strong>. Il s'agit d'un modèle <em>logique</em> (basé sur des concepts mathématiques) défini en 1970 par l'informaticien britannique <a href="https://fr.wikipedia.org/wiki/Edgar_Frank_Codd">Edgard F. Codd</a> (1923-2003), lors de ses travaux chez IBM. Il a reçu le prix Turing en 1981.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/en/5/58/Edgar_F_Codd.jpg" alt=""></p>
+<p><span class="image-licence" style="display: block;text-align: center;font-size: 0.9em;color: #aaa;">Edgard F. Codd. Source :
+    <a href="https://upload.wikimedia.org/wikipedia/en/5/58/Edgar_F_Codd.jpg" target="_blank">wikimedia.org</a>
+</span></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Le modèle relationnel est une manière de modéliser les <strong>relations</strong> existantes entre plusieurs informations et de les ordonner entre elles.</p>
+<p>Un modèle relationnel est donc basé sur des <strong>relations</strong> que nous allons définir dans le paragraphe suivant.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Relation,-attribut,-domaine,-sch&#233;ma">Relation, attribut, domaine, sch&#233;ma<a class="anchor-link" href="#Relation,-attribut,-domaine,-sch&#233;ma">&#182;</a></h2><p><img class="centre image-responsive" src="data/vinyl.svg" alt="diagramme" width="200"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Prenons l'exemple d'un disquaire permettant d'emprunter des albums de musique. L'ensemble de ses albums peut être représenté par l'ensemble :</p>
+
+<pre><code>Album = {
+    ("I Still Do", "Eric Clapton", 2016, Vrai),
+    ("Axis: Bold as Love", "Jimi Hendrix", 1967, Faux),
+    ("Continumm", "John Mayer", 2006, Faux),
+    ("Riding With The King", "Eric Clapton et B.B. King", 2000, Faux),
+    ("Don't explain", "Joe Bonamassa et Beth Hart", 2011, Vrai),
+    ...
+}</code></pre>
+<p>Un tel ensemble s'appelle une <strong>relation</strong> (la relation <em>Album</em> en l'occurrence).</p>
+<blockquote class="attention">
+    <p><strong>Attention</strong> : cette relation <em>Album</em> n'est pour le moment pas satisfaisante ! Nous verrons plus loin pourquoi et comment y remédier.</p>
+</blockquote><p>Les différents éléments d'une relation s'appellent des <strong>enregistrements</strong>, ou <strong>tuple</strong>, ou <strong>n-uplet</strong>, ou <strong>t-uplet</strong>, ou <strong>vecteur</strong>. Les enregistrements d'une relation possèdent les mêmes composantes, que l'on appelle les <strong>attributs</strong> de la relation.</p>
+<p>Une relation se conforme toujours à un <strong>schéma</strong> qui est une description indiquant pour chaque attribut de la relation son <em>nom</em> et son <strong>domaine</strong> (= le &laquo; type &raquo; de l'attribut : un entier, une chaîne de caractères, une date, etc.)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ainsi, pour le moment, la relation <em>Album</em> possède 4 <strong>attributs</strong> :</p>
+<ul>
+<li><code>titre</code> : le titre de l'album, une chaîne de caractères</li>
+<li><code>artiste</code> : le ou les artistes de l'album, une chaîne de caractères</li>
+<li><code>annee</code> : l'année de parution de l'album, un entier naturel</li>
+<li><code>dispo</code> : disponibilité de l'album, un booléen</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On note le schéma de la relation <em>Album</em> de la façon suivante :</p>
+<pre>
+    <code><em>Album</em>(<em>titre</em> TEXT, <em>artiste</em> TEXT, <em>annee</em> INT, <em>dispo</em> BOOL)</code>
+</pre><blockquote class="information">
+    <p>On a choisi de noter ici le <em>domaine</em> de chaque attribut avec les mots INT, TEXT, BOOL mais on aurait pu également les écrire Entier, Chaîne de caractères, Booléen ou Int, String, Bool, etc. Cela n'a pas vraiment d'importance car le modèle relationnel est indépendant de toute considération informatique.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Une relation peut aussi se représenter sous forme d'une <strong>table</strong>, et d'ailleurs on utilise souvent de manière équivalente les deux termes : <em>relation</em> ou <em>table</em>. Par exemple, la table correspondant à notre relation <em>Album</em> (qui n'est pas encore satisfaisant) ressemble à ceci :</p>
+<table>
+<thead><tr>
+<th>titre</th>
+<th>artiste</th>
+<th>annee</th>
+<th>dispo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I Still Do</td>
+<td>Eric Clapton</td>
+<td>2016</td>
+<td>Vrai</td>
+</tr>
+<tr>
+<td>Axis: Bold as Love</td>
+<td>Jimi Hendrix</td>
+<td>1967</td>
+<td>Faux</td>
+</tr>
+<tr>
+<td>Continuum</td>
+<td>John Mayer</td>
+<td>2006</td>
+<td>Faux</td>
+</tr>
+<tr>
+<td>Riding With The King</td>
+<td>Eric Clapton et B.B. King</td>
+<td>2000</td>
+<td>Faux</td>
+</tr>
+<tr>
+<td>Don't explain</td>
+<td>Joe Bonamassa et Beth Hart</td>
+<td>2011</td>
+<td>Vrai</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Base-de-donn&#233;es-relationnelle">Base de donn&#233;es relationnelle<a class="anchor-link" href="#Base-de-donn&#233;es-relationnelle">&#182;</a></h2><p>Une base de données relationnelle est un <em>ensemble de relations</em>. Par exemple, la base de données de notre disquaire ne contiendra pas uniquement la relation <em>Album</em>. Elle peut par exemple contenir deux autres relations : <em>Client</em> et <em>Emprunt</em> qui correspondent respectivement à l'ensemble des clients du disquaire et à l'ensemble des emprunts en cours.</p>
+<p>Le <em>schéma</em>, ou la <em>structure</em>, d'une base de données relationnelle est l'ensemble des schémas des relations de la base. Ainsi, pour le moment, la structure (ou schéma) de la base de données du disquaire, est :</p>
+<pre>
+    <code><em>Album</em>(<em>titre</em> TEXT, <em>artiste</em> TEXT, <em>annee</em> INT, <em>dispo</em> BOOL)</code>
+    <code><em>Client</em>(...)</code>
+    <code><em>Emprunt</em>(...)</code>
+</pre><p>où on n'a pour le moment pas complété les schémas des relations <em>Client</em> et <em>Emprunt</em> (et où le schéma de la relation <em>Album</em> n'est pas satisfaisant pour l'instant)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Concevoir-la-structure-d'une-base-de-donn&#233;es-relationnelle">Concevoir la structure d'une base de donn&#233;es relationnelle<a class="anchor-link" href="#Concevoir-la-structure-d'une-base-de-donn&#233;es-relationnelle">&#182;</a></h1><p>La conception de la structure d'une base de données n'est pas toujours aisée mais c'est un travail absolument nécessaire pour obtenir une base ne souffrant d'aucune anomalie et offrant des performances optimales.</p>
+<p>On trouve en général ces trois étapes :</p>
+<ol>
+<li>Déterminer les entités (objets, actions, personnes, ...) que l'on souhaite manipuler.</li>
+<li>Modéliser chaque ensemble d'entités comme une relation en donnant son schéma : attributs et domaine de chaque attribut.</li>
+<li>Définir les <em>contraintes d'intégrité</em> (domaine, relation, référence) de la base de données, c'est-à-dire toutes les propriétés logiques vérifiées par les données à chaque instant.</li>
+</ol>
+<p>On réalise souvent ces opérations en parallèle de manière à peaufiner au fur et à mesure la structure de la base.</p>
+<p>Nous allons expliquer ces mécanismes de conception en s'appuyant sur la base de données de notre disquaire que l'on va affiner au fur et à mesure.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Domaine-d'un-attribut">Domaine d'un attribut<a class="anchor-link" href="#Domaine-d'un-attribut">&#182;</a></h2><p>Le domaine d'un attribut a déjà été abordé, il s'agit du "type" de l'attribut. Dans le cas de la modélisation d'une base de données, la façon de noter les domaines n'est pas primordiale (INT ou Entier ou Int ou Integer, etc. pour désigner un attribut dont les valeurs sont des entiers), mais elle le deviendra lorsque l'on créera concrètement les tables en base de données car il faudra respecter la syntaxe du SGBD utilisé.</p>
+<h3 id="Contrainte-de-domaine">Contrainte de domaine<a class="anchor-link" href="#Contrainte-de-domaine">&#182;</a></h3><p>Concrètement, un SGBD doit s'assurer à chaque instant de la validité des valeurs d'un attribut, autrement dit que ces valeurs correspondent toujours au domaine de l'attribut, on appelle cela les <em>contraintes de domaines</em>. C'est pourquoi en pratique, la commande de création d'une table doit préciser en plus du nom des attributs, leurs domaines.</p>
+<p>Les contraintes de domaines doivent être respectées en permanence par le SGBD : si un attribut a pour domaine INT et que l'on essaie de saisir une valeur de type FLOAT pour cet attribut, cela provoquera une erreur du SGBD. Il est donc important de bien penser le domaine de chaque attribut dès le départ.</p>
+<p>Bien que le domaine d'un attribut paraisse assez simple à déterminer, il faut être prudent dans certains cas. Par exemple, si le domaine d'un attribut correspondant à un code postal est INT, alors si on enregistre un code postal <code>05000</code> alors celui-ci sera converti en <code>5000</code> (car 05000 = 5000 pour les entiers), ce qui ne correspond pas à un code postal valide... Il est donc nécessaire de donner le domaine TEXT à un code postal.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Cl&#233;-primaire">Cl&#233; primaire<a class="anchor-link" href="#Cl&#233;-primaire">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="important">
+    <p><strong>Définition</strong> : Une <strong>clé primaire</strong> est un attribut (ou une réunion d'attributs) qui permet d'identifier de manière <em>unique</em> un enregistrement d'une relation.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="La-relation-Album">La relation <em>Album</em><a class="anchor-link" href="#La-relation-Album">&#182;</a></h3><blockquote class="question">
+    <p>Et là c'est le drame : quel attribut de notre relation <em>Album</em> peut-il jouer le rôle de clé primaire ? ... aucun !</p>
+</blockquote><p>En effet, il est (fort) possible que plusieurs albums aient le même titre (ne serait-ce qu'un album disponible en plusieurs exemplaires), que plusieurs albums concernent le même artiste et que plusieurs albums soient sortis la même année ! De manière évidente, l'attribut <code>dispo</code> ne permet pas d'identifier un album de manière unique non plus.</p>
+<p>Pour y remédier, on va créer "artificiellement" un attribut <code>id_album</code> (de type INT) qui va jouer le rôle de clé primaire, chaque album possédant un attribut <code>id_album</code> différent (on utilise "id" pour "identifiant").</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Pour symboliser la clé primaire dans le schéma d'une relation, il est de coutume de la souligner. Ainsi, notre relation <em>Album</em> a pour schéma :</p>
+<pre style="padding-bottom:3px;">
+    <code><em>Album</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_album</em></span> INT, <em>titre</em> TEXT, <em>artiste</em> TEXT, <em>annee</em> INT, <em>dispo</em> BOOL)</code>
+</pre><p>et correspond à la table suivante :</p>
+<table>
+<thead><tr>
+<th>id_album</th>
+<th>titre</th>
+<th>artiste</th>
+<th>annee</th>
+<th>dispo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>I Still Do</td>
+<td>Eric Clapton</td>
+<td>2016</td>
+<td>Vrai</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Axis: Bold as Love</td>
+<td>Jimi Hendrix</td>
+<td>1967</td>
+<td>Faux</td>
+</tr>
+<tr>
+<td>24</td>
+<td>Continuum</td>
+<td>John Mayer</td>
+<td>2006</td>
+<td>Faux</td>
+</tr>
+<tr>
+<td>25</td>
+<td>Continuum</td>
+<td>John Mayer</td>
+<td>2006</td>
+<td>Faux</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Riding With The King</td>
+<td>Eric Clapton et B.B. King</td>
+<td>2000</td>
+<td>Faux</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Don't explain</td>
+<td>Joe Bonamassa et Beth Hart</td>
+<td>2011</td>
+<td>Vrai</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="La-relation-Client">La relation <em>Client</em><a class="anchor-link" href="#La-relation-Client">&#182;</a></h3><p>On suppose que le disquaire récolte les informations suivantes sur ses clients : un nom, un prénom et une adresse email.</p>
+<ul>
+<li>Si on choisit le nom ou le prénom comme clé primaire, il sera impossible d'enregistrer deux clients portant le même nom ou portant le même prénom, ce qui n'est pas rare.</li>
+<li>De même, si on choisit le couple (nom, prénom) comme clé primaire, cela empêche d'enregistrer des homonymes, ce qui peut très bien arriver également.</li>
+<li>Si on choisit l'adresse email comme clé primaire, cela impliquerait que deux clients ne peuvent pas avoir la même adresse email. Cela peut sembler convenir... mais on se heurterait au cas où un client ne possède pas d'adresse email (un jeune enfant par exemple, d'ailleurs ses parents ne pourraient même pas lui créer un compte à son nom avec leur propre adresse email s'ils sont eux-mêmes clients)</li>
+</ul>
+<p>Comme pour la relation <em>Album</em>, il semble judicieux de créer une clé primaire <em>artificielle</em>, nommée <code>id_client</code> la relation <em>Client</em> qui aurait alors pour schéma :</p>
+<pre style="padding-bottom:3px;">
+    <code><em>Client</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_client</em></span> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT, <em>email</em> TEXT)</code>
+</pre><p>et correspond à la table suivante :</p>
+<table>
+<thead><tr>
+<th>id_client</th>
+<th>nom</th>
+<th>prenom</th>
+<th>email</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Dupont</td>
+<td>Florine</td>
+<td>dupont.florine@domaine.net</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Pacot</td>
+<td>Jean</td>
+<td>jpacot@music.com</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Rouger</td>
+<td>Léa</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Marchand</td>
+<td>Grégoire</td>
+<td>greg.marchand49@music.com</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remarque</strong> : Il est parfois possible de trouver une clé primaire sans avoir besoin d'en créer une artificiellement. Par exemple dans une relation <em>Livre</em>, le numéro ISBN pourrait jouer le rôle de clé primaire car il est unique pour chaque livre existant. Cependant en pratique, un SGBDR va souvent créer un identifiant unique pour chaque enregistrement d'une entité dans la base de données. Pour cela, un mécanisme d'<em>auto-incrément</em> est mis en oeuvre (si la clé primaire de la dernière entité créée est l'entier 57, alors la clé primaire d'une nouvelle entité créée sera 58)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Contrainte-de-relation">Contrainte de relation<a class="anchor-link" href="#Contrainte-de-relation">&#182;</a></h3><p>Une des contraintes d'intégrité d'une base de données s'appelle la <em>contrainte de relation</em>. Celle-ci impose que chaque enregistrement d'une relation soit <em>unique</em>. C'est donc la présence d'une <em>clé primaire</em> dans chaque relation qui permet de réaliser cette contrainte.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Cl&#233;-&#233;trang&#232;re">Cl&#233; &#233;trang&#232;re<a class="anchor-link" href="#Cl&#233;-&#233;trang&#232;re">&#182;</a></h2><h3 id="La-relation-Emprunt">La relation <em>Emprunt</em><a class="anchor-link" href="#La-relation-Emprunt">&#182;</a></h3><p>Pour un emprunt, on aimerait connaître l'album emprunté, le client qui a emprunté l'album et la date d'emprunt.</p>
+<p>On voit donc que les enregistrements de la relation <em>Emprunt</em> font référence à des enregistrements des relations <em>Album</em> et <em>Client</em>. On peut imaginer le schéma suivant pour la relation <em>Emprunt</em>, qui contient toutes les informations nécessaires :</p>
+<pre style="padding-bottom:3px;">
+    <code><em>Emprunt</em>(<em>id_client</em> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT, <em>email</em> TEXT, <em>id_album</em> INT, <em>titre</em> TEXT, <em>artiste</em> TEXT, <em>annee</em> INT, <em>dispo</em> BOOL, <em>date</em> DATE)</code>
+</pre><p>Cela donnerait une table <em>Emprunt</em> du genre :</p>
+<table>
+<thead><tr>
+<th>id_client</th>
+<th>nom</th>
+<th>prenom</th>
+<th>email</th>
+<th>id_album</th>
+<th>titre</th>
+<th>artiste</th>
+<th>annee</th>
+<th>dispo</th>
+<th>date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Dupont</td>
+<td>Florine</td>
+<td>dupont.florine@domaine.net</td>
+<td>5</td>
+<td>Axis: Bold as Love</td>
+<td>Jimi Hendrix</td>
+<td>1967</td>
+<td>Faux</td>
+<td>10/09/2021</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Marchand</td>
+<td>Grégoire</td>
+<td>greg.marchand49@music.com</td>
+<td>8</td>
+<td>Riding With The King</td>
+<td>Eric Clapton et B.B. King</td>
+<td>2000</td>
+<td>Faux</td>
+<td>18/08/2021</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Marchand</td>
+<td>Grégoire</td>
+<td>greg.marchand49@music.com</td>
+<td>24</td>
+<td>Continumm</td>
+<td>John Mayer</td>
+<td>2006</td>
+<td>Faux</td>
+<td>18/08/2021</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Pacot</td>
+<td>Jean</td>
+<td>jpacot@music.com</td>
+<td>25</td>
+<td>Continumm</td>
+<td>John Mayer</td>
+<td>2006</td>
+<td>Faux</td>
+<td>12/09/2021</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="attention">
+    <p><strong>Attention</strong> :  la relation <em>Emprunt</em> n'est pour le moment pas satisfaisante, nous allons l'améliorer un peu plus bas.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="important">
+    <p><strong>Définition</strong> : Une <strong>clé étrangère</strong> d'une relation est une clé primaire d'une autre relation de la base de données.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ainsi, la relation <em>Emprunt</em> donnée plus haut possède deux <em>clés étrangères</em> : <code>id_client</code> et <code>id_album</code> (qui sont des clés primaires respectives des relations <em>Client</em> et <em>Album</em>.).</p>
+<blockquote class="question">
+    <p>Que peut-on choisir comme clé primaire de la relation <em>Emprunt</em> ?</p>
+</blockquote><p>Une même personne pouvant emprunter plusieurs albums en même temps, il n'est pas possible d'utiliser les attributs correspondant à la relation <em>Client</em>. En revanche, comme un même album ne peut pas être emprunté par deux clients en même temps, on peut choisir <code>id_album</code> comme <em>clé primaire</em> de la relation <em>Emprunt</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Redondance-des-donn&#233;es">Redondance des donn&#233;es<a class="anchor-link" href="#Redondance-des-donn&#233;es">&#182;</a></h3><p>Dans une base de données relationnelle, il faut éviter la <em>redondance des données</em> c'est-à-dire qu'une relation ne doit pas contenir des informations déjà disponibles dans d'autres relations (et de manière générale, éviter que des mêmes informations se retrouvent dans plusieurs enregistrements d'une même relation).</p>
+<p>Par exemple, la relation <em>Emprunt</em> telle que nous l'avons définie plus haut contient beaucoup d'informations redondantes. En effet :</p>
+<ul>
+<li>pour faire le lien avec l'emprunteur, il est inutile de garder simultanément les attributs <code>id_client</code>, <code>nom</code>, <code>prenom</code> et <code>email</code> : il suffit de conserver l'attribut <code>id_client</code> qui fait entièrement référence à un unique client de la relation <em>Client</em> dans laquelle on retrouve le nom, le prénom et l'adresse email de celui-ci. Ainsi, on évite la redondance des attributs <code>nom</code>, <code>prenom</code> et <code>email</code> : on ne les garde que dans la relation <em>Client</em> ;</li>
+<li>de même, pour faire le lien avec l'album emprunté, il suffit de conserver l'attribut <code>id_album</code> qui caractérise entièrement un album et permet de retrouver le titre, l'artiste, l'année et la disponibilité dans la relation <em>Album</em>.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Moralité</strong> : ce sont les clés étrangères (ici <code>id_client</code> et <code>id_album</code>) qui permettent à elles seules de faire le lien avec des entités d'autres relations, et on évite ainsi les redondances.</p>
+<p>Sachant que l'on peut noter les clés étrangères d'une relation en utilisant un "#", on peut désormais écrire une version satisfaisante de la relation <em>Emprunt</em> :</p>
+<pre style="padding-bottom:3px;">
+    <code><em>Emprunt</em>(<em>#id_client</em> INT, <span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_album</em></span> INT, <em>date</em> DATE)</code>
+</pre><blockquote class="information">
+    <p>La clé <code>id_album</code> est donc à la fois clé primaire et clé étrangère de la relation <em>Emprunt</em>. La clé <code>id_client</code> est une clé étrangère mais pas une clé primaire de la relation <em>Emprunt</em> : cela implique qu'un même client peut se trouver plusieurs fois dans la relation <em>Emprunt</em>, il peut donc emprunter plusieurs albums à la fois (et heureusement !).</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On obtient ainsi la table correspondant à la relation <em>Emprunt</em> :</p>
+<table>
+<thead><tr>
+<th>id_client</th>
+<th>id_album</th>
+<th>date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>5</td>
+<td>10/09/2021</td>
+</tr>
+<tr>
+<td>3</td>
+<td>8</td>
+<td>18/08/2021</td>
+</tr>
+<tr>
+<td>3</td>
+<td>24</td>
+<td>18/08/2021</td>
+</tr>
+<tr>
+<td>5</td>
+<td>25</td>
+<td>12/09/2021</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Pourquoi éviter la redondance des données ?</strong></p>
+<p>La redondance des données est considérée comme une <em>anomalie</em> d'une base de données, synonyme d'une mauvaise conception de la base. En effet, celle-ci est proscrite pour plusieurs raisons :</p>
+<ul>
+<li>faire apparaître des informations non nécessaires à plusieurs endroits (dans plusieurs relations) d'une base de données entraîne un coût en mémoire plus important et des performances moindres lorsqu'il s'agira d'effectuer des requêtes sur la base ;</li>
+<li>si des corrections doivent être faites, elles doivent être faites à un seul endroit : imaginez qu'un emprunteur change de nom (ou d'adresse email), si on a pris soin de ne pas le faire apparaître dans la table <em>Emprunt</em>, il suffit alors de le modifier (une seule fois) dans la table <em>Client</em> et on n'a pas à faire la modification sur chaque ligne de la table <em>Emprunt</em>. Cela permet d'amener de la <em>cohérence</em> à notre base de données.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Contrainte-de-r&#233;f&#233;rence">Contrainte de r&#233;f&#233;rence<a class="anchor-link" href="#Contrainte-de-r&#233;f&#233;rence">&#182;</a></h3><p>La cohérence et les relations entre les différentes tables sont assurées par les clés étrangères. Elles permettent de respecter ce qu'on appelle les <em>contraintes de référence</em> :</p>
+<ul>
+<li><p>une clé étrangère d'une relation doit nécessairement être la clé primaire d'une autre relation :
+<br>👉 cela permet de s'assurer de ne pas ajouter des valeurs fictives ne correspondant pas à des entités connues de la base de données ;</p>
+</li>
+<li><p>un enregistrement ne peut être effacé que si sa clé primaire n'est pas associée à des enregistrements liés dans d'autres relations :
+<br>👉 on ne pourrait pas supprimer le client "Dupont Florine" de la relation <em>Client</em> car il apparaît dans les enregistrements de la relation <em>Emprunt</em>. En effet, sinon la valeur '1' de la clé étrangère <code>id_client</code> de la table <em>Emprunt</em> ne serait plus une clé primaire d'une autre table.</p>
+</li>
+<li><p>une clé primaire ne peut pas être modifiée si l'enregistrement en question est associé à des enregistrements liés dans d'autres tables :
+<br>👉 on ne pourrait pas modifier la clé primaire <code>id_client</code>  du client "Dupont Florine" dans la relation <em>Client</em> car elle apparaît dans les enregistrements de la relation <em>Emprunt</em>. En effet, sinon la valeur '1' de la clé étrangère <code>id_client</code> de la table <em>Emprunt</em> ne serait plus une clé primaire d'une autre table.</p>
+</li>
+</ul>
+<blockquote><p>Concrètement, une tentative de violation de contrainte de référence provoquerait une erreur du SGBD.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Liens-entre-albums-et-artistes">Liens entre albums et artistes<a class="anchor-link" href="#Liens-entre-albums-et-artistes">&#182;</a></h3><p>On termine la modélisation de la structure de la base de données du disquaire en définissant un peu mieux le lien entre un album et l'artiste (ou les artistes) de l'album.</p>
+<p>Pour le moment, il  a été choisi d'utiliser une chaîne de caractères pour l'artiste d'un album directement dans la relation <em>Album</em>. Cette façon de faire peut conduire à quelques problèmes :</p>
+<ul>
+<li>rien n'empêche d'associer plusieurs fois le même artiste à un album puisqu'on écrit ce que l'on veut dans une chaîne de caractères : on pourrait écrire <code>"Éric Clapton et Éric Clapton"</code> sans que le SGBD ne provoque une erreur, alors même qu'il y aurait un problème de cohérence.</li>
+<li>on a de plus un problème de redondance dans le cas (bien que rare) où un artiste changerait de nom car il faudrait le modifier pour chaque album de la table <em>Album</em>.</li>
+</ul>
+<p>Pour pallier à ces problèmes, on peut :</p>
+<ul>
+<li>scinder la relation <em>Album</em> en trois relations : <em>Album</em>, <em>Artiste</em> et _Artiste<em>de</em> ;</li>
+<li>et utiliser les <em>clés étrangères</em> pour faire les associations nécessaires entre les artistes et les albums.</li>
+</ul>
+<p>Concrètement :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>On retire l'attribut <code>artiste</code> de la relation <em>Album</em> :</li>
+</ul>
+<pre style="padding-bottom:3px;">
+    <code><em>Album</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_album</em></span> INT, <em>titre</em> TEXT, <em>annee</em> INT, <em>dispo</em> BOOL)</code>
+</pre><ul>
+<li>On crée un nouvelle relation, <em>Artiste</em>, correspondant uniquement aux différents artistes et ayant le schéma suivant :</li>
+</ul>
+<pre style="padding-bottom:3px;">
+    <code><em>Artiste</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_artiste</em></span> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT)</code>
+</pre><ul>
+<li>On associe, grâce aux clés étrangères, les artistes aux albums en créant une nouvelle relation <em>Artiste_de</em> :</li>
+</ul>
+<pre style="padding-bottom:3px;">
+    <code><em>Artiste_de</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_artiste</em></span> INT, <span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_album</em></span> INT)</code>
+</pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Dans cette dernière relation, les clés étrangères <code>id_artiste</code> et <code>id_album</code> permettent d'associer les relations <em>Artiste</em> et <em>Album</em>. Le <em>couple</em> (<code>id_artiste</code>, <code>id_album</code>) forme la clé primaire de la relation <em>Artiste_de</em>.</p>
+<p>Ainsi, un même artiste <strong>et</strong> un même album ne peuvent se trouver plusieurs fois dans la relation, ce qui empêche d'associer deux fois le même artiste à un même album. Mais un même artiste peut être associé à plusieurs albums différents car <code>id_artiste</code> n'est pas clé primaire de la relation.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ces transformations donnent des tables ressemblant à :</p>
+<ul>
+<li>Relation <em>Album</em> :</li>
+</ul>
+<table>
+<thead><tr>
+<th>id_album</th>
+<th>titre</th>
+<th>annee</th>
+<th>dispo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>I Still Do</td>
+<td>2016</td>
+<td>Vrai</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Axis: Bold as Love</td>
+<td>1967</td>
+<td>Faux</td>
+</tr>
+<tr>
+<td>24</td>
+<td>Continuum</td>
+<td>2006</td>
+<td>Faux</td>
+</tr>
+<tr>
+<td>25</td>
+<td>Continuum</td>
+<td>2006</td>
+<td>Faux</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Riding With The King</td>
+<td>2000</td>
+<td>Faux</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Don't explain</td>
+<td>2011</td>
+<td>Vrai</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Relation <em>Artiste</em> :</li>
+</ul>
+<table>
+<thead><tr>
+<th>id_artiste</th>
+<th>nom</th>
+<th>prenom</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Clapton</td>
+<td>Éric</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Hendrix</td>
+<td>Jimi</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Mayer</td>
+<td>John</td>
+</tr>
+<tr>
+<td>8</td>
+<td>B.B. King</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Hart</td>
+<td>Beth</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Bonamassa</td>
+<td>Joe</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Relation <em>Artiste_de</em> :</li>
+</ul>
+<table>
+<thead><tr>
+<th>id_artiste</th>
+<th>id_album</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>1</td>
+<td>8</td>
+</tr>
+<tr>
+<td>8</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>24</td>
+</tr>
+<tr>
+<td>4</td>
+<td>25</td>
+</tr>
+<tr>
+<td>3</td>
+<td>5</td>
+</tr>
+<tr>
+<td>6</td>
+<td>11</td>
+</tr>
+<tr>
+<td>15</td>
+<td>11</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Désormais, on n'enregistre qu'à un seul endroit les chaînes de caractères correspondant au nom et au prénom de chaque artiste, et lorsque l'on veut faire référence à cet artiste dans une autre relation, c'est l'entier correspondant à <code>id_artiste</code> qui est enregistré en mémoire. Ainsi, si un artiste change de nom, il suffit alors de modifier son nom une seule fois dans la relation <em>Artiste</em>.</p>
+<p>Par ailleurs, on obtient également un gain :</p>
+<ul>
+<li>en mémoire, car un entier est (presque tout le temps) stocké sur moins de bits qu'une chaîne de caractères ;</li>
+<li>en performance, car lorsque l'on effectuera des recherches dans la base (comme la recherche de tous les albums d'un artiste donné par exemple), les comparaisons entre deux entiers sont plus rapides qu'entre deux chaînes de caractères.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Sch&#233;ma-(final)-de-notre-base-de-donn&#233;es">Sch&#233;ma (final) de notre base de donn&#233;es<a class="anchor-link" href="#Sch&#233;ma-(final)-de-notre-base-de-donn&#233;es">&#182;</a></h2><p>Avec toutes les améliorations apportées, le schéma (ou structure) de la base de données du disquaire est le suivant :</p>
+<pre style="padding-bottom:3px;">
+    <code><em>Album</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_album</em></span> INT, <em>titre</em> TEXT, <em>annee</em> INT, <em>dispo</em> BOOL)</code>
+</pre>
+<pre style="padding-bottom:3px;">
+    <code><em>Artiste</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_artiste</em></span> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT)</code>
+</pre>
+<pre style="padding-bottom:3px;">
+    <code><em>Artiste_de</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_artiste</em></span> INT, <span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_album</em></span> INT)</code>
+</pre>
+<pre style="padding-bottom:3px;">
+    <code><em>Client</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_client</em></span> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT, <em>email</em> TEXT)</code>
+</pre>
+<pre style="padding-bottom:3px;">
+    <code><em>Emprunt</em>(<em>#id_client</em> INT, <span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_album</em></span> INT, <em>date</em> DATE)</code>
+</pre><p>On peut aussi représenter graphiquement ce schéma par le diagramme suivant :</p>
+<p><img class="centre image-responsive" src="data/diagramme_bdd.png" alt="diagramme"></p>
+<p><span class="image-licence" style="display: block;text-align: center;font-size: 0.9em;color: #aaa;">Réalisé avec l'application <a href="https://app.quickdatabasediagrams.com/#/d/bbXJBD" target="_blank">quickdatabasediagrams.com</a>
+</span></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remarques</strong> : Dans ce diagramme :</p>
+<ul>
+<li>les clés primaires sont matérialisées ici par un symbole de clé (et en gras). Mais on trouve aussi parfois l'acronyme CP, pour <em>clé primaire</em>, ou plus souvent sa version anglaise PK, pour <em>primary key</em>.</li>
+<li>les clés étrangères sont matérialisées par un trait marquant les associations entre les différentes relations (et en gras). Mais on trouve aussi souvent l'acronyme FK (<em>foreign key</em>, traduction de <em>clé étrangère</em>).</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Bilan">Bilan<a class="anchor-link" href="#Bilan">&#182;</a></h1><ul>
+<li>Pour stocker, manipuler, traiter des données de plus en plus nombreuses, l'utilisation de fichiers texte ou tabulaire (CSV) ne suffit plus. Pour cela, on utilise des bases de données (relationnelles), beaucoup plus performantes. Les logiciels de type SGBD permettent aux utilisateurs d'interagir avec une base de données.</li>
+<li>Le <strong>modèle relationnel</strong> permet de modéliser les relations entres plusieurs informations et le relier entre elles. Une relation est un ensemble d'enregistrements possédant des <strong>attributs</strong>, chacun d'eux ayant un <strong>domaine</strong> défini qui permet de réaliser la <em>contrainte de domaine</em> de la base de données. Le <em>schéma d'une relation</em> est la liste de tous les attributs et de leurs domaines respectifs.</li>
+<li>Une <strong>base de données relationnelle</strong> n'est autre qu'un ensemble de relations et le schéma (structure) d'une base de données relationnelle est l'ensemble des schémas des relations la constituant.</li>
+<li>Chaque relation d'une base de données doit posséder une <strong>clé primaire</strong> permettant de caractériser de manière unique chaque entité de la relation. Ces clés primaires permettent de réaliser la <em>contrainte de relation</em>  de la base de données.</li>
+<li>Certaines relations possèdent un lien entre elles. Ce lien est réalisé par des <strong>clés étrangères</strong> (qui sont des clés primaires d'autres relations) qui assurent les <em>contraintes de référence</em> de la base de données et permettent d'éviter les redondances.</li>
+<li>La conception de la structure d'une base de données (son schéma) est un travail indispensable pour s'assurer qu'elle ne contient pas d'anomalies. Vous devez être capable de repérer des anomalies dans le schéma d'une base de données, cela sera abordé plus en détails en exercices.</li>
+<li>Dans un prochain chapitre, nous utiliserons un SGBD pour interagir avec une vraie base de données, grâce au langage SQL (Structured Query Language).</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Références :</strong></p>
+<ul>
+<li>Equipe éducative DIU EIL, Université de Nantes.</li>
+<li>Cours OpenClassrooms pour l'idée de la base de données d'un disquaire : <a href="https://openclassrooms.com/fr/courses/4425076-decouvrez-le-framework-django">Découvrez le framework Django</a>.</li>
+<li>Livre <em>Numérique et Sciences Informatiques, 24 leçons, Terminale</em>, T. BALABONSKI, S. CONCHON, J.-C. FILLIATRE, K. NGUYEN, éditions ELLIPSES.</li>
+<li>Livre <em>Prepabac NSI, Tle</em>, G. Connan, V. Petrov, G. Rozsavolgyi, L. Signac, éditions HATIER.</li>
+<li>Cours de Gilles Lassus sur le <a href="https://github.com/glassus/terminale_nsi/blob/main/docs/T4_Bases_de_donnees/4.1_Modele_relationnel/cours.md">modèle relationnel</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p>Germain BECKER, Lycée Mounier, ANGERS</p>
+<p>Ressource éducative libre distribuée sous <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a></p>
+<p><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+

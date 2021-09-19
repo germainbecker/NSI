@@ -1,0 +1,586 @@
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 style="font-size: 30px; text-align: center">Modèle relationnel - EXERCICES</h1><hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-1">Exercice 1<a class="anchor-link" href="#Exercice-1">&#182;</a></h1><p>Deux relations modélisent la flotte de voitures d'un réseau de location de voitures.</p>
+<ul>
+<li>Relation <em>Agence</em> :</li>
+</ul>
+<table>
+<thead><tr>
+<th>id_agence</th>
+<th>ville</th>
+<th>département</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Paris</td>
+<td>75</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Lyon</td>
+<td>69</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Marseille</td>
+<td>13</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Aubagne</td>
+<td>13</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Relation <em>Voiture</em> :</li>
+</ul>
+<table>
+<thead><tr>
+<th>id_voiture</th>
+<th>marque</th>
+<th>modèle</th>
+<th>kilométrage</th>
+<th>couleur</th>
+<th>id_agence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Renault</td>
+<td>Clio</td>
+<td>12000</td>
+<td>Rouge</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Peugeot</td>
+<td>205</td>
+<td>22000</td>
+<td>Noir</td>
+<td>3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Toyota</td>
+<td>Yaris</td>
+<td>33000</td>
+<td>Noir</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Questions</strong></p>
+<ol>
+<li>Combien la relation <em>Voiture</em> comporte-t-elle d'attributs ?</li>
+<li>Que vaut son cardinal (= le nombre d'enregistrements) ?</li>
+<li>Quel est le domaine de l'attribut <code>id_agence</code>  dans la relation <em>Voiture</em> ?</li>
+<li>Quel est le schéma relationnel de la relation <em>Agence</em> ?</li>
+<li>Quelle est la clé primaire de la relation <em>Agence</em> ?</li>
+<li>Quelle est la clé primaire de la relation <em>Voiture</em> ?</li>
+<li>Quelle est la clé étrangère de la relation <em>Voiture</em> ?</li>
+<li>Quel est le schéma relationnel de la relation <em>Voiture</em> ?</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-2">Exercice 2<a class="anchor-link" href="#Exercice-2">&#182;</a></h1><p>Considérons la base de données Tour de France 2020, contenant les relations suivantes :</p>
+<ul>
+<li>Relation Equipe :</li>
+</ul>
+<table>
+<thead><tr>
+<th>code_equipe</th>
+<th>nom_equipe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ALM</td>
+<td>AG2R La Mondiale</td>
+</tr>
+<tr>
+<td>AST</td>
+<td>Astana Pro Team</td>
+</tr>
+<tr>
+<td>TBM</td>
+<td>Bahrain - McLaren</td>
+</tr>
+<tr>
+<td>BOH</td>
+<td>BORA - hansgrohe</td>
+</tr>
+<tr>
+<td>CCC</td>
+<td>CCC Team</td>
+</tr>
+<tr>
+<td>COF</td>
+<td>Cofidis, Solutions Crédits</td>
+</tr>
+<tr>
+<td>DQT</td>
+<td>Deceuninck - Quick Step</td>
+</tr>
+<tr>
+<td>EF1</td>
+<td>EF Pro Cycling</td>
+</tr>
+<tr>
+<td>GFC</td>
+<td>Groupama - FDJ</td>
+</tr>
+<tr>
+<td>LTS</td>
+<td>Lotto Soudal</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Relation <em>Coureur</em></li>
+</ul>
+<table>
+<thead><tr>
+<th>dossard</th>
+<th>nom_coureur</th>
+<th>prenom_coureur</th>
+<th>code_equipe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>141</td>
+<td>LÓPEZ</td>
+<td>Miguel Ángel</td>
+<td>AST</td>
+</tr>
+<tr>
+<td>142</td>
+<td>FRAILE</td>
+<td>Omar</td>
+<td>AST</td>
+</tr>
+<tr>
+<td>143</td>
+<td>HOULE</td>
+<td>Hugo</td>
+<td>AST</td>
+</tr>
+<tr>
+<td>11</td>
+<td>ROGLIČ</td>
+<td>Primož</td>
+<td>TJV</td>
+</tr>
+<tr>
+<td>12</td>
+<td>BENNETT</td>
+<td>George</td>
+<td>TJV</td>
+</tr>
+<tr>
+<td>41</td>
+<td>ALAPHILIPPE</td>
+<td>Julian</td>
+<td>DQT</td>
+</tr>
+<tr>
+<td>44</td>
+<td>CAVAGNA</td>
+<td>Rémi</td>
+<td>DQT</td>
+</tr>
+<tr>
+<td>45</td>
+<td>DECLERCQ</td>
+<td>Tim</td>
+<td>DQT</td>
+</tr>
+<tr>
+<td>121</td>
+<td>MARTIN</td>
+<td>Guillaume</td>
+<td>COF</td>
+</tr>
+<tr>
+<td>122</td>
+<td>CONSONNI</td>
+<td>Simone</td>
+<td>COF</td>
+</tr>
+<tr>
+<td>123</td>
+<td>EDET</td>
+<td>Nicolas</td>
+<td>COF</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Relation <em>Etape</em> :</li>
+</ul>
+<table>
+<thead><tr>
+<th>num_etape</th>
+<th>ville_depart</th>
+<th>ville_arrivee</th>
+<th>km</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Nice</td>
+<td>Nice</td>
+<td>156</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Nice</td>
+<td>Nice</td>
+<td>185</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Nice</td>
+<td>Sisteron</td>
+<td>198</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Sisteron</td>
+<td>Orcières-Merlette</td>
+<td>160</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Gap</td>
+<td>Privas</td>
+<td>198</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Relation <em>Temps</em> :</li>
+</ul>
+<table>
+<thead><tr>
+<th style="text-align:center">dossard</th>
+<th style="text-align:center">num_etape</th>
+<th style="text-align:center">temps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">41</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">04:55:27</td>
+</tr>
+<tr>
+<td style="text-align:center">121</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">04:07:47</td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">04:21:22</td>
+</tr>
+<tr>
+<td style="text-align:center">122</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">04:21:22</td>
+</tr>
+<tr>
+<td style="text-align:center">...</td>
+<td style="text-align:center">...</td>
+<td style="text-align:center">...</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Questions</strong></p>
+<ol>
+<li>Donner le schéma de la base de données.</li>
+<li>Quel temps a réalisé Guillaume MARTIN sur l'étape Sisteron / Orcières-Merlette ?</li>
+<li>À l'arrivée à Privas, qui est arrivé le premier entre Primož ROGLIČ et Simone CONSONNI ?</li>
+<li>Comment modifier le schéma de la base pour connaître le vainqueur de chaque étape ?</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-3">Exercice 3<a class="anchor-link" href="#Exercice-3">&#182;</a></h1><p>On considère une base de données permettant de gérer des réservations dans une compagnie d'hôtels. Voic le schéma de cette base :</p>
+<pre style="padding-bottom:3px;">
+    <code><em>Client</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>nom</em></span> TEXT, <span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>prenom</em></span> TEXT)</code>
+</pre>
+<pre style="padding-bottom:3px;">
+    <code><em>Reservation</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_reservation</em></span> INT, <em>num_chambre</em> INT, <em>nom_hotel</em> TEXT)</code>
+</pre>
+<pre style="padding-bottom:3px;">
+    <code><em>Hotel</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_hotel</em></span> TEXT, <em>nom_hotel</em> TEXT, <em>adresse</em> TEXT)</code>
+</pre>
+<pre style="padding-bottom:3px;">
+    <code><em>Chambre</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>num_chambre</em></span> INT, <em>nom_hotel</em> TEXT, <em>prix</em> INT)</code>
+</pre><p>Repérez, expliquez et corrigez toutes les anomalies dans le schéma relationnel de cette base.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-4">Exercice 4<a class="anchor-link" href="#Exercice-4">&#182;</a></h1><p>Une sandwicherie effectuant des livraisons à domicile dispose d'une base de données dont certains extraits de tables sont reproduits ici.</p>
+<p>La table <em>Sandwich</em> comporte les informations relatives aux sandwichs proposés à la vente :</p>
+<table>
+<thead><tr>
+<th>nom_sandwich</th>
+<th>prix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cheesburger</td>
+<td>3,90</td>
+</tr>
+<tr>
+<td>Double cheese</td>
+<td>4,90</td>
+</tr>
+<tr>
+<td>Italien</td>
+<td>4,90</td>
+</tr>
+<tr>
+<td>Foie gras</td>
+<td>15,00</td>
+</tr>
+</tbody>
+</table>
+<p>La table <em>Client</em> comporte les informations relatives aux clients :</p>
+<table>
+<thead><tr>
+<th>nom</th>
+<th>prenom</th>
+<th>adresse</th>
+<th>numero_client</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bernard</td>
+<td>Alain</td>
+<td>9, rue Bienvenue, 13008 MARSEILLE</td>
+<td>42</td>
+</tr>
+<tr>
+<td>Bernard</td>
+<td>Yves</td>
+<td>2, rue Vive la joie, 13400 AUBAGNE</td>
+<td>51</td>
+</tr>
+</tbody>
+</table>
+<p>La table <em>Commande</em> comporte les informations relatives aux commande passées :</p>
+<table>
+<thead><tr>
+<th>numero_client</th>
+<th>nom_sandwich</th>
+<th>quantite</th>
+<th>numero_commande</th>
+<th>date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>42</td>
+<td>Italien</td>
+<td>2</td>
+<td>12452</td>
+<td>2020-12-11</td>
+</tr>
+<tr>
+<td>42</td>
+<td>Foie gras</td>
+<td>1</td>
+<td>12452</td>
+<td>2020-12-11</td>
+</tr>
+<tr>
+<td>51</td>
+<td>Cheesburger</td>
+<td>4</td>
+<td>13301</td>
+<td>2020-12-23</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Questions</strong></p>
+<ol>
+<li>Une commande peut-elle comporter plusieurs sandwichs de types différents ?</li>
+<li>Quel est le schéma des relations <em>Sandwich</em> et <em>Client</em> ? Vous identifierez les clés primaires et étrangères de ces deux tables.</li>
+<li>La relation <em>Commande</em> possède-t-elle un attribut pouvant être clé primaire ? En l'absence d'un attribut clé primaire, un couple ou un triplet d'attributs peut-il jouer ce rôle ? Expliquer.</li>
+<li>Cette base de données semble-t-elle bien modélisée ? Si ce n'est pas le cas, proposer des modifications.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-5">Exercice 5<a class="anchor-link" href="#Exercice-5">&#182;</a></h1><p>Donner la modélisation relationnelle d'un bulletin scolaire. Cette dernière doit permettre de mentionner :</p>
+<ul>
+<li>des élèves, possédant un numéro d'étudiant alphanumérique unique</li>
+<li>un ensemble de matières fixées, mais qui ne sont pas données</li>
+<li>au plus une note sur 20, par élève et par matière</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong><em>Correction</em></strong></p>
+<pre style="padding-bottom:3px;">
+    <code><em>Eleve</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>num_eleve</em></span> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT)</code>
+</pre><pre style="padding-bottom:3px;">
+    <code><em>Matiere</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_matiere</em></span> INT, <em>intitule</em> TEXT)</code>
+</pre><pre style="padding-bottom:3px;">
+    <code><em>Note</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_matiere</em></span> INT, <span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#num_eleve</em></span> INT, <em>note</em> FLOAT)</code>
+</pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-6">Exercice 6<a class="anchor-link" href="#Exercice-6">&#182;</a></h1><p>On considère dans cet exercice une base de données stockant des informations sur les élèves d'un lycée. En voici un extrait :</p>
+<table>
+<thead><tr>
+<th>nom</th>
+<th>prenom</th>
+<th>date_naissance</th>
+<th>classe</th>
+<th>option1</th>
+<th>option2</th>
+<th>option3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Armand</td>
+<td>Léa</td>
+<td>12/02/05</td>
+<td>1G1</td>
+<td>Maths</td>
+<td>NSI</td>
+<td>LLCE Anglais</td>
+</tr>
+<tr>
+<td>Joulain</td>
+<td>Marie</td>
+<td>13/01/06</td>
+<td>2de3</td>
+<td>DNL Anglais</td>
+<td>NULL</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>Marchand</td>
+<td>Anthony</td>
+<td>12/12/05</td>
+<td>1G1</td>
+<td>HGGSP</td>
+<td>SES</td>
+<td>Maths</td>
+</tr>
+<tr>
+<td>Marchand</td>
+<td>Sophie</td>
+<td>06/04/04</td>
+<td>TG2</td>
+<td>Maths</td>
+<td>Physique</td>
+<td>NULL</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Questions</strong></p>
+<ol>
+<li>Quel est le schéma relationnel de cette base ?</li>
+<li>Quel défaut de conception majeur présente cette base de données ?</li>
+<li>Certains attributs n'existent pas pour certains enregistrements. Scindez cette table en deux tables pour éviter ce problème. Vous donnerez les enregistrements des deux tables.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Références</strong></p>
+<ul>
+<li>Exercices 1 et 2 : d'après la <a href="https://github.com/glassus/terminale_nsi/blob/main/docs/T4_Bases_de_donnees/4.1_Modele_relationnel/02_exercices.md">page github</a> de Gilles Lassus.</li>
+<li>Exercices 4 et 6 : d'après <em>Prépabac NSI, Terminale</em>, G.CONNAN, V.PETROV, G.ROZSAVOLGYI, L.SIGNAC, éditions HATIER.</li>
+<li>Exercice 5 : d'après <em>Numérique et Sciences Informatiques, 24 leçons, Terminale</em>, T. BALABONSKI, S. CONCHON, J.-C. FILLIATRE, K. NGUYEN, éditions ELLIPSES.</li>
+</ul>
+<hr>
+<p>Germain BECKER, Lycée Mounier, ANGERS</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+ 
+
