@@ -347,16 +347,16 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Exercice-3">Exercice 3<a class="anchor-link" href="#Exercice-3">&#182;</a></h1><p>On considère une base de données permettant de gérer des réservations dans une compagnie d'hôtels. Voic le schéma de cette base :</p>
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Client</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>nom</em></span> TEXT, <span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>prenom</em></span> TEXT)</code>
 </pre>
-<pre style="padding-bottom:3px;">
-    <code><em>Reservation</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_reservation</em></span> INT, <em>num_chambre</em> INT, <em>nom_hotel</em> TEXT)</code>
+<pre style="padding-bottom:10px;">
+    <code><em>Reservation</em>(<span style="padding-bottom:1px; border-bottom: 1px solid black;"><em>id_reservation</em></span> INT, <em>num_chambre</em> INT, <em>nom_hotel</em> TEXT)</code>
 </pre>
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Hotel</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_hotel</em></span> TEXT, <em>nom_hotel</em> TEXT, <em>adresse</em> TEXT)</code>
 </pre>
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Chambre</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>num_chambre</em></span> INT, <em>nom_hotel</em> TEXT, <em>prix</em> INT)</code>
 </pre><p>Repérez, expliquez et corrigez toutes les anomalies dans le schéma relationnel de cette base.</p>
 
@@ -479,11 +479,11 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong><em>Correction</em></strong></p>
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Eleve</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>num_eleve</em></span> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT)</code>
-</pre><pre style="padding-bottom:3px;">
+</pre><pre style="padding-bottom:10px;">
     <code><em>Matiere</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_matiere</em></span> INT, <em>intitule</em> TEXT)</code>
-</pre><pre style="padding-bottom:3px;">
+</pre><pre style="padding-bottom:10px;">
     <code><em>Note</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_matiere</em></span> INT, <span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#num_eleve</em></span> INT, <em>note</em> FLOAT)</code>
 </pre>
 </div>
@@ -568,19 +568,6 @@
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
 </div>
  
 

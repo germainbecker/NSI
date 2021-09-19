@@ -244,7 +244,7 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pour symboliser la clé primaire dans le schéma d'une relation, il est de coutume de la souligner. Ainsi, notre relation <em>Album</em> a pour schéma :</p>
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Album</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_album</em></span> INT, <em>titre</em> TEXT, <em>artiste</em> TEXT, <em>annee</em> INT, <em>dispo</em> BOOL)</code>
 </pre><p>et correspond à la table suivante :</p>
 <table>
@@ -322,7 +322,7 @@
 <li>Si on choisit l'adresse email comme clé primaire, cela impliquerait que deux clients ne peuvent pas avoir la même adresse email. Cela peut sembler convenir... mais on se heurterait au cas où un client ne possède pas d'adresse email (un jeune enfant par exemple, d'ailleurs ses parents ne pourraient même pas lui créer un compte à son nom avec leur propre adresse email s'ils sont eux-mêmes clients)</li>
 </ul>
 <p>Comme pour la relation <em>Album</em>, il semble judicieux de créer une clé primaire <em>artificielle</em>, nommée <code>id_client</code> la relation <em>Client</em> qui aurait alors pour schéma :</p>
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Client</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_client</em></span> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT, <em>email</em> TEXT)</code>
 </pre><p>et correspond à la table suivante :</p>
 <table>
@@ -385,7 +385,7 @@
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Cl&#233;-&#233;trang&#232;re">Cl&#233; &#233;trang&#232;re<a class="anchor-link" href="#Cl&#233;-&#233;trang&#232;re">&#182;</a></h2><h3 id="La-relation-Emprunt">La relation <em>Emprunt</em><a class="anchor-link" href="#La-relation-Emprunt">&#182;</a></h3><p>Pour un emprunt, on aimerait connaître l'album emprunté, le client qui a emprunté l'album et la date d'emprunt.</p>
 <p>On voit donc que les enregistrements de la relation <em>Emprunt</em> font référence à des enregistrements des relations <em>Album</em> et <em>Client</em>. On peut imaginer le schéma suivant pour la relation <em>Emprunt</em>, qui contient toutes les informations nécessaires :</p>
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Emprunt</em>(<em>id_client</em> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT, <em>email</em> TEXT, <em>id_album</em> INT, <em>titre</em> TEXT, <em>artiste</em> TEXT, <em>annee</em> INT, <em>dispo</em> BOOL, <em>date</em> DATE)</code>
 </pre><p>Cela donnerait une table <em>Emprunt</em> du genre :</p>
 <table>
@@ -497,7 +497,7 @@
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Moralité</strong> : ce sont les clés étrangères (ici <code>id_client</code> et <code>id_album</code>) qui permettent à elles seules de faire le lien avec des entités d'autres relations, et on évite ainsi les redondances.</p>
 <p>Sachant que l'on peut noter les clés étrangères d'une relation en utilisant un "#", on peut désormais écrire une version satisfaisante de la relation <em>Emprunt</em> :</p>
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Emprunt</em>(<em>#id_client</em> INT, <span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_album</em></span> INT, <em>date</em> DATE)</code>
 </pre><blockquote class="information">
     <p>La clé <code>id_album</code> est donc à la fois clé primaire et clé étrangère de la relation <em>Emprunt</em>. La clé <code>id_client</code> est une clé étrangère mais pas une clé primaire de la relation <em>Emprunt</em> : cela implique qu'un même client peut se trouver plusieurs fois dans la relation <em>Emprunt</em>, il peut donc emprunter plusieurs albums à la fois (et heureusement !).</p>
@@ -561,18 +561,21 @@
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Contrainte-de-r&#233;f&#233;rence">Contrainte de r&#233;f&#233;rence<a class="anchor-link" href="#Contrainte-de-r&#233;f&#233;rence">&#182;</a></h3><p>La cohérence et les relations entre les différentes tables sont assurées par les clés étrangères. Elles permettent de respecter ce qu'on appelle les <em>contraintes de référence</em> :</p>
 <ul>
-<li><p>une clé étrangère d'une relation doit nécessairement être la clé primaire d'une autre relation :
-<br>👉 cela permet de s'assurer de ne pas ajouter des valeurs fictives ne correspondant pas à des entités connues de la base de données ;</p>
-</li>
-<li><p>un enregistrement ne peut être effacé que si sa clé primaire n'est pas associée à des enregistrements liés dans d'autres relations :
-<br>👉 on ne pourrait pas supprimer le client "Dupont Florine" de la relation <em>Client</em> car il apparaît dans les enregistrements de la relation <em>Emprunt</em>. En effet, sinon la valeur '1' de la clé étrangère <code>id_client</code> de la table <em>Emprunt</em> ne serait plus une clé primaire d'une autre table.</p>
-</li>
-<li><p>une clé primaire ne peut pas être modifiée si l'enregistrement en question est associé à des enregistrements liés dans d'autres tables :
-<br>👉 on ne pourrait pas modifier la clé primaire <code>id_client</code>  du client "Dupont Florine" dans la relation <em>Client</em> car elle apparaît dans les enregistrements de la relation <em>Emprunt</em>. En effet, sinon la valeur '1' de la clé étrangère <code>id_client</code> de la table <em>Emprunt</em> ne serait plus une clé primaire d'une autre table.</p>
-</li>
+<li>une clé étrangère d'une relation doit nécessairement être la clé primaire d'une autre relation :</li>
 </ul>
-<blockquote><p>Concrètement, une tentative de violation de contrainte de référence provoquerait une erreur du SGBD.</p>
+<blockquote><p>👉 cela permet de s'assurer de ne pas ajouter des valeurs fictives ne correspondant pas à des entités connues de la base de données ;</p>
 </blockquote>
+<ul>
+<li>un enregistrement ne peut être effacé que si sa clé primaire n'est pas associée à des enregistrements liés dans d'autres relations :</li>
+</ul>
+<blockquote><p>👉 on ne pourrait pas supprimer le client "Dupont Florine" de la relation <em>Client</em> car il apparaît dans les enregistrements de la relation <em>Emprunt</em>. En effet, sinon la valeur '1' de la clé étrangère <code>id_client</code> de la table <em>Emprunt</em> ne serait plus une clé primaire d'une autre table.</p>
+</blockquote>
+<ul>
+<li>une clé primaire ne peut pas être modifiée si l'enregistrement en question est associé à des enregistrements liés dans d'autres tables :</li>
+</ul>
+<blockquote><p>👉 on ne pourrait pas modifier la clé primaire <code>id_client</code>  du client "Dupont Florine" dans la relation <em>Client</em> car elle apparaît dans les enregistrements de la relation <em>Emprunt</em>. En effet, sinon la valeur '1' de la clé étrangère <code>id_client</code> de la table <em>Emprunt</em> ne serait plus une clé primaire d'une autre table.</p>
+</blockquote>
+<p>Concrètement, une tentative de violation de contrainte de référence provoquerait une erreur du SGBD.</p>
 
 </div>
 </div>
@@ -602,17 +605,17 @@
 <ul>
 <li>On retire l'attribut <code>artiste</code> de la relation <em>Album</em> :</li>
 </ul>
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Album</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_album</em></span> INT, <em>titre</em> TEXT, <em>annee</em> INT, <em>dispo</em> BOOL)</code>
 </pre><ul>
 <li>On crée un nouvelle relation, <em>Artiste</em>, correspondant uniquement aux différents artistes et ayant le schéma suivant :</li>
 </ul>
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Artiste</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_artiste</em></span> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT)</code>
 </pre><ul>
 <li>On associe, grâce aux clés étrangères, les artistes aux albums en créant une nouvelle relation <em>Artiste_de</em> :</li>
 </ul>
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Artiste_de</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_artiste</em></span> INT, <span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_album</em></span> INT)</code>
 </pre>
 </div>
@@ -789,19 +792,19 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Sch&#233;ma-(final)-de-notre-base-de-donn&#233;es">Sch&#233;ma (final) de notre base de donn&#233;es<a class="anchor-link" href="#Sch&#233;ma-(final)-de-notre-base-de-donn&#233;es">&#182;</a></h2><p>Avec toutes les améliorations apportées, le schéma (ou structure) de la base de données du disquaire est le suivant :</p>
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Album</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_album</em></span> INT, <em>titre</em> TEXT, <em>annee</em> INT, <em>dispo</em> BOOL)</code>
 </pre>
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Artiste</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_artiste</em></span> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT)</code>
 </pre>
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Artiste_de</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_artiste</em></span> INT, <span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_album</em></span> INT)</code>
 </pre>
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Client</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_client</em></span> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT, <em>email</em> TEXT)</code>
 </pre>
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Emprunt</em>(<em>#id_client</em> INT, <span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_album</em></span> INT, <em>date</em> DATE)</code>
 </pre><p>On peut aussi représenter graphiquement ce schéma par le diagramme suivant :</p>
 <p><img class="centre image-responsive" src="data/diagramme_bdd.png" alt="diagramme"></p>
