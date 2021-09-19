@@ -388,7 +388,8 @@
 <h2 id="Cl&#233;-&#233;trang&#232;re">Cl&#233; &#233;trang&#232;re<a class="anchor-link" href="#Cl&#233;-&#233;trang&#232;re">&#182;</a></h2><h3 id="La-relation-Emprunt">La relation <em>Emprunt</em><a class="anchor-link" href="#La-relation-Emprunt">&#182;</a></h3><p>Pour un emprunt, on aimerait connaître l'album emprunté, le client qui a emprunté l'album et la date d'emprunt.</p>
 <p>On voit donc que les enregistrements de la relation <em>Emprunt</em> font référence à des enregistrements des relations <em>Album</em> et <em>Client</em>. On peut imaginer le schéma suivant pour la relation <em>Emprunt</em>, qui contient toutes les informations nécessaires :</p>
 <pre style="padding-bottom:10px;">
-    <code><em>Emprunt</em>(<em>id_client</em> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT, <em>email</em> TEXT, <em>id_album</em> INT, <em>titre</em> TEXT, <em>artiste</em> TEXT, <em>annee</em> INT, <em>dispo</em> BOOL, <em>date</em> DATE)</code>
+    <code><em>Emprunt</em>(<em>id_client</em> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT, <em>email</em> TEXT, <em>id_album</em> INT, <em>titre</em> TEXT, 
+            <em>artiste</em> TEXT, <em>annee</em> INT, <em>dispo</em> BOOL, <em>date</em> DATE)</code>
 </pre><p>Cela donnerait une table <em>Emprunt</em> du genre :</p>
 
 </div>
@@ -416,7 +417,7 @@
 <td>1</td>
 <td>Dupont</td>
 <td>Florine</td>
-<td>dupont.florine@domaine.net</td>
+<td>dupontf@domaine.net</td>
 <td>5</td>
 <td>Axis: Bold as Love</td>
 <td>Jimi Hendrix</td>
@@ -426,9 +427,9 @@
 </tr>
 <tr>
 <td>3</td>
-<td>Marchand</td>
+<td>Mira</td>
 <td>Grégoire</td>
-<td>greg.marchand49@music.com</td>
+<td>gmira49@music.com</td>
 <td>8</td>
 <td>Riding With The King</td>
 <td>Eric Clapton et B.B. King</td>
@@ -438,9 +439,9 @@
 </tr>
 <tr>
 <td>3</td>
-<td>Marchand</td>
+<td>Mira</td>
 <td>Grégoire</td>
-<td>greg.marchand49@music.com</td>
+<td>gmira49@music.com</td>
 <td>24</td>
 <td>Continumm</td>
 <td>John Mayer</td>
