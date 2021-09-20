@@ -1,4 +1,3 @@
-
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -27,7 +26,7 @@
 <div class="highlight"><pre><span></span><span class="n">construit</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">construit</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">construit</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">construit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">listevide</span><span class="p">()))))</span>
 </pre></div>
 <p>Ceci est une construction <em>récursive</em> car l'opérateur <code>construit</code> s'appelle lui-même à plusieurs reprises. Dans le cas de notre implémentation avec des couples, cette construction mémorisait notre liste dans le <code>tuple</code> suivant :</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">None</span><span class="p">))))</span>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">))))</span>
 </pre></div>
 
 </div>
@@ -246,7 +245,14 @@ renvoie 8</code></pre>
 <p><strong>Empilement des appels</strong></p>
 <p><img class="centre" src="data/pile_execution.png" alt="pile d'exécution"></p>
 <p><strong>Utilisation d'outils</strong></p>
-<p>On peut visualiser avec <strong>Python Tutor</strong> le dépliage (descente) puis l'évaluation (remontée) : <a href="http://www.pythontutor.com/visualize.html#code=def%20deux_puissance%28n%29%3A%0A%20%20%20%20if%20n%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20return%201%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20return%202%20*%20deux_puissance%28n-1%29%0A%0Adeux_puissance%283%29&amp;cumulative=true&amp;curInstr=0&amp;heapPrimitives=nevernest&amp;mode=display&amp;origin=opt-frontend.js&amp;py=3&amp;rawInputLstJSON=%5B%5D&amp;textReferences=false">lien vers pythontutor</a>.</p>
+<p>On peut visualiser avec <strong>Python Tutor</strong> le dépliage (descente) puis l'évaluation (remontée) : <a href="https://www.pythontutor.com/visualize.html#code=def%20deux_puissance%28n%29%3A%0A%20%20%20%20if%20n%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20return%201%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20return%202%20*%20deux_puissance%28n-1%29%0A%0Adeux_puissance%283%29&amp;cumulative=true&amp;curInstr=0&amp;heapPrimitives=nevernest&amp;mode=display&amp;origin=opt-frontend.js&amp;py=3&amp;rawInputLstJSON=%5B%5D&amp;textReferences=false">lien vers pythontutor</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <iframe width="800" height="500" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=def%20deux_puissance%28n%29%3A%0A%20%20%20%20if%20n%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20return%201%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20return%202%20*%20deux_puissance%28n-1%29%0A%0Adeux_puissance%283%29&codeDivHeight=400&codeDivWidth=350&cumulative=true&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"></iframe>
 </div>
 </div>
