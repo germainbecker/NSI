@@ -66,7 +66,7 @@ HLT</code></pre>
             <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
   overflow:hidden;padding:5px 5px;word-break:normal;background:white;"><span style="font-family:consolas; font-size:1.1em;">BRA 42</span></td>
             <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
-  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">Il s'agit d'un saut inconditionnel (<span style="font-family:consolas; font-size:1.1em;">BRA</span> pour <em>branch</em> que l'on peut traduire par "bifurcation") : indique que la prochaine instruction à exécuter se situe en mémoire à l'adresse <span style="font-family:consolas; font-size:1.1em;">45</span>.</td>
+  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">Il s'agit d'un saut inconditionnel (<span style="font-family:consolas; font-size:1.1em;">BRA</span> pour <em>branch</em> que l'on peut traduire par "bifurcation") : indique que la prochaine instruction à exécuter se situe en mémoire à l'adresse <span style="font-family:consolas; font-size:1.1em;">42</span>.</td>
         </tr>
         <tr>
             <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
@@ -78,7 +78,7 @@ HLT</code></pre>
             <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
   overflow:hidden;padding:5px 5px;word-break:normal;background:white;"><span style="font-family:consolas; font-size:1.1em;">CMP R0,R1</span></td>
             <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
-  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">Compare la valeur stockée dans le registre <span style="font-family:consolas; font-size:1.1em;">R0</span> et et la valeur stockée dans le registre <span style="font-family:consolas; font-size:1.1em;">R0</span>.</td>
+  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">Compare la valeur stockée dans le registre <span style="font-family:consolas; font-size:1.1em;">R0</span> et la valeur stockée dans le registre <span style="font-family:consolas; font-size:1.1em;">R1</span>.</td>
         </tr>
         <tr>
             <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
@@ -88,7 +88,7 @@ HLT</code></pre>
                 <span style="font-family:consolas; font-size:1.1em;">BEQ 78</span>
             </td>
             <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
-  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">La prochaine instruction à exécuter se situe à l'adresse mémoire 78 si la valeur stockée dans le registre <span style="font-family:consolas; font-size:1.1em;">R0</span> est égale <span style="font-family:consolas; font-size:1.1em;">23</span>.
+  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">La prochaine instruction à exécuter se situe à l'adresse mémoire 78 si la valeur stockée dans le registre <span style="font-family:consolas; font-size:1.1em;">R0</span> est égale à <span style="font-family:consolas; font-size:1.1em;">23</span>.
                 <br>
                 <span style="font-family:consolas; font-size:1.1em;">BEQ</span> signifie <em>Branch if EQual</em> (birfurcation si les deux opérandes sont égales).</td>
         </tr>
@@ -100,7 +100,7 @@ HLT</code></pre>
                 <span style="font-family:consolas; font-size:1.1em;">BNE 78</span>
             </td>
             <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
-  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">La prochaine instruction à exécuter se situe à l'adresse mémoire 78 si la valeur stockée dans le registre <span style="font-family:consolas; font-size:1.1em;">R0</span> n'est pas égale <span style="font-family:consolas; font-size:1.1em;">23</span>.
+  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">La prochaine instruction à exécuter se situe à l'adresse mémoire 78 si la valeur stockée dans le registre <span style="font-family:consolas; font-size:1.1em;">R0</span> n'est pas égale à <span style="font-family:consolas; font-size:1.1em;">23</span>.
                 <br>
                 <span style="font-family:consolas; font-size:1.1em;">BNE</span> signifie <em>Branch if Not Equal</em> (birfurcation si les deux opérandes ne sont pas égales).</td>
         </tr>
@@ -112,9 +112,9 @@ HLT</code></pre>
                 <span style="font-family:consolas; font-size:1.1em;">BGT 78</span>
             </td>
             <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
-  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">La prochaine instruction à exécuter se situe à l'adresse mémoire 78 si la valeur stockée dans le registre <span style="font-family:consolas; font-size:1.1em;">R0</span> est supérieure ou égale <span style="font-family:consolas; font-size:1.1em;">23</span>.
+  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">La prochaine instruction à exécuter se situe à l'adresse mémoire 78 si la valeur stockée dans le registre <span style="font-family:consolas; font-size:1.1em;">R0</span> est strictement supérieure à <span style="font-family:consolas; font-size:1.1em;">23</span>.
                 <br>
-                <span style="font-family:consolas; font-size:1.1em;">BGT</span> signifie <em>Branch if Greater Than</em> (birfurcation si la première opérande est strictement supérieure à la deuxième.</td>
+                <span style="font-family:consolas; font-size:1.1em;">BGT</span> signifie <em>Branch if Greater Than</em> (birfurcation si la première opérande est strictement supérieure à la deuxième).</td>
         </tr>
         <tr>
             <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
@@ -124,9 +124,9 @@ HLT</code></pre>
                 <span style="font-family:consolas; font-size:1.1em;">BLT 78</span>
             </td>
             <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
-  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">La prochaine instruction à exécuter se situe à l'adresse mémoire 78 si la valeur stockée dans le registre <span style="font-family:consolas; font-size:1.1em;">R0</span> est inférieure ou égale <span style="font-family:consolas; font-size:1.1em;">23</span>.
+  overflow:hidden;padding:5px 5px;word-break:normal;background:white;">La prochaine instruction à exécuter se situe à l'adresse mémoire 78 si la valeur stockée dans le registre <span style="font-family:consolas; font-size:1.1em;">R0</span> est strictement inférieure à <span style="font-family:consolas; font-size:1.1em;">23</span>.
                 <br>
-                <span style="font-family:consolas; font-size:1.1em;">BLT</span> signifie <em>Branch if Less Than</em> (birfurcation si la première opérande est strictement inférieure à la deuxième.</td>
+                <span style="font-family:consolas; font-size:1.1em;">BLT</span> signifie <em>Branch if Less Than</em> (birfurcation si la première opérande est strictement inférieure à la deuxième).</td>
         </tr>
     </tbody>
 </table>
@@ -161,7 +161,7 @@ HLT</code></pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Q2</strong> : Donnez l'instruction en assembleur correspondant à la phrase suivante : <em>Si la valeur située dans le registre <span style="font-family:consolas; font-size:1.1em;">R3</span> est inférieure ou égale à la valeur 5, l'instruction suivante est située à l'adresse mémoire 40</em>.</p>
+<p><strong>Q2</strong> : Donnez l'instruction en assembleur correspondant à la phrase suivante : <em>Si la valeur située dans le registre <span style="font-family:consolas; font-size:1.1em;">R3</span> est strictement inférieure à la valeur 5, l'instruction suivante est située à l'adresse mémoire 40</em>.</p>
 
 </div>
 </div>
@@ -351,7 +351,7 @@ Sinon   SUB R0,R0,R2  // R0 &lt;- R0 - R2
 <td>MOV R2,#8</td>
 </tr>
 <tr>
-<td>0110001011000001</td>
+<td>0110000101100001</td>
 <td>ADD R5,R4,R1</td>
 </tr>
 <tr>
@@ -369,6 +369,12 @@ Sinon   SUB R0,R0,R2  // R0 &lt;- R0 - R2
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Q2</strong> : Traduisez en langage machine les instructions correspondant à l'instruction : <span style="font-family:consolas; font-size:1.1em;">CMP R3,#13</span>.</p>
 <p>Même question avec : <span style="font-family:consolas; font-size:1.1em;">BLT 20</span>.</p>
+<blockquote><p><strong>Astuce</strong> : Pour convertir un nombre entier en binaire on peut utiliser la fonction <code>bin</code> de Python :</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="nb">bin</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span>
+<span class="s1">&#39;0b11011&#39;</span>
+</pre></div>
+<p>Cela signfifie que la valeur binaire de l'entier 27 est <code>11011</code> (on tient compte uniquement de ce qui suit les caractères <code>0b</code>). On peut rajouter autant de 0 que nécessaire à l'avant (<code>011011</code> ou <code>00011011</code>, etc.), cela ne change pas la valeur binaire.</p>
+</blockquote>
 
 </div>
 </div>
@@ -383,6 +389,12 @@ Sinon   SUB R0,R0,R2  // R0 &lt;- R0 - R2
 0110000001001000
 1110001000001101
 0000000000000000</code></pre>
+<blockquote><p><strong>Astuce</strong> : Pour convertir un nombre binaire en un entier, on peut utiliser la fonction <code>int</code> de Python :</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="nb">int</span><span class="p">(</span><span class="s1">&#39;11011&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mi">27</span>
+</pre></div>
+<p>Cela signifie que le nombre binaire <code>11011</code> correspond à l'entier 27. Le deuxième paramètre passé à la fonction <code>int</code> est un <code>2</code> pour indiquer que le premier paramètre est donné en binaire (2 car deux valeurs possibles : 0 et 1).</p>
+</blockquote>
 
 </div>
 </div>
