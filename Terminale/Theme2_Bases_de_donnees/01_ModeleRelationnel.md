@@ -4,7 +4,9 @@ Le développement de traitements informatiques nécessite la manipulation de don
     <p>Comment gérer (mémoriser et traiter) un ensemble volumineux de données ?</p>
 </blockquote>
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/iu8z5QtDQhY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="video-responsive">
+    <iframe class="centre" width="560" height="315" src="https://www.youtube-nocookie.com/embed/iu8z5QtDQhY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 En classe de Première, on a vu comment gérer des données représentées de manière tabulaire (avec des fichiers CSV). Il était possible d'utiliser un langage de programmation pour effectuer les traitements. Cette façon de faire convient pour des requêtes simples dès lors que les données ne sont pas trop nombreuses, mais devient rapidement insuffisante pour répondre aux attentes actuelles :
 
@@ -17,7 +19,7 @@ Il est donc nécessaire d'utiliser des solutions plus performantes et l'utilisat
 <img class="centre image-responsive" src="data/database.svg" alt="diagramme" width="150">
 
 
-<blockquote class="remarque">
+<blockquote class="information">
     <p>Seules les bases de données <em>relationnelles</em> sont au programme de Terminale NSI, mais il existe d'autres types de bases de données : les <a href="https://fr.wikipedia.org/wiki/Base_de_donn%C3%A9es_r%C3%A9seau" target="_blank">bases réseaux</a>, les <a href="https://fr.wikipedia.org/wiki/Base_de_donn%C3%A9es_orient%C3%A9e_objet" target="_blank">bases objets</a>, les <a href="https://fr.wikipedia.org/wiki/NoSQL" target="_blank">bases &laquo; no-sql &raquo;</a>, etc.</p>
 </blockquote>
 
@@ -36,7 +38,7 @@ Les bases de données relationnelles sont basées sur ce qu'on appelle le **mod�
 
 Le modèle relationnel est une manière de modéliser les **relations** existantes entre plusieurs informations et de les ordonner entre elles.
 
-Un modèle relationnel est donc basé sur des **relations** que nous allons définir dans le paragraphe suivant.
+Un modèle relationnel est donc basé sur des **relations**, terme que nous allons définir dans le paragraphe suivant.
 
 ## Relation, attribut, domaine, schéma
 
@@ -82,7 +84,7 @@ On note le schéma de la relation _Album_ de la façon suivante :
     <p>On a choisi de noter ici le <em>domaine</em> de chaque attribut avec les mots INT, TEXT, BOOL mais on aurait pu également les écrire Entier, Chaîne de caractères, Booléen ou Int, String, Bool, etc. Cela n'a pas vraiment d'importance car le modèle relationnel est indépendant de toute considération informatique.</p>
 </blockquote>
 
-Une relation peut aussi se représenter sous forme d'une **table**, et d'ailleurs on utilise souvent de manière équivalente les deux termes : *relation* ou *table*. Par exemple, la table correspondant à notre relation _Album_ (qui n'est pas encore satisfaisant) ressemble à ceci :
+Une relation peut aussi se représenter sous forme d'une **table**, et d'ailleurs on utilise souvent de manière équivalente les deux termes : *relation* ou *table*. Par exemple, la table correspondant à notre relation _Album_ (qui n'est pas encore satisfaisante) ressemble à ceci :
 
 | titre | artiste | annee | dispo |
 | --- | --- | --- | --- |
@@ -151,7 +153,7 @@ Pour y remédier, on va créer "artificiellement" un attribut `id_album` (de typ
 
 Pour symboliser la clé primaire dans le schéma d'une relation, il est de coutume de la souligner. Ainsi, notre relation _Album_ a pour schéma :
 
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Album</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_album</em></span> INT, <em>titre</em> TEXT, <em>artiste</em> TEXT, <em>annee</em> INT, <em>dispo</em> BOOL)</code>
 </pre>
 
@@ -177,7 +179,7 @@ On suppose que le disquaire récolte les informations suivantes sur ses clients 
 
 Comme pour la relation _Album_, il semble judicieux de créer une clé primaire _artificielle_, nommée `id_client` la relation _Client_ qui aurait alors pour schéma :
 
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Client</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_client</em></span> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT, <em>email</em> TEXT)</code>
 </pre>
 
@@ -204,17 +206,18 @@ Pour un emprunt, on aimerait connaître l'album emprunté, le client qui a empru
 
 On voit donc que les enregistrements de la relation _Emprunt_ font référence à des enregistrements des relations _Album_ et _Client_. On peut imaginer le schéma suivant pour la relation _Emprunt_, qui contient toutes les informations nécessaires :
 
-<pre style="padding-bottom:3px;">
-    <code><em>Emprunt</em>(<em>id_client</em> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT, <em>email</em> TEXT, <em>id_album</em> INT, <em>titre</em> TEXT, <em>artiste</em> TEXT, <em>annee</em> INT, <em>dispo</em> BOOL, <em>date</em> DATE)</code>
+<pre style="padding-bottom:10px;">
+    <code><em>Emprunt</em>(<em>id_client</em> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT, <em>email</em> TEXT, <em>id_album</em> INT, 
+            <em>titre</em> TEXT, <em>artiste</em> TEXT, <em>annee</em> INT, <em>dispo</em> BOOL, <em>date</em> DATE)</code>
 </pre>
 
 Cela donnerait une table _Emprunt_ du genre :
 
 | id_client |  nom | prenom | email | id_album | titre | artiste | annee | dispo | date |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Dupont | Florine | dupont.florine@domaine.net | 5 | Axis: Bold as Love | Jimi Hendrix | 1967 | Faux | 10/09/2021 |
-| 3 | Marchand | Grégoire | greg.marchand49@music.com | 8 | Riding With The King | Eric Clapton et B.B. King | 2000 | Faux | 18/08/2021 |
-| 3 | Marchand | Grégoire | greg.marchand49@music.com | 24 | Continumm | John Mayer | 2006 | Faux | 18/08/2021 |
+| 1 | Dupont | Florine | dupontf@domaine.net | 5 | Axis: Bold as Love | Jimi Hendrix | 1967 | Faux | 10/09/2021 |
+| 3 | Mira | Grégoire | gmira49@music.com | 8 | Riding With The King | Eric Clapton et B.B. King | 2000 | Faux | 18/08/2021 |
+| 3 | Mira | Grégoire | gmira49@music.com | 24 | Continumm | John Mayer | 2006 | Faux | 18/08/2021 |
 | 5 | Pacot | Jean | jpacot@music.com | 25 | Continumm | John Mayer | 2006 | Faux | 12/09/2021 | 
 
 <blockquote class="attention">
@@ -222,7 +225,7 @@ Cela donnerait une table _Emprunt_ du genre :
 </blockquote>
 
 <div class="important">
-    <p><strong>Définition</strong> : Une <strong>clé étrangère</strong> d'une relation est une clé primaire d'une autre relation de la base de données.</p>
+    <p><strong>Définition</strong> : Une <strong>clé étrangère</strong> d'une relation est un attribut qui est clé primaire d'une autre relation de la base de données.</p>
 </div>
 
 Ainsi, la relation _Emprunt_ donnée plus haut possède deux *clés étrangères* : `id_client` et `id_album` (qui sont des clés primaires respectives des relations _Client_ et _Album_.).
@@ -246,7 +249,7 @@ Par exemple, la relation _Emprunt_ telle que nous l'avons définie plus haut con
 
 Sachant que l'on peut noter les clés étrangères d'une relation en utilisant un "#", on peut désormais écrire une version satisfaisante de la relation _Emprunt_ :
 
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Emprunt</em>(<em>#id_client</em> INT, <span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_album</em></span> INT, <em>date</em> DATE)</code>
 </pre>
 
@@ -299,26 +302,26 @@ Pour le moment, il  a été choisi d'utiliser une chaîne de caractères pour l'
 
 Pour pallier à ces problèmes, on peut :
 
-- scinder la relation _Album_ en trois relations : _Album_, _Artiste_ et _Artiste_de_ ;
+- scinder la relation _Album_ en trois relations : _Album_, _Artiste_ et *Artiste_de* ;
 - et utiliser les _clés étrangères_ pour faire les associations nécessaires entre les artistes et les albums.
 
 Concrètement :
 
 - On retire l'attribut `artiste` de la relation _Album_ :
 
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Album</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_album</em></span> INT, <em>titre</em> TEXT, <em>annee</em> INT, <em>dispo</em> BOOL)</code>
 </pre>
 
 - On crée un nouvelle relation, _Artiste_, correspondant uniquement aux différents artistes et ayant le schéma suivant :
 
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Artiste</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_artiste</em></span> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT)</code>
 </pre>
 
 - On associe, grâce aux clés étrangères, les artistes aux albums en créant une nouvelle relation *Artiste_de* :
 
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Artiste_de</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_artiste</em></span> INT, <span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_album</em></span> INT)</code>
 </pre>
 
@@ -374,19 +377,19 @@ Par ailleurs, on obtient également un gain :
 
 Avec toutes les améliorations apportées, le schéma (ou structure) de la base de données du disquaire est le suivant :
 
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Album</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_album</em></span> INT, <em>titre</em> TEXT, <em>annee</em> INT, <em>dispo</em> BOOL)</code>
 </pre>
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Artiste</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_artiste</em></span> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT)</code>
 </pre>
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Artiste_de</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_artiste</em></span> INT, <span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_album</em></span> INT)</code>
 </pre>
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Client</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_client</em></span> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT, <em>email</em> TEXT)</code>
 </pre>
-<pre style="padding-bottom:3px;">
+<pre style="padding-bottom:10px;">
     <code><em>Emprunt</em>(<em>#id_client</em> INT, <span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_album</em></span> INT, <em>date</em> DATE)</code>
 </pre>
 
@@ -406,7 +409,7 @@ On peut aussi représenter graphiquement ce schéma par le diagramme suivant :
 # Bilan
 
 - Pour stocker, manipuler, traiter des données de plus en plus nombreuses, l'utilisation de fichiers texte ou tabulaire (CSV) ne suffit plus. Pour cela, on utilise des bases de données (relationnelles), beaucoup plus performantes. Les logiciels de type SGBD permettent aux utilisateurs d'interagir avec une base de données.
-- Le **modèle relationnel** permet de modéliser les relations entres plusieurs informations et le relier entre elles. Une relation est un ensemble d'enregistrements possédant des **attributs**, chacun d'eux ayant un **domaine** défini qui permet de réaliser la _contrainte de domaine_ de la base de données. Le _schéma d'une relation_ est la liste de tous les attributs et de leurs domaines respectifs.
+- Le **modèle relationnel** permet de modéliser les relations entres plusieurs informations et les relier entre elles. Une relation est un ensemble d'enregistrements possédant des **attributs**, chacun d'eux ayant un **domaine** défini qui permet de réaliser la _contrainte de domaine_ de la base de données. Le _schéma d'une relation_ est la liste de tous les attributs et de leurs domaines respectifs.
 - Une **base de données relationnelle** n'est autre qu'un ensemble de relations et le schéma (structure) d'une base de données relationnelle est l'ensemble des schémas des relations la constituant.
 - Chaque relation d'une base de données doit posséder une **clé primaire** permettant de caractériser de manière unique chaque entité de la relation. Ces clés primaires permettent de réaliser la _contrainte de relation_  de la base de données.
 - Certaines relations possèdent un lien entre elles. Ce lien est réalisé par des **clés étrangères** (qui sont des clés primaires d'autres relations) qui assurent les _contraintes de référence_ de la base de données et permettent d'éviter les redondances.
