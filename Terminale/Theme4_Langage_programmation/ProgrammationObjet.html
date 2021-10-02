@@ -1,4 +1,3 @@
-
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -9,7 +8,7 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img class="centre image-responsive" src="data/oop.jpg" alt="illustration poo"></p>
+<p><img class="centre image-responsive" src="https://thinkr.fr/wp-content/uploads/2019/07/oop-meme.jpg" alt="illustration poo" width="600"></p>
 <p>Nous avons vu qu'il existait différentes manières de voir la programmation, on parle de différents <em>paradigmes de programmation</em>. L'un d'eux est le <strong>paradigme objet</strong>. Lorsque l'on programme en utilisant ce paradigme on parle de <strong>programmation objet</strong> ou de <strong>programmation orientée objet</strong> (abrégé <em>POO</em>, ou <em>OOP</em> en anglais pour &laquo; Object-oriented programming &raquo;.</p>
 <blockquote><p>Nous nous limiterons cette année, comme le programme l'indique, à une brève introduction de la programmation objet.</p>
 </blockquote>
@@ -329,7 +328,7 @@
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Rationnel</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Manipulation de rationnels définis par leurs numérateur et dénominateur&quot;&quot;&quot;</span>
     
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numerateur</span><span class="p">,</span> <span class="n">denominateur</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numerateur</span><span class="p">,</span> <span class="n">denominateur</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialise le rationnel avec les valeurs indiquées&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="n">numerateur</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">den</span> <span class="o">=</span> <span class="n">denominateur</span>
@@ -505,20 +504,22 @@
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Rationnel</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Manipulation de rationnels définis par leurs numérateur et dénominateur&quot;&quot;&quot;</span>
     
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numerateur</span><span class="p">,</span> <span class="n">denominateur</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numerateur</span><span class="p">,</span> <span class="n">denominateur</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialise le rationnel avec les valeurs indiquées&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="n">numerateur</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">den</span> <span class="o">=</span> <span class="n">denominateur</span>
     
     <span class="k">def</span> <span class="nf">ajouter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Renvoie un nouveau rationnel égal à la somme&quot;&quot;&quot;</span>
-        <span class="n">num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">den</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span>   <span class="c1"># calcul du numerateur</span>
-        <span class="n">den</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">den</span>                          <span class="c1"># calcul du dénominateur</span>
-        <span class="k">return</span> <span class="n">Rationnel</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">den</span><span class="p">)</span>   <span class="c1"># on renvoie un nouvel objet &#39;Rationnel&#39;</span>
+        <span class="kn">import</span> <span class="nn">math</span>
+        <span class="n">num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">den</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span>  <span class="c1"># calcul du numerateur</span>
+        <span class="n">den</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">den</span>  <span class="c1"># calcul du dénominateur</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">gcd</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">den</span><span class="p">)</span>  <span class="c1"># calcul du pgcd pour simplifier le rationnel</span>
+        <span class="k">return</span> <span class="n">Rationnel</span><span class="p">(</span><span class="n">num</span> <span class="o">//</span> <span class="n">d</span><span class="p">,</span> <span class="n">den</span> <span class="o">//</span> <span class="n">d</span><span class="p">)</span>  <span class="c1"># on renvoie un nouvel objet &#39;Rationnel&#39;</span>
     
     <span class="k">def</span> <span class="nf">egal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Renvoie Vrai si les deux rationnels sont égaux, Faux sinon.&quot;&quot;&quot;</span>        
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">den</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span>  <span class="c1"># produit en croix</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">num</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">den</span>
 </pre></div>
 
     </div>
@@ -561,7 +562,7 @@
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(6, 8)</pre>
+<pre>(3, 4)</pre>
 </div>
 
 </div>
@@ -696,9 +697,10 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="M&#233;thodes-sp&#233;ciales-en-Python">M&#233;thodes sp&#233;ciales en Python<a class="anchor-link" href="#M&#233;thodes-sp&#233;ciales-en-Python">&#182;</a></h3><p>Nous nous contenterons ici de présenter deux méthodes spéciales (quelques autres seront évoquées dans les activités) :</p>
+<h3 id="M&#233;thodes-sp&#233;ciales-en-Python">M&#233;thodes sp&#233;ciales en Python<a class="anchor-link" href="#M&#233;thodes-sp&#233;ciales-en-Python">&#182;</a></h3><p>Nous nous contenterons ici de présenter trois méthodes spéciales (quelques autres seront évoquées dans les activités) :</p>
 <ul>
-<li>la méthode <code>__repr__(self)</code> est appelée pour convertir en une chaîne "évaluable" un objet ;</li>
+<li>la méthode <code>__repr__(self)</code> est appelée pour calculer la représentation <em>officielle</em> en chaîne de caractères d'un objet (c'est cette méthode qui est appelée lorsque l'on veut évaluer un objet) ;</li>
+<li>la méthode <code>__str__(self)</code> est appelée pour calculer une chaîne de caractères <em>informelle</em> ou joliment mise en forme de représentation de l'objet (c'est cette méthode qui est appelée par la fonction <code>print()</code>) ;</li>
 <li>la méthode <code>__eq__(self, other)</code> est appelée pour tester l'égalité entre deux objets.</li>
 </ul>
 <p>On pourrait être tenté d'afficher une instance ou de tester l'égalité entre deux instances d'une même classe. Par exemple, avec notre classe <code>Rationnel</code> on aimerait écrire.</p>
@@ -713,30 +715,9 @@
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">r1</span> <span class="o">=</span> <span class="n">Rationnel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">r2</span> <span class="o">=</span> <span class="n">Rationnel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">r1</span> <span class="c1"># ou print(r1) </span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[13]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;__main__.Rationnel at 0x19f317586d8&gt;</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -746,7 +727,7 @@
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r1</span> <span class="o">==</span> <span class="n">r2</span> <span class="c1"># test d&#39;égalité</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r1</span>  <span class="c1"># évaluation </span>
 </pre></div>
 
     </div>
@@ -765,7 +746,7 @@
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>False</pre>
+<pre>&lt;__main__.Rationnel at 0x28d4eff47c8&gt;</pre>
 </div>
 
 </div>
@@ -773,66 +754,44 @@
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Nous ne pouvons nous satisfaire des résultats. L'évaluation d'un objet et le test d'égalité (avec les notations habituelles) font appel respectivement aux méthodes <code>__repr__</code> et <code>__eq__</code> que nous avons besoin de redéfinir pour obtenir des résultats cohérents.</p>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Rationnel</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Manipulation de rationnels définis par leurs numérateur et dénominateur&quot;&quot;&quot;</span>
-    
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numerateur</span><span class="p">,</span> <span class="n">denominateur</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initialise le rationnel avec les valeurs indiquées&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="n">numerateur</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">den</span> <span class="o">=</span> <span class="n">denominateur</span>
-    
-    <span class="k">def</span> <span class="nf">ajouter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Renvoie un nouveau rationnel égal à la somme&quot;&quot;&quot;</span>
-        <span class="n">num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">den</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span>   <span class="c1"># calcul du numerateur</span>
-        <span class="n">den</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">den</span>                          <span class="c1"># calcul du dénominateur</span>
-        <span class="k">return</span> <span class="n">Rationnel</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">den</span><span class="p">)</span>   <span class="c1"># on renvoie un nouvel objet &#39;Rationnel&#39;</span>
-    
-    <span class="k">def</span> <span class="nf">egal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Renvoie Vrai si les deux rationnels sont égaux, Faux sinon.&quot;&quot;&quot;</span>        
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">den</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span>  <span class="c1"># produit en croix</span>
-    
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">den</span><span class="p">)</span>
-    
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>  <span class="c1"># on pourrait aussi écrire simplement __eq__ = egal</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">den</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">r1</span><span class="p">)</span>  <span class="c1"># affichage</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;__main__.Rationnel object at 0x0000028D4EFF47C8&gt;
+</pre>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>On peut désormais utiliser les instructions classiques d'évaluation (ou d'affichage) et de test d'égalité avec les objets de notre classe.</p>
+</div>
 
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r1</span> <span class="o">=</span> <span class="n">Rationnel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">r2</span> <span class="o">=</span> <span class="n">Rationnel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">r1</span> <span class="c1"># ou print(r1)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r1</span> <span class="o">==</span> <span class="n">r2</span> <span class="c1"># test d&#39;égalité</span>
 </pre></div>
 
     </div>
@@ -851,7 +810,98 @@
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>1/2</pre>
+<pre>False</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Nous ne pouvons nous satisfaire des résultats. L'évaluation d'un objet, son affichage et le test d'égalité (avec les notations habituelles) font appel respectivement aux méthodes <code>__repr__</code>, <code>__str__</code> et <code>__eq__</code> que nous avons besoin de redéfinir pour obtenir des résultats cohérents.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Rationnel</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Manipulation de rationnels définis par leurs numérateur et dénominateur&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numerateur</span><span class="p">,</span> <span class="n">denominateur</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialise le rationnel avec les valeurs indiquées&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="n">numerateur</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">den</span> <span class="o">=</span> <span class="n">denominateur</span>
+    
+    <span class="k">def</span> <span class="nf">ajouter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Renvoie un nouveau rationnel égal à la somme&quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">math</span>
+        <span class="n">num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">den</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span>  <span class="c1"># calcul du numerateur</span>
+        <span class="n">den</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">den</span>  <span class="c1"># calcul du dénominateur</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">gcd</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">den</span><span class="p">)</span>  <span class="c1"># calcul du pgcd pour simplifier le rationnel</span>
+        <span class="k">return</span> <span class="n">Rationnel</span><span class="p">(</span><span class="n">num</span> <span class="o">//</span> <span class="n">d</span><span class="p">,</span> <span class="n">den</span> <span class="o">//</span> <span class="n">d</span><span class="p">)</span>  <span class="c1"># on renvoie un nouvel objet &#39;Rationnel&#39;</span>
+    
+    <span class="k">def</span> <span class="nf">egal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Renvoie Vrai si les deux rationnels sont égaux, Faux sinon.&quot;&quot;&quot;</span>        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">num</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">den</span>
+    
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Rationnel(&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">den</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>  <span class="c1"># ou f&quot;Rationnel({str.num}, {str.den})&quot;</span>
+    
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; / &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">den</span><span class="p">)</span>  <span class="c1"># ou f&quot;{self.num} / {self.den}&quot;</span>
+    
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>  <span class="c1"># on pourrait aussi écrire simplement __eq__ = egal</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">den</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">num</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut désormais utiliser les instructions classiques d'évaluation (ou d'affichage) et de test d'égalité avec les objets de notre classe.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r1</span> <span class="o">=</span> <span class="n">Rationnel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">Rationnel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">r1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[18]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Rationnel(1, 2)</pre>
 </div>
 
 </div>
@@ -862,7 +912,73 @@
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">r1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1 / 2
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r3</span> <span class="o">=</span> <span class="n">Rationnel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">r4</span> <span class="o">=</span> <span class="n">r3</span><span class="o">.</span><span class="n">ajouter</span><span class="p">(</span><span class="n">r1</span><span class="p">)</span>
+<span class="n">r4</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[20]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Rationnel(3, 4)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">r1</span> <span class="o">==</span> <span class="n">r2</span>
@@ -878,7 +994,7 @@
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[17]:</div>
+    <div class="prompt output_prompt">Out[21]:</div>
 
 
 
@@ -922,7 +1038,7 @@
 <ul>
 <li>Documents ressources de l'équipe éducative du DIU EIL, Université de Nantes, Christophe DECLERCQ.</li>
 <li>Documentation officielle de Python sur <a href="https://docs.python.org/fr/3/tutorial/classes.html">les classes</a>.</li>
-<li>Documentation officielle de Python sur <a href="https://docs.python.org/3/reference/datamodel.html#special-method-names">les méthodes spéciales</a>.</li>
+<li>Documentation officielle de Python sur <a href="https://docs.python.org/fr/3/reference/datamodel.html#special-method-names">les méthodes spéciales</a>.</li>
 </ul>
 <hr>
 <p>Germain BECKER, Lycée Mounier, ANGERS</p>
