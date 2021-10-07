@@ -1,16 +1,7 @@
-
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Ecriture-d'un-entier-positif-dans-une-base-$b-\geq-2$"><center>Ecriture d'un entier positif dans une base $b \geq 2$</center><a class="anchor-link" href="#Ecriture-d'un-entier-positif-dans-une-base-$b-\geq-2$">&#182;</a></h1><hr>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Analogie-avec-la-base-10">Analogie avec la base 10<a class="anchor-link" href="#Analogie-avec-la-base-10">&#182;</a></h1><p>Nous utilisons tous les jours la base 10 pour compter, c'est la base décimale. Par exemple, le nombre 4097 représente 4 milliers, 0 centaine, 9 dizaines et 7 unités.</p>
+<h1 id="Introduction-:-analogie-avec-la-base-10">Introduction : analogie avec la base 10<a class="anchor-link" href="#Introduction-:-analogie-avec-la-base-10">&#182;</a></h1><p>Nous utilisons tous les jours la base 10 pour compter, c'est la base décimale. Par exemple, le nombre 4097 représente 4 milliers, 0 centaine, 9 dizaines et 7 unités.</p>
 <p>$4097 = 4\times 1000 + 0 \times 100 + 9 \times 10 + 7 \times 1$ c'est-à-dire : $4097 = \textbf 4 \times  10^3 + \textbf 0\times  10^2 + \textbf 9 \times 10^1 + \textbf 7 \times 10^0$</p>
 <p>On retrouve les chiffres $4$, $0$, $9$ et $7$ dans cette écriture avec des puissances de 10. On peut schématiser cela ainsi :</p>
 <table>
@@ -41,6 +32,13 @@
 </tbody>
 </table>
 <p>En base 10, chaque chiffre peut prendre 10 valeurs : de $0$ à $9$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Comment ajouter 1 en base 10 ?</strong></p>
 <p>Vous le faites intuitivement, mais analysons ce qui se passe avec les chiffres de la représentation décimale. Il faudra faire exactement la même chose en base 2.</p>
 <p>On regarde le chiffre des unités : s'il n'est pas au maximum ($\neq 9$) on ajoute lui ajoute $1$ ; s'il est au maximum, on le met à zéro et on regarde si on peut ajouter 1 au chiffre des dizaines, et ainsi de suite.</p>
@@ -64,16 +62,7 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Vous avez vu que tout machine informatique, en raison de son architecture, ne manipule que des données dont l'unité minimale est le bit 0/1.</p>
-<ul>
-<li>Comment est-il possible de représenter un nombre entier positif (en base décimale) uniquement avec des 0 et des 1 ?</li>
-<li>Est-il possible de représenter tous les nombres entiers positifs de cette façon ?</li>
-<li>Comment ajoute-t-on $1$ en base 2 ?</li>
-</ul>
-<blockquote><p><strong>Activité :</strong> J'ai besoin de 8 élèves volontaires !
-<em>Règle du jeu :</em> Chaque élève change la position de son bras quand son voisin de gauche baisse le sien.</p>
-</blockquote>
-<p>Vous venez de découvrir comment on peut représenter les entiers naturels en base 2 (c'est-à-dire uniquement avec deux chiffres : 0 et 1).</p>
+<p>Toute machine informatique, en raison de son architecture (cf. Thème 5, chapitres 1 et 2), ne manipule que des données exprimées en <em>langage binaire</em>, dans lequel tous les "mots" s'écrivent uniquement avec des 0 et des 1.</p>
 
 </div>
 </div>
@@ -81,7 +70,29 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Exercice-1-:">Exercice 1 :<a class="anchor-link" href="#Exercice-1-:">&#182;</a></h3><ol>
+<div class="important">
+    <p><strong>Définitions</strong></p>
+    <ul>
+        <li>L'unité de base du langage binaire s'appelle le <strong>bit</strong> (contraction de <strong>bi</strong>nary digi<strong>t</strong>, soit <em>chiffre binaire</em> en anglais). Un bit ne peut donc prendre que deux valeurs distinctes, notées 0 et 1.</li>
+        <li>Une suite de 8 bits est appelée un <strong>octet</strong> (exemple : $10010101$ est un octet)</li>
+    </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Dans la suite, on va voir comment on peut représenter un entier positif uniquement avec des 0 et des 1.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="&#128394;&#65039;-Exercice-1-:">&#128394;&#65039; Exercice 1 :<a class="anchor-link" href="#&#128394;&#65039;-Exercice-1-:">&#182;</a></h3><ol>
 <li>Combien de valeurs peut-on coder sur 1 bit ?</li>
 <li>Combien de valeurs peut-on coder sur 2 bits ?</li>
 <li>Combien de valeurs peut-on coder sur 3 bits ?</li>
@@ -94,7 +105,7 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Exercice-2-:">Exercice 2 :<a class="anchor-link" href="#Exercice-2-:">&#182;</a></h3><ol>
+<h3 id="&#128394;&#65039;-Exercice-2-:">&#128394;&#65039; Exercice 2 :<a class="anchor-link" href="#&#128394;&#65039;-Exercice-2-:">&#182;</a></h3><ol>
 <li>Quelle est la valeur maximale que l'on peut coder sur 8 bits ?</li>
 <li>Complétez le tableau suivant avec l'écriture binaire de chaque entier. Pour cela, il suffit d'ajouter $1$ exactement de la même manière que ce qui a été vu un peu plus haut pour la base 10.</li>
 </ol>
@@ -158,7 +169,8 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Tout cela est un peu pénible, et heureusement que je ne vous ai pas demandé de convertir 2019 en binaire... Il y a bien entendu une méthode pour convertir un nombre décimal en binaire.</p>
+<blockquote><p>Tout cela est un peu pénible, et heureusement que je ne vous ai pas demandé de convertir 2021 en binaire... Il y a bien entendu une méthode pour convertir un nombre décimal en binaire.</p>
+</blockquote>
 
 </div>
 </div>
@@ -167,7 +179,7 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Algorithme-de-conversion-en-binaire-par-suite-de-divisions">Algorithme de conversion en binaire par suite de divisions<a class="anchor-link" href="#Algorithme-de-conversion-en-binaire-par-suite-de-divisions">&#182;</a></h2><p>En divisant le nombre par 2, on obtient comme premier reste, le nombre d'unités. Si on recommence, on obtient les chiffres suivants de l'écriture en base 2. On s'arrête lorsque le quotient vaut 0.</p>
-<blockquote><p><strong>Exemple en base 2 :</strong> Codage de 42 en base 2</p>
+<p><strong>Exemple : conversion de 42 en base 2</strong></p>
 
 <pre><code>42 / 2 -&gt; 21 reste 0
 21 / 2 -&gt; 10 reste 1
@@ -177,8 +189,15 @@
 1 / 2 -&gt; 0 reste 1</code></pre>
 <p>On obtient le code en écrivant les restes de gauche à droite à partir du dernier reste obtenu.
 On a donc : $42 = (101010)_2$</p>
-</blockquote>
-<p>On peut calculer l'écriture en binaire avec la fonction Python <code>bin</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>En Python</strong></p>
+<p>On peut calculer l'écriture en binaire d'un entier avec la fonction Python <code>bin()</code>.</p>
 
 </div>
 </div>
@@ -219,8 +238,7 @@ On a donc : $42 = (101010)_2$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Exercice-3-:">Exercice 3 :<a class="anchor-link" href="#Exercice-3-:">&#182;</a></h3><p>Convertissez (à la main) en base 2 les nombres décimaux suivants : 63, 257, 2019.
-Vous vérifierez vos résultats avec Python en utilisant la fonction <code>bin</code>.</p>
+<h3 id="&#128394;&#65039;-Exercice-3-:">&#128394;&#65039; Exercice 3 :<a class="anchor-link" href="#&#128394;&#65039;-Exercice-3-:">&#182;</a></h3><p>Convertissez (à la main) en base 2 les nombres décimaux suivants : 63, 257, 2021. <em>Vous pourrez vérifier vos résultats avec Python.</em></p>
 
 </div>
 </div>
@@ -263,7 +281,6 @@ Vous vérifierez vos résultats avec Python en utilisant la fonction <code>bin</
 $$(11010111)_2 = \textbf 1 \times 2^0 + \textbf 1 \times 2^1 + \textbf 1 \times 2^2 + \textbf 0 \times 2^3 + \textbf 1 \times 2^4 + \textbf 0 \times 2^5 + \textbf 1 \times 2^6 + \textbf 1 \times 2^7$$
 c'est-à-dire :
 $$(11010111)_2 = 1 + 2 + 4 + 0 + 16 + 0 + 64 + 128 = 215.$$</p>
-<p><strong>Attention à bien commencer par le chiffre des unités !</strong></p>
 
 </div>
 </div>
@@ -271,55 +288,24 @@ $$(11010111)_2 = 1 + 2 + 4 + 0 + 16 + 0 + 64 + 128 = 215.$$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>On peut aussi directement saisir un nombre en binaire en préfixant son écriture par <code>0b</code>.</p>
-
+<blockquote class="attention">
+    Attention à bien commencer par le chiffre des unités !
+</blockquote>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="mb">0b11010111</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[12]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>215</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>On comme cela :</p>
+<p><strong>En Python</strong></p>
+<p>On peut utiliser la fonction <code>int()</code> pour convertir un nombre binaire en décimal :</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">int</span><span class="p">(</span><span class="s1">&#39;11010111&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># le &#39;2&#39; pour indiquer que la chaine de caractères est un nombre en base 2</span>
@@ -335,7 +321,7 @@ $$(11010111)_2 = 1 + 2 + 4 + 0 + 16 + 0 + 64 + 128 = 215.$$</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[15]:</div>
+    <div class="prompt output_prompt">Out[2]:</div>
 
 
 
@@ -353,8 +339,57 @@ $$(11010111)_2 = 1 + 2 + 4 + 0 + 16 + 0 + 64 + 128 = 215.$$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Exercice-4-:">Exercice 4 :<a class="anchor-link" href="#Exercice-4-:">&#182;</a></h3><p>Convertissez en décimal les nombres binaires suivants : $(11011)_2$ et $(1100011011)_2$.
-Vous vérifierez ensuite vos résultats avec Python comme indiqué juste avant.</p>
+<p>On peut aussi directement saisir un nombre en binaire en préfixant son écriture par <code>0b</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mb">0b11010111</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>215</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="&#128394;&#65039;-Exercice-4-:">&#128394;&#65039; Exercice 4 :<a class="anchor-link" href="#&#128394;&#65039;-Exercice-4-:">&#182;</a></h3><p>Convertissez en décimal les nombres binaires suivants : $(11011)_2$ et $(1100011011)_2$. <em>Vous pourrez vérifier vos résultats avec Python.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Dans la feuille d'exercices, on écrira les algorithmes de conversion entre base 10 et base 2. On verra également comment additionner ou multiplier deux nombres binaires.</p>
+</blockquote>
 
 </div>
 </div>
@@ -367,9 +402,15 @@ Nous allons passer plus rapidement cette partie car les méthodes restent les m�
 <ul>
 <li>En base 10 : chaque chiffre peut être codé par 10 valeurs ($0,1,2,3,4,5,6,7,8,9$).</li>
 <li>En base 2 : chaque chiffre peut être codé par 2 valeurs ($0,1$).</li>
-<li>En base 16 : sans surprise, chaque chiffre peut être codé par 16 valeurs ($0,1,2,3,4,5,6,7,8,9,...$ et après ?).
-Après le $9$, on va utiliser les lettres de l'alphabet pour arriver à 16 valeurs en tout.</li>
+<li>En base 16 : sans surprise, chaque chiffre peut être codé par 16 valeurs ($0,1,2,3,4,5,6,7,8,9,...$ et après ?). Après le $9$, on va utiliser les lettres de l'alphabet pour arriver à 16 valeurs en tout.</li>
 </ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Ainsi, en base 16, chaque "chiffre" est codé par : $0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F$ avec la correspondance suivante :</p>
 <table>
 <thead><tr>
@@ -468,11 +509,10 @@ Après le $9$, on va utiliser les lettres de l'alphabet pour arriver à 16 valeu
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Pourquoi la base 16 ?</strong>
-L'avantage de la base 16 réside dans sa facilité de conversion de et vers la base 2. Un chiffre en base 16 remplace 4 bits (chiffres en base 2). Elle est donc un compromis entre le code binaire des machines et une base de numération pratique à utiliser pour les ingénieurs.
-L'hexadécimal a été utilisé la première fois en 1956 par les ingénieurs de l'ordinateur Bendix G-15.</p>
-<p>Pour plus d'informations sur le système hexadécimal : <a href="https://fr.wikipedia.org/wiki/Syst%C3%A8me_hexad%C3%A9cimal">Système hexadécimal - Wikipédia</a></p>
-
+<h2 id="Pourquoi-la-base-16-?">Pourquoi la base 16 ?<a class="anchor-link" href="#Pourquoi-la-base-16-?">&#182;</a></h2><p>L'avantage de la base 16 réside dans sa facilité de conversion de et vers la base 2. Un chiffre en base 16 remplace 4 bits (chiffres en base 2). Elle est donc un compromis entre le code binaire des machines et une base de numération pratique à utiliser pour les ingénieurs.</p>
+<blockquote class="information">
+    L'hexadécimal a été utilisé la première fois en 1956 par les ingénieurs de l'ordinateur Bendix G-15. Pour plus d'informations sur le système hexadécimal : <a href="https://fr.wikipedia.org/wiki/Syst%C3%A8me_hexad%C3%A9cimal" target="_blank">Système hexadécimal - Wikipédia</a>.
+</blockquote>
 </div>
 </div>
 </div>
@@ -480,21 +520,21 @@ L'hexadécimal a été utilisé la première fois en 1956 par les ingénieurs de
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Conversion-en-hexad&#233;cimal">Conversion en hexad&#233;cimal<a class="anchor-link" href="#Conversion-en-hexad&#233;cimal">&#182;</a></h2><p>L'algorithme est exactement le même que pour la conversion en binaire. Il suffit juste de diviser successivement par 16 et non par 2.</p>
-<blockquote><p>Exemple : Conversion de 215 en base 16</p>
+<p><strong>Exemple : conversion de 215 en base 16</strong></p>
 
 <pre><code>215 / 16 -&gt; 13 reste 7
-13 / 16 -&gt; 0 reste 13 (D)</code></pre>
+13 / 16 -&gt; 0 reste 13 (→ D)</code></pre>
 <p>On obtient le code en écrivant les restes de gauche à droite à partir du dernier reste obtenu.
 On a donc : $215 = (D7)_{16}$</p>
-</blockquote>
-<p>On peut expérimenter en Python le codage en base 16 grace à la fonction <code>hex</code>.</p>
+<p><strong>En Python</strong></p>
+<p>On peut calculer l'écriture en binaire d'un entier avec la fonction Python <code>hex()</code>.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">hex</span><span class="p">(</span><span class="mi">215</span><span class="p">)</span>
@@ -510,7 +550,7 @@ On a donc : $215 = (D7)_{16}$</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[16]:</div>
+    <div class="prompt output_prompt">Out[4]:</div>
 
 
 
@@ -547,7 +587,7 @@ On a donc : $215 = (D7)_{16}$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Même principe que la conversion binaire --&gt; décimale.</p>
+<p>Le principe est le même que la conversion binaire --&gt; décimale.</p>
 <p>Plutôt qu'un long discours, un exemple :</p>
 <p><strong>Exemple : conversion de $(4E8)_{16}$ en base 10 :</strong></p>
 <table>
@@ -568,17 +608,25 @@ On a donc : $215 = (D7)_{16}$</p>
 </tbody>
 </table>
 <p>Donc : $(4E8)_{16}=8\times 16^0 + E\times 16^1 + 4 \times  16^2 = 8 \times 1 + 14 \times 16 + 4 \times 256 = 8 + 224 + 1024 = 1256$.</p>
-<p>On peut vérifier avec Python en préfixant son écriture par <code>0x</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>En Python</strong></p>
+<p>On peut utiliser la fonction <code>int()</code> pour convertir une valeur hexadécimale en décimal :</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="mh">0x4e8</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">int</span><span class="p">(</span><span class="s1">&#39;4e8&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>  <span class="c1"># on précise bien que la base d&#39;origine est la base 16</span>
 </pre></div>
 
     </div>
@@ -591,41 +639,7 @@ On a donc : $215 = (D7)_{16}$</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[17]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>1256</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># ou aussi </span>
-<span class="nb">int</span><span class="p">(</span><span class="s1">&#39;4e8&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[18]:</div>
+    <div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -643,7 +657,48 @@ On a donc : $215 = (D7)_{16}$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Exercice-5">Exercice 5<a class="anchor-link" href="#Exercice-5">&#182;</a></h3><ol>
+<p>On peut aussi directement saisir un nombre en hexadécimal en préfixant son écriture par <code>0x</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="mh">0x4e8</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1256</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="&#128394;&#65039;-Exercice-5">&#128394;&#65039; Exercice 5<a class="anchor-link" href="#&#128394;&#65039;-Exercice-5">&#182;</a></h3><ol>
 <li>Convertissez $457$ en base 16.</li>
 <li>Convertissez $(876)_{16}$ en base 10.</li>
 </ol>
@@ -662,10 +717,9 @@ On a donc : $215 = (D7)_{16}$</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="G&#233;n&#233;ralisation">G&#233;n&#233;ralisation<a class="anchor-link" href="#G&#233;n&#233;ralisation">&#182;</a></h2><p>Dans une base $b\geq 2$ quelconque, on procède exactement de la même façon mais avec des puissances de $b$ !</p>
-<blockquote><p><em>Exemple :</em> Ecriture de l'entier 38 en base 5.
-$$38 = \textbf 1 \times 5^2 + \textbf 2 \times 5^1 + \textbf 3 \times 5^0.$$ 
+<p><strong>Exemple : écriture de l'entier 38 en base 5</strong></p>
+$$38 = \textbf 1 \times 5^2 + \textbf 2 \times 5^1 + \textbf 3 \times 5^0.$$<p>
 Le nombre 38 s'écrit donc $(123)_5$ en base 5.</p>
-</blockquote>
 <p><strong>Écriture d’un entier positif dans une base $b \geq 2$ :</strong></p>
 <p>Si $x = a_n\times b^n + a_{n-1}\times b^{n-1} + ... + a_2\times b^2 + a_1\times b^1 + a_0\times b^0$</p>
 <p>où les $a_i$ sont des chiffres entre 0 et $b-1$</p>
@@ -679,9 +733,9 @@ $$ x = (a_n a_{n-1}... a_2 a_1 a_0)_b .$$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Ressources :</strong></p>
+<p><strong>Références :</strong></p>
 <ul>
-<li>Documents ressources du DIU EIL Nantes</li>
+<li>Équipe pédagogique du DIU EIL, université de Nantes.</li>
 <li>David Roche : <a href="https://pixees.fr/informatiquelycee/n_site/nsi_prem_base_2_16.html">https://pixees.fr/informatiquelycee/n_site/nsi_prem_base_2_16.html</a></li>
 </ul>
 
