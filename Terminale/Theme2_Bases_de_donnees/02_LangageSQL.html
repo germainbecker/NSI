@@ -1,0 +1,1863 @@
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h1><p>On a vu que le modèle relationnel permettait de représenter la structure des données d'une base de données, mais aucune considération informatique n'entrait en jeu (c'était plutôt une vision mathématique de la base de données).</p>
+<p>Le modèle relationnel est réalisé par des logiciels appelés <em>systèmes de gestion de bases de données</em>, abgrégé SGBD. Les SGBD relationnels sont les SGBD qui utilisent le modèle relationnel pour la représentation des données (on avait dit qu'il y en avait d'autres).</p>
+<p>La grande majorité des SGBD relationnels utilisent le <strong>langage SQL</strong> (<em>Structured Query Language</em>) qui permet d'envoyer des <em>ordres</em>, appelés <strong>requêtes</strong>, au SGBD. Ces ordres sont de deux types :</p>
+<ul>
+<li>les <em>requêtes d'interrogation</em> permettent de récupérer des données vérifiant certains critères ;</li>
+<li>les <em>requêtes de mise à jour</em> permettent de modifier la base de données</li>
+</ul>
+<p><img class="centre image-responsive" src="data/fonctionnement_sgbd.png" width="600"></p>
+<p style="text-align: center; color:#888;"><em>Source : Cours <a href="https://openclassrooms.com/fr/courses/6971126-implementez-vos-bases-de-donnees-relationnelles-avec-sql/7139618-decouvrez-le-systeme-de-gestion-de-base-de-donnees-sgbd">Implémentez vos bdd relationnelles avec SQL</a> de Quentin Durantay sur OpenClassrooms</em></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On a vu que le modèle relationnel définissait différentes <em>contraintes d'intégrité</em>, et le SGBD est garant du respect de ces contraintes. Concrètement, c'est lui qui empêchera d'effectuer des modifications ne respectant pas les contraintes.</p>
+<p>Les SGBD relationnels les plus utilisés sont Oracle, MySQL, Microsoft SQL Server, PostgreSQL, Microsoft Access, SQLite, MariaDB.</p>
+<blockquote><p>Il existe de plus en plus de SGBD <em>non relationnels</em>, spécialement adaptés à des données plus diverses et moins structurées. On les appelle souvent des SGBD <strong>NoSQL</strong> (pour <em>Not only SQL</em>) : citons par exemple MongoDB, Cassandra (Facebook), BigTable (Google), ...</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img class="centre image-responsive" src="data/SQLite370.svg" width="300"></p>
+<p>La très grande majorité des SGBD sont basés sur un modèle client-serveur, nécessitant le démarrage d'un serveur pour effectuer les requêtes. Ce n'est pas le cas du SGBD <strong>SQLite</strong> car la base de données peut être représentée dans un fichier indépendant de la plateforme. Cette particularité rendant les choses plus simples fera que nous utiliserons le SGBD SQLite dans ce chapitre.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><span style="font-size:1.5em">✍️</span> Faites l'activité d'introduction</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Le-retour-du-disquaire">Le retour du disquaire<a class="anchor-link" href="#Le-retour-du-disquaire">&#182;</a></h2><p><img class="centre image-responsive" src="data/vinyl.svg" alt="diagramme" width="200"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On suppose dans la suite de ce chapitre que l'on travaille avec la base de données de notre disquaire (voir Chapitre 1). Le schéma de la base est le suivant :</p>
+<pre style="padding-bottom:10px;">
+    <code><em>Album</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_album</em></span> INT, <em>titre</em> TEXT, <em>annee</em> INT, <em>dispo</em> BOOL)</code>
+
+    <code><em>Artiste</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_artiste</em></span> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT)</code>
+
+    <code><em>Artiste_de</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_artiste</em></span> INT, <span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_album</em></span> INT)</code>
+
+    <code><em>Client</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_client</em></span> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT, <em>email</em> TEXT)</code>
+
+    <code><em>Emprunt</em>(<em>#id_client</em> INT, <span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_album</em></span> INT, <em>jour</em> DATE)</code>
+</pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Voici le diagramme représentant ce schéma :</p>
+<p><img class="centre image-responsive" src="data/diagramme_bdd.png" alt="diagramme"></p>
+<p><span class="image-licence" style="display: block;text-align: center;font-size: 0.9em;color: #aaa;">Réalisé avec l'application <a href="https://app.quickdatabasediagrams.com/#/d/bbXJBD" target="_blank">quickdatabasediagrams.com</a>
+</span></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote class="information">
+    <p><strong>Remarque importante</strong> : comme SQLite ne gère pas les booléens, l'attribut <code>dispo</code> de la table <code>Album</code> est représenté à la place par un entier : <code>1</code> pour vrai et <code>0</code> pour faux. D'ailleurs, vous verrez dans les exercices qu'il n'était pas utile de conserver cet attribut car on peut retrouver les albums empruntés en croisant les tables.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="S&#233;lectionner-des-donn&#233;es">S&#233;lectionner des donn&#233;es<a class="anchor-link" href="#S&#233;lectionner-des-donn&#233;es">&#182;</a></h1><p>On commence par voir les requêtes SQL permettant de récupérer des données selon certains critères, on appelle cela les <strong>requêtes d'interrogation</strong>.</p>
+<blockquote><p><span style="font-size:1.5em">✍️</span> Faites l'exercice 1.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="S&#233;lectionner-des-colonnes-avec-SELECT">S&#233;lectionner des colonnes avec <code>SELECT</code><a class="anchor-link" href="#S&#233;lectionner-des-colonnes-avec-SELECT">&#182;</a></h2><h3 id="Premi&#232;re-requ&#234;te-SQL">Premi&#232;re requ&#234;te SQL<a class="anchor-link" href="#Premi&#232;re-requ&#234;te-SQL">&#182;</a></h3><p>La requête suivante permet d'afficher tout le contenu de la table <code>Eleve</code>.</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">Album</span><span class="p">;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Analyse</strong> :</p>
+<ul>
+<li>En SQL, chaque requête contient au moins les clauses <code>SELECT</code> et <code>FROM</code> et <strong>se termine par un point-virgule</strong>.</li>
+<li>Le mot-clé <code>SELECT</code> demande au SGBD d’afficher ce que contient une table.</li>
+<li>Après <code>SELECT</code>, il faut indiquer quels champs (ou <em>attributs</em>) de la table, le SGBD doit récupérer dans celle-ci. Ici le caractère « <code>*</code> » indique qu'il faut récupérer <strong>tous</strong> les champs de la table.</li>
+<li>Après le mot clé <code>FROM</code> (de l’anglais « de ») on indique la table dans laquelle on veut récupérer des informations (ici <code>Album</code>)</li>
+</ul>
+<p><strong>Bilan</strong> : cette requête se traduit par « prend tout ce qu’il y a dans la table <code>Album</code> », sous-entendu prend tous les champs de cette table. Elle produit le résultat suivant :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>id_album</th>
+        <th>titre</th>
+        <th>annee</th>
+        <th>dispo</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Blues Breakers</td>
+        <td>1966</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>I Still Do</td>
+        <td>2016</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Aftermath</td>
+        <td>1966</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Off the Wall</td>
+        <td>1979</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Axis : Bold As Love</td>
+        <td>1967</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Thriller</td>
+        <td>1982</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>Black and Blue</td>
+        <td>1976</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>Riding With The King</td>
+        <td>2000</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>Bad</td>
+        <td>1987</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>It's Only Rock'n Roll</td>
+        <td>1974</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>Don't Explain</td>
+        <td>2011</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>12</td>
+        <td>Aretha</td>
+        <td>1980</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>13</td>
+        <td>Abbey Road</td>
+        <td>1969</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>14</td>
+        <td>Let It Be</td>
+        <td>1970</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>15</td>
+        <td>44/876</td>
+        <td>2018</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td>Lady Soul</td>
+        <td>1968</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>17</td>
+        <td>Back in Black</td>
+        <td>1980</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>18</td>
+        <td>Sacred Love</td>
+        <td>2003</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>19</td>
+        <td>Songs in the Key of Life</td>
+        <td>1976</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>20</td>
+        <td>Power Up</td>
+        <td>2020</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>21</td>
+        <td>The Last Ship</td>
+        <td>2013</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>22</td>
+        <td>Signed, Sealed &amp; Delivered</td>
+        <td>1970</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>23</td>
+        <td>Fire on the Floor</td>
+        <td>2016</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>24</td>
+        <td>Continuum</td>
+        <td>2006</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>25</td>
+        <td>Continuum</td>
+        <td>2006</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>26</td>
+        <td>Exodus</td>
+        <td>1977</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>27</td>
+        <td>Sex Machine</td>
+        <td>1970</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>28</td>
+        <td>T.N.T.</td>
+        <td>1975</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>29</td>
+        <td>Leave the Light On</td>
+        <td>2003</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>30</td>
+        <td>Blues Deluxe</td>
+        <td>2003</td>
+        <td>1</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Et-si-on-ne-veut-pas-toutes-les-colonnes-?">Et si on ne veut pas toutes les colonnes ?<a class="anchor-link" href="#Et-si-on-ne-veut-pas-toutes-les-colonnes-?">&#182;</a></h3><p>En SQL, il est possible de sélectionner certaines colonnes de la table (et pas toutes) simplement en indiquant après le <code>SELECT</code>, les noms des attributs à conserver.</p>
+<p>Par exemple, la requête</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">titre</span><span class="p">,</span> <span class="n">annee</span> <span class="k">FROM</span> <span class="n">Album</span><span class="p">;</span>
+</pre></div>
+<p>permet de ne sélectionner que les attributs <code>titre</code> et <code>annee</code> de la table <code>Album</code> (on dit que l'on fait une projection sur ces deux attributs) :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>titre</th>
+        <th>annee</th>
+    </tr>
+    <tr>
+        <td>Blues Breakers</td>
+        <td>1966</td>
+    </tr>
+    <tr>
+        <td>I Still Do</td>
+        <td>2016</td>
+    </tr>
+    <tr>
+        <td>Aftermath</td>
+        <td>1966</td>
+    </tr>
+    <tr>
+        <td>Off the Wall</td>
+        <td>1979</td>
+    </tr>
+    <tr>
+        <td>Axis : Bold As Love</td>
+        <td>1967</td>
+    </tr>
+    <tr>
+        <td>Thriller</td>
+        <td>1982</td>
+    </tr>
+    <tr>
+        <td>Black and Blue</td>
+        <td>1976</td>
+    </tr>
+    <tr>
+        <td>Riding With The King</td>
+        <td>2000</td>
+    </tr>
+    <tr>
+        <td>Bad</td>
+        <td>1987</td>
+    </tr>
+    <tr>
+        <td>It's Only Rock'n Roll</td>
+        <td>1974</td>
+    </tr>
+    <tr>
+        <td>Don't Explain</td>
+        <td>2011</td>
+    </tr>
+    <tr>
+        <td>Aretha</td>
+        <td>1980</td>
+    </tr>
+    <tr>
+        <td>Abbey Road</td>
+        <td>1969</td>
+    </tr>
+    <tr>
+        <td>Let It Be</td>
+        <td>1970</td>
+    </tr>
+    <tr>
+        <td>44/876</td>
+        <td>2018</td>
+    </tr>
+    <tr>
+        <td>Lady Soul</td>
+        <td>1968</td>
+    </tr>
+    <tr>
+        <td>Back in Black</td>
+        <td>1980</td>
+    </tr>
+    <tr>
+        <td>Sacred Love</td>
+        <td>2003</td>
+    </tr>
+    <tr>
+        <td>Songs in the Key of Life</td>
+        <td>1976</td>
+    </tr>
+    <tr>
+        <td>Power Up</td>
+        <td>2020</td>
+    </tr>
+    <tr>
+        <td>The Last Ship</td>
+        <td>2013</td>
+    </tr>
+    <tr>
+        <td>Signed, Sealed &amp; Delivered</td>
+        <td>1970</td>
+    </tr>
+    <tr>
+        <td>Fire on the Floor</td>
+        <td>2016</td>
+    </tr>
+    <tr>
+        <td>Continuum</td>
+        <td>2006</td>
+    </tr>
+    <tr>
+        <td>Continuum</td>
+        <td>2006</td>
+    </tr>
+    <tr>
+        <td>Exodus</td>
+        <td>1977</td>
+    </tr>
+    <tr>
+        <td>Sex Machine</td>
+        <td>1970</td>
+    </tr>
+    <tr>
+        <td>T.N.T.</td>
+        <td>1975</td>
+    </tr>
+    <tr>
+        <td>Leave the Light On</td>
+        <td>2003</td>
+    </tr>
+    <tr>
+        <td>Blues Deluxe</td>
+        <td>2003</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="S&#233;lectionner-des-lignes-avec-WHERE">S&#233;lectionner des lignes avec <code>WHERE</code><a class="anchor-link" href="#S&#233;lectionner-des-lignes-avec-WHERE">&#182;</a></h2><p>En plus de sélectionner des colonnes, on peut sélectionner certaines lignes en utilisant la clause <code>WHERE</code> suivie de la condition de sélection.</p>
+<p>Par exemple, la requête</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">titre</span><span class="p">,</span> <span class="n">annee</span> <span class="k">FROM</span> <span class="n">Album</span> <span class="k">WHERE</span> <span class="n">annee</span> <span class="o">&gt;=</span> <span class="mi">2005</span><span class="p">;</span>
+</pre></div>
+<p>permet d'obtenir les titres et l'année de sortie des albums (de la table <code>Album</code>) qui sont sortis en 2005 ou après :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>titre</th>
+        <th>annee</th>
+    </tr>
+    <tr>
+        <td>I Still Do</td>
+        <td>2016</td>
+    </tr>
+    <tr>
+        <td>Don't Explain</td>
+        <td>2011</td>
+    </tr>
+    <tr>
+        <td>44/876</td>
+        <td>2018</td>
+    </tr>
+    <tr>
+        <td>Power Up</td>
+        <td>2020</td>
+    </tr>
+    <tr>
+        <td>The Last Ship</td>
+        <td>2013</td>
+    </tr>
+    <tr>
+        <td>Fire on the Floor</td>
+        <td>2016</td>
+    </tr>
+    <tr>
+        <td>Continuum</td>
+        <td>2006</td>
+    </tr>
+    <tr>
+        <td>Continuum</td>
+        <td>2006</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remarque</strong> : L'expression se trouvant après <code>WHERE</code> est une <em>expression booléenne</em> qui peut être construite à partir :</p>
+<ul>
+<li>des opérateurs de comparaison : <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>=</code> et <code>&lt;&gt;</code> (ou <code>!=</code> qui est généralement supporté par les SGBD)</li>
+<li>des opérateurs arithmétiques : <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code></li>
+<li>de constantes et noms d'attributs</li>
+<li>d'opérateurs logiques : <code>AND</code>, <code>OR</code>, <code>NOT</code></li>
+<li>et d'opérateur spéciaux tels que l'opérateur de comparaison de texte <code>LIKE</code> (voir un peu plus loin)</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Combiner-les-conditions-avec-les-op&#233;rateurs-logiques">Combiner les conditions avec les op&#233;rateurs logiques<a class="anchor-link" href="#Combiner-les-conditions-avec-les-op&#233;rateurs-logiques">&#182;</a></h3><p>Par exemple, pour obtenir les titres et années des albums sortis entre 2005 et 2015, on peut écrire la requête</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">titre</span><span class="p">,</span> <span class="n">annee</span> <span class="k">FROM</span> <span class="n">Album</span> <span class="k">WHERE</span> <span class="n">annee</span> <span class="o">&gt;=</span> <span class="mi">2005</span> <span class="k">AND</span> <span class="n">annee</span> <span class="o">&lt;=</span> <span class="mi">2015</span><span class="p">;</span>
+</pre></div>
+<p>qui produit le résultat suivant :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>titre</th>
+        <th>annee</th>
+    </tr>
+    <tr>
+        <td>Don't Explain</td>
+        <td>2011</td>
+    </tr>
+    <tr>
+        <td>The Last Ship</td>
+        <td>2013</td>
+    </tr>
+    <tr>
+        <td>Continuum</td>
+        <td>2006</td>
+    </tr>
+    <tr>
+        <td>Continuum</td>
+        <td>2006</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remarque</strong> : Le langage SQL n'est pas sensible aux blancs et aux indentations (ni à la casse), ce qui fait que lorsque les requêtes commencent à être un peu longues, on peut améliorer leur lisibilité en jouant sur les retours à la ligne et les indentations. Ainsi, la requête qui suit est équivalente à la précédente :</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">titre</span><span class="p">,</span> <span class="n">annee</span> 
+<span class="k">FROM</span> <span class="n">Album</span> 
+<span class="k">WHERE</span> <span class="n">annee</span> <span class="o">&gt;=</span> <span class="mi">2005</span> <span class="k">AND</span> <span class="n">annee</span> <span class="o">&lt;=</span> <span class="mi">2015</span><span class="p">;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Rechercher-par-motif-avec-LIKE">Rechercher par motif avec <code>LIKE</code><a class="anchor-link" href="#Rechercher-par-motif-avec-LIKE">&#182;</a></h3><p>On peut effectuer des requêtes effectuant des recherches de certains motifs en utilisant <code>LIKE</code>.</p>
+<p>Par exemple, on peut chercher les identifiants et les titres des albums dont le titre contient le mot <code>"Love"</code>. La requête s'écrirait</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">id_album</span><span class="p">,</span> <span class="n">titre</span> <span class="k">FROM</span> <span class="n">Album</span> <span class="k">WHERE</span> <span class="n">titre</span> <span class="k">LIKE</span> <span class="ss">&quot;%Love%&quot;</span><span class="p">;</span>
+</pre></div>
+<p>et produit le résultat :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>id_album</th>
+        <th>titre</th>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Axis : Bold As Love</td>
+    </tr>
+    <tr>
+        <td>18</td>
+        <td>Sacred Love</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Analyse</strong> :</p>
+<ul>
+<li>Contrairement au <code>=</code> qui fait une recherche exacte, l'opération <code>titre LIKE "%Love%"</code> effectue une recherche approchée. Ainsi, <code>titre LIKE "%Love%""</code> est évaluée à vrai si et seulement si l'attribut <code>titre</code> correspond au motif <code>"%Love%"</code>.</li>
+<li>Dans un motif le symbole <code>%</code> est un <em>joker</em> et peut être substitué par n'importe quelle chaîne de caractères.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Trier-les-donn&#233;es-avec-ORDER-BY">Trier les donn&#233;es avec <code>ORDER BY</code><a class="anchor-link" href="#Trier-les-donn&#233;es-avec-ORDER-BY">&#182;</a></h3><p>On peut trier des données en utilisant <code>ORDER BY</code> à la fin d'une requête, suivi de l'attribut à trier et de <code>ASC</code> (pour un tri croissant) ou <code>DESC</code> (pour un tri décroissant).</p>
+<p>Ainsi, la requête</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">titre</span><span class="p">,</span> <span class="n">annee</span> 
+<span class="k">FROM</span> <span class="n">Album</span> 
+<span class="k">WHERE</span> <span class="n">annee</span> <span class="o">&gt;=</span> <span class="mi">2005</span> <span class="k">AND</span> <span class="n">annee</span> <span class="o">&lt;=</span> <span class="mi">2015</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">annee</span> <span class="k">ASC</span><span class="p">;</span>
+</pre></div>
+<p>permet de trier les résultats d'une des requêtes précédente par ordre chronologique d'année de sortie.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>titre</th>
+        <th>annee</th>
+    </tr>
+    <tr>
+        <td>Continuum</td>
+        <td>2006</td>
+    </tr>
+    <tr>
+        <td>Continuum</td>
+        <td>2006</td>
+    </tr>
+    <tr>
+        <td>Don't Explain</td>
+        <td>2011</td>
+    </tr>
+    <tr>
+        <td>The Last Ship</td>
+        <td>2013</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote class="information">
+    <p>En remplaçant <code>ASC</code> par <code>DESC</code> on aurait obtenu les mêmes résultats mais affichés dans l'ordre inverse, du plus récent au plus ancien.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Supprimer-les-doublons-avec-DISTINCT">Supprimer les doublons avec <code>DISTINCT</code><a class="anchor-link" href="#Supprimer-les-doublons-avec-DISTINCT">&#182;</a></h3><p>On voit que le résultat de la dernière requête contient 4 enregistrements, dont deux sont identiques (pour les deux attributs conservés !). On peut utiliser le mot clé <code>DISTINCT</code> avec la clause <code>SELECT</code> pour retirer les doublons d'un résultat :</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">titre</span><span class="p">,</span> <span class="n">annee</span> 
+<span class="k">FROM</span> <span class="n">Album</span> 
+<span class="k">WHERE</span> <span class="n">annee</span> <span class="o">&gt;=</span> <span class="mi">2005</span> <span class="k">AND</span> <span class="n">annee</span> <span class="o">&lt;=</span> <span class="mi">2015</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">annee</span> <span class="k">ASC</span><span class="p">;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>titre</th>
+        <th>annee</th>
+    </tr>
+    <tr>
+        <td>Continuum</td>
+        <td>2006</td>
+    </tr>
+    <tr>
+        <td>Don't Explain</td>
+        <td>2011</td>
+    </tr>
+    <tr>
+        <td>The Last Ship</td>
+        <td>2013</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Faire-des-calculs-gr&#226;ce-aux-fonctions-d'agr&#233;gation">Faire des calculs gr&#226;ce aux fonctions d'agr&#233;gation<a class="anchor-link" href="#Faire-des-calculs-gr&#226;ce-aux-fonctions-d'agr&#233;gation">&#182;</a></h3><p>Les <em>fonctions d'agrégation</em> permettent d'appliquer une fonction à toutes les valeurs d'une colonne et renvoyer le résultat comme une table ayant une seule case (une ligne et une colonne). Voici quelques fonctions d'agrégation :</p>
+<ul>
+<li><code>COUNT()</code> : pour compter le nombre de résultats (le nombre de colonnes)</li>
+<li><code>AVG()</code> : pour calculer la moyenne des valeurs d'une colonne</li>
+<li><code>SUM()</code> : pour calculer la somme des valeurs d'une colonne</li>
+<li><code>MIN()</code> et <code>MAX()</code> : pour calculer respectivement la valeur minimale et la valeur maximale d'une colonne</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Compter-avec-COUNT()">Compter avec <code>COUNT()</code><a class="anchor-link" href="#Compter-avec-COUNT()">&#182;</a></h4><p>Par exemple, pour calculer le nombre d'albums sortis entre 2005 et 2015, (plutôt que de renvoyer ces albums en question), on écrira la requête :</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total</span> 
+<span class="k">FROM</span> <span class="n">Album</span> 
+<span class="k">WHERE</span> <span class="n">annee</span> <span class="o">&gt;=</span> <span class="mi">2005</span> <span class="k">AND</span> <span class="n">annee</span> <span class="o">&lt;=</span> <span class="mi">2015</span><span class="p">;</span>
+</pre></div>
+<p>qui renvoie le résultat</p>
+<table>
+    <tbody><tr>
+        <th>total</th>
+    </tr>
+    <tr>
+        <td>4</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remarque</strong> : On a choisi ici de renommer <code>total</code> la colonne donnant le résultat de la requête. En effet, sinon le SGBD choisi lui-même un nom, souvent peu parlant, puisque le résultat n'est pas une colonne d'une table existante.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Trouver-le-minimum-et-le-maximum-avec-MIN()-et-MAX()">Trouver le minimum et le maximum avec <code>MIN()</code> et <code>MAX()</code><a class="anchor-link" href="#Trouver-le-minimum-et-le-maximum-avec-MIN()-et-MAX()">&#182;</a></h4><p>Si on souhaite connaître l'année de l'album le plus ancien du disquaire, il suffit de calculer la valeur minimale de l'attribut <code>annee</code> avec la requête</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">MIN</span><span class="p">(</span><span class="n">annee</span><span class="p">)</span> <span class="k">AS</span> <span class="n">annee_mini</span> <span class="k">FROM</span> <span class="n">Album</span><span class="p">;</span>
+</pre></div>
+<p>qui renvoie le résultat :</p>
+<table>
+    <tbody><tr>
+        <th>annee_mini</th>
+    </tr>
+    <tr>
+        <td>1966</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ces fonctions peuvent également comparer des chaînes de caractères. Ainsi, si on souhaite connaître le nom de l'artiste arrivant en dernier par ordre alphabétique, il suffit de "calculer" la valeur maximale de l'attribut <code>nom</code> (de la table <code>Artiste</code>) avec la requête</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">MAX</span><span class="p">(</span><span class="n">nom</span><span class="p">),</span> <span class="n">prenom</span> <span class="k">FROM</span> <span class="n">Artiste</span><span class="p">;</span>
+</pre></div>
+<p>qui renvoie le résultat :</p>
+<table>
+    <tbody><tr>
+        <th>MAX(nom)</th>
+        <th>prenom</th>
+    </tr>
+    <tr>
+        <td>Wonder</td>
+        <td>Stevie</td>
+    </tr>
+</tbody></table><blockquote><p>Ici, on a utilisé la fonction <code>MAX()</code> (sur le <code>nom</code>) tout en sélectionnant l'attribut <code>prenom</code> pour récupérer également le prénom de l'artiste. Ce n'était pas utile et on aurait pu écrire <code>SELECT MAX(nom) FROM Artiste;</code></p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Les fonctions <code>AVG()</code> et <code>SUM()</code> s'utilisent de la même manière mais n'ont pas de sens avec les données présentes dans la base de données du disquaire, donc on n'en parle pas ici.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Recherches-crois&#233;es-:-les-jointures-avec-JOIN">Recherches crois&#233;es : les jointures avec <code>JOIN</code><a class="anchor-link" href="#Recherches-crois&#233;es-:-les-jointures-avec-JOIN">&#182;</a></h2><blockquote><p><span style="font-size:1.5em">✍️</span> Faites les exercices 2 et 3.</p>
+</blockquote>
+<p>Les requêtes abordées jusqu'à présent ne portaient à chaque fois que sur une seule table. C'est malheureusement insuffisant pour chercher certaines informations qui nécessitent de <em>croiser</em> (les informations de) plusieurs tables.</p>
+<p>Imaginons que l'on veuille connaître les clients ayant des emprunts en cours. Ces derniers sont ceux présents dans la table <code>Emprunt</code> et on peut les obtenir avec la requête</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">Emprunt</span><span class="p">;</span>
+</pre></div>
+<p>qui produit la réponse suivante :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>id_client</th>
+        <th>id_album</th>
+        <th>jour</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>5</td>
+        <td>2021-09-10</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>8</td>
+        <td>2021-08-18</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>24</td>
+        <td>2021-08-18</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>25</td>
+        <td>2021-09-12</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>6</td>
+        <td>2021-10-10</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>20</td>
+        <td>2021-09-28</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>14</td>
+        <td>2021-10-08</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>15</td>
+        <td>2021-10-08</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>19</td>
+        <td>2021-10-08</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>16</td>
+        <td>2021-10-15</td>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td>29</td>
+        <td>2021-10-01</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Mais ce n'est pas très satisfaisant car on aimerait plutôt afficher les noms, prénoms et adresse email de ces clients plutot que <code>id_client</code>.</p>
+<p>Le problème est que les noms, prénoms, adresses email sont uniquement présents dans la table <code>Client</code>. Il est nécessaire de faire <strong>une jointure</strong> entre les deux tables <code>Emprunt</code> et <code>Client</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Premi&#232;re-jointure">Premi&#232;re jointure<a class="anchor-link" href="#Premi&#232;re-jointure">&#182;</a></h3><p>Une jointure consiste à créer toutes les combinaisons de lignes des deux tables ayant un attribut de même valeur (l'attribut <code>id_client</code> dans notre exemple). Pour effectuer une jointure, on utilise la clause <code>JOIN</code>. Une jointure consiste à créer toutes les combinaisons de lignes des deux tables ayant un attribut de même valeur qui est précisé après le mot clé <code>ON</code>.</p>
+<p>Ainsi, dans le cas de notre exemple, on peut effectuer la jointure entre les tables <code>Emprunt</code> et <code>Client</code>, sur l'attribut <code>id_client</code> pour ne garder que les lignes concernant le même client.</p>
+<p>Cela s'écrit avec la requête suivante.</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">Emprunt</span>
+<span class="k">JOIN</span> <span class="n">Client</span> <span class="k">ON</span> <span class="n">Emprunt</span><span class="p">.</span><span class="n">id_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">.</span><span class="n">id_client</span><span class="p">;</span>
+</pre></div>
+<p>Le résultat de cette jointure est :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>id_client</th>
+        <th>id_album</th>
+        <th>jour</th>
+        <th>id_client_1</th>
+        <th>nom</th>
+        <th>prenom</th>
+        <th>email</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>5</td>
+        <td>2021-09-10</td>
+        <td>1</td>
+        <td>Dupont</td>
+        <td>Florine</td>
+        <td>dupont.florine@domaine.net</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>8</td>
+        <td>2021-08-18</td>
+        <td>3</td>
+        <td>Marchand</td>
+        <td>Grégoire</td>
+        <td>greg.marchand49@music.com</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>24</td>
+        <td>2021-08-18</td>
+        <td>3</td>
+        <td>Marchand</td>
+        <td>Grégoire</td>
+        <td>greg.marchand49@music.com</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>25</td>
+        <td>2021-09-12</td>
+        <td>5</td>
+        <td>Pacot</td>
+        <td>Jean</td>
+        <td>jpacot@music.com</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>6</td>
+        <td>2021-10-10</td>
+        <td>5</td>
+        <td>Pacot</td>
+        <td>Jean</td>
+        <td>jpacot@music.com</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>20</td>
+        <td>2021-09-28</td>
+        <td>9</td>
+        <td>Dubois</td>
+        <td>Philippe</td>
+        <td>pdubois5@chezmoi.net</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>14</td>
+        <td>2021-10-08</td>
+        <td>11</td>
+        <td>Fournier</td>
+        <td>Marie</td>
+        <td>mfournier@abc.de</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>15</td>
+        <td>2021-10-08</td>
+        <td>7</td>
+        <td>Moreau</td>
+        <td>Alain</td>
+        <td>amoreau1@abc.de</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>19</td>
+        <td>2021-10-08</td>
+        <td>7</td>
+        <td>Moreau</td>
+        <td>Alain</td>
+        <td>amoreau1@abc.de</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>16</td>
+        <td>2021-10-15</td>
+        <td>7</td>
+        <td>Moreau</td>
+        <td>Alain</td>
+        <td>amoreau1@abc.de</td>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td>29</td>
+        <td>2021-10-01</td>
+        <td>16</td>
+        <td>Bernardin</td>
+        <td>Stéphanie</td>
+        <td>sbernard1@chezmoi.net</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Analyse</strong> :</p>
+<ul>
+<li>La jointure (<code>SELECT * FROM Emprunt JOIN Client</code>) a permis de recopier toutes les colonnes des deux tables.</li>
+<li>Le choix des lignes à conserver, appelée <em>condition de jointure</em>, suit le mot clé <code>ON</code>. Cela permet de fusionner uniquement les lignes vérifiant la condition <code>Emprunt.id_client = Client.id_client</code>, autrement dit les lignes pour lesquelle l'attribut <code>id_client</code> est identique donc celles concernant un même client.<blockquote><p>Essayez d'enlever le <code>ON ...</code>, vous constaterez que toutes les lignes sont fusionnées, ce qui est absurde car une même ligne peut alors correspondre à deux clients distincts.</p>
+</blockquote>
+</li>
+<li>Vous avez constaté que l'on a préfixé chaque attribut par le nom de la table auquel il appartient. Cela permet de faire la différence entre deux attributs portant le même nom dans deux tables différentes, et c'est une bonne pratique de toujours le faire même lorsqu'il n'y a pas d'ambiguïté.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote class="information">
+    <p>Ce sont les clés étrangères qui permettent de faire le lien entre les tables, il est donc normal que la condition de jointure fasse intervenir <code>id_client</code> (puisque c'est une clé étrangère de la table <code>Emprunt</code> qui la lie à la table <code>Client</code>).</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut combiner une jointure avec la clause <code>SELECT</code> pour n'afficher que ce qui nous intéresse. Par exemple, si on ne veut que les noms, prénoms et adresses email des clients ayant des emprunts en cours ainsi que les albums empruntés, on peut faire la requête</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">Emprunt</span><span class="p">.</span><span class="n">id_album</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">nom</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">prenom</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">email</span>
+<span class="k">FROM</span> <span class="n">Emprunt</span>
+<span class="k">JOIN</span> <span class="n">Client</span> <span class="k">ON</span> <span class="n">Emprunt</span><span class="p">.</span><span class="n">id_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">.</span><span class="n">id_client</span><span class="p">;</span>
+</pre></div>
+<p>qui produit le résultat</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>id_album</th>
+        <th>jour</th>
+        <th>nom</th>
+        <th>prenom</th>
+        <th>email</th>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>2021-09-10</td>
+        <td>Dupont</td>
+        <td>Florine</td>
+        <td>dupont.florine@domaine.net</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>2021-08-18</td>
+        <td>Marchand</td>
+        <td>Grégoire</td>
+        <td>greg.marchand49@music.com</td>
+    </tr>
+    <tr>
+        <td>24</td>
+        <td>2021-08-18</td>
+        <td>Marchand</td>
+        <td>Grégoire</td>
+        <td>greg.marchand49@music.com</td>
+    </tr>
+    <tr>
+        <td>25</td>
+        <td>2021-09-12</td>
+        <td>Pacot</td>
+        <td>Jean</td>
+        <td>jpacot@music.com</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>2021-10-10</td>
+        <td>Pacot</td>
+        <td>Jean</td>
+        <td>jpacot@music.com</td>
+    </tr>
+    <tr>
+        <td>20</td>
+        <td>2021-09-28</td>
+        <td>Dubois</td>
+        <td>Philippe</td>
+        <td>pdubois5@chezmoi.net</td>
+    </tr>
+    <tr>
+        <td>14</td>
+        <td>2021-10-08</td>
+        <td>Fournier</td>
+        <td>Marie</td>
+        <td>mfournier@abc.de</td>
+    </tr>
+    <tr>
+        <td>15</td>
+        <td>2021-10-08</td>
+        <td>Moreau</td>
+        <td>Alain</td>
+        <td>amoreau1@abc.de</td>
+    </tr>
+    <tr>
+        <td>19</td>
+        <td>2021-10-08</td>
+        <td>Moreau</td>
+        <td>Alain</td>
+        <td>amoreau1@abc.de</td>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td>2021-10-15</td>
+        <td>Moreau</td>
+        <td>Alain</td>
+        <td>amoreau1@abc.de</td>
+    </tr>
+    <tr>
+        <td>29</td>
+        <td>2021-10-01</td>
+        <td>Bernardin</td>
+        <td>Stéphanie</td>
+        <td>sbernard1@chezmoi.net</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Combiner-les-jointures">Combiner les jointures<a class="anchor-link" href="#Combiner-les-jointures">&#182;</a></h3><p>Plutôt que d'affichier l'<code>id_album</code>, qui est peu lisible, on peut préférer afficher le titre de l'album. Mais pour récupérer cette information dans la table <code>Album</code>, il faut une nouvelle jointure :</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">Album</span><span class="p">.</span><span class="n">titre</span><span class="p">,</span> <span class="n">Emprunt</span><span class="p">.</span><span class="n">jour</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">nom</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">prenom</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">email</span>
+<span class="k">FROM</span> <span class="n">Emprunt</span>
+<span class="k">JOIN</span> <span class="n">Client</span> <span class="k">ON</span> <span class="n">Emprunt</span><span class="p">.</span><span class="n">id_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">.</span><span class="n">id_client</span>
+<span class="k">JOIN</span> <span class="n">Album</span> <span class="k">ON</span> <span class="n">Emprunt</span><span class="p">.</span><span class="n">id_album</span> <span class="o">=</span> <span class="n">Album</span><span class="p">.</span><span class="n">id_album</span><span class="p">;</span>
+</pre></div>
+<p><strong>Analyse</strong> : On a ajouté la dernière ligne qui permet de faire une jointure sur l'attribut <code>id_album</code> entre la table produite par la requête précédente et la table <code>Album</code>. Et on a remplacé la première colonne <code>Emprunt.id_album</code> par <code>Album.titre</code> pour faire apparaître les titres des albums comme souhaité :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>titre</th>
+        <th>jour</th>
+        <th>nom</th>
+        <th>prenom</th>
+        <th>email</th>
+    </tr>
+    <tr>
+        <td>Axis : Bold As Love</td>
+        <td>2021-09-10</td>
+        <td>Dupont</td>
+        <td>Florine</td>
+        <td>dupont.florine@domaine.net</td>
+    </tr>
+    <tr>
+        <td>Riding With The King</td>
+        <td>2021-08-18</td>
+        <td>Marchand</td>
+        <td>Grégoire</td>
+        <td>greg.marchand49@music.com</td>
+    </tr>
+    <tr>
+        <td>Continuum</td>
+        <td>2021-08-18</td>
+        <td>Marchand</td>
+        <td>Grégoire</td>
+        <td>greg.marchand49@music.com</td>
+    </tr>
+    <tr>
+        <td>Continuum</td>
+        <td>2021-09-12</td>
+        <td>Pacot</td>
+        <td>Jean</td>
+        <td>jpacot@music.com</td>
+    </tr>
+    <tr>
+        <td>Thriller</td>
+        <td>2021-10-10</td>
+        <td>Pacot</td>
+        <td>Jean</td>
+        <td>jpacot@music.com</td>
+    </tr>
+    <tr>
+        <td>Power Up</td>
+        <td>2021-09-28</td>
+        <td>Dubois</td>
+        <td>Philippe</td>
+        <td>pdubois5@chezmoi.net</td>
+    </tr>
+    <tr>
+        <td>Let It Be</td>
+        <td>2021-10-08</td>
+        <td>Fournier</td>
+        <td>Marie</td>
+        <td>mfournier@abc.de</td>
+    </tr>
+    <tr>
+        <td>44/876</td>
+        <td>2021-10-08</td>
+        <td>Moreau</td>
+        <td>Alain</td>
+        <td>amoreau1@abc.de</td>
+    </tr>
+    <tr>
+        <td>Songs in the Key of Life</td>
+        <td>2021-10-08</td>
+        <td>Moreau</td>
+        <td>Alain</td>
+        <td>amoreau1@abc.de</td>
+    </tr>
+    <tr>
+        <td>Lady Soul</td>
+        <td>2021-10-15</td>
+        <td>Moreau</td>
+        <td>Alain</td>
+        <td>amoreau1@abc.de</td>
+    </tr>
+    <tr>
+        <td>Leave the Light On</td>
+        <td>2021-10-01</td>
+        <td>Bernardin</td>
+        <td>Stéphanie</td>
+        <td>sbernard1@chezmoi.net</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut combiner les jointures avec tout ce qui a été vu précédemment, par exemple ajouter des conditions, trier, etc.</p>
+<p>La requête</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">Album</span><span class="p">.</span><span class="n">titre</span><span class="p">,</span> <span class="n">Emprunt</span><span class="p">.</span><span class="n">jour</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">nom</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">prenom</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">email</span>
+<span class="k">FROM</span> <span class="n">Emprunt</span>
+<span class="k">JOIN</span> <span class="n">Client</span> <span class="k">ON</span> <span class="n">Emprunt</span><span class="p">.</span><span class="n">id_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">.</span><span class="n">id_client</span>
+<span class="k">JOIN</span> <span class="n">Album</span> <span class="k">ON</span> <span class="n">Emprunt</span><span class="p">.</span><span class="n">id_album</span> <span class="o">=</span> <span class="n">Album</span><span class="p">.</span><span class="n">id_album</span>
+<span class="k">WHERE</span> <span class="n">Emprunt</span><span class="p">.</span><span class="n">jour</span> <span class="o">&gt;=</span> <span class="s1">&#39;2021-10-02&#39;</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">Client</span><span class="p">.</span><span class="n">nom</span> <span class="k">ASC</span><span class="p">;</span>
+</pre></div>
+<p>permet de récupérer les mêmes informations qu'au-dessus mais seulement pour les emprunts à partir du 2 octobre 2021, les résultats étant triés par ordre alphabétique des noms des emprunteurs.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>titre</th>
+        <th>jour</th>
+        <th>nom</th>
+        <th>prenom</th>
+        <th>email</th>
+    </tr>
+    <tr>
+        <td>Let It Be</td>
+        <td>2021-10-08</td>
+        <td>Fournier</td>
+        <td>Marie</td>
+        <td>mfournier@abc.de</td>
+    </tr>
+    <tr>
+        <td>44/876</td>
+        <td>2021-10-08</td>
+        <td>Moreau</td>
+        <td>Alain</td>
+        <td>amoreau1@abc.de</td>
+    </tr>
+    <tr>
+        <td>Songs in the Key of Life</td>
+        <td>2021-10-08</td>
+        <td>Moreau</td>
+        <td>Alain</td>
+        <td>amoreau1@abc.de</td>
+    </tr>
+    <tr>
+        <td>Lady Soul</td>
+        <td>2021-10-15</td>
+        <td>Moreau</td>
+        <td>Alain</td>
+        <td>amoreau1@abc.de</td>
+    </tr>
+    <tr>
+        <td>Thriller</td>
+        <td>2021-10-10</td>
+        <td>Pacot</td>
+        <td>Jean</td>
+        <td>jpacot@music.com</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Utiliser-des-alias">Utiliser des alias<a class="anchor-link" href="#Utiliser-des-alias">&#182;</a></h3><p>Certaines requêtes peuvent commencer à être assez longues à écrire. Pour réduire leur longueur on peut utiliser des <em>alias</em> pour les noms de table grâce au mot clé <code>AS</code>.</p>
+<p>Ainsi, la requête précédente peut aussi s'écrire</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">a</span><span class="p">.</span><span class="n">titre</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">jour</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">nom</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">prenom</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">email</span>
+<span class="k">FROM</span> <span class="n">Emprunt</span> <span class="k">AS</span> <span class="n">e</span>
+<span class="k">JOIN</span> <span class="n">Client</span> <span class="k">AS</span> <span class="k">c</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">id_client</span> <span class="o">=</span> <span class="k">c</span><span class="p">.</span><span class="n">id_client</span>
+<span class="k">JOIN</span> <span class="n">Album</span> <span class="k">AS</span> <span class="n">a</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">id_album</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">id_album</span>
+<span class="k">WHERE</span> <span class="n">e</span><span class="p">.</span><span class="n">jour</span> <span class="o">&gt;=</span> <span class="s1">&#39;2021-10-02&#39;</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="k">c</span><span class="p">.</span><span class="n">nom</span> <span class="k">ASC</span><span class="p">;</span>
+</pre></div>
+<p><strong>Analyse</strong> : <code>Emprunt AS e</code> permet de renommer la table <code>Emprunt</code> par <code>e</code>, ce qui permet de raccourcir les écritures du type <code>Emprunt.id_client</code> en <code>e.id_client</code>. Idem pour <code>c</code> et <code>a</code> qui sont les alias respectifs des tables <code>Client</code> et <code>Album</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Modifier-des-donn&#233;es">Modifier des donn&#233;es<a class="anchor-link" href="#Modifier-des-donn&#233;es">&#182;</a></h1><blockquote><p><span style="font-size:1.5em">✍️</span> Faites les exercices 4 et 5.</p>
+</blockquote>
+<p>Les données stockées dans une base de données n'ont pas vocation à être figées, elles peuvent être modifiées au cours du temps grâce à des <strong>requêtes de mise à jour</strong> de la base de donnnées.</p>
+<p>Nous allons voir les requêtes permettant d'ajouter des données à une table, de modifier les données d'une table et de supprimer les données d'une table.</p>
+<p>Avant cela, faisons une petite digression sur la création de tables dans une base de données.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Cr&#233;er-une-table-avec-CREATE-TABLE">Cr&#233;er une table avec <code>CREATE TABLE</code><a class="anchor-link" href="#Cr&#233;er-une-table-avec-CREATE-TABLE">&#182;</a></h2><blockquote class="information">
+    <p>La création d'une base de données n'est pas au programme de Terminale NSI. Néanmoins, connaître les requêtes permettant de créer une table permet de mieux appréhender les requêtes de mise à jour que l'on verra ensuite.</p>
+</blockquote><p>Créer une base de données consiste à créer les tables de la base. Pour créer une table, on utilise <code>CREATE TABLE</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Par exemple, pour créer la table <code>Artiste</code> correspondant à la relation suivante :</p>
+<pre style="padding-bottom:10px;">
+    <code><em>Artiste</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_artiste</em></span> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT)</code>
+</pre><p>on peut exécuter cette commande SQL :</p>
+<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">Artiste</span> <span class="p">(</span>
+    <span class="n">id_artiste</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">nom</span> <span class="nb">TEXT</span><span class="p">,</span>
+    <span class="n">prenom</span> <span class="nb">TEXT</span>
+<span class="p">);</span>
+</pre></div>
+<p><strong>Remarque</strong> : On a bien précisé le nom et le type de chaque attribut, et indiqué avec <code>PRIMARY KEY</code> quelle était notre clé primaire.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Ins&#233;rer-des-donn&#233;es-avec-INSERT-INTO-...-VALUES">Ins&#233;rer des donn&#233;es avec <code>INSERT INTO ... VALUES</code><a class="anchor-link" href="#Ins&#233;rer-des-donn&#233;es-avec-INSERT-INTO-...-VALUES">&#182;</a></h2><p>Supposons que l'on veuille insérer les 3 enregistrements suivants dans la table <code>Artiste</code>.</p>
+<table>
+<thead><tr>
+<th>id_artiste</th>
+<th>nom</th>
+<th>prenom</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Clapton</td>
+<td>Éric</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Mayall</td>
+<td>John</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Hendrix</td>
+<td>Jimi</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Pour cela, on peut écrire la requête SQL</p>
+<div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Artiste</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Clapton&#39;</span><span class="p">,</span> <span class="s1">&#39;Éric&#39;</span><span class="p">),</span>
+                           <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">Al</span> <span class="s1">&#39;Mayall&#39;</span><span class="p">,</span> <span class="s1">&#39;John&#39;</span><span class="p">),</span>
+                           <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;Hendrix&#39;</span><span class="p">,</span> <span class="s1">&#39;Jimi&#39;</span><span class="p">);</span>
+</pre></div>
+<p><strong>Analyse</strong> :</p>
+<ul>
+<li>Après <code>INSERT INTO</code> (que l'on traduit par "insérer dans") on indique le nom de la table (ici <code>Note</code>) dans laquelle on veut insérer des données ;</li>
+<li>Puis on indique grâce au mot clé <code>VALUES</code> les enregistrements que l'on veut insérer, ces derniers étant séparés par des virgules s'il y en a plusieurs (on n'oublie pas le <code>;</code> pour terminer) ;</li>
+<li>Avec cette requête, les valeurs des différents enregistrements (ou $n$-uplets) doivent être données dans le même ordre que lors du <code>CREATE TABLE</code>. Néanmoins, il est possible de les passer dans un ordre différent comme on l'explique juste en-dessous.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Si on désire passer les valeurs des enregistrements dans un ordre différent de celui de la création de la table, il suffit de préciser l'ordre juste après le nom de la table :</p>
+<div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Artiste</span> <span class="p">(</span><span class="n">prenom</span><span class="p">,</span> <span class="n">nom</span><span class="p">,</span> <span class="n">id_artiste</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;Mayer&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+</pre></div>
+<p>On peut vérifier en affichant les 4 enregistrements ainsi insérés dans la table <code>Artiste</code> :</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">Artiste</span><span class="p">;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>id_artiste</th>
+        <th>nom</th>
+        <th>prenom</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Clapton</td>
+        <td>Éric</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Mayall</td>
+        <td>John</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Hendrix</td>
+        <td>Jimi</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Mayer</td>
+        <td>John</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Respect-de-la-contrainte-de-relation">Respect de la contrainte de relation<a class="anchor-link" href="#Respect-de-la-contrainte-de-relation">&#182;</a></h3><p>On rappelle que le SGBD est garant du respect des contraintes d'intégrité de la base (voir Chapitre 1). En particulier, de la contrainte de relation qui impose que chaque enregistrement d'une relation doit posséder une clé primaire <em>unique</em>.</p>
+<p>Ainsi, si on essaie d'insérer un nouvel enregistrement avec une clé primaire existante, le SGBD n'acceptera pas l'insertion proposée en indiquant l'erreur :</p>
+<div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Artiste</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Dylan&#39;</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">);</span>
+</pre></div>
+<pre><code style="color: red;">UNIQUE constraint failed: Artiste.id_artiste</code></pre><p>La base de données ne sera alors pas modifiée !</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remarque</strong> : Pour ne pas avoir à saisir nous-mêmes l'attribut <code>id_artiste</code> de chaque artiste, on aurait pu indiquer au SGBD d'utiliser le principe d'<em>auto-incrément</em> : dès qu'un nouvel enregistrement est inséré, <code>id_artiste</code> est incrémenté automatiquement d'une unité. Pour cela, la commande de création de la table aurait été :</p>
+<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">Artiste</span> <span class="p">(</span>
+    <span class="n">id_artiste</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="n">AUTOINCREMENT</span><span class="p">,</span>
+    <span class="n">nom</span> <span class="nb">TEXT</span><span class="p">,</span>
+    <span class="n">prenom</span> <span class="nb">TEXT</span>
+<span class="p">);</span>
+</pre></div>
+<p>et on aurait pu insérer les enregistrements sans préciser l'attribut <code>id_artiste</code> :</p>
+<div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Artiste</span> <span class="p">(</span><span class="n">nom</span><span class="p">,</span> <span class="n">prenom</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;Clapton&#39;</span><span class="p">,</span> <span class="s1">&#39;Éric&#39;</span><span class="p">),</span>
+                                         <span class="p">(</span><span class="s1">&#39;Mayall&#39;</span><span class="p">,</span> <span class="s1">&#39;John&#39;</span><span class="p">),</span>
+                                         <span class="p">(</span><span class="s1">&#39;Hendrix&#39;</span><span class="p">,</span> <span class="s1">&#39;Jimi&#39;</span><span class="p">);</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On doit alors préciser que l'on ne saisit que les attributs <code>nom</code> et <code>prenom</code>.</p>
+<p>Dans ce cas, l'insertion d'un nouvel enregistrement s'écrit</p>
+<div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Artiste</span> <span class="p">(</span><span class="n">nom</span><span class="p">,</span> <span class="n">prenom</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;Dylan&#39;</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">);</span>
+</pre></div>
+<p>et le SGBD détermine lui-même l'attribut <code>id_artiste</code> lors de l'insertion.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote class="information">
+    <p>Pour voir le code SQL qui a permi de créer la base de données du disquaire, vous pouvez suivre <a href="https://github.com/germainbecker/NSI/blob/master/Terminale/Theme2_Bases_de_donnees/disquaire.sql" target="_blank">ce lien</a>. Regardez notamment comment on a lié les tables avec les clés étrangères en utilisant <code>REFERENCES</code> et comment on définit la réunion de plusieurs attributs comme clé primaire. Vous constaterez également que l'on n'a pas utilisé le type <code>TEXT</code> pour le domaine des attributs de type "texte". Enfin, vous trouverez dans ce fichier .sql les ordres d'insertions des différents enregistrements de chaque table.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Modifier-une-valeur-avec-UPDATE-...-SET">Modifier une valeur avec <code>UPDATE ... SET</code><a class="anchor-link" href="#Modifier-une-valeur-avec-UPDATE-...-SET">&#182;</a></h2><p>Il est possible de modifier des valeurs existantes dans une table, avec <code>UPDATE</code>.</p>
+<p>Par exemple, le client</p>
+<table>
+    <tbody><tr>
+        <th>id_client</th>
+        <th>nom</th>
+        <th>prenom</th>
+        <th>email</th>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Michel</td>
+        <td>Valérie</td>
+        <td>vmichel5@monmail.com</td>
+    </tr>
+</tbody></table><p>a changé d'adresse email. Pour modifier cette adresse dans la base de données, on peut écrire :</p>
+<div class="highlight"><pre><span></span><span class="k">UPDATE</span> <span class="n">Client</span> <span class="k">SET</span> <span class="n">email</span> <span class="o">=</span> <span class="s1">&#39;valerie.michel@email.fr&#39;</span>
+<span class="k">WHERE</span> <span class="n">id_client</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Analyse</strong> :</p>
+<ul>
+<li>Après <code>UPDATE</code> on indique le nom de la table dans laquelle on veut modifier une valeur (ici <code>Client</code>) ;</li>
+<li>Ensuite, on écrit <code>SET</code> puis une expression de la forme <code>attribut = valeur</code> qui permet de définir une nouvel valeur <code>valeur</code> pour l'attribut <code>attribut</code> (ici <code>'valerie.michel@email.fr'</code> est la nouvelle valeur de l'attribut <code>email</code>) ;</li>
+<li>Enfin, on précise avec <code>WHERE</code> la condition permettant de sélectionner les enregistrements sur lesquels la modification doit être apportée (ici une seule ligne car la condition <code>id_client = 4</code> ne correspond qu'à un seul enregistrement).</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut vérifier que la modification a bien été faite :</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">Client</span>
+<span class="k">WHERE</span> <span class="n">id_client</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>id_client</th>
+        <th>nom</th>
+        <th>prenom</th>
+        <th>email</th>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Michel</td>
+        <td>Valérie</td>
+        <td>valerie.michel@email.fr</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Supprimer-un-enregistrement-avec-DELETE">Supprimer un enregistrement avec <code>DELETE</code><a class="anchor-link" href="#Supprimer-un-enregistrement-avec-DELETE">&#182;</a></h2><p>Il est possible de supprimer une ligne d'une table en utilisant <code>DELETE</code>.</p>
+<p>Par exemple, le client Marchand Grégoire a rendu l'album <code>Continuum</code> (dont l'attribut <code>id_album</code> vaut 25) qu'il avait emprunté. Il faut supprimer la ligne correspondante dans la table <code>Emprunt</code> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>id_client</th>
+        <th>id_album</th>
+        <th>jour</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>5</td>
+        <td>2021-09-10</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>8</td>
+        <td>2021-08-18</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>24</td>
+        <td>2021-08-18</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>25</td>
+        <td>2021-09-12</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>6</td>
+        <td>2021-10-10</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>20</td>
+        <td>2021-09-28</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>14</td>
+        <td>2021-10-08</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>15</td>
+        <td>2021-10-08</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>19</td>
+        <td>2021-10-08</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>16</td>
+        <td>2021-10-15</td>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td>29</td>
+        <td>2021-10-01</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Pour cela, on peut écrire l'ordre suivant :</p>
+<div class="highlight"><pre><span></span><span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">Emprunt</span>
+<span class="k">WHERE</span> <span class="n">id_album</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Analyse</strong> :</p>
+<ul>
+<li>Après <code>DELETE</code> on indique dans quelle table on veut supprimer une ligne avec <code>FROM [nom_table]</code> ;</li>
+<li>Ensuite on précise avec <code>WHERE</code> la condition permettant de sélectionner les enregistrements à supprimer (ici une seule ligne est supprimée car la condition <code>id_album = 25</code> ne correspond qu'à un seul enregistrement).</li>
+</ul>
+<p>On peut vérifier que la ligne correspondante a bien été supprimée de la table <code>Emprunt</code> :</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">Emprunt</span><span class="p">;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>id_client</th>
+        <th>id_album</th>
+        <th>jour</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>5</td>
+        <td>2021-09-10</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>8</td>
+        <td>2021-08-18</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>24</td>
+        <td>2021-08-18</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>6</td>
+        <td>2021-10-10</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>20</td>
+        <td>2021-09-28</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>14</td>
+        <td>2021-10-08</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>15</td>
+        <td>2021-10-08</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>19</td>
+        <td>2021-10-08</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>16</td>
+        <td>2021-10-15</td>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td>29</td>
+        <td>2021-10-01</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remarque</strong> : Avec le schéma de la base de données il faut aussi mettre à jour la table <code>Album</code> puisque l'album en question est à nouveau disponible. La requête de mise à jour suivante permet de faire cela :</p>
+<div class="highlight"><pre><span></span><span class="k">UPDATE</span> <span class="n">Album</span>
+<span class="k">SET</span> <span class="n">dispo</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">WHERE</span> <span class="n">id_album</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Respect-des-contraintes-de-r&#233;f&#233;rence">Respect des contraintes de r&#233;f&#233;rence<a class="anchor-link" href="#Respect-des-contraintes-de-r&#233;f&#233;rence">&#182;</a></h3><p>Le SGBD est garant du respect des <em>contraintes de référence</em> (voir Chapitre 1). L'une d'elles consiste à ne pas pouvoir supprimer un enregistrement si sa clé primaire est associée à des enregistrements liés dans d'autres tables (liés par une clé étrangère !).</p>
+<p>Par exemple, si on essaie de supprimer de la relation <code>Client</code> le client "Dupont Florine", dont l'attribut <code>id_client</code> est <code>1</code>, le SGBD empêchera la suppression car ce client apparaît dans la relation <code>Emprunt</code> en tant que clé étrangère (si la suppression était effectuée, cette clé étrangère ne ferait plus référence à une clé primaire de la table <code>Client</code>, ce qui est impossible par définition d'une clé étrangère).</p>
+<p>Ainsi, l'exécution de la requête</p>
+<div class="highlight"><pre><span></span><span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">Client</span>
+<span class="k">WHERE</span> <span class="n">id_client</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</pre></div>
+<p>produit l'erreur suivante :</p>
+<pre><code style="color: red">FOREIGN KEY constraint failed</code></pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote class="information">
+    <p>Il est possible d'apporter d'autres types de modifications à une table, mais elles ne sont a priori pas exigibles en Terminale NSI. Voir par exemple les commandes <code>ALTER TABLE</code> (<a href="https://sql.sh/cours/alter-table" target="_blank">https://sql.sh/cours/alter-table</a>) et <code>DROP TABLE</code> (<a href="https://sql.sh/cours/drop-table" target="_blank">https://sql.sh/cours/drop-table</a>)</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><span style="font-size:1.5em">✍️</span> Faites les exercices 6 et 7.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Bilan">Bilan<a class="anchor-link" href="#Bilan">&#182;</a></h1><ul>
+<li>Ce sont les logiciels de type SGBD qui jouent le rôle d'interface entre l'humain et la base de données. Il existe différentes sortes de SGBD, des gratuits, des payants, des libres, des propriétaires. On a utilisé le SGBD <em>SQLite</em> pour sa simplicité d'utilisation.</li>
+<li>On peut utiliser le <strong>langage SQL</strong> pour écrire des <strong>requêtes</strong> destinées à donner des ordres à la base de données. On distingue deux types de requêtes : les <em>requêtes d'interrogation</em> et les <em>requêtes de mise à jour</em>.</li>
+<li>Les requêtes d'interrogation permettent de trouver toutes les lignes d'une table vérifiant un certain critère booléen. Si les données à trouver sont réparties dans plusieurs tables, on utilise une <strong>jointure</strong> pour fusionner les tables.</li>
+<li>Les requêtes de mise à jour apportent des modifications aux données enregistrées. Cela peut être des insertions, des modifications ou des suppressions de lignes.</li>
+<li>Des opétateurs avancés permettent de <em>trier</em> les résultats selon un certain critère, de <em>supprimer les doublons</em> des résultats. Des <em>fonctions d'agrégation</em> permettent de faire des calculs sur les données d'une colonne.</li>
+<li>Une modification qui ne provoque pas d'erreur est définitive. En revanche, le SGBD ne réalisera concrètement des modifications que si ces dernières ne violent pas les <em>contraintes d'intégrité</em> (voir Chapitre 1).</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Références :</strong></p>
+<ul>
+<li>Equipe éducative DIU EIL, Université de Nantes.</li>
+<li>Livre <em>Numérique et Sciences Informatiques, 24 leçons, Terminale</em>, T. BALABONSKI, S. CONCHON, J.-C. FILLIATRE, K. NGUYEN, éditions ELLIPSES.</li>
+<li>Livre <em>Prepabac NSI, Tle</em>, G. Connan, V. Petrov, G. Rozsavolgyi, L. Signac, éditions HATIER.</li>
+<li>Cours de Gilles Lassus sur le <a href="https://glassus.github.io/terminale_nsi/T4_Bases_de_donnees/4.2_Langage_SQL/cours/">langage SQL</a></li>
+<li>Cours de David Roche sur le <a href="https://pixees.fr/informatiquelycee/n_site/nsi_term_bd_sql.html">langage SQL</a></li>
+<li>Site <a href="https://sql.sh/">https://sql.sh/</a> sur le langage SQL</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p>Germain BECKER, Lycée Mounier, ANGERS</p>
+<p>Ressource éducative libre distribuée sous <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a></p>
+<p><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+
