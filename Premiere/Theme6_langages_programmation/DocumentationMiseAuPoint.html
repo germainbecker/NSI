@@ -1,4 +1,3 @@
-
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -691,7 +690,7 @@ Exercices 1 et 2</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Ecrire-ses-tests-avant-le-code-de-la-fonction">Ecrire ses tests avant le code de la fonction<a class="anchor-link" href="#Ecrire-ses-tests-avant-le-code-de-la-fonction">&#182;</a></h2><p>Une pratique courante consiste à écrire des tests avant même d'écrire le code de la fonction. En effet, si la spécification de la fonction est claire, on sait quel doit être le comportement de celle-ci. Par exemple, supposons que l'on veuille écrire une fonction <code>indice_max_tab(T)</code> dont la spécification, écrite dans sa docstring, est la suivante :</p>
+<h2 id="Ecrire-ses-tests-avant-le-code-de-la-fonction">Ecrire ses tests avant le code de la fonction<a class="anchor-link" href="#Ecrire-ses-tests-avant-le-code-de-la-fonction">&#182;</a></h2><p>Une pratique courante consiste à écrire des tests avant même d'écrire le code de la fonction. En effet, si la spécification de la fonction est claire, on sait quel doit être le comportement de celle-ci. Par exemple, supposons que l'on veuille écrire une fonction <code>indice_max_tab()</code> dont la spécification, écrite dans sa docstring, est la suivante :</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">indice_maxi_tab</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Renvoie l&#39;indice de la première occurence de la valeur </span>
@@ -739,7 +738,7 @@ Exercices 1 et 2</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Un-bon-jeu-de-test">Un bon jeu de test<a class="anchor-link" href="#Un-bon-jeu-de-test">&#182;</a></h2><p>Il est souvent impossible d'écrire de manière exhaustive tous les tests possibles car il y en a bien souvent une infinité. Pour se convaincre que notre fonction est bien écrite, l'enjeu consiste donc à trouver un ensemble de tests qui couvrent les différents comportements du programme.</p>
-<p>Par exemple, avec le code suivant pour la fonction <code>appartient(v, T)</code> aucun des tests proposés n'échoue.</p>
+<p>Par exemple, avec le code suivant pour la fonction <code>indice_maxi_tab()</code> aucun des tests proposés n'échoue.</p>
 
 </div>
 </div>
@@ -847,7 +846,7 @@ Exercices 1 et 2</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Corriger-sa-fonction-:-afficher-les-valeurs-de-certaines-variables">Corriger sa fonction : afficher les valeurs de certaines variables<a class="anchor-link" href="#Corriger-sa-fonction-:-afficher-les-valeurs-de-certaines-variables">&#182;</a></h2><p>Il n'est pas toujours évident de trouver pourquoi notre code ne fonctionne pas. Les tests qui échouent nous donne cependant de précieux éléments sur les erreurs dans le programme. En effet, c'est souvent en partant d'un test qui échoue que l'on trouve les erreurs en suivant l'état des variables. Ceci peut se faire mentalement ou sur papier mais il également possible d'afficher la valeur de certaines variables à des endroits stratégiques du programme. Par exemple, on peut ajouter les instructions suivantes pour afficher l'état des variables à chaque tour de boucle de notre fonction <code>indice_maxi_tab(T)</code>.</p>
+<h2 id="Corriger-sa-fonction-:-afficher-les-valeurs-de-certaines-variables">Corriger sa fonction : afficher les valeurs de certaines variables<a class="anchor-link" href="#Corriger-sa-fonction-:-afficher-les-valeurs-de-certaines-variables">&#182;</a></h2><p>Il n'est pas toujours évident de trouver pourquoi notre code ne fonctionne pas. Les tests qui échouent nous donne cependant de précieux éléments sur les erreurs dans le programme. En effet, c'est souvent en partant d'un test qui échoue que l'on trouve les erreurs en suivant l'état des variables. Ceci peut se faire mentalement ou sur papier mais il également possible d'afficher la valeur de certaines variables à des endroits stratégiques du programme. Par exemple, on peut ajouter les instructions suivantes pour afficher l'état des variables à chaque tour de boucle de notre fonction <code>indice_maxi_tab()</code>.</p>
 
 </div>
 </div>
