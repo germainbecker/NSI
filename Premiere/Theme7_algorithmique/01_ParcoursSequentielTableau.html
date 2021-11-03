@@ -1,0 +1,898 @@
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Les algorithmes de parcours séquentiel permettent de parcourir les éléments d'un tableau à l'aide d'une boucle.</p>
+<p>Ils font partie des algorithmes fondamentaux en informatique, leur parfaite maîtrise est donc indispensable car ils sont à la base de beaucoup d'autres algorithmes qui doivent passer en revue tous les éléments d'une collection (tableau, tuple, liste, dictionnaires, etc.).</p>
+<p>On détaille dans ce chapitre les trois algorithmes au programme :</p>
+<ul>
+<li>l'algorithme de recherche d'un élément (ou d'une occurrence)</li>
+<li>l'algorithme de recherche d'un extremum (maximum ou minimum)</li>
+<li>l'algorithme de calcul d'une moyenne</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Algorithme-de-recherche-d'un-&#233;l&#233;ment">Algorithme de recherche d'un &#233;l&#233;ment<a class="anchor-link" href="#Algorithme-de-recherche-d'un-&#233;l&#233;ment">&#182;</a></h1><p>On veut écrire un algorithme qui cherche si un élément est présent ou non dans un tableau.</p>
+<p><img class="centre image-responsive" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2aWV3Qm94PSIwIDAgMjU2IDI1NiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KIDxkZWZzPgogIDxmaWx0ZXIgaWQ9ImkiPgogICA8ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIxLjQ0OTAyNSIvPgogIDwvZmlsdGVyPgogIDxmaWx0ZXIgaWQ9ImgiPgogICA8ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIwLjc3NTAxOSIvPgogIDwvZmlsdGVyPgogIDxsaW5lYXJHcmFkaWVudCBpZD0ibSIgeDE9Ii44MzcxMSIgeDI9Ii4wNzI3NjEiIHkxPSIuMTY4MTQiIHkyPSIuNzgxODQiPgogICA8c3RvcCBzdG9wLWNvbG9yPSIjZmZmIiBvZmZzZXQ9IjAiLz4KICAgPHN0b3Agc3RvcC1jb2xvcj0iI2ZmZiIgc3RvcC1vcGFjaXR5PSIwIiBvZmZzZXQ9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxsaW5lYXJHcmFkaWVudCBpZD0ibCIgeDE9Ii4yNDE5MyIgeDI9Ii41NzU0NiIgeTE9Ii43MDk0NSIgeTI9Ii4zNTQxOCI+CiAgIDxzdG9wIHN0b3AtY29sb3I9IiNmZmYiIG9mZnNldD0iMCIvPgogICA8c3RvcCBzdG9wLWNvbG9yPSIjZmZmIiBzdG9wLW9wYWNpdHk9IjAiIG9mZnNldD0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJrIiB4MT0iLjE3OTQ5IiB4Mj0iMS4wNTQ0IiB5MT0iLjg1MzMzIj4KICAgPHN0b3Agc3RvcC1jb2xvcj0iIzk5OSIgb2Zmc2V0PSIwIi8+CiAgIDxzdG9wIHN0b3AtY29sb3I9IiNmMmYyZjIiIG9mZnNldD0iLjU1NDY5Ii8+CiAgIDxzdG9wIHN0b3AtY29sb3I9IiNiM2IzYjMiIG9mZnNldD0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJqIiB4MT0iLjM5Njc2IiB4Mj0iLjY2NzQ2IiB5MT0iLjYyMzgiIHkyPSIuMzgxNjQiPgogICA8c3RvcCBzdG9wLWNvbG9yPSIjMWMzZTQ3IiBvZmZzZXQ9IjAiLz4KICAgPHN0b3Agc3RvcC1jb2xvcj0iIzg4YWViOSIgb2Zmc2V0PSIuNDI3NjUiLz4KICAgPHN0b3Agc3RvcC1jb2xvcj0iI2I5ZDBkNiIgb2Zmc2V0PSIuNTg0NSIvPgogICA8c3RvcCBzdG9wLWNvbG9yPSIjODhhZWI5IiBvZmZzZXQ9Ii43NDQ4NiIvPgogICA8c3RvcCBzdG9wLWNvbG9yPSIjMmQ1MDU5IiBvZmZzZXQ9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyYWRpYWxHcmFkaWVudCBpZD0ibiIgY3g9IjEyMy4xNyIgY3k9IjcuOTY1OCIgcj0iNzcuNSIgZ3JhZGllbnRUcmFuc2Zvcm09Im1hdHJpeCgtMS41Mzc2IC0yLjY2MzIgMi42NjU4IC0xLjUzOTEgMzE1Ljc3IDQ5NC45OSkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgPHN0b3Agb2Zmc2V0PSIwIi8+CiAgIDxzdG9wIHN0b3AtY29sb3I9IiNmZmYiIG9mZnNldD0iMSIvPgogIDwvcmFkaWFsR3JhZGllbnQ+CiA8L2RlZnM+CiA8cGF0aCBkPSJtMTM2Ljk0IDE1Mi42NGw1LjA1MSA1LjMwMyAxNC42NDctMTMuNjM3LTUuMDUtNS4zMDMtMTQuNjQ4IDEzLjYzN3oiIGZpbGw9InVybCgjaykiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPgogPHBhdGggZD0ibTkwLjgxIDEyLjgzYy00MS44NTcgMS4wNjE2LTc1LjUgMzUuMzg4LTc1LjUgNzcuNSAwIDQyLjc4IDM0LjcyIDc3LjUgNzcuNSA3Ny41czc3LjUtMzQuNzIgNzcuNS03Ny41LTM0LjcyLTc3LjUtNzcuNS03Ny41Yy0wLjY2OCAwLTEuMzM1LTAuMDE2ODYtMiAwem0yIDcuNWMzOC42NCAwIDcwIDMxLjM2IDcwIDcwcy0zMS4zNiA3MC03MCA3MC03MC0zMS4zNi03MC03MCAzMS4zNi03MCA3MC03MHoiIGZpbHRlcj0idXJsKCNoKSIvPgogPHBhdGggZD0ibTkwLjgxIDEyLjgzYy00MS44NTcgMS4wNjE2LTc1LjUgMzUuMzg4LTc1LjUgNzcuNSAwIDQyLjc4IDM0LjcyIDc3LjUgNzcuNSA3Ny41czc3LjUtMzQuNzIgNzcuNS03Ny41LTM0LjcyLTc3LjUtNzcuNS03Ny41Yy0wLjY2OCAwLTEuMzM1LTAuMDE2ODYtMiAwem0yIDcuNWMzOC42NCAwIDcwIDMxLjM2IDcwIDcwcy0zMS4zNiA3MC03MCA3MC03MC0zMS4zNi03MC03MCAzMS4zNi03MCA3MC03MHoiIGZpbGw9InVybCgjbikiLz4KIDxwYXRoIGQ9Im0xMTQuNzYgMjYuNTU1Yy0yMy43MTMtOC42MzU2LTYzLjcyOS00LjE2MDgtNzQuNTg2IDI3LjEyOCAxMS43NTEgMC42OTgxIDI4LjM2OCAxMi4yMTMgNDAuMjc2IDE2LjU0OSAzNy43NzYgMTMuNzU2IDY2Ljg4NSAxNy44NCA3NC42NzggNDkuNjc3IDAuNTEwOTktMS4xOTQgMS4wMDQtMi4zOTIgMS40NTQtMy42MjcgMTMuMjIyLTM2LjMwOC01LjUxNC03Ni41MDYtNDEuODIyLTg5LjcyN3oiIGZpbGw9InVybCgjbSkiLz4KIDxwYXRoIGQ9Im0yOC41NiA5Mi4yNjdjMC40Nzg5IDE1LjQ0NiA2LjU1MjEgMzAuMjE4IDE2LjkwNiA0MS41MzJsNi45Mzc1LTcuNDM4Yy0xMC4yMDItOS4xMTEtMTguNjczLTIwLjMxNi0yMy44NDQtMzQuMDk0em0yNS4xMjUgMzUuMjE5bC03IDcuNjI1YzYuNTQ4IDYuNzY0IDE0LjY5IDEyLjE4OSAyNC4xMjUgMTUuNjI1IDEwLjM3OSAzLjc4IDIxLjA5NyA0LjY5NyAzMS4zMTMgMy4xODgtMTYuNjM0LTUuNjg4LTM0LjEzOS0xNC4wODgtNDguNDM4LTI2LjQzOHoiIGZpbGw9InVybCgjbCkiIG9wYWNpdHk9Ii43Ii8+CiA8cGF0aCBkPSJtOTAuOTQxIDE3Ljg4Yy0zOS4xMyAwLjk5MjQ2LTcwLjU4IDMzLjA4Mi03MC41OCA3Mi40NSAwIDM5Ljk5MiAzMi40NTcgNzIuNDQ5IDcyLjQ1IDcyLjQ0OSAzOS45OTIgMCA3Mi40NDktMzIuNDU3IDcyLjQ0OS03Mi40NDlzLTMyLjQ1Ny03Mi40NS03Mi40NDktNzIuNDVjLTAuNjI1IDAtMS4yNDktMC4wMTU3NDktMS44NyAwem0xLjg3IDcuMDExMmMzNi4xMjEgMCA2NS40MzggMjkuMzE2IDY1LjQzOCA2NS40MzhzLTI5LjMxNyA2NS40MzgtNjUuNDM4IDY1LjQzOGMtMzYuMTIyIDAtNjUuNDM5LTI5LjMxNi02NS40MzktNjUuNDM4czI5LjMxNi02NS40MzggNjUuNDM5LTY1LjQzOHoiIGZpbHRlcj0idXJsKCNpKSIgb3BhY2l0eT0iLjIiLz4KIDxwYXRoIGQ9Im0xMzguNTYgMTYwLjU1bDc5LjQ1OSA4Ny45NDRjOC4zMzQtMy4yODMgMTkuODYzLTE1LjAyOSAyMy45MDMtMjIuNjA1bC04MS42MzctODYuMTc2LTIxLjcyNSAyMC44Mzd6IiBmaWxsPSJ1cmwoI2opIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVqb2luPSJiZXZlbCIvPgo8L3N2Zz4K" alt="loupe" width="180"></p>
+<h2 id="Sp&#233;cification-de-l'algorithme">Sp&#233;cification de l'algorithme<a class="anchor-link" href="#Sp&#233;cification-de-l'algorithme">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="important">
+    <p>La <strong>spécification</strong> d’un algorithme précise de manière non ambigüe ce que doit faire un algorithme. En particulier, on y indique : le nom des données manipulées (entrées), le nom des données renvoyées (sorties), le rôle de l’algorithme ainsi que les hypothèses sur les entrées (précondition) et les sorties (postcondition). Un algorithme sera considéré comme <em>correct</em> s’il respecte cette spécification.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Voici la spécification de l'algorithme de recherche d'un élément :</p>
+<ul>
+<li><strong>Entrée(s)</strong> : un tableau <code>T</code> de taille $n$ et une valeur <code>v</code></li>
+<li><strong>Sortie(s)</strong> : un booléen <code>trouvee</code></li>
+<li><strong>Rôle</strong> : chercher si la valeur <code>v</code> est présente dans <code>T</code></li>
+<li><strong>Précondition(s)</strong> : <code>v</code> est du même type que les éléments de <code>T</code></li>
+<li><strong>Postcondition(s)</strong> : <code>trouvee</code> vaut Vrai si <code>v</code> appartient à <code>T</code>, et Faux sinon</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Algorithme">Algorithme<a class="anchor-link" href="#Algorithme">&#182;</a></h2><p>L'idée est la suivante :</p>
+<ul>
+<li>le booléen <code>trouvee</code> est initialisé à <code>Faux</code></li>
+<li>on parcourt une à une les valeurs du tableau <code>T</code> :<ul>
+<li>si on en trouve une égale à <code>v</code>, le booléen <code>trouvee</code> prend la valeur <code>Vrai</code></li>
+<li>sinon on ne fait rien</li>
+</ul>
+</li>
+</ul>
+<p>Voici l'algorithme :</p>
+
+<pre><code>trouvee ← Faux
+pour i de 0 à n-1 faire :
+    si T[i] = v alors :
+        trouvee ← Vrai
+    fin si
+fin pour</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Co&#251;t-de-l'algorithme">Co&#251;t de l'algorithme<a class="anchor-link" href="#Co&#251;t-de-l'algorithme">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="important">
+    <p>Le <strong>coût d'un algorithme</strong> est le nombre d’opérations élémentaires (arithmétiques ou logiques) ainsi que d’affectations nécessaires à son exécution <strong>dans le pire cas</strong>.
+<br>Le coût d’un algorithme dépend toujours de la taille des données d’entrée (ici la taille $n$ du tableau).
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Dans tous les cas, notre algorithme va effectuer $n$ tours de boucle, donc dans le pire cas aussi. Ainsi, la comparaison <code>T[i] = v</code> sera effectuée $n$ fois.</p>
+<p>Si tous les éléments du tableau sont égaux à <code>v</code> alors l'affectation <code>trouvee ← Vrai</code> est effectuée à chaque tour de boucle, donc $n$ fois.</p>
+<p>On dénombre ainsi :</p>
+<table>
+<thead><tr>
+<th>Comparaisons</th>
+<th>Affectations</th>
+<th>Opérations arithmétiques</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$n$</td>
+<td>$n+1$</td>
+<td>$0$</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Le coût de l'algorithme (dans le pire cas) est donc $n + (n+1) + 0 = 2n + 1$.</p>
+<p>Comme ce coût est de l'ordre de $n$, on dit que le coût de l'algorithme de recherche d'un élément est <strong>linéaire</strong>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#201;criture-en-une-fonction-Python">&#201;criture en une fonction Python<a class="anchor-link" href="#&#201;criture-en-une-fonction-Python">&#182;</a></h2><p>On peut écrire une fonction <code>appartient()</code> possédant deux paramètres <code>v</code> et <code>T</code> qui implémente cet algorithme. Cette fonction renvoie <code>True</code> si <code>v</code> est dans <code>T</code> et <code>False</code> sinon.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">appartient</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
+    <span class="n">trouvee</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">T</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">v</span><span class="p">:</span>
+            <span class="n">trouvee</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="n">trouvee</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut tester cette fonction :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">appartient</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[2]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">appartient</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>False</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Parcours-par-valeur">Parcours par valeur<a class="anchor-link" href="#Parcours-par-valeur">&#182;</a></h3><p>Il est aussi possible de parcourir le tableau <em>par valeur</em> et non <em>par indice</em> car on n'a pas besoin des indices d'après la spécification de l'algorithme. La fonction suivante implémente cette possibilité :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">appartient_v2</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
+    <span class="n">trouvee</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">T</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">e</span> <span class="o">==</span> <span class="n">v</span><span class="p">:</span>
+            <span class="n">trouvee</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="n">trouvee</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut tester :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">appartient_v2</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">appartient_v2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>False</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Sortie-anticip&#233;e">Sortie anticip&#233;e<a class="anchor-link" href="#Sortie-anticip&#233;e">&#182;</a></h3><p>L'algorithme ainsi écrit et implémenté par les deux fonctions précédentes peut sembler non optimal. En effet, si le premier élément du tableau <code>T</code> est la valeur <code>v</code> alors on sait de suite que la réponse est "Vrai" mais notre algorithme va quand même tester toutes les valeurs suivantes du tableau <code>T</code>.</p>
+<p>On peut utiliser le mot clé <code>return</code> pour stopper l'exécution de notre fonction dès que la valeur <code>v</code> est trouvée. Dans le cas, où la boucle <code>for</code> a atteint la fin du tableau sans trouver <code>v</code>, il faut renvoyer <code>False</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">appartient_v3</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">T</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">e</span> <span class="o">==</span> <span class="n">v</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>  <span class="c1"># renvoie True dès qu&#39;on trouve v (ce qui stoppe l&#39;exécution de la fonction)</span>
+    <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># après la boucle (si v n&#39;a pas été trouvé)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">appartient_v3</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[8]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">appartient_v3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>False</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remarques</strong> :</p>
+<ol>
+<li>C'est cette dernière version qui est la plus simple et la plus rapide à écrire. On pourra donc l'utiliser sans problème.</li>
+<li>On aurait également pu écrire une version optimisée (avec arrêt dès que <code>v</code> est trouvée) sans utiliser une sortie anticipée (avec <code>return</code>) à condition d'utiliser une boucle <code>while</code>. Cependant l'écriture est plus longue et compliquée :</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">appartient_v4</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">trouvee</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="ow">and</span> <span class="n">trouvee</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">v</span><span class="p">:</span>
+            <span class="n">trouvee</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">trouvee</span>
+</pre></div>
+<ol>
+<li>Si notre algorithme ne devait plus renvoyer Vrai ou Faux mais l'indice de la valeur <code>v</code> cherchée, alors il aurait été obligatoire de parcourir le tableau par indice, pour garder trace des indices et renvoyer celui demandé. Le choix du parcours dépend donc de la spécification de l'algorithme à écrire !</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Algorithme-de-recherche-du-maximum">Algorithme de recherche du maximum<a class="anchor-link" href="#Algorithme-de-recherche-du-maximum">&#182;</a></h1><p>On veut écrire un algorithme qui recherche la valeur maximale dans un tableau.</p>
+<blockquote><p>La recherche du maximum est présentée ici, mais ce qui va être dit est vrai pour la recherche d'un extremum de manière générale, qu'il s'agisse d'un maximum ou d'un minimum).</p>
+</blockquote>
+<h2 id="Sp&#233;cification-de-l'algorithme">Sp&#233;cification de l'algorithme<a class="anchor-link" href="#Sp&#233;cification-de-l'algorithme">&#182;</a></h2><ul>
+<li><strong>Entrée(s)</strong> : un tableau <code>T</code> de taille $n$ et une valeur <code>v</code></li>
+<li><strong>Sortie(s)</strong> : un entier <code>maxi</code></li>
+<li><strong>Rôle</strong> : chercher l'élément maximal de <code>T</code></li>
+<li><strong>Précondition(s)</strong> : <code>T</code> est un tableau <em>non vide</em> d'entiers</li>
+<li><strong>Postcondition(s)</strong> : <code>maxi</code> est un entier qui est l'élément maximal de <code>T</code></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Algorithme">Algorithme<a class="anchor-link" href="#Algorithme">&#182;</a></h2><p>L'idée est la suivante :</p>
+<ul>
+<li>on initialise la valeur maximale par le premier élément du tableau ;</li>
+<li>on parcourt une à une les valeurs du tableau <code>T</code> (à partir de la deuxième) :<ul>
+<li>si on en trouve une strictement supérieure au maximum provisoire, cette valeur devient notre nouveau maximum (provisoire).</li>
+<li>sinon, on ne fait rien</li>
+</ul>
+</li>
+</ul>
+<p>Voici l'algorithme :</p>
+
+<pre><code>maxi ← T[0]
+pour i de 1 à n-1 faire :
+    si T[i] &gt; maxi alors :
+        maxi ← T[i]
+    fin si
+fin pour</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Co&#251;t-de-l'algorithme">Co&#251;t de l'algorithme<a class="anchor-link" href="#Co&#251;t-de-l'algorithme">&#182;</a></h2><p>Dans tous les cas, notre algorithme va effectuer $n-1$ tours de boucle, donc dans le pire cas aussi. Ainsi, la comparaison <code>T[i] &gt; maxi</code> sera effectuée $n-1$ fois.</p>
+<p>Si les éléments sont rangés dans l'ordre (strictement) croissant, alors la condition <code>T[i] &gt; maxi</code> est vraie à chaque tour de boucle et l'affectation <code>maxi ← T[i]</code> est effectuée à chaque tour de boucle.</p>
+<p>Le <em>pire cas</em> est donc un tableau dans lequel chaque élément est strictement supérieur au précédent (par exemple <code>[1, 2, 3, 4, 5]</code> pour un tableau de $n=5$ éléments).</p>
+<p>On dénombre ainsi dans le pire cas :</p>
+<table>
+<thead><tr>
+<th>Comparaisons</th>
+<th>Affectations</th>
+<th>Opérations arithmétiques</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$n-1$</td>
+<td>$n$</td>
+<td>$0$</td>
+</tr>
+</tbody>
+</table>
+<p><em>Remarque</em> : on n'a pas compté la soustraction du <code>n-1</code> (cela ne change rien au coût)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Le coût de l'algorithme (dans le pire cas) est donc $n-1 + n + 0 = 2n - 1$.</p>
+<p>Comme ce coût est de l'ordre de $n$, on dit que le coût de l'algorithme de recherche d'un extremum est <strong>linéaire</strong>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#201;criture-en-une-fonction-Python">&#201;criture en une fonction Python<a class="anchor-link" href="#&#201;criture-en-une-fonction-Python">&#182;</a></h2><p>On peut écrire une fonction <code>maximum()</code>, possédant en paramètre un tableau d'entiers <code>T</code> non vide, qui implémente cet algorithme. Cette fonction renvoie la valeur maximale présente dans <code>T</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">maximum</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+    <span class="n">maxi</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">T</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">maxi</span><span class="p">:</span>
+            <span class="n">maxi</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">maxi</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut tester :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">maximum</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">maximum</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[12]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>9</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Parcours-par-valeur">Parcours par valeur<a class="anchor-link" href="#Parcours-par-valeur">&#182;</a></h3><p>Il est aussi possible de parcourir le tableau <em>par valeur</em> et non <em>par indice</em> car on n'a pas besoin des indices d'après la spécification de l'algorithme. La fonction suivante implémente cette possibilité :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">maximum_v2</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+    <span class="n">maxi</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">T</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">e</span> <span class="o">&gt;</span> <span class="n">maxi</span><span class="p">:</span>
+            <span class="n">maxi</span> <span class="o">=</span> <span class="n">e</span>
+    <span class="k">return</span> <span class="n">maxi</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remarques</strong> :</p>
+<ol>
+<li>Cette version a le (petit) désavantage de parcourir le premier élément du tableau (au premier tour de boucle) alors que ce n'est pas utile, mais cela ne change rien au coût, qui reste linéaire, car cela n'ajoute qu'une comparaison et qu'une affectation (le coût est donc $2n+1$, donc toujours linéaire).</li>
+<li>Si notre algorithme ne devait plus renvoyer la valeur maximale mais une position de cette valeur maximale, alors il aurait été obligatoire de parcourir le tableau par indice, pour garder trace des indices et renvoyer celui demandé. Le choix du parcours dépend donc de la spécification de l'algorithme à écrire !</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Algorithme-de-calcul-d'une-moyenne">Algorithme de calcul d'une moyenne<a class="anchor-link" href="#Algorithme-de-calcul-d'une-moyenne">&#182;</a></h1><p>On veut écrire un algorithme qui calcule la moyenne des nombres présents dans un tableau.</p>
+<p><img class="centre image-responsive" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNTAwLjAwMDAxIDUwMC4wMDAwMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KIDxkZWZzPgogIDxsaW5lYXJHcmFkaWVudCBpZD0iYSIgeDE9IjI1MCIgeDI9IjI1MCIgeTE9IjQyMCIgeTI9IjgwIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgIDxzdG9wIHN0b3AtY29sb3I9IiMzMTJjNGQiIG9mZnNldD0iMCIvPgogICA8c3RvcCBzdG9wLWNvbG9yPSIjMjgyMjNmIiBvZmZzZXQ9Ii4wOTQ4OTQiLz4KICAgPHN0b3Agc3RvcC1jb2xvcj0iIzJkMjY0NiIgb2Zmc2V0PSIuMjIxMDMiLz4KICAgPHN0b3Agc3RvcC1jb2xvcj0iIzFmMWEzMSIgb2Zmc2V0PSIuODgxNDEiLz4KICAgPHN0b3Agc3RvcC1jb2xvcj0iIzE2MTMyMyIgb2Zmc2V0PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KIDwvZGVmcz4KIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTU1Mi4zNikiPgogIDxyZWN0IHk9IjU1Mi4zNiIgd2lkdGg9IjUwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9IiNmYWZjZjYiLz4KIDwvZz4KIDxyZWN0IHg9IjgwIiB5PSI4MCIgd2lkdGg9IjM0MCIgaGVpZ2h0PSIzNDAiIHJ5PSIyMCIgZmlsbD0idXJsKCNhKSIvPgogPGcgdHJhbnNmb3JtPSJtYXRyaXgoLjg5NSAwIDAgLjg5NSAyNi4yNDkgMjYuMjUxKSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMTUiPgogIDxwYXRoIGQ9Im0xMjEuNjcgMTIxLjY3IDg2LjY1NSA4Ni42NTUiLz4KICA8cGF0aCBkPSJtMjA4LjMzIDEyMS42Ny04Ni42NTUgODYuNjU1Ii8+CiA8L2c+CiA8ZyB0cmFuc2Zvcm09Im1hdHJpeCguODk1IDAgMCAuODk1IDI2LjI0OSAyNi4yNTEpIj4KICA8cGF0aCBkPSJtMjA4LjMzIDMzNWgtODYuNjU1IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxNSIvPgogIDxjaXJjbGUgY3g9IjE2NSIgY3k9IjMwNSIgcj0iNy41IiBmaWxsPSIjZmZmIi8+CiAgPGNpcmNsZSBjeD0iMTY1IiBjeT0iMzY1IiByPSI3LjUiIGZpbGw9IiNmZmYiLz4KIDwvZz4KIDxwYXRoIGQ9Im0zNjQuODUgMTczLjkzaC03Ny41NTYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEzLjQyNSIvPgogPGcgdHJhbnNmb3JtPSJtYXRyaXgoLjg5NSAwIDAgLjg5NSAyNi4yNDkgMjYuMjUxKSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMTUiPgogIDxwYXRoIGQ9Im0zNzguMzMgMzM1aC04Ni42NTUiLz4KICA8cGF0aCBkPSJtMzM1IDM3OC4zM3YtODYuNjU1Ii8+CiA8L2c+Cjwvc3ZnPgo=" alt="calcul" width="180"></p>
+<h2 id="Sp&#233;cification-de-l'algorithme">Sp&#233;cification de l'algorithme<a class="anchor-link" href="#Sp&#233;cification-de-l'algorithme">&#182;</a></h2><ul>
+<li><strong>Entrée(s)</strong> : un tableau <code>T</code> de taille $n$</li>
+<li><strong>Sortie(s)</strong> : un réel <code>m</code></li>
+<li><strong>Rôle</strong> : calculer la moyenne des éléments de <code>T</code></li>
+<li><strong>Précondition(s)</strong> : <code>T</code> est un tableau <em>non vide</em> d'entiers</li>
+<li><strong>Postcondition(s)</strong> : <code>m</code> est la moyenne des éléments de <code>T</code></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Algorithme">Algorithme<a class="anchor-link" href="#Algorithme">&#182;</a></h2><p>L'idée est de calculer la somme des valeurs de <code>T</code> puis de calculer la moyenne en divisant la somme par le nombre d'éléments de <code>T</code> :</p>
+<ul>
+<li>on initialise la somme des valeurs à 0 ;</li>
+<li>on parcourt une à une les valeurs du tableau <code>T</code> :<ul>
+<li>on ajoute chaque valeur à notre somme</li>
+</ul>
+</li>
+<li>la réponse est la somme divisée par <code>n</code> (le nombre d'éléments de <code>T</code>)</li>
+</ul>
+<p>Voici l'algorithme :</p>
+
+<pre><code>s ← 0
+pour i de 0 à n-1 faire :
+    s ← s + T[i]
+fin pour
+m ← s/n</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Co&#251;t-de-l'algorithme">Co&#251;t de l'algorithme<a class="anchor-link" href="#Co&#251;t-de-l'algorithme">&#182;</a></h2><p>Dans tous les cas, notre algorithme va effectuer $n$ tours de boucle, donc dans le pire cas aussi. Ainsi, l'affectation <code>s ← s + T[i]</code> est effectuée à chaque tour de boucle.</p>
+<p>N'importe quel tableau est donc un <em>pire cas</em> pour notre algorithme.</p>
+<p>On dénombre ainsi :</p>
+<table>
+<thead><tr>
+<th>Comparaisons</th>
+<th>Affectations</th>
+<th>Opérations arithmétiques</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$0$</td>
+<td>$n+2$</td>
+<td>$n+1$</td>
+</tr>
+</tbody>
+</table>
+<p><em>Remarque</em> : il y a $n$ additions (<code>s ← s + T[i]</code>) et <em>une</em> division (<code>s/n</code>) donc $n+1$ opérations arithmétiques.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Le coût de l'algorithme (dans le pire cas) est donc $0 + (n+2) + (n+1) = 2n + 3$.</p>
+<p>Comme ce coût est de l'ordre de $n$, on dit que le coût de l'algorithme de calcul d'une moyenne est <strong>linéaire</strong>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#201;criture-en-une-fonction-Python">&#201;criture en une fonction Python<a class="anchor-link" href="#&#201;criture-en-une-fonction-Python">&#182;</a></h2><p>On peut écrire une fonction <code>moyenne()</code>, possédant en paramètre un tableau d'entiers <code>T</code> non vide, qui implémente cet algorithme. Cette fonction renvoie la moyenne des valeurs présentes dans <code>T</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">moyenne</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">T</span><span class="p">)):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">s</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut tester :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">moyenne</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[15]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>10.0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">moyenne</span><span class="p">([</span><span class="mi">8</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">11</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[16]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>13.166666666666666</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Parcours-par-valeur">Parcours par valeur<a class="anchor-link" href="#Parcours-par-valeur">&#182;</a></h3><p>Il est aussi possible de parcourir le tableau <em>par valeur</em> et non <em>par indice</em> car on n'a pas besoin des indices. La fonction suivante implémente cette possibilité :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">moyenne_v2</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">T</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">e</span>
+    <span class="k">return</span> <span class="n">s</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remarque</strong> : Cette fonction est légèrement plus simple à écrire et peut donc être privilégiée pour la calcul de la moyenne des éléments d'un tableau.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Bilan">Bilan<a class="anchor-link" href="#Bilan">&#182;</a></h1><ul>
+<li>La <strong>spécification</strong> d'un algorithme définie de manière non ambigüe ce qu'un algorithme doit faire, les données avec lesquelles il travaille (les <em>entrées</em>) et les données qu'il renvoie (les <em>sorties</em>). </li>
+<li>Un algorithme de <strong>parcours séquentiel</strong> d'un tableau parcoure les éléments du tableau à l'aide d'une boucle. Ces algorithmes sont à la base de beaucoup d'autres algorithmes.</li>
+<li>Les trois algorithmes de parcours séquentiel étudiés ont tous un <strong>coût linéaire</strong>, c'est-à-dire un coût de l'ordre de la taille $n$ du tableau parcouru.</li>
+<li>Le type de parcours, par indice ou par valeur, dépend de l'algorithme et de l'exercice.</li>
+<li>Nous verrons d'autres algorithmes au cours de l'année, dont certain n'ont pas un coût linéaire.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Références</strong> :</p>
+<ul>
+<li>Documents ressources de l'équipe éducative du DIU EIL, Université de Nantes, Christophe JERMANN et Christophe DECLERCQ.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p>Germain BECKER &amp; Sébastien POINT, Lycée Mounier, ANGERS <img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+
