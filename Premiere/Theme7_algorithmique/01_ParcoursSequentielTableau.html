@@ -420,6 +420,7 @@ fin pour</code></pre>
 <p><strong>Remarques</strong> :</p>
 <ol>
 <li>C'est cette dernière version qui est la plus simple et la plus rapide à écrire. On pourra donc l'utiliser sans problème.</li>
+<li>Si notre algorithme ne devait plus renvoyer Vrai ou Faux mais l'indice de la valeur <code>v</code> cherchée, alors il aurait été obligatoire de parcourir le tableau par indice, pour garder trace des indices et renvoyer celui demandé. Le choix du parcours dépend donc de la spécification de l'algorithme à écrire !</li>
 <li>On aurait également pu écrire une version optimisée (avec arrêt dès que <code>v</code> est trouvée) sans utiliser une sortie anticipée (avec <code>return</code>) à condition d'utiliser une boucle <code>while</code>. Cependant l'écriture est plus longue et compliquée :</li>
 </ol>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">appartient_v4</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
@@ -431,9 +432,6 @@ fin pour</code></pre>
         <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">trouvee</span>
 </pre></div>
-<ol>
-<li>Si notre algorithme ne devait plus renvoyer Vrai ou Faux mais l'indice de la valeur <code>v</code> cherchée, alors il aurait été obligatoire de parcourir le tableau par indice, pour garder trace des indices et renvoyer celui demandé. Le choix du parcours dépend donc de la spécification de l'algorithme à écrire !</li>
-</ol>
 
 </div>
 </div>
@@ -445,7 +443,7 @@ fin pour</code></pre>
 <blockquote><p>La recherche du maximum est présentée ici, mais ce qui va être dit est vrai pour la recherche d'un extremum de manière générale, qu'il s'agisse d'un maximum ou d'un minimum).</p>
 </blockquote>
 <h2 id="Sp&#233;cification-de-l'algorithme">Sp&#233;cification de l'algorithme<a class="anchor-link" href="#Sp&#233;cification-de-l'algorithme">&#182;</a></h2><ul>
-<li><strong>Entrée(s)</strong> : un tableau <code>T</code> de taille $n$ et une valeur <code>v</code></li>
+<li><strong>Entrée(s)</strong> : un tableau <code>T</code> de taille $n$</li>
 <li><strong>Sortie(s)</strong> : un entier <code>maxi</code></li>
 <li><strong>Rôle</strong> : chercher l'élément maximal de <code>T</code></li>
 <li><strong>Précondition(s)</strong> : <code>T</code> est un tableau <em>non vide</em> d'entiers</li>
