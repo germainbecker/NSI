@@ -1,0 +1,343 @@
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 style="font-size: 30px; text-align: center">Protocoles de routage - EXERCICES</h1><hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-1-:-Le-protocole-RIP-en-mode-d&#233;branch&#233;">Exercice 1 : Le protocole RIP en mode d&#233;branch&#233;<a class="anchor-link" href="#Exercice-1-:-Le-protocole-RIP-en-mode-d&#233;branch&#233;">&#182;</a></h1><p>Par groupe de 2 ou 3 élèves, vous allez incarner un routeur et disposerez donc d'une <strong>table de routage</strong> qu'il faudra mettre à jour selon le protocole RIP.</p>
+<blockquote><p>On supposera ici que tous les routeurs "arrivent" dans le réseau au même moment, et ont tous des tables de routage vide. Cette situation n'est pas vraiment réaliste puisqu'en général, les nouveaux routeurs arrivent dans un réseau existants, tous les autres ayant déjà des tables de routages complètes.</p>
+</blockquote>
+<p><strong>Initialisation : tour 0</strong></p>
+<p>Au démarrage, chaque routeur ne connaît que ses voisins et le nombre de saut pour les atteindre est égal à 1.</p>
+<p><strong>Tours suivants</strong></p>
+<p>Chaque routeur va prendre en photo la table de routage des <strong>ses voisins</strong> et met à jour la sienne en conséquence. On rappelle que la mise à jour des tables dans le protocole RIP se fait de la façon suivante :</p>
+<ul>
+<li>si une route reçue comprend un chemin plus court que celui qu'il connait : il modifie sa table avec ce plus court chemin</li>
+<li>si une route n'est pas connue, il l'ajoute à sa table en ajoutant 1 au nombre de sauts du voisin qui lui a transmis la route</li>
+<li>sinon, il n'y a pas de changement</li>
+</ul>
+<blockquote><p>Pour simplifier, on ne demandera que d'indiquer les noms des routeurs voisins, en réalité il faudrait indiquer leur adresse IP dans le sous-réseau commun ! De même, pour le moment, on se préoccupe pas des interfaces (elles ne sont pas données).</p>
+</blockquote>
+<p><strong>Après convergence des tables, dessinez une représentation possible du réseau tout entier.</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-2-:-Tables-plus-compl&#232;tes">Exercice 2 : Tables plus compl&#232;tes<a class="anchor-link" href="#Exercice-2-:-Tables-plus-compl&#232;tes">&#182;</a></h1><p>Voici le schéma du réseau de l'exercice 1.</p>
+<p><img src="data/reseau_parts.svg" alt="schéma complet du réseau"></p>
+<p>Utilisez ce schéma par compléter la table de chaque routeur obtenue dans l'exercice 1, en indiquant les adresses IP des passerelles et en ajoutant la colonne <em>Interface</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-3-:">Exercice 3 :<a class="anchor-link" href="#Exercice-3-:">&#182;</a></h1><p>Considérons le réseau suivant dans lequel le protocole de routage est <strong>RIP</strong>.</p>
+<p><img src="data/reseau_ex3_initial.png" alt=""></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q1</strong> : On suppose que les tables ont eu le temps de converger et qu'il n'y a pas de pannes. Donnez le contenu de la table de routage des routeurs R1 et R4.</p>
+<p><strong>Q2</strong> : On rajoute un routeur <strong>R5</strong> dans le réseau comme ci-dessous.</p>
+<p><img src="data/reseau_ex3.png" alt=""></p>
+<ul>
+<li>R5 envoie alors une <em>requête RIP</em> à ses voisins : R1 et R4.</li>
+<li>R1 et R4 lui envoient une réponse contenant leurs tables de routage</li>
+</ul>
+<p>Actualisez la table de routage de R5 en fonction des réponses de R1 et R4.</p>
+<p><strong>Q3</strong> : R5 envoie ensuite sa table de routage à ses voisins pour qu'ils actualisent les leurs. Donnez les tables actualisées des routeurs R1 et R4.</p>
+<p><strong>Q4</strong> : Les routeurs R1 et R4 ont modifié leur tables de routage et doivent propager l'information. À qui envoient-ils leur nouvelle table ? Les autres routeurs doivent-ils actualiser leurs tables ? Expliquer.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-4---Protocole-OSPF">Exercice 4 - Protocole OSPF<a class="anchor-link" href="#Exercice-4---Protocole-OSPF">&#182;</a></h1><p>Voici un réseau contenant 7 routeurs R1, R2, ..., R7 et dans lequel le protocole de routage utilisé est OSPF.</p>
+<p><img src="data/ex4.png" alt="graphe"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>Donnez le graphe correspondant pondéré par les coûts de chaque liaison.</li>
+<li>Après différents échanges, les routeurs ont la connaissance complète de la topologie du réseau. Donnez cette topologie sous forme d'un tableau.</li>
+</ol>
+<table>
+<thead><tr>
+<th>Lien</th>
+<th>Coût</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R1-R2</td>
+<td>...</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>Recopier et compléter la table de routage du routeur R1 (en déterminant <em>de tête</em> les meilleurs chemins). Pour simplifier, vous indiquerez les noms des routeurs dans les deux premières colonnes (ce sont normalement des @IP). </li>
+</ol>
+<table>
+<thead><tr>
+<th>Destination</th>
+<th>En passant par</th>
+<th>Coût</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R2</td>
+<td></td>
+<td>...</td>
+</tr>
+<tr>
+<td>...</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-5---Plus-court-chemin-dans-un-graphe-(Dijkstra)">Exercice 5 - Plus court chemin dans un graphe (Dijkstra)<a class="anchor-link" href="#Exercice-5---Plus-court-chemin-dans-un-graphe-(Dijkstra)">&#182;</a></h1><p><strong>Question 1</strong></p>
+<ol>
+<li>Appliquez l'algorithme de Dijsktra pour trouver le meilleur chemin entre les routeurs R1 et R7 du réseau de l'exercice précédent.</li>
+<li>Quel serait le meilleur chemin si le protocole utilisé est RIP ?</li>
+</ol>
+<p><strong>Question 2</strong></p>
+<p>Appliquez l'algorithme de Dijkstra pour trouver le chemin le plus court pour aller de E à F.</p>
+<p><img src="data/ex5.png" alt="graphe"></p>
+<p><strong>Question 3</strong></p>
+<p>Appliquez l'algorithme de Dijkstra pour trouver le chemin le plus court pour aller de A à H.</p>
+<p><img src="data/ex5_2.png" alt="graphe"></p>
+<blockquote><p>Correction en vidéo : <a href="https://www.youtube.com/watch?v=rI-Rc7eF4iw&amp;ab_channel=glassus">https://www.youtube.com/watch?v=rI-Rc7eF4iw&amp;ab_channel=glassus</a></p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-6">Exercice 6<a class="anchor-link" href="#Exercice-6">&#182;</a></h1><p>Le réseau schématisé ci-dessous est constitué de 4 réseaux locaux (switch+ordinateurs) : R1, R2, R3 et R4, et de 4 routeurs A, B, C et D.</p>
+<p><img src="data/ex6.png" alt=""></p>
+<p>On donne les débits (bandes passantes) de la connexion entre chaque routeur :
+A-B : 100 Mbps
+A-D : 1000 Mbps
+B-C : 10 Mbps
+C-D : 10 Mbps
+On propose ci-dessous une table de routage pour le routeur A :</p>
+<p><img src="data/ex6_2.png" alt=""></p>
+<p><strong>1.</strong> Complétez la colonne “métrique RIP” du tableau ci-dessus.</p>
+<p><strong>2.</strong> Complétez la colonne “métrique OSPF” du tableau ci-dessus.</p>
+<p><strong>3.</strong> Un ordinateur appartenant au réseau local R1 envoie un paquet de données à un ordinateur appartenant au réseau local R2.</p>
+<ul>
+<li>Donnez le chemin suivi par ce paquet de données si le routeur A utilise le protocole de routage RIP. Justifiez votre réponse.</li>
+<li>Donnez le chemin suivi par ce paquet de données si le routeur A utilise le protocole de routage OSPF. Justifiez votre réponse.</li>
+</ul>
+<p><strong>4.</strong> Le routeur D est en panne. Un ordinateur appartenant au réseau local R1 envoie un paquet de données à un ordinateur appartenant au réseau local R3. Donnez le chemin suivi par ce paquet de données si le routeur A utilise le protocole de routage OSPF. Justifiez votre réponse.</p>
+<p><strong>5.</strong> La liaison entre 2 routeurs a un coût de 0,2, calculez le débit de cette liaison en bps puis en Mbps.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-7---Sujet-0-NSI">Exercice 7 - Sujet 0 NSI<a class="anchor-link" href="#Exercice-7---Sujet-0-NSI">&#182;</a></h1><blockquote><p>Cet exercice est tiré du sujet 0 du bac NSI.</p>
+</blockquote>
+<p>On considère un réseau composé de plusieurs routeurs reliés de la façon suivante :</p>
+<p><img src="data/ex7_1.png" alt="schéma du réseau"></p>
+<h2 id="Le-protocole-RIP">Le protocole RIP<a class="anchor-link" href="#Le-protocole-RIP">&#182;</a></h2><p>Le protocole RIP permet de construire les tables de routage des différents routeurs, en indiquant pour chaque
+routeur la distance, en nombre de sauts, qui le sépare d’un autre routeur. Pour le réseau ci-dessus, on dispose
+des tables de routage suivantes :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="data/ex7_tables.png" alt="tables"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Question 1</strong></p>
+<p>1) Le routeur A doit transmettre un message au routeur G, en effectuant un nombre minimal de
+sauts. Déterminer le trajet parcouru.</p>
+<p>2) Déterminer une table de routage possible pour le routeur G obtenu à l’aide du protocole RIP.</p>
+<p><strong>Question 2</strong></p>
+<p>Le routeur C tombe en panne. Reconstruire la table de routage du routeur A en suivant le
+protocole RIP.</p>
+<h2 id="Le-protocole-OSPF">Le protocole OSPF<a class="anchor-link" href="#Le-protocole-OSPF">&#182;</a></h2><p>Contrairement au protocole RIP, l’objectif n’est plus de minimiser le nombre de routeurs traversés par un
+paquet. La notion de distance utilisée dans le protocole OSPF est uniquement liée aux coûts des liaisons.
+L’objectif est alors de minimiser la somme des coûts des liaisons traversées.</p>
+<p>On a rajouté sur le graphe représentant le réseau précédent les différents débits des liaisons.
+On rappelle que 1 Gb/s = 1 000 Mb/s = 10 9 bits/s.</p>
+<p><img src="data/ex7_2.png" alt="schéma avec débits"></p>
+<p><strong>Question 3</strong></p>
+<p>1) Vérifier que le coût de la liaison entre les routeurs A et B est 0,01.</p>
+<p>2) La liaison entre le routeur B et D a un coût de 5. Quel est le débit de cette liaison ?</p>
+<p><strong>Question 4</strong></p>
+<p>Le routeur A doit transmettre un message au routeur G, en empruntant le chemin dont la somme
+des coûts sera la plus petite possible. Déterminer le chemin parcouru. On indiquera le raisonnement
+utilisé.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-8">Exercice 8<a class="anchor-link" href="#Exercice-8">&#182;</a></h1><blockquote><p>Cet exercice est tiré du sujet NSI Métropole 2021 J2 (épreuve annulée)</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="data/ex8_fig1.png" alt="figure"></p>
+<p style="text-align:center; font-size:0.9em"><em>Figure 1 : Réseau d'entreprise</em></p><p>La figure 1 ci-dessus représente le schéma d’un réseau d’entreprise. Il y figure deux réseaux locaux L1 et L2. Ces deux réseaux locaux sont interconnectés par les routeurs R2, R3, R4 et R5. Le réseau local L1 est constitué des PC portables P1 et P2 connectés à la passerelle R1 par le switch Sw1. Les serveurs S1 et S2 sont connectés à la passerelle R6 par le switch Sw2.</p>
+<p>Le tableau 1 suivant indique les adresses IPv4 des machines constituants le réseau de l’entreprise.</p>
+<p><img src="data/ex8_tab1.png" alt=""></p>
+<p style="text-align:center; font-size:0.9em"><em>Tableau 1 : adresses IPv4 des machines</em></p><p><strong>Rappels et notations</strong></p>
+<p>Rappelons qu’une adresse IP est composée de 4 octets, soit 32 bits. Elle est notée
+X1.X2.X3.X4, où X1, X2, X3 et X4 sont les valeurs des 4 octets. Dans le tableau 1, les valeurs des 4 octets ont été converties en notation décimale.</p>
+<p>La notation X1.X2.X3.X4/n signifie que les n premiers bits de poids forts de l’adresse IP représentent la partie « réseau », les bits suivants de poids faibles représentent la partie « machine ».</p>
+<p>Toutes les adresses des machines connectées à un réseau local ont la même partie réseau.
+L’adresse IP dont tous les bits de la partie « machine » sont à 0 est appelée « adresse du réseau ».
+L’adresse IP dont tous les bits de la partie « machine » sont à 1 est appelée « adresse de diffusion ».</p>
+<p><strong>1.a.</strong> Quelles sont les adresses des réseaux locaux L1 et L2 ?</p>
+<p><strong>1.b.</strong> Donner la plus petite et la plus grande adresse IP valides pouvant être attribuées à un ordinateur portable ou un serveur sur chacun des réseaux L1 et L2 sachant que l’adresse du réseau et l’adresse de diffusion ne peuvent pas être attribuées à une machine.</p>
+<p><strong>1.c.</strong> Combien de machines peut-on connecter au maximum à chacun des réseaux locaux L1 et L2 ? On donne ci-dessous les valeurs de quelques puissances de 2.</p>
+<table>
+<thead><tr>
+<th>$$2^6$$</th>
+<th>$2^7$</th>
+<th>$2^8$</th>
+<th>$2^9$</th>
+<th>$2^{10}$</th>
+<th>$2^{11}$</th>
+<th>$2^{12}$</th>
+<th>$2^{13}$</th>
+<th>$2^{14}$</th>
+<th>$2^{15}$</th>
+<th>$2^{16}$</th>
+<th>$2^{17}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>64</td>
+<td>128</td>
+<td>256</td>
+<td>512</td>
+<td>1024</td>
+<td>2048</td>
+<td>4096</td>
+<td>8192</td>
+<td>16384</td>
+<td>32768</td>
+<td>65536</td>
+<td>131072</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2.a.</strong> Expliquer l’utilité d’avoir plusieurs chemins possibles reliant les réseaux L1 et L2.</p>
+<p><strong>2.b.</strong> Quel est le chemin le plus court en nombre de sauts pour relier R1 et R6 ? Donner le nombre de sauts de ce chemin et préciser les routeurs utilisés.</p>
+<p><strong>2.c.</strong> La bande passante d’une liaison Ether (quantité d’information qui peut être transmise en bits/s) est de 10\^7 bits/s et celle d’une liaison FastEther est de 10\^8 bits/s. Le coût d’une liaison est défini par $10^8 / d$ , où $d$ est sa bande passante en bits/s.</p>
+<table>
+<thead><tr>
+<th>Liaison</th>
+<th>R1-R2</th>
+<th>R2-R5</th>
+<th>R5-R6</th>
+<th>R2-R3</th>
+<th>R3-R4</th>
+<th>R4-R5</th>
+<th>R3-R5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type</td>
+<td>Ether</td>
+<td>Ether</td>
+<td>Ether</td>
+<td>FastEther</td>
+<td>FastEther</td>
+<td>FastEther</td>
+<td>Ether</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align:center; font-size:0.9em"><em>Tableau 2 : type des liaisons entre les routeurs</em></p><p>Quel est le chemin reliant R1 et R6 qui a le plus petit coût ? Donner le coût de ce chemin et préciser les routeurs utilisés.</p>
+<p><strong>3.</strong> Dans l’annexe A figurent les tables de routages des routeurs R1, R2, R5 et R6 au démarrage du réseau. Indiquer sur votre copie ce qui doit figurer dans les lignes laissées vides des tables de routage des routeurs R5 et R6 pour que les échanges entre les ordinateurs des réseaux L1 et L2 se fassent en empruntant le chemin le plus court en nombre de sauts.</p>
+<p><img src="data/ex8_annexe.png" alt="annexe"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Ressources</strong></p>
+<ul>
+<li>Exercices 1, 2 et 5 : d'après un <a href="https://github.com/glassus/terminale_nsi/tree/main/docs/T5_Architecture_materielle/5.3_Protocoles_de_routage/TP_protocole_RIP">TP</a> et un <a href="https://github.com/glassus/terminale_nsi/blob/main/docs/T5_Architecture_materielle/5.3_Protocoles_de_routage/cours.md">cours</a> de Gilles Lassus. </li>
+<li>Exercice 3 : d'après un <a href="http://sco.ljbrel93.ac-creteil.fr/eleyaouanc/1NSI/DOCUMENTS/reseau[CAMILLE_COTI].pdf">cours sur les réseaux</a> du DIU EIL Bloc 3 de Camille Coti (page 131/193, slide 86/136)</li>
+<li>Exercice 4 : d'après le <a href="https://www.lecluse.fr/nsi/NSI_T/archi/routage/OSPF/#exemple">cours sur le protocole OSPF</a> d'Olivier Lécluse.</li>
+<li>Exercice 6 : d'après <a href="https://pixees.fr/informatiquelycee/term/c11e.html">un exercice</a> proposé par David Roche.</li>
+<li>Exercices 7 et 8 : extraits de sujet de bac</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p>Germain BECKER, Lycée Mounier, ANGERS</p>
+<p>Ressource éducative libre distribuée sous <a href="http://creativecommons.org/licenses/by-sa/4.0/">Licence Creative Commons Attribution - Partage dans les Mêmes Conditions 4.0 International</a></p>
+<p><img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+
