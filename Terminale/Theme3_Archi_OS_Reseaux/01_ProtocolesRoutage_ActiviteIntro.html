@@ -1,0 +1,413 @@
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 style="font-size: 30px; text-align: center">Adressage IP, réseaux, masques</h1><hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Cette activité permet de (re)définir quelques notions facilitant la compréhension du chapitre sur les protocoles de routage.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Adresse-IP">Adresse IP<a class="anchor-link" href="#Adresse-IP">&#182;</a></h1><p>La plupart du temps lorsque l'on parle de <em>réseau</em>, il s'agit en réalité d'un <strong>sous-réseau</strong> d'un réseau plus grand (par exemple un sous-réseau du réseau mondial IP).</p>
+<p>Chacun de ses (sous-)réseaux possède une adresse IP, appelée <strong>adresse du (sous-)réseau</strong>. Dans un (sous-)réseau, il y a plusieurs machines que l'on appellent <strong>hôtes</strong>, possédant elles aussi une adresse IP dépendant de celle du (sous-)réseau.</p>
+<p>Une adresse IP (IPv4) est une suite de 32 bits (4 octets) exprimée en décimales à point, en séparant chacun des octets par un point : <code>X1.X2.X3.X4</code> où X1, X2, X3 et X4 sont les valeurs des 4 octets.</p>
+<p><strong>Exemple</strong> :</p>
+<ul>
+<li>Représentation binaire : <code>11000001 00110111 11011101 00111110</code></li>
+<li>Représentation décimale pointée : <code>193.55.221.62</code> (où <code>193</code> est la valeur décimale de <code>11000001</code>, <code>55</code> celle de <code>00110111</code>, etc.)</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Structure-d'une-adresse-IP-:-parties-r&#233;seau-et-h&#244;te">Structure d'une adresse IP : parties <em>r&#233;seau</em> et <em>h&#244;te</em><a class="anchor-link" href="#Structure-d'une-adresse-IP-:-parties-r&#233;seau-et-h&#244;te">&#182;</a></h1><p>Pour chaque adresse, une partie des bits (les bits de poids fort, à gauche) représente la partie « réseau », et l'autre partie (les bits de poids faible, à droite) représente la partie « hôte » c'est-à-dire la machine du réseau.</p>
+<p>Par exemple, si les 3 premiers octets représentent la partie <em>réseau</em> et le dernier la partie <em>hôte</em>, on obtient le découpage suivant :</p>
+<table>
+<thead><tr>
+<th>Réseau</th>
+<th>.</th>
+<th>Hôte</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11000001 00110111 11011101</td>
+<td>.</td>
+<td>00111110</td>
+</tr>
+<tr>
+<td>193.55.221</td>
+<td>.</td>
+<td>62</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>✍️ <strong>Q1</strong> : Si la partie réseau occupe les 3 premiers octets, quel est le nombre d'hôtes possibles pour le réseau en question ?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>✍️ <strong>Q2</strong> : Et si la partie réseau occupe les 28 premiers bits ?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Masque-de-sous-r&#233;seau">Masque de sous-r&#233;seau<a class="anchor-link" href="#Masque-de-sous-r&#233;seau">&#182;</a></h1><p>Le mécanisme permettant de situer la limite en la partie <em>réseau</em> et la partie <em>hôte</em> s'appelle le <strong>masque de sous-réseau</strong> (en anglais : <em>subnet mask</em>). C'est aussi une suite de 32 bits :</p>
+<ul>
+<li>une série continue de <code>1</code> qui fixe la partie <em>réseau</em> (celle de gauche)</li>
+<li>une série continue de <code>0</code> qui correspond à la partie <em>hôte</em></li>
+</ul>
+<p><strong>Exemple</strong> : Dans le cas où les 3 premiers octets représentent la partie <em>réseau</em>, alors le masque de sous-réseau est <code>11111111.11111111.11111111.00000000</code> ou <code>255.255.255.0</code> en décimal.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>✍️ <strong>Q3</strong> : Si la partie <em>réseau</em> d'un sous-réseau occupe les 28 permiers bits, donner le masque de sous-réseau en notations binaire et décimale.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Notation-CIDR">Notation CIDR<a class="anchor-link" href="#Notation-CIDR">&#182;</a></h2><p>Lorsque l'on donne l'adresse IP d'un (sous-)réseau, il faut donc également donner le masque associé. On pourrait le donner en notation binaire ou décimale mais pour simplifier on donne généralement juste le nombre de bits correspondant à la partie <em>réseau</em> : <code>X1.X2.X3.X4 /n</code> signifie que les n premiers bits de poids forts de l’adresse IP représentent la partie <em>réseau</em>, les bits suivants de poids faibles représentent la partie <em>hôte</em>.</p>
+<blockquote><p>Cette notation simplifiée s'appelle notation CIDR (<em>Classless Inter-Domain Routing</em>).</p>
+</blockquote>
+<p><strong>Exemple</strong> : le masque de sous-réseau <code>11111111.11111111.11111111.00000000</code> (ou <code>255.255.255.0</code>) s'écrit donc plus simplement <code>/24</code> car il y a 24 bits pour la partie <em>réseau</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>✍️ <strong>Q4</strong> : Déterminer la notation CIDR pour un sous-réseau dont le masque est 255.255.255.240.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Adresse-r&#233;seau">Adresse r&#233;seau<a class="anchor-link" href="#Adresse-r&#233;seau">&#182;</a></h1><p>L'<strong>adresse réseau</strong> permet de savoir si 2 machines peuvent communiquer entre elles (directement). Si ces 2 machines ont une adresse réseau identique, alors elles appartiennent au même réseau et elles peuvent communiquer.</p>
+<p>Cette adresse réseau est celle dont tous les bits de la partie <em>hôte</em> sont à 0, autrement dit l'adresse IP la plus "basse" du réseau.</p>
+<p><strong>Exemple</strong> : si <code>193.55.221.62</code> est une machine d'un réseau dont le masque est <code>/24</code>, alors l'adresse du réseau en question est :</p>
+<ul>
+<li><code>11000001 00110111 11011101 00000000</code> les 8 derniers bits pour l'hôte ont été mis à zéro</li>
+<li>en décimal cela donne <code>193.55.221.0</code>.</li>
+</ul>
+<p>Ainsi, le réseau en question se note <code>193.55.221.0 /24</code>.</p>
+<h1 id="Adresse-de-diffusion">Adresse de diffusion<a class="anchor-link" href="#Adresse-de-diffusion">&#182;</a></h1><p>L'<strong>adresse de diffusion</strong> ou <strong>broadcast</strong> est celle utilisée pour envoyer des paquets à <em>toutes</em> les machines du réseau.</p>
+<p>Cette adresse de diffusion est celle dont les bits de la partie <em>hôte</em> sont à 1, autrement dit l'adresse IP la plus "haute" du réseau.</p>
+<p><strong>Exemple</strong> : Le réseau <code>193.55.221.0 /24</code> a donc pour adresse de diffusion <code>11000001 00110111 11011101 11111111</code> ou <code>193.55.221.255</code> en décimal.</p>
+<h1 id="Plage-d'adresses-machines">Plage d'adresses machines<a class="anchor-link" href="#Plage-d'adresses-machines">&#182;</a></h1><p>La plage d'adresses machines est l'ensemble des adresses que peut prendre une machine sur le réseau. Comme l'adresse réseau et l'adresse de diffusion sont déjà prises, il restent toutes les adresses entre les deux pour les <em>machines</em> du réseau :</p>
+<ul>
+<li>la première adresse possible pour une machine est donc celle qui suit l'adresse réseau</li>
+<li>la dernière adresse possible pour une machine est donc celle qui précède l'adresse de diffusion</li>
+</ul>
+<p><strong>Exemple</strong> : Les machines sur le réseau <code>193.55.221.0 /24</code> ont des adresses IP variant de <code>193.55.221.1</code> (la première) à <code>193.55.221.254</code> (la dernière).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>✍️ <strong>Q5</strong> : Une machine d'adresse IP <code>112.133.102.41</code> appartient à un réseau dont le masque est <code>/24</code> (c'est-à-dire <code>255.255.255.0</code>).</p>
+<ol>
+<li>Donner en notation binaire et en notation décimale, l'adresse réseau et l'adresse de diffusion du réseau.</li>
+<li>Combien de machines peut-on connecter dans ce réseau ? Quelle est leur plage d'adresses ?</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>✍️ <strong>Q6</strong> : Combien de machines peut-on connecter sur un réseau dont le masque est <code>255.255.240.0</code> ?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>✍️ <strong>Q7</strong> : On installe 10 machines sur un réseau local. L'adresse IP <code>172.16.29.35</code> avec le masque <code>255.255.255.240</code> (soit <code>/28</code>) est attribuée à une de ces machines.</p>
+<ol>
+<li>Combien d'hôtes peut-on placer dans le réseau où est située cette machine ?</li>
+<li>Dans quel réseau (préciser l'adresse) sont situées ces machines ?</li>
+<li>Pour ce réseau, donnez la première et la dernière adresse IP valide pour ces machines.</li>
+<li>Quelle est l'adresse de diffusion (<em>broadcast</em>) pour ce réseau ?</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Appartenance-&#224;-un-m&#234;me-r&#233;seau">Appartenance &#224; un m&#234;me r&#233;seau<a class="anchor-link" href="#Appartenance-&#224;-un-m&#234;me-r&#233;seau">&#182;</a></h1><p>On a dit précédemment que si 2 machines ont une adresse réseau identique, alors elles appartiennent au même réseau et elles peuvent communiquer.</p>
+<p>Pour déterminer l'adresse réseau d'une adresse IP, il suffit d'appliquer l'opérateur logique ET (ou AND en anglais) bit à bit entre l'adresse IP et le masque de sous-réseau.</p>
+<p>On rappelle l'opérateur ET a pour table de vérité :</p>
+<table>
+<thead><tr>
+<th>x</th>
+<th>y</th>
+<th>x ET y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Exemple</strong> : Pour déterminer l'adresse réseau de la machine d'adresse IP <code>193.55.221.62</code> avec le masque <code>255.255.255.0</code> :</p>
+<table>
+    <tr>
+        <td>Adresse IP (d'une machine)</td>
+        <td><code>11000001.00110111.11011101.00111110</code></td>
+        <td>193.55.221.62</td>
+    </tr>
+    <tr>
+        <td>Masque</td>
+        <td><code>11111111.11111111.11111111.00000000</code></td>
+        <td>255.255.255.0</td>
+    </tr>
+    <tr>
+        <td>Adresse réseau</td>
+        <td><code>11000001.00110111.11011101.00000000</code></td>
+        <td>193.55.221.0</td>
+    </tr>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>✍️ <strong>Q8</strong> : Un réseau local contient une machine d'adresse IP <code>192.168.0.1</code> avec le masque <code>/20</code>. La machine d'adresse IP <code>192.168.1.3</code> appartient-elle au même réseau ? <em>Vous comparerez les adresses réseaux de ces deux machines pour répondre</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#128187;-Partie-programmation">&#128187; Partie programmation<a class="anchor-link" href="#&#128187;-Partie-programmation">&#182;</a></h1><p>L'objectif de cette partie est d'écrire une fonction <code>meme_sous_reseau(ip_a, ip_b, masque)</code> qui renvoie un booléen indiquant si les machines A et B font partie du même sous-réseau.</p>
+<p>On rappelle quelques instructions qui pourront s'avérer utiles :</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="nb">bin</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="s1">&#39;0b101101&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">chaine</span> <span class="o">=</span> <span class="s2">&quot;bonjour à tous !&quot;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">chaine</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>  <span class="c1"># on sépare la chaîne selon le caractère espace</span>
+<span class="p">[</span><span class="s1">&#39;bonjour&#39;</span><span class="p">,</span> <span class="s1">&#39;à&#39;</span><span class="p">,</span> <span class="s1">&#39;tous&#39;</span><span class="p">,</span> <span class="s1">&#39;!&#39;</span><span class="p">]</span>
+</pre></div>
+<p>Vous utiliserez la méthode <a href="https://fr.wikipedia.org/wiki/Test_driven_development">Test Driven Development</a> (ou <em>développement piloté par des tests</em>) à partir du squelette de code ci-dessous, en testant chaque fonction après sa réalisation, jusqu'à la fonction finale.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">et_logique</span><span class="p">(</span><span class="n">bit1</span><span class="p">,</span> <span class="n">bit2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Renvoie le résultat de l&#39;opération logique bit1 ET bit2.</span>
+<span class="sd">    </span>
+<span class="sd">    Entrées : deux string d&#39;1 caractère (&#39;0&#39; ou &#39;1&#39;)</span>
+<span class="sd">    Sortie : string </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># à vous de jouer !</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">test_et_logique</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">et_logique</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;0&#39;</span>
+    <span class="k">assert</span> <span class="n">et_logique</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;0&#39;</span>
+    <span class="k">assert</span> <span class="n">et_logique</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;0&#39;</span>
+    <span class="k">assert</span> <span class="n">et_logique</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span>
+    
+
+<span class="k">def</span> <span class="nf">entier_en_mot_binaire</span><span class="p">(</span><span class="n">entier</span><span class="p">,</span> <span class="n">longueur_mot_binaire</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Renvoie un mot binaire correspondant à l&#39;entier.</span>
+<span class="sd">    </span>
+<span class="sd">    Entrées :</span>
+<span class="sd">        entier : int</span>
+<span class="sd">        longueur_mot_binaire : int de longueur supérieure ou égale au nombre de bits de nécessaires</span>
+<span class="sd">    pour convertir entier en base 2</span>
+<span class="sd">    </span>
+<span class="sd">    Sortie : string de longueur longueur_mot_binaire            </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># à vous de jouer !</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">test_entier_en_mot_binaire</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">entier_en_mot_binaire</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;00000001&#39;</span>
+    <span class="k">assert</span> <span class="n">entier_en_mot_binaire</span><span class="p">(</span><span class="mi">192</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;11000000&#39;</span>
+    <span class="k">assert</span> <span class="n">entier_en_mot_binaire</span><span class="p">(</span><span class="mi">168</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;10101000&#39;</span>
+
+
+<span class="k">def</span> <span class="nf">masque_en_mot_binaire</span><span class="p">(</span><span class="n">masque</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Renvoie la conversion du masque en un mot binaire.</span>
+<span class="sd">    </span>
+<span class="sd">    Entrée : masque (int)</span>
+<span class="sd">    Sortie : string de 32 caractères</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># à vous de jouer !</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">test_masque_en_mot_binaire</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">masque_en_mot_binaire</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;11111111111111111111111100000000&#39;</span>
+    
+
+
+<span class="k">def</span> <span class="nf">ip_en_liste</span><span class="p">(</span><span class="n">ip</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Renvoie une liste dont les éléments sont les 4 octets de l&#39;adresse ip.</span>
+<span class="sd">    </span>
+<span class="sd">    Entrée : ip (string) </span>
+<span class="sd">    Sortie : liste d&#39;entiers</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># à vous de jouer !</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">test_ip_en_liste</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">ip_en_liste</span><span class="p">(</span><span class="s1">&#39;192.168.0.1&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="mi">192</span><span class="p">,</span> <span class="mi">168</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    
+    
+
+<span class="k">def</span> <span class="nf">ip_en_mot_binaire</span><span class="p">(</span><span class="n">ip</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Renvoie la conversion d&#39;une ip en un mot binaire.</span>
+<span class="sd">    </span>
+<span class="sd">    Entrée : string contenant une IP (ex &quot;192.168.0.1&quot;)</span>
+<span class="sd">    Sortie : string de 32 caractères</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># à vous de jouer !</span>
+    <span class="k">pass</span>
+    
+<span class="k">def</span> <span class="nf">test_ip_en_mot_binaire</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">ip_en_mot_binaire</span><span class="p">(</span><span class="s2">&quot;192.168.0.1&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;11000000101010000000000000000001&#39;</span>
+    
+
+
+<span class="k">def</span> <span class="nf">adresse_reseau_ip</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">masque</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Renvoie l&#39;adresse réseau de l&#39;adresse ip avec le masque masque.</span>
+<span class="sd">    </span>
+<span class="sd">    Entrées :</span>
+<span class="sd">        ip : string contenant une IP (ex &quot;192.168.0.1&quot;)</span>
+<span class="sd">        masque : entier du masque en notation CIDR (ex : 24)</span>
+<span class="sd">    Sortie : string de 32 caractères    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># à vous de jouer !</span>
+    <span class="k">pass</span>
+
+       
+<span class="k">def</span> <span class="nf">test_adresse_reseau_ip</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">adresse_reseau_ip</span><span class="p">(</span><span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;11000000101010000000000000000000&#39;</span>
+    <span class="k">assert</span> <span class="n">adresse_reseau_ip</span><span class="p">(</span><span class="s2">&quot;192.168.1.3&quot;</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;11000000101010000000000100000000&#39;</span>
+    <span class="k">assert</span> <span class="n">adresse_reseau_ip</span><span class="p">(</span><span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;11000000101010000000000000000000&#39;</span>
+    <span class="k">assert</span> <span class="n">adresse_reseau_ip</span><span class="p">(</span><span class="s2">&quot;192.168.1.3&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;11000000101010000000000000000000&#39;</span>
+    
+
+
+<span class="k">def</span> <span class="nf">meme_sous_reseau</span><span class="p">(</span><span class="n">ip_a</span><span class="p">,</span> <span class="n">ip_b</span><span class="p">,</span> <span class="n">masque</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Renvoie un booléen indiquant si ip_a et ip_b sont dans un même réseau de masque masque.</span>
+<span class="sd">    </span>
+<span class="sd">    Entrées :</span>
+<span class="sd">    ip_a:  string contenant une IP (ex &quot;192.168.0.1&quot;)</span>
+<span class="sd">    ip_b : string contenant une IP</span>
+<span class="sd">    masque : entier du masque en notation CIDR (ex : 24)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># à vous de jouer !</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">test_meme_sous_reseau</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">meme_sous_reseau</span><span class="p">(</span><span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span> <span class="s2">&quot;192.168.1.3&quot;</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span>
+    <span class="k">assert</span> <span class="n">meme_sous_reseau</span><span class="p">(</span><span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span> <span class="s2">&quot;192.168.1.3&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span>
+    <span class="k">assert</span> <span class="n">meme_sous_reseau</span><span class="p">(</span><span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span> <span class="s2">&quot;192.168.0.3&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Références</strong></p>
+<ul>
+<li>Equipe éducative DIU EIL (cours d'Introduction aux réseaux de P. PASSARD et S. HAMMA), Université de Nantes.</li>
+<li>L'idée de départ de la partie "programmation" vient d'un <a href="https://github.com/glassus/terminale_nsi/blob/main/docs/T5_Architecture_materielle/5.3_Protocoles_de_routage/02_Exercices.md#exercice-1">exercice</a> proposé par Gilles Lassus</li>
+</ul>
+<hr>
+<p>Germain BECKER, Lycée Mounier, ANGERS</p>
+<p>Ressource éducative libre distribuée sous <a href="http://creativecommons.org/licenses/by-sa/4.0/">Licence Creative Commons Attribution - Partage dans les Mêmes Conditions 4.0 International</a></p>
+<p><img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+
