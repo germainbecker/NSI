@@ -1,4 +1,3 @@
-
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -21,94 +20,104 @@
 <th><strong>mois</strong></th>
 <th><strong>année</strong></th>
 <th><strong>sexe</strong></th>
+<th><strong>groupe</strong></th>
 <th><strong>projet</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Fathi</td>
-<td>3</td>
-<td>2</td>
-<td>2003</td>
-<td>G</td>
-<td>être heureux</td>
+<td>Loona</td>
+<td>29</td>
+<td>11</td>
+<td>2005</td>
+<td>F</td>
+<td>1</td>
+<td>être heureuse</td>
 </tr>
 <tr>
-<td>Evan</td>
-<td>19</td>
-<td>8</td>
-<td>2004</td>
+<td>Quentin</td>
+<td>28</td>
+<td>5</td>
+<td>2005</td>
 <td>G</td>
+<td>2</td>
 <td>manger une glace</td>
 </tr>
 <tr>
-<td>Aline</td>
-<td>29</td>
-<td>10</td>
-<td>2004</td>
+<td>Sania</td>
+<td>30</td>
+<td>7</td>
+<td>2005</td>
 <td>F</td>
+<td>1</td>
 <td>gagner au loto</td>
 </tr>
 <tr>
-<td>Baptiste</td>
-<td>6</td>
-<td>12</td>
-<td>2002</td>
+<td>Yanis</td>
+<td>14</td>
+<td>4</td>
+<td>2005</td>
 <td>G</td>
+<td>1</td>
 <td>devenir quelqu’un de célèbre</td>
 </tr>
 <tr>
-<td>Corentin</td>
-<td>8</td>
+<td>Nolan</td>
+<td>16</td>
 <td>4</td>
-<td>2004</td>
+<td>2005</td>
 <td>G</td>
+<td>2</td>
 <td>avoir une bonne note au prochain devoir</td>
 </tr>
 <tr>
-<td>Estelle</td>
-<td>29</td>
-<td>3</td>
-<td>2004</td>
-<td>F</td>
+<td>Mathis</td>
+<td>12</td>
+<td>1</td>
+<td>2005</td>
+<td>G</td>
+<td>1</td>
 <td>devenir astronaute</td>
 </tr>
 <tr>
-<td>Elisa</td>
-<td>7</td>
-<td>1</td>
-<td>2004</td>
-<td>F</td>
+<td>Hippolyte</td>
+<td>20</td>
+<td>10</td>
+<td>2005</td>
+<td>G</td>
+<td>2</td>
 <td>marcher sur la lune</td>
 </tr>
 <tr>
-<td>Yanis</td>
-<td>17</td>
-<td>11</td>
-<td>2004</td>
+<td>Martial</td>
+<td>22</td>
+<td>4</td>
+<td>2005</td>
 <td>G</td>
+<td>2</td>
 <td>dormir plus longtemps le matin</td>
 </tr>
 <tr>
-<td>Leonie</td>
-<td>28</td>
+<td>Arthur</td>
 <td>10</td>
-<td>2004</td>
-<td>F</td>
-<td>aider les autres</td>
+<td>8</td>
+<td>2005</td>
+<td>G</td>
+<td>2</td>
+<td>µaider les autres</td>
 </tr>
 <tr>
-<td>Lilian</td>
-<td>26</td>
-<td>10</td>
-<td>2004</td>
-<td>G</td>
+<td>Aïris</td>
+<td>24</td>
+<td>3</td>
+<td>2005</td>
+<td>F</td>
+<td>2</td>
 <td>apprendre à piloter une Formule 1</td>
 </tr>
 </tbody>
 </table>
-<blockquote><p>Pour exploiter ces données avec un ordinateur il est nécessaire de les mémoriser dans un fichier.</p>
-</blockquote>
+<p>Pour exploiter ces données avec un ordinateur il est nécessaire de les mémoriser dans un fichier.</p>
 
 </div>
 </div>
@@ -123,19 +132,19 @@
 <li>toutes les lignes du fichier ont le même nombre de champs ;</li>
 <li>on peut utiliser les guillemets droits (") pour délimiter le contenu des champs.</li>
 </ul>
-<p>Ainsi, la table précédente peut être mémorisée dans un fichier CSV dont voici le contenu :</p>
+<p>Ainsi, la table précédente peut être mémorisée dans un fichier CSV appelé <code>eleves.csv</code> dont voici le contenu :</p>
 
-<pre><code>"prénom","jour","mois","année","sexe","projet"
-"Fathi",3,2,2003,"G","être heureux"
-"Evan",19,8,2004,"G","manger une glace"
-"Aline",29,10,2004,"F","gagner au loto"
-"Baptiste",6,12,2002,"G","devenir quelqu’un de célèbre"
-"Corentin",8,4,2004,"G","avoir une bonne note au prochain devoir"
-"Estelle",29,3,2004,"F","devenir astronaute"
-"Elisa",7,1,2004,"F","marcher sur la lune"
-"Yanis",17,11,2004,"G","dormir plus longtemps le matin"
-"Leonie",28,10,2004,"F","aider les autres"
-"Lilian",26,10,2004,"G","apprendre à piloter une Formule 1"</code></pre>
+<pre><code>"prénom","jour","mois","année","sexe","groupe","projet"
+"Loona",29,11,2005,"F",1,"être heureuse"
+"Quentin",28,5,2005,"G",2,"manger une glace"
+"Sania",30,7,2005,"F",1,"gagner au loto"
+"Yanis",14,4,2005,"G",1,"devenir quelqu’un de célèbre"
+"Nolan",16,4,2005,"G",2,"avoir une bonne note au prochain devoir"
+"Mathis",12,1,2005,"G",1,"devenir astronaute"
+"Hippolyte",20,10,2005,"G",2,"marcher sur la lune"
+"Martial",22,4,2005,"G",2,"dormir plus longtemps le matin"
+"Arthur",10,8,2005,"G",2,"aider les autres"
+"Aïris",24,3,2005,"F",2,"apprendre à piloter une Formule 1"</code></pre>
 
 </div>
 </div>
@@ -193,7 +202,7 @@
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># on ouvre le fichier eleves.csv dans un objet appelé &#39;fichier&#39;</span>
-<span class="n">fichier</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/eleves.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span>
+<span class="n">fichier</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;eleves.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -237,29 +246,45 @@
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&#34;prénom&#34;,&#34;jour&#34;,&#34;mois&#34;,&#34;année&#34;,&#34;sexe&#34;,&#34;projet&#34;
-&#34;Fathi&#34;,3,2,2003,&#34;G&#34;,&#34;être heureux&#34;
-&#34;Evan&#34;,19,8,2004,&#34;G&#34;,&#34;manger une glace&#34;
-&#34;Aline&#34;,29,10,2004,&#34;F&#34;,&#34;gagner au loto&#34;
-&#34;Baptiste&#34;,6,12,2002,&#34;G&#34;,&#34;devenir quelqu’un de célèbre&#34;
-&#34;Corentin&#34;,8,4,2004,&#34;G&#34;,&#34;avoir une bonne note au prochain devoir&#34;
-&#34;Estelle&#34;,29,3,2004,&#34;F&#34;,&#34;devenir astronaute&#34;
-&#34;Elisa&#34;,7,1,2004,&#34;F&#34;,&#34;marcher sur la lune&#34;
-&#34;Yanis&#34;,17,11,2004,&#34;G&#34;,&#34;dormir plus longtemps le matin&#34;
-&#34;Leonie&#34;,28,10,2004,&#34;F&#34;,&#34;aider les autres&#34;
-&#34;Lilian&#34;,26,10,2004,&#34;G&#34;,&#34;apprendre à piloter une Formule 1&#34;
-&#34;Justine&#34;,10,2,2004,&#34;F&#34;,&#34;devenir présidente&#34;
-&#34;Jules&#34;,28,6,2004,&#34;G&#34;,&#34;créer un jeu vidéo&#34;
-&#34;Baptiste&#34;,12,10,2004,&#34;G&#34;,&#34;gérer sa propre entreprise&#34;
-&#34;Thibault&#34;,23,10,2004,&#34;G&#34;,&#34;gagner le Tour de France&#34;
-&#34;Hugo&#34;,28,4,2004,&#34;G&#34;,&#34;jouer dans le prochain James Bond&#34;
-&#34;Amaury&#34;,12,7,2004,&#34;G&#34;,&#34;devenir champion du monde de bras de fer&#34;
-&#34;Esteban&#34;,7,5,2004,&#34;G&#34;,&#34;devenir youtuber&#34;
-&#34;Abdel-Waheb&#34;,13,10,2004,&#34;G&#34;,&#34;avoir son émission de TV&#34;
-&#34;Wesley&#34;,7,4,2004,&#34;G&#34;,&#34;écrire un livre&#34;
-&#34;Lubin&#34;,4,12,2004,&#34;G&#34;,&#34;inventer la machine à voyager dans le temps&#34;
-&#34;Teddy&#34;,1,12,2004,&#34;G&#34;,&#34;devenir une rockstar&#34;
-
+<pre>&#34;prénom&#34;,&#34;jour&#34;,&#34;mois&#34;,&#34;année&#34;,&#34;sexe&#34;,&#34;groupe&#34;,&#34;projet&#34;
+&#34;Loona&#34;,29,11,2005,&#34;F&#34;,1,&#34;être heureuse&#34;
+&#34;Quentin&#34;,28,5,2005,&#34;G&#34;,2,&#34;manger une glace&#34;
+&#34;Sania&#34;,30,7,2005,&#34;F&#34;,1,&#34;gagner au loto&#34;
+&#34;Yanis&#34;,14,4,2005,&#34;G&#34;,1,&#34;devenir quelqu’un de célèbre&#34;
+&#34;Nolan&#34;,16,4,2005,&#34;G&#34;,2,&#34;avoir une bonne note au prochain devoir&#34;
+&#34;Mathis&#34;,12,1,2005,&#34;G&#34;,1,&#34;devenir astronaute&#34;
+&#34;Hippolyte&#34;,20,10,2005,&#34;G&#34;,2,&#34;marcher sur la lune&#34;
+&#34;Martial&#34;,22,4,2005,&#34;G&#34;,2,&#34;dormir plus longtemps le matin&#34;
+&#34;Arthur&#34;,10,8,2005,&#34;G&#34;,2,&#34;aider les autres&#34;
+&#34;Aïris&#34;,24,3,2005,&#34;F&#34;,2,&#34;apprendre à piloter une Formule 1&#34;
+&#34;Léo&#34;,28,7,2005,&#34;G&#34;,2,&#34;devenir président&#34;
+&#34;Romain&#34;,23,1,2005,&#34;G&#34;,2,&#34;créer un jeu vidéo&#34;
+&#34;Tanguy&#34;,9,6,2005,&#34;G&#34;,1,&#34;gérer sa propre entreprise&#34;
+&#34;Nolwenn&#34;,24,11,2005,&#34;F&#34;,2,&#34;jouer dans le prochain James Bond&#34;
+&#34;Célian&#34;,17,11,2005,&#34;G&#34;,1,&#34;gagner le Tour de France&#34;
+&#34;Rayane&#34;,23,1,2005,&#34;G&#34;,1,&#34;devenir champion du monde de bras de fer&#34;
+&#34;Ancelin&#34;,15,1,2007,&#34;G&#34;,2,&#34;devenir youtuber&#34;
+&#34;Ewen&#34;,16,5,2005,&#34;G&#34;,2,&#34;avoir son émission de TV&#34;
+&#34;Nolan&#34;,16,5,2005,&#34;G&#34;,1,&#34;écrire un livre&#34;
+&#34;Valentin&#34;,8,8,2005,&#34;G&#34;,1,&#34;inventer la machine à voyager dans le temps&#34;
+&#34;Mathis&#34;,14,1,2005,&#34;G&#34;,1,&#34;devenir une rockstar&#34;
+&#34;Jade&#34;,14,3,2005,&#34;F&#34;,2,&#34;développer une application&#34;
+&#34;Charles&#34;,23,1,2005,&#34;G&#34;,2,&#34;ouvrir un restaurant&#34;
+&#34;Sylliane&#34;,7,6,2005,&#34;G&#34;,1,&#34;aller à Poudlard&#34;
+&#34;Clément&#34;,6,12,2005,&#34;G&#34;,1,&#34;monter le tapis rouge à Cannes&#34;
+&#34;Kilian&#34;,3,11,2005,&#34;G&#34;,1,&#34;gagner un Oscar&#34;
+&#34;Haroun&#34;,27,5,2004,&#34;G&#34;,1,&#34;devenir un joueur professionel de billard&#34;
+&#34;Hugo&#34;,10,1,2005,&#34;G&#34;,2,&#34;sortir un film&#34;
+&#34;Lois&#34;,17,11,2005,&#34;G&#34;,2,&#34;créer un objet révolutionnaire&#34;
+&#34;Agathe&#34;,15,7,2005,&#34;F&#34;,2,&#34;devenir championne du monde d&#39;échecs&#34;
+&#34;Baptiste&#34;,10,12,2005,&#34;G&#34;,1,&#34;manger des frites tous les jours à la cantine&#34;
+&#34;Sébastien&#34;,14,1,2005,&#34;G&#34;,1,&#34;devenir champion olympique&#34;
+&#34;Nicolas&#34;,24,4,2006,&#34;G&#34;,2,&#34;participer à The Voice&#34;
+&#34;Maé&#34;,18,8,2005,&#34;F&#34;,2,&#34;enregistrer un album&#34;
+&#34;Nolan&#34;,25,7,2005,&#34;G&#34;,1,&#34;acheter une Ferrari&#34;
+&#34;Timothé&#34;,11,1,2006,&#34;G&#34;,1,&#34;participer au trophée Jules Verne&#34;
+&#34;Inès&#34;,13,12,2005,&#34;F&#34;,1,&#34;battre le record du monde du marathon&#34;
+&#34;Kylian&#34;,13,3,2005,&#34;G&#34;,2,&#34;battre Usain Bolt&#34;
 </pre>
 </div>
 </div>
@@ -272,8 +297,8 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Cependant, ce n'est pas ainsi que l'on va procéder car exploiter cette grande chaîne de caractères n'est pas pratique. En effet, il sera beaucoup simple et efficace de manipuler des <em>types construits</em> comme les tableaux et surtout les dictionnaires.</p>
-<p>Ainsi, on va plutôt lire le contenu du fichier pour construire un <strong>tableau</strong> dans lequel chaque élément correspond à une ligne de la table. Il est possible de représenter chaque ligne de la table par un <em>tableau</em> ou par un <em>dictionnaire</em>.</p>
-<p>Le chargement dans <strong>tableau de dictionnaire</strong> est préférable car il est alors facile d'accéder aux données par leurs clés.</p>
+<p>Ainsi, on va plutôt lire le contenu du fichier pour construire un <strong>tableau</strong> dans lequel chaque élément correspond à une ligne de la table. Il est possible de représenter chaque ligne de la table (donc chaque élève) par un <em>tableau</em> ou par un <em>dictionnaire</em>.</p>
+<p>Le chargement dans un <strong>tableau de dictionnaire</strong> est préférable car il est alors facile d'accéder aux données par leurs clés (voir le notebook de cours pour le chargement dans un tableau de tableaux).</p>
 <blockquote><p>Pour cela, la biliothèque standard de Python contient un module <code>csv</code> qui contient des fonctions très pratiques pour lire et écrire des fichiers CSV. La mémorisation dans un tableau devenant alors très rapide. Voici comment on procède.</p>
 </blockquote>
 
@@ -297,7 +322,7 @@
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span> <span class="c1"># pour utiliser le module csv</span>
 
 <span class="c1"># Ouverture du fichier</span>
-<span class="n">fichier</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/eleves.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span>
+<span class="n">fichier</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;eleves.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span>
 
 <span class="c1"># Lecture de son contenu avec la méthode DictReader qui renvoie une valeur spéciale représentant le fichier CSV</span>
 <span class="n">table</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">fichier</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>  <span class="c1"># on précise le caractère de séparation, ici la virgule</span>
@@ -327,132 +352,272 @@
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[{&#39;prénom&#39;: &#39;Fathi&#39;,
-  &#39;jour&#39;: &#39;3&#39;,
-  &#39;mois&#39;: &#39;2&#39;,
-  &#39;année&#39;: &#39;2003&#39;,
+<pre>[{&#39;prénom&#39;: &#39;Loona&#39;,
+  &#39;jour&#39;: &#39;29&#39;,
+  &#39;mois&#39;: &#39;11&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;F&#39;,
+  &#39;groupe&#39;: &#39;1&#39;,
+  &#39;projet&#39;: &#39;être heureuse&#39;},
+ {&#39;prénom&#39;: &#39;Quentin&#39;,
+  &#39;jour&#39;: &#39;28&#39;,
+  &#39;mois&#39;: &#39;5&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
   &#39;sexe&#39;: &#39;G&#39;,
-  &#39;projet&#39;: &#39;être heureux&#39;},
- {&#39;prénom&#39;: &#39;Evan&#39;,
-  &#39;jour&#39;: &#39;19&#39;,
-  &#39;mois&#39;: &#39;8&#39;,
-  &#39;année&#39;: &#39;2004&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;2&#39;,
   &#39;projet&#39;: &#39;manger une glace&#39;},
- {&#39;prénom&#39;: &#39;Aline&#39;,
-  &#39;jour&#39;: &#39;29&#39;,
-  &#39;mois&#39;: &#39;10&#39;,
-  &#39;année&#39;: &#39;2004&#39;,
+ {&#39;prénom&#39;: &#39;Sania&#39;,
+  &#39;jour&#39;: &#39;30&#39;,
+  &#39;mois&#39;: &#39;7&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
   &#39;sexe&#39;: &#39;F&#39;,
+  &#39;groupe&#39;: &#39;1&#39;,
   &#39;projet&#39;: &#39;gagner au loto&#39;},
- {&#39;prénom&#39;: &#39;Baptiste&#39;,
-  &#39;jour&#39;: &#39;6&#39;,
-  &#39;mois&#39;: &#39;12&#39;,
-  &#39;année&#39;: &#39;2002&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
-  &#39;projet&#39;: &#39;devenir quelqu’un de célèbre&#39;},
- {&#39;prénom&#39;: &#39;Corentin&#39;,
-  &#39;jour&#39;: &#39;8&#39;,
-  &#39;mois&#39;: &#39;4&#39;,
-  &#39;année&#39;: &#39;2004&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
-  &#39;projet&#39;: &#39;avoir une bonne note au prochain devoir&#39;},
- {&#39;prénom&#39;: &#39;Estelle&#39;,
-  &#39;jour&#39;: &#39;29&#39;,
-  &#39;mois&#39;: &#39;3&#39;,
-  &#39;année&#39;: &#39;2004&#39;,
-  &#39;sexe&#39;: &#39;F&#39;,
-  &#39;projet&#39;: &#39;devenir astronaute&#39;},
- {&#39;prénom&#39;: &#39;Elisa&#39;,
-  &#39;jour&#39;: &#39;7&#39;,
-  &#39;mois&#39;: &#39;1&#39;,
-  &#39;année&#39;: &#39;2004&#39;,
-  &#39;sexe&#39;: &#39;F&#39;,
-  &#39;projet&#39;: &#39;marcher sur la lune&#39;},
  {&#39;prénom&#39;: &#39;Yanis&#39;,
+  &#39;jour&#39;: &#39;14&#39;,
+  &#39;mois&#39;: &#39;4&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;1&#39;,
+  &#39;projet&#39;: &#39;devenir quelqu’un de célèbre&#39;},
+ {&#39;prénom&#39;: &#39;Nolan&#39;,
+  &#39;jour&#39;: &#39;16&#39;,
+  &#39;mois&#39;: &#39;4&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;2&#39;,
+  &#39;projet&#39;: &#39;avoir une bonne note au prochain devoir&#39;},
+ {&#39;prénom&#39;: &#39;Mathis&#39;,
+  &#39;jour&#39;: &#39;12&#39;,
+  &#39;mois&#39;: &#39;1&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;1&#39;,
+  &#39;projet&#39;: &#39;devenir astronaute&#39;},
+ {&#39;prénom&#39;: &#39;Hippolyte&#39;,
+  &#39;jour&#39;: &#39;20&#39;,
+  &#39;mois&#39;: &#39;10&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;2&#39;,
+  &#39;projet&#39;: &#39;marcher sur la lune&#39;},
+ {&#39;prénom&#39;: &#39;Martial&#39;,
+  &#39;jour&#39;: &#39;22&#39;,
+  &#39;mois&#39;: &#39;4&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;2&#39;,
+  &#39;projet&#39;: &#39;dormir plus longtemps le matin&#39;},
+ {&#39;prénom&#39;: &#39;Arthur&#39;,
+  &#39;jour&#39;: &#39;10&#39;,
+  &#39;mois&#39;: &#39;8&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;2&#39;,
+  &#39;projet&#39;: &#39;aider les autres&#39;},
+ {&#39;prénom&#39;: &#39;Aïris&#39;,
+  &#39;jour&#39;: &#39;24&#39;,
+  &#39;mois&#39;: &#39;3&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;F&#39;,
+  &#39;groupe&#39;: &#39;2&#39;,
+  &#39;projet&#39;: &#39;apprendre à piloter une Formule 1&#39;},
+ {&#39;prénom&#39;: &#39;Léo&#39;,
+  &#39;jour&#39;: &#39;28&#39;,
+  &#39;mois&#39;: &#39;7&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;2&#39;,
+  &#39;projet&#39;: &#39;devenir président&#39;},
+ {&#39;prénom&#39;: &#39;Romain&#39;,
+  &#39;jour&#39;: &#39;23&#39;,
+  &#39;mois&#39;: &#39;1&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;2&#39;,
+  &#39;projet&#39;: &#39;créer un jeu vidéo&#39;},
+ {&#39;prénom&#39;: &#39;Tanguy&#39;,
+  &#39;jour&#39;: &#39;9&#39;,
+  &#39;mois&#39;: &#39;6&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;1&#39;,
+  &#39;projet&#39;: &#39;gérer sa propre entreprise&#39;},
+ {&#39;prénom&#39;: &#39;Nolwenn&#39;,
+  &#39;jour&#39;: &#39;24&#39;,
+  &#39;mois&#39;: &#39;11&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;F&#39;,
+  &#39;groupe&#39;: &#39;2&#39;,
+  &#39;projet&#39;: &#39;jouer dans le prochain James Bond&#39;},
+ {&#39;prénom&#39;: &#39;Célian&#39;,
   &#39;jour&#39;: &#39;17&#39;,
   &#39;mois&#39;: &#39;11&#39;,
-  &#39;année&#39;: &#39;2004&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
   &#39;sexe&#39;: &#39;G&#39;,
-  &#39;projet&#39;: &#39;dormir plus longtemps le matin&#39;},
- {&#39;prénom&#39;: &#39;Leonie&#39;,
-  &#39;jour&#39;: &#39;28&#39;,
-  &#39;mois&#39;: &#39;10&#39;,
-  &#39;année&#39;: &#39;2004&#39;,
-  &#39;sexe&#39;: &#39;F&#39;,
-  &#39;projet&#39;: &#39;aider les autres&#39;},
- {&#39;prénom&#39;: &#39;Lilian&#39;,
-  &#39;jour&#39;: &#39;26&#39;,
-  &#39;mois&#39;: &#39;10&#39;,
-  &#39;année&#39;: &#39;2004&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
-  &#39;projet&#39;: &#39;apprendre à piloter une Formule 1&#39;},
- {&#39;prénom&#39;: &#39;Justine&#39;,
-  &#39;jour&#39;: &#39;10&#39;,
-  &#39;mois&#39;: &#39;2&#39;,
-  &#39;année&#39;: &#39;2004&#39;,
-  &#39;sexe&#39;: &#39;F&#39;,
-  &#39;projet&#39;: &#39;devenir présidente&#39;},
- {&#39;prénom&#39;: &#39;Jules&#39;,
-  &#39;jour&#39;: &#39;28&#39;,
-  &#39;mois&#39;: &#39;6&#39;,
-  &#39;année&#39;: &#39;2004&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
-  &#39;projet&#39;: &#39;créer un jeu vidéo&#39;},
- {&#39;prénom&#39;: &#39;Baptiste&#39;,
-  &#39;jour&#39;: &#39;12&#39;,
-  &#39;mois&#39;: &#39;10&#39;,
-  &#39;année&#39;: &#39;2004&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
-  &#39;projet&#39;: &#39;gérer sa propre entreprise&#39;},
- {&#39;prénom&#39;: &#39;Thibault&#39;,
-  &#39;jour&#39;: &#39;23&#39;,
-  &#39;mois&#39;: &#39;10&#39;,
-  &#39;année&#39;: &#39;2004&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;1&#39;,
   &#39;projet&#39;: &#39;gagner le Tour de France&#39;},
- {&#39;prénom&#39;: &#39;Hugo&#39;,
-  &#39;jour&#39;: &#39;28&#39;,
-  &#39;mois&#39;: &#39;4&#39;,
-  &#39;année&#39;: &#39;2004&#39;,
+ {&#39;prénom&#39;: &#39;Rayane&#39;,
+  &#39;jour&#39;: &#39;23&#39;,
+  &#39;mois&#39;: &#39;1&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
   &#39;sexe&#39;: &#39;G&#39;,
-  &#39;projet&#39;: &#39;jouer dans le prochain James Bond&#39;},
- {&#39;prénom&#39;: &#39;Amaury&#39;,
-  &#39;jour&#39;: &#39;12&#39;,
-  &#39;mois&#39;: &#39;7&#39;,
-  &#39;année&#39;: &#39;2004&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;1&#39;,
   &#39;projet&#39;: &#39;devenir champion du monde de bras de fer&#39;},
- {&#39;prénom&#39;: &#39;Esteban&#39;,
+ {&#39;prénom&#39;: &#39;Ancelin&#39;,
+  &#39;jour&#39;: &#39;15&#39;,
+  &#39;mois&#39;: &#39;1&#39;,
+  &#39;année&#39;: &#39;2007&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;2&#39;,
+  &#39;projet&#39;: &#39;devenir youtuber&#39;},
+ {&#39;prénom&#39;: &#39;Ewen&#39;,
+  &#39;jour&#39;: &#39;16&#39;,
+  &#39;mois&#39;: &#39;5&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;2&#39;,
+  &#39;projet&#39;: &#39;avoir son émission de TV&#39;},
+ {&#39;prénom&#39;: &#39;Nolan&#39;,
+  &#39;jour&#39;: &#39;16&#39;,
+  &#39;mois&#39;: &#39;5&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;1&#39;,
+  &#39;projet&#39;: &#39;écrire un livre&#39;},
+ {&#39;prénom&#39;: &#39;Valentin&#39;,
+  &#39;jour&#39;: &#39;8&#39;,
+  &#39;mois&#39;: &#39;8&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;1&#39;,
+  &#39;projet&#39;: &#39;inventer la machine à voyager dans le temps&#39;},
+ {&#39;prénom&#39;: &#39;Mathis&#39;,
+  &#39;jour&#39;: &#39;14&#39;,
+  &#39;mois&#39;: &#39;1&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;1&#39;,
+  &#39;projet&#39;: &#39;devenir une rockstar&#39;},
+ {&#39;prénom&#39;: &#39;Jade&#39;,
+  &#39;jour&#39;: &#39;14&#39;,
+  &#39;mois&#39;: &#39;3&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;F&#39;,
+  &#39;groupe&#39;: &#39;2&#39;,
+  &#39;projet&#39;: &#39;développer une application&#39;},
+ {&#39;prénom&#39;: &#39;Charles&#39;,
+  &#39;jour&#39;: &#39;23&#39;,
+  &#39;mois&#39;: &#39;1&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;2&#39;,
+  &#39;projet&#39;: &#39;ouvrir un restaurant&#39;},
+ {&#39;prénom&#39;: &#39;Sylliane&#39;,
   &#39;jour&#39;: &#39;7&#39;,
+  &#39;mois&#39;: &#39;6&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;1&#39;,
+  &#39;projet&#39;: &#39;aller à Poudlard&#39;},
+ {&#39;prénom&#39;: &#39;Clément&#39;,
+  &#39;jour&#39;: &#39;6&#39;,
+  &#39;mois&#39;: &#39;12&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;1&#39;,
+  &#39;projet&#39;: &#39;monter le tapis rouge à Cannes&#39;},
+ {&#39;prénom&#39;: &#39;Kilian&#39;,
+  &#39;jour&#39;: &#39;3&#39;,
+  &#39;mois&#39;: &#39;11&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;1&#39;,
+  &#39;projet&#39;: &#39;gagner un Oscar&#39;},
+ {&#39;prénom&#39;: &#39;Haroun&#39;,
+  &#39;jour&#39;: &#39;27&#39;,
   &#39;mois&#39;: &#39;5&#39;,
   &#39;année&#39;: &#39;2004&#39;,
   &#39;sexe&#39;: &#39;G&#39;,
-  &#39;projet&#39;: &#39;devenir youtuber&#39;},
- {&#39;prénom&#39;: &#39;Abdel-Waheb&#39;,
-  &#39;jour&#39;: &#39;13&#39;,
-  &#39;mois&#39;: &#39;10&#39;,
-  &#39;année&#39;: &#39;2004&#39;,
+  &#39;groupe&#39;: &#39;1&#39;,
+  &#39;projet&#39;: &#39;devenir un joueur professionel de billard&#39;},
+ {&#39;prénom&#39;: &#39;Hugo&#39;,
+  &#39;jour&#39;: &#39;10&#39;,
+  &#39;mois&#39;: &#39;1&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
   &#39;sexe&#39;: &#39;G&#39;,
-  &#39;projet&#39;: &#39;avoir son émission de TV&#39;},
- {&#39;prénom&#39;: &#39;Wesley&#39;,
-  &#39;jour&#39;: &#39;7&#39;,
+  &#39;groupe&#39;: &#39;2&#39;,
+  &#39;projet&#39;: &#39;sortir un film&#39;},
+ {&#39;prénom&#39;: &#39;Lois&#39;,
+  &#39;jour&#39;: &#39;17&#39;,
+  &#39;mois&#39;: &#39;11&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;2&#39;,
+  &#39;projet&#39;: &#39;créer un objet révolutionnaire&#39;},
+ {&#39;prénom&#39;: &#39;Agathe&#39;,
+  &#39;jour&#39;: &#39;15&#39;,
+  &#39;mois&#39;: &#39;7&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;F&#39;,
+  &#39;groupe&#39;: &#39;2&#39;,
+  &#39;projet&#39;: &#34;devenir championne du monde d&#39;échecs&#34;},
+ {&#39;prénom&#39;: &#39;Baptiste&#39;,
+  &#39;jour&#39;: &#39;10&#39;,
+  &#39;mois&#39;: &#39;12&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;1&#39;,
+  &#39;projet&#39;: &#39;manger des frites tous les jours à la cantine&#39;},
+ {&#39;prénom&#39;: &#39;Sébastien&#39;,
+  &#39;jour&#39;: &#39;14&#39;,
+  &#39;mois&#39;: &#39;1&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;1&#39;,
+  &#39;projet&#39;: &#39;devenir champion olympique&#39;},
+ {&#39;prénom&#39;: &#39;Nicolas&#39;,
+  &#39;jour&#39;: &#39;24&#39;,
   &#39;mois&#39;: &#39;4&#39;,
-  &#39;année&#39;: &#39;2004&#39;,
+  &#39;année&#39;: &#39;2006&#39;,
   &#39;sexe&#39;: &#39;G&#39;,
-  &#39;projet&#39;: &#39;écrire un livre&#39;},
- {&#39;prénom&#39;: &#39;Lubin&#39;,
-  &#39;jour&#39;: &#39;4&#39;,
+  &#39;groupe&#39;: &#39;2&#39;,
+  &#39;projet&#39;: &#39;participer à The Voice&#39;},
+ {&#39;prénom&#39;: &#39;Maé&#39;,
+  &#39;jour&#39;: &#39;18&#39;,
+  &#39;mois&#39;: &#39;8&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;F&#39;,
+  &#39;groupe&#39;: &#39;2&#39;,
+  &#39;projet&#39;: &#39;enregistrer un album&#39;},
+ {&#39;prénom&#39;: &#39;Nolan&#39;,
+  &#39;jour&#39;: &#39;25&#39;,
+  &#39;mois&#39;: &#39;7&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;1&#39;,
+  &#39;projet&#39;: &#39;acheter une Ferrari&#39;},
+ {&#39;prénom&#39;: &#39;Timothé&#39;,
+  &#39;jour&#39;: &#39;11&#39;,
+  &#39;mois&#39;: &#39;1&#39;,
+  &#39;année&#39;: &#39;2006&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;1&#39;,
+  &#39;projet&#39;: &#39;participer au trophée Jules Verne&#39;},
+ {&#39;prénom&#39;: &#39;Inès&#39;,
+  &#39;jour&#39;: &#39;13&#39;,
   &#39;mois&#39;: &#39;12&#39;,
-  &#39;année&#39;: &#39;2004&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;F&#39;,
+  &#39;groupe&#39;: &#39;1&#39;,
+  &#39;projet&#39;: &#39;battre le record du monde du marathon&#39;},
+ {&#39;prénom&#39;: &#39;Kylian&#39;,
+  &#39;jour&#39;: &#39;13&#39;,
+  &#39;mois&#39;: &#39;3&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
   &#39;sexe&#39;: &#39;G&#39;,
-  &#39;projet&#39;: &#39;inventer la machine à voyager dans le temps&#39;},
- {&#39;prénom&#39;: &#39;Teddy&#39;,
-  &#39;jour&#39;: &#39;1&#39;,
-  &#39;mois&#39;: &#39;12&#39;,
-  &#39;année&#39;: &#39;2004&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
-  &#39;projet&#39;: &#39;devenir une rockstar&#39;}]</pre>
+  &#39;groupe&#39;: &#39;2&#39;,
+  &#39;projet&#39;: &#39;battre Usain Bolt&#39;}]</pre>
 </div>
 
 </div>
@@ -505,7 +670,7 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>On peut aussi accéder au projet de Justine avec l'instruction</p>
+<p>On peut aussi accéder au projet de Sania avec l'instruction</p>
 
 </div>
 </div>
@@ -515,7 +680,7 @@
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">eleves</span><span class="p">[</span><span class="mi">10</span><span class="p">][</span><span class="s1">&#39;projet&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">eleves</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;projet&#39;</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -534,7 +699,7 @@
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;devenir présidente&#39;</pre>
+<pre>&#39;gagner au loto&#39;</pre>
 </div>
 
 </div>
@@ -563,8 +728,8 @@ Heureusement, il est possible de chercher plus efficacement des données dans un
     <span class="sd">&quot;&quot;&quot;Renvoie True si v appartient au tableau T, False sinon.&quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">T</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">e</span> <span class="o">==</span> <span class="n">v</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">True</span>
-    <span class="k">return</span> <span class="bp">False</span>
+            <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="kc">False</span>
 </pre></div>
 <p>On va légèrement adapter cette fonction pour chercher un élève désigné par son prénom dans notre table.</p>
 
@@ -615,7 +780,7 @@ Heureusement, il est possible de chercher plus efficacement des données dans un
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">appartient</span><span class="p">(</span><span class="s1">&#39;Esteban&#39;</span><span class="p">,</span> <span class="n">eleves</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">appartient</span><span class="p">(</span><span class="s1">&#39;Charles&#39;</span><span class="p">,</span> <span class="n">eleves</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -710,7 +875,7 @@ Heureusement, il est possible de chercher plus efficacement des données dans un
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">projet_de</span><span class="p">(</span><span class="s1">&#39;Justine&#39;</span><span class="p">,</span> <span class="n">eleves</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">projet_de</span><span class="p">(</span><span class="s1">&#39;Sania&#39;</span><span class="p">,</span> <span class="n">eleves</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -729,7 +894,7 @@ Heureusement, il est possible de chercher plus efficacement des données dans un
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;devenir présidente&#39;</pre>
+<pre>&#39;gagner au loto&#39;</pre>
 </div>
 
 </div>
@@ -737,6 +902,15 @@ Heureusement, il est possible de chercher plus efficacement des données dans un
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Vous remarquerez qu'avec cette façon de faire, il n'est plus nécessaire de connaître la position de Sania (son indice) dans la table, son prénom suffit désormais.</p>
+</blockquote>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -754,7 +928,7 @@ Heureusement, il est possible de chercher plus efficacement des données dans un
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">nom_eleve</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">eleves</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39; a et m sont des entiers et eleves est un tableau de dictionnaires &#39;&#39;&#39;</span>
     <span class="k">for</span> <span class="n">eleve</span> <span class="ow">in</span> <span class="n">eleves</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;année&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="n">a</span> <span class="ow">and</span> <span class="nb">int</span><span class="p">(</span><span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;mois&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="n">m</span><span class="p">:</span> <span class="c1"># CONVERSION de l&#39;année et du mois en des entiers (int)</span>
+        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;année&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="n">a</span> <span class="ow">and</span> <span class="nb">int</span><span class="p">(</span><span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;mois&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="n">m</span><span class="p">:</span>  <span class="c1"># CONVERSION de l&#39;année et du mois en des entiers (int)</span>
             <span class="k">return</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;prénom&#39;</span><span class="p">]</span> 
     <span class="k">return</span> <span class="kc">None</span>
 </pre></div>
@@ -769,7 +943,7 @@ Heureusement, il est possible de chercher plus efficacement des données dans un
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nom_eleve</span><span class="p">(</span><span class="mi">2004</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">eleves</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nom_eleve</span><span class="p">(</span><span class="mi">2005</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">eleves</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -788,7 +962,7 @@ Heureusement, il est possible de chercher plus efficacement des données dans un
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;Corentin&#39;</pre>
+<pre>&#39;Yanis&#39;</pre>
 </div>
 
 </div>
@@ -803,7 +977,7 @@ Heureusement, il est possible de chercher plus efficacement des données dans un
 <p><strong>Remarques :</strong></p>
 <ul>
 <li>On a pris soin de convertir les valeurs des attributs <code>'année'</code> et <code>'mois'</code> en type <code>int</code> pour comparer des variables de même type. </li>
-<li>Il y avait trois élèves nés en avril 2004 mais seul celui dont la ligne apparaît en premier a été renvoyé.</li>
+<li>Dans notre table, il y avait trois élèves nés en avril 2005 mais seul celui dont la ligne apparaît en premier a été renvoyé.</li>
 </ul>
 
 </div>
@@ -829,7 +1003,7 @@ Heureusement, il est possible de chercher plus efficacement des données dans un
 <div class="highlight"><pre><span></span><span class="n">selection</span> <span class="o">=</span> <span class="p">[</span><span class="n">ligne</span> <span class="k">for</span> <span class="n">ligne</span> <span class="ow">in</span> <span class="n">table</span> <span class="k">if</span> <span class="n">criteres</span><span class="p">]</span>
 </pre></div>
 <p>Ainsi, on crée un nouveau tableau <code>selection</code> qui contient uniquement les lignes du tableau <code>table</code> de départ qui vérifient la condition <code>criteres</code>, et pas les autres.</p>
-<p>Par exemple, on peut créer un nouveau tableau <code>nes_fevrier</code> qui contient tous les (dictionnaires des) élèves de la table <code>eleves</code> qui sont nés en février.</p>
+<p>Par exemple, on peut créer un nouveau tableau <code>nes_en_aout</code> qui contient tous les (dictionnaires des) élèves de la table <code>eleves</code> qui sont nés en août.</p>
 
 </div>
 </div>
@@ -839,8 +1013,8 @@ Heureusement, il est possible de chercher plus efficacement des données dans un
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nes_fevrier</span> <span class="o">=</span> <span class="p">[</span><span class="n">eleve</span> <span class="k">for</span> <span class="n">eleve</span> <span class="ow">in</span> <span class="n">eleves</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;mois&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">2</span><span class="p">]</span>  
-<span class="n">nes_fevrier</span>  <span class="c1"># affichage du résultat</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nes_en_aout</span> <span class="o">=</span> <span class="p">[</span><span class="n">eleve</span> <span class="k">for</span> <span class="n">eleve</span> <span class="ow">in</span> <span class="n">eleves</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;mois&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">8</span><span class="p">]</span> 
+<span class="n">nes_en_aout</span>  <span class="c1"># pour voir le tableau</span>
 </pre></div>
 
     </div>
@@ -859,18 +1033,27 @@ Heureusement, il est possible de chercher plus efficacement des données dans un
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[{&#39;prénom&#39;: &#39;Fathi&#39;,
-  &#39;jour&#39;: &#39;3&#39;,
-  &#39;mois&#39;: &#39;2&#39;,
-  &#39;année&#39;: &#39;2003&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
-  &#39;projet&#39;: &#39;être heureux&#39;},
- {&#39;prénom&#39;: &#39;Justine&#39;,
+<pre>[{&#39;prénom&#39;: &#39;Arthur&#39;,
   &#39;jour&#39;: &#39;10&#39;,
-  &#39;mois&#39;: &#39;2&#39;,
-  &#39;année&#39;: &#39;2004&#39;,
+  &#39;mois&#39;: &#39;8&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;2&#39;,
+  &#39;projet&#39;: &#39;aider les autres&#39;},
+ {&#39;prénom&#39;: &#39;Valentin&#39;,
+  &#39;jour&#39;: &#39;8&#39;,
+  &#39;mois&#39;: &#39;8&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: &#39;1&#39;,
+  &#39;projet&#39;: &#39;inventer la machine à voyager dans le temps&#39;},
+ {&#39;prénom&#39;: &#39;Maé&#39;,
+  &#39;jour&#39;: &#39;18&#39;,
+  &#39;mois&#39;: &#39;8&#39;,
+  &#39;année&#39;: &#39;2005&#39;,
   &#39;sexe&#39;: &#39;F&#39;,
-  &#39;projet&#39;: &#39;devenir présidente&#39;}]</pre>
+  &#39;groupe&#39;: &#39;2&#39;,
+  &#39;projet&#39;: &#39;enregistrer un album&#39;}]</pre>
 </div>
 
 </div>
@@ -882,7 +1065,7 @@ Heureusement, il est possible de chercher plus efficacement des données dans un
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Ce tableau <code>nes_fevrier</code> représente la nouvelle table de données suivante.</p>
+<p>Ce tableau <code>nes_en_aout</code> représente la nouvelle table de données suivante.</p>
 <table>
 <thead><tr>
 <th><strong>prénom</strong></th>
@@ -895,20 +1078,28 @@ Heureusement, il est possible de chercher plus efficacement des données dans un
 </thead>
 <tbody>
 <tr>
-<td>Fathi</td>
-<td>3</td>
-<td>2</td>
-<td>2003</td>
+<td>Arthur</td>
+<td>10</td>
+<td>8</td>
+<td>2005</td>
 <td>G</td>
-<td>être heureux</td>
+<td>aider les autres</td>
 </tr>
 <tr>
-<td>Justine</td>
-<td>10</td>
-<td>2</td>
-<td>2004</td>
+<td>Valentin</td>
+<td>8</td>
+<td>8</td>
+<td>2005</td>
+<td>G</td>
+<td>inventer la machine à voyager dans le temps</td>
+</tr>
+<tr>
+<td>Maé</td>
+<td>18</td>
+<td>8</td>
+<td>2005</td>
 <td>F</td>
-<td>devenir présidente</td>
+<td>enregistrer un album</td>
 </tr>
 </tbody>
 </table>
@@ -959,27 +1150,44 @@ Heureusement, il est possible de chercher plus efficacement des données dans un
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[&#39;Fathi&#39;,
- &#39;Evan&#39;,
- &#39;Aline&#39;,
- &#39;Baptiste&#39;,
- &#39;Corentin&#39;,
- &#39;Estelle&#39;,
- &#39;Elisa&#39;,
+<pre>[&#39;Loona&#39;,
+ &#39;Quentin&#39;,
+ &#39;Sania&#39;,
  &#39;Yanis&#39;,
- &#39;Leonie&#39;,
- &#39;Lilian&#39;,
- &#39;Justine&#39;,
- &#39;Jules&#39;,
- &#39;Baptiste&#39;,
- &#39;Thibault&#39;,
+ &#39;Nolan&#39;,
+ &#39;Mathis&#39;,
+ &#39;Hippolyte&#39;,
+ &#39;Martial&#39;,
+ &#39;Arthur&#39;,
+ &#39;Aïris&#39;,
+ &#39;Léo&#39;,
+ &#39;Romain&#39;,
+ &#39;Tanguy&#39;,
+ &#39;Nolwenn&#39;,
+ &#39;Célian&#39;,
+ &#39;Rayane&#39;,
+ &#39;Ancelin&#39;,
+ &#39;Ewen&#39;,
+ &#39;Nolan&#39;,
+ &#39;Valentin&#39;,
+ &#39;Mathis&#39;,
+ &#39;Jade&#39;,
+ &#39;Charles&#39;,
+ &#39;Sylliane&#39;,
+ &#39;Clément&#39;,
+ &#39;Kilian&#39;,
+ &#39;Haroun&#39;,
  &#39;Hugo&#39;,
- &#39;Amaury&#39;,
- &#39;Esteban&#39;,
- &#39;Abdel-Waheb&#39;,
- &#39;Wesley&#39;,
- &#39;Lubin&#39;,
- &#39;Teddy&#39;]</pre>
+ &#39;Lois&#39;,
+ &#39;Agathe&#39;,
+ &#39;Baptiste&#39;,
+ &#39;Sébastien&#39;,
+ &#39;Nicolas&#39;,
+ &#39;Maé&#39;,
+ &#39;Nolan&#39;,
+ &#39;Timothé&#39;,
+ &#39;Inès&#39;,
+ &#39;Kylian&#39;]</pre>
 </div>
 
 </div>
@@ -1021,27 +1229,46 @@ Heureusement, il est possible de chercher plus efficacement des données dans un
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[{&#39;prénom&#39;: &#39;Fathi&#39;, &#39;projet&#39;: &#39;être heureux&#39;},
- {&#39;prénom&#39;: &#39;Evan&#39;, &#39;projet&#39;: &#39;manger une glace&#39;},
- {&#39;prénom&#39;: &#39;Aline&#39;, &#39;projet&#39;: &#39;gagner au loto&#39;},
- {&#39;prénom&#39;: &#39;Baptiste&#39;, &#39;projet&#39;: &#39;devenir quelqu’un de célèbre&#39;},
- {&#39;prénom&#39;: &#39;Corentin&#39;, &#39;projet&#39;: &#39;avoir une bonne note au prochain devoir&#39;},
- {&#39;prénom&#39;: &#39;Estelle&#39;, &#39;projet&#39;: &#39;devenir astronaute&#39;},
- {&#39;prénom&#39;: &#39;Elisa&#39;, &#39;projet&#39;: &#39;marcher sur la lune&#39;},
- {&#39;prénom&#39;: &#39;Yanis&#39;, &#39;projet&#39;: &#39;dormir plus longtemps le matin&#39;},
- {&#39;prénom&#39;: &#39;Leonie&#39;, &#39;projet&#39;: &#39;aider les autres&#39;},
- {&#39;prénom&#39;: &#39;Lilian&#39;, &#39;projet&#39;: &#39;apprendre à piloter une Formule 1&#39;},
- {&#39;prénom&#39;: &#39;Justine&#39;, &#39;projet&#39;: &#39;devenir présidente&#39;},
- {&#39;prénom&#39;: &#39;Jules&#39;, &#39;projet&#39;: &#39;créer un jeu vidéo&#39;},
- {&#39;prénom&#39;: &#39;Baptiste&#39;, &#39;projet&#39;: &#39;gérer sa propre entreprise&#39;},
- {&#39;prénom&#39;: &#39;Thibault&#39;, &#39;projet&#39;: &#39;gagner le Tour de France&#39;},
- {&#39;prénom&#39;: &#39;Hugo&#39;, &#39;projet&#39;: &#39;jouer dans le prochain James Bond&#39;},
- {&#39;prénom&#39;: &#39;Amaury&#39;, &#39;projet&#39;: &#39;devenir champion du monde de bras de fer&#39;},
- {&#39;prénom&#39;: &#39;Esteban&#39;, &#39;projet&#39;: &#39;devenir youtuber&#39;},
- {&#39;prénom&#39;: &#39;Abdel-Waheb&#39;, &#39;projet&#39;: &#39;avoir son émission de TV&#39;},
- {&#39;prénom&#39;: &#39;Wesley&#39;, &#39;projet&#39;: &#39;écrire un livre&#39;},
- {&#39;prénom&#39;: &#39;Lubin&#39;, &#39;projet&#39;: &#39;inventer la machine à voyager dans le temps&#39;},
- {&#39;prénom&#39;: &#39;Teddy&#39;, &#39;projet&#39;: &#39;devenir une rockstar&#39;}]</pre>
+<pre>[{&#39;prénom&#39;: &#39;Loona&#39;, &#39;projet&#39;: &#39;être heureuse&#39;},
+ {&#39;prénom&#39;: &#39;Quentin&#39;, &#39;projet&#39;: &#39;manger une glace&#39;},
+ {&#39;prénom&#39;: &#39;Sania&#39;, &#39;projet&#39;: &#39;gagner au loto&#39;},
+ {&#39;prénom&#39;: &#39;Yanis&#39;, &#39;projet&#39;: &#39;devenir quelqu’un de célèbre&#39;},
+ {&#39;prénom&#39;: &#39;Nolan&#39;, &#39;projet&#39;: &#39;avoir une bonne note au prochain devoir&#39;},
+ {&#39;prénom&#39;: &#39;Mathis&#39;, &#39;projet&#39;: &#39;devenir astronaute&#39;},
+ {&#39;prénom&#39;: &#39;Hippolyte&#39;, &#39;projet&#39;: &#39;marcher sur la lune&#39;},
+ {&#39;prénom&#39;: &#39;Martial&#39;, &#39;projet&#39;: &#39;dormir plus longtemps le matin&#39;},
+ {&#39;prénom&#39;: &#39;Arthur&#39;, &#39;projet&#39;: &#39;aider les autres&#39;},
+ {&#39;prénom&#39;: &#39;Aïris&#39;, &#39;projet&#39;: &#39;apprendre à piloter une Formule 1&#39;},
+ {&#39;prénom&#39;: &#39;Léo&#39;, &#39;projet&#39;: &#39;devenir président&#39;},
+ {&#39;prénom&#39;: &#39;Romain&#39;, &#39;projet&#39;: &#39;créer un jeu vidéo&#39;},
+ {&#39;prénom&#39;: &#39;Tanguy&#39;, &#39;projet&#39;: &#39;gérer sa propre entreprise&#39;},
+ {&#39;prénom&#39;: &#39;Nolwenn&#39;, &#39;projet&#39;: &#39;jouer dans le prochain James Bond&#39;},
+ {&#39;prénom&#39;: &#39;Célian&#39;, &#39;projet&#39;: &#39;gagner le Tour de France&#39;},
+ {&#39;prénom&#39;: &#39;Rayane&#39;, &#39;projet&#39;: &#39;devenir champion du monde de bras de fer&#39;},
+ {&#39;prénom&#39;: &#39;Ancelin&#39;, &#39;projet&#39;: &#39;devenir youtuber&#39;},
+ {&#39;prénom&#39;: &#39;Ewen&#39;, &#39;projet&#39;: &#39;avoir son émission de TV&#39;},
+ {&#39;prénom&#39;: &#39;Nolan&#39;, &#39;projet&#39;: &#39;écrire un livre&#39;},
+ {&#39;prénom&#39;: &#39;Valentin&#39;,
+  &#39;projet&#39;: &#39;inventer la machine à voyager dans le temps&#39;},
+ {&#39;prénom&#39;: &#39;Mathis&#39;, &#39;projet&#39;: &#39;devenir une rockstar&#39;},
+ {&#39;prénom&#39;: &#39;Jade&#39;, &#39;projet&#39;: &#39;développer une application&#39;},
+ {&#39;prénom&#39;: &#39;Charles&#39;, &#39;projet&#39;: &#39;ouvrir un restaurant&#39;},
+ {&#39;prénom&#39;: &#39;Sylliane&#39;, &#39;projet&#39;: &#39;aller à Poudlard&#39;},
+ {&#39;prénom&#39;: &#39;Clément&#39;, &#39;projet&#39;: &#39;monter le tapis rouge à Cannes&#39;},
+ {&#39;prénom&#39;: &#39;Kilian&#39;, &#39;projet&#39;: &#39;gagner un Oscar&#39;},
+ {&#39;prénom&#39;: &#39;Haroun&#39;, &#39;projet&#39;: &#39;devenir un joueur professionel de billard&#39;},
+ {&#39;prénom&#39;: &#39;Hugo&#39;, &#39;projet&#39;: &#39;sortir un film&#39;},
+ {&#39;prénom&#39;: &#39;Lois&#39;, &#39;projet&#39;: &#39;créer un objet révolutionnaire&#39;},
+ {&#39;prénom&#39;: &#39;Agathe&#39;, &#39;projet&#39;: &#34;devenir championne du monde d&#39;échecs&#34;},
+ {&#39;prénom&#39;: &#39;Baptiste&#39;,
+  &#39;projet&#39;: &#39;manger des frites tous les jours à la cantine&#39;},
+ {&#39;prénom&#39;: &#39;Sébastien&#39;, &#39;projet&#39;: &#39;devenir champion olympique&#39;},
+ {&#39;prénom&#39;: &#39;Nicolas&#39;, &#39;projet&#39;: &#39;participer à The Voice&#39;},
+ {&#39;prénom&#39;: &#39;Maé&#39;, &#39;projet&#39;: &#39;enregistrer un album&#39;},
+ {&#39;prénom&#39;: &#39;Nolan&#39;, &#39;projet&#39;: &#39;acheter une Ferrari&#39;},
+ {&#39;prénom&#39;: &#39;Timothé&#39;, &#39;projet&#39;: &#39;participer au trophée Jules Verne&#39;},
+ {&#39;prénom&#39;: &#39;Inès&#39;, &#39;projet&#39;: &#39;battre le record du monde du marathon&#39;},
+ {&#39;prénom&#39;: &#39;Kylian&#39;, &#39;projet&#39;: &#39;battre Usain Bolt&#39;}]</pre>
 </div>
 
 </div>
@@ -1064,7 +1291,7 @@ Heureusement, il est possible de chercher plus efficacement des données dans un
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">t2</span> <span class="o">=</span> <span class="p">[</span><span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;prénom&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">eleve</span> <span class="ow">in</span> <span class="n">eleves</span> <span class="k">if</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;sexe&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;G&#39;</span><span class="p">]</span>
-<span class="n">t2</span> <span class="c1"># pour voir le contenu</span>
+<span class="n">t2</span>  <span class="c1"># pour voir le contenu</span>
 </pre></div>
 
     </div>
@@ -1083,22 +1310,36 @@ Heureusement, il est possible de chercher plus efficacement des données dans un
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[&#39;Fathi&#39;,
- &#39;Evan&#39;,
- &#39;Baptiste&#39;,
- &#39;Corentin&#39;,
+<pre>[&#39;Quentin&#39;,
  &#39;Yanis&#39;,
- &#39;Lilian&#39;,
- &#39;Jules&#39;,
- &#39;Baptiste&#39;,
- &#39;Thibault&#39;,
+ &#39;Nolan&#39;,
+ &#39;Mathis&#39;,
+ &#39;Hippolyte&#39;,
+ &#39;Martial&#39;,
+ &#39;Arthur&#39;,
+ &#39;Léo&#39;,
+ &#39;Romain&#39;,
+ &#39;Tanguy&#39;,
+ &#39;Célian&#39;,
+ &#39;Rayane&#39;,
+ &#39;Ancelin&#39;,
+ &#39;Ewen&#39;,
+ &#39;Nolan&#39;,
+ &#39;Valentin&#39;,
+ &#39;Mathis&#39;,
+ &#39;Charles&#39;,
+ &#39;Sylliane&#39;,
+ &#39;Clément&#39;,
+ &#39;Kilian&#39;,
+ &#39;Haroun&#39;,
  &#39;Hugo&#39;,
- &#39;Amaury&#39;,
- &#39;Esteban&#39;,
- &#39;Abdel-Waheb&#39;,
- &#39;Wesley&#39;,
- &#39;Lubin&#39;,
- &#39;Teddy&#39;]</pre>
+ &#39;Lois&#39;,
+ &#39;Baptiste&#39;,
+ &#39;Sébastien&#39;,
+ &#39;Nicolas&#39;,
+ &#39;Nolan&#39;,
+ &#39;Timothé&#39;,
+ &#39;Kylian&#39;]</pre>
 </div>
 
 </div>
@@ -1110,7 +1351,7 @@ Heureusement, il est possible de chercher plus efficacement des données dans un
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>permet de créer un tableau contenant les prénoms des garçons de la classe. On a donc sélectionné la première colonne contenant les prénoms des élèves mais seulement les lignes correspondant à des garçons.</p>
+<p>permet de créer un tableau contenant les prénoms des garçons. On a donc sélectionné la première colonne contenant les prénoms des élèves (avec <code>eleve[prénom]</code>) mais seulement pour les lignes correspondant à des garçons (avec le critère <code>if eleve['sexe'] == 'G')</code>.</p>
 
 </div>
 </div>
@@ -1118,7 +1359,7 @@ Heureusement, il est possible de chercher plus efficacement des données dans un
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>On peut bien sûr aussi sélectionner plusieurs colonnes tout en sélectionnant certaines lignes. Par exemple, on peut sélectionner les attributs <code>'prénom'</code> et <code>'projet'</code> mais uniquement des filles de la classe.</p>
+<p>On peut bien sûr aussi sélectionner plusieurs colonnes tout en sélectionnant certaines lignes. Par exemple, on peut sélectionner les attributs <code>'prénom'</code> et <code>'projet'</code> mais uniquement des filles.</p>
 
 </div>
 </div>
@@ -1129,7 +1370,7 @@ Heureusement, il est possible de chercher plus efficacement des données dans un
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">t3</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;prénom&#39;</span><span class="p">:</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;prénom&#39;</span><span class="p">],</span> <span class="s1">&#39;projet&#39;</span><span class="p">:</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;projet&#39;</span><span class="p">]}</span> <span class="k">for</span> <span class="n">eleve</span> <span class="ow">in</span> <span class="n">eleves</span> <span class="k">if</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;sexe&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;F&#39;</span><span class="p">]</span>
-<span class="n">t3</span> <span class="c1"># pour voir le contenu</span>
+<span class="n">t3</span>  <span class="c1"># pour voir le contenu</span>
 </pre></div>
 
     </div>
@@ -1148,11 +1389,14 @@ Heureusement, il est possible de chercher plus efficacement des données dans un
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[{&#39;prénom&#39;: &#39;Aline&#39;, &#39;projet&#39;: &#39;gagner au loto&#39;},
- {&#39;prénom&#39;: &#39;Estelle&#39;, &#39;projet&#39;: &#39;devenir astronaute&#39;},
- {&#39;prénom&#39;: &#39;Elisa&#39;, &#39;projet&#39;: &#39;marcher sur la lune&#39;},
- {&#39;prénom&#39;: &#39;Leonie&#39;, &#39;projet&#39;: &#39;aider les autres&#39;},
- {&#39;prénom&#39;: &#39;Justine&#39;, &#39;projet&#39;: &#39;devenir présidente&#39;}]</pre>
+<pre>[{&#39;prénom&#39;: &#39;Loona&#39;, &#39;projet&#39;: &#39;être heureuse&#39;},
+ {&#39;prénom&#39;: &#39;Sania&#39;, &#39;projet&#39;: &#39;gagner au loto&#39;},
+ {&#39;prénom&#39;: &#39;Aïris&#39;, &#39;projet&#39;: &#39;apprendre à piloter une Formule 1&#39;},
+ {&#39;prénom&#39;: &#39;Nolwenn&#39;, &#39;projet&#39;: &#39;jouer dans le prochain James Bond&#39;},
+ {&#39;prénom&#39;: &#39;Jade&#39;, &#39;projet&#39;: &#39;développer une application&#39;},
+ {&#39;prénom&#39;: &#39;Agathe&#39;, &#39;projet&#39;: &#34;devenir championne du monde d&#39;échecs&#34;},
+ {&#39;prénom&#39;: &#39;Maé&#39;, &#39;projet&#39;: &#39;enregistrer un album&#39;},
+ {&#39;prénom&#39;: &#39;Inès&#39;, &#39;projet&#39;: &#39;battre le record du monde du marathon&#39;}]</pre>
 </div>
 
 </div>
