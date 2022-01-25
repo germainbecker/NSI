@@ -1,0 +1,276 @@
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 style="font-size: 30px; text-align: center">Gestion des processus et des ressources - EXERCICES</h1><hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-1">Exercice 1<a class="anchor-link" href="#Exercice-1">&#182;</a></h1><h2 id="Partie-A">Partie A<a class="anchor-link" href="#Partie-A">&#182;</a></h2><p><strong>Q1</strong> : Créez un script Python <code>infini.py</code> contenant une boucle infinie.</p>
+<p><strong>Q2</strong> : Lancez un terminal et tapez la commande <code>top</code> pour voir les processus exécutés en temps réel.</p>
+<p><strong>Q3</strong> : Lancez un autre terminal et lancez votre script Python avec la commande <code>python inifini.py</code> (il faut bien sûr être placé dans le repertoire de ce script).</p>
+<p><strong>Q4</strong> : Regardez le premier terminal pour voir le processus correspondant à l'exécution de ce script Python. Comment voir que ce processus va monopoliser l'ensemble de ressources processeur ?</p>
+<p><strong>Q5</strong> : Repérez le PID de ce processus et stoppez son exécution avec la commande <code>kill PIDduProcessus</code>.</p>
+<h2 id="Partie-B">Partie B<a class="anchor-link" href="#Partie-B">&#182;</a></h2><p><strong>Q6</strong> : Utilisez la commande <code>cat /proc/cpuinfo</code> et notez le nombre processeurs disponibles sur votre machine.</p>
+<p><strong>Q7</strong> : Créez un autre script Python appelé <code>bidon.py</code> contenant</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bidon</span><span class="p">():</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100000</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">**</span><span class="mi">3</span>
+</pre></div>
+<p><strong>Q8</strong> : Dans la console Python, exécutez le script de la question précédente puis tapez les commandes</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">timeit</span> <span class="kn">import</span> <span class="n">timeit</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">timeit</span><span class="p">(</span><span class="n">bidon</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+<p>qui permettent de lancer 100 fois la fonction <code>bidon</code> et renvoyer le temps d'exécution (pour les 100 itérations).</p>
+<p><strong>Q9</strong> : Tapez dans un terminal la commande <code>python infini.py &amp;</code> autant de fois qu'il y a de processeurs sur la machine. On va ainsi monopoliser l'ensemble des ressources processeurs de la machine avec des boucles infinies.</p>
+<p><strong>Q10</strong> : Dans la console Python, relancez <code>timeit(bidon, number=100)</code>. Vous devriez observer un ralentissement. Comment l'expliquer ?</p>
+<p><strong>Q11</strong> : <strong>ATTENTION</strong> : N'oubliez pas de stopper les 4 processus infinis en exécutant <code>kill PID1 PID2 PID3 PID4</code> où <code>PIDx</code> sont les PID des 4 processus correspondants au script <code>infini.py</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-2">Exercice 2<a class="anchor-link" href="#Exercice-2">&#182;</a></h1><p>Lancez Firefox, ouvrez deux ou trois onglets et chargez une page Web dans chacun d'eux.</p>
+<ol>
+<li>Utilisez la commande <code>ps -aef</code> pour repérer les processus correspondant à l'exécution de Firefox et répondez aux questions suivantes :<ul>
+<li>Combien de processus ont été créés ? Vous donnerez leurs PID.</li>
+<li>Quel processus est le père de tous les autres ? Expliquez.</li>
+</ul>
+</li>
+<li>Vérifiez en exécutant la commande <code>pidof firefox</code> qui donne le PID de tous les processus liés à l'exécution de Firefox.</li>
+<li>Utilisez la commande <code>top</code> pour voir tous les processus en temps réel. Appuyez ensuite sur la touche "i" pour filter les processus inactifs (cela ne montre que ceux qui travaillent réellement) et éventuellement sur la touche "P" pour trier les processus par ordre décroissant d'occupation processeur.</li>
+<li>Repérez les PID des processus correspondant aux onglets ouverts sur Firefox.</li>
+<li>Essayez la commande <code>kill PIDduProcessus</code> sur un des processus fils. Que constatez-vous ? Et sur le processus père ?</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-3-:-Algorithmes-d'ordonnancement">Exercice 3 : Algorithmes d'ordonnancement<a class="anchor-link" href="#Exercice-3-:-Algorithmes-d'ordonnancement">&#182;</a></h1><p>Soient les différents processus suivants :</p>
+<table>
+<thead><tr>
+<th>Processus</th>
+<th>Date d'arrivée</th>
+<th>Durée de traitement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$P_1$</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td>$P_2$</td>
+<td>1</td>
+<td>6</td>
+</tr>
+<tr>
+<td>$P_3$</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr>
+<td>$P_4$</td>
+<td>6</td>
+<td>5</td>
+</tr>
+<tr>
+<td>$P_5$</td>
+<td>8</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Application-de-plusieurs-algorithmes">Application de plusieurs algorithmes<a class="anchor-link" href="#Application-de-plusieurs-algorithmes">&#182;</a></h2><p><strong>Q1</strong> : Donnez le diagramme de Gantt pour l'exécution de ces différents processus en utilisant successivement les algorithmes FCFS, RR (quantum = 2 unités de temps) et SRT.</p>
+<h2 id="Performances-des-algorithmes-d'ordonnancement">Performances des algorithmes d'ordonnancement<a class="anchor-link" href="#Performances-des-algorithmes-d'ordonnancement">&#182;</a></h2><p>On définit les métriques suivantes :</p>
+<ul>
+<li>le <strong>temps de séjour (ou d'exécution)</strong> (ou de rotation) d'un processus : c'est la différence entre la date de fin d'exécution et la date d'arrivée : $$T_{\text{sej}} = \text{date fin d'exécution} - \text{date d'arrivée}$$</li>
+<li>le <strong>temps d'attente</strong> d'un processus : c'est la différence entre le temps de séjour et la durée du processus : $$T_{\text{att}} = T_{\text{sej}} - \text{durée du processus}$$</li>
+<li>le <strong>rendement</strong> d'un processus : c'est le quotient entre la durée du processus et le temps de séjour : $$\text{rendement} = \dfrac{\text{durée du processus}}{T_{\text{sej}}}$$</li>
+</ul>
+<p><strong>Q2</strong> : Pour chacun des trois algorithmes, calculez le temps de séjour, le temps d'attente et le rendement de chaque processus.</p>
+<p><strong>Q3</strong> : Quel vous semble être le <em>meilleur</em> des trois algorithmes dans notre exemple ? Expliquer.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-3---Un-probl&#232;me-de-synchronisation">Exercice 3 - Un probl&#232;me de synchronisation<a class="anchor-link" href="#Exercice-3---Un-probl&#232;me-de-synchronisation">&#182;</a></h1><p>Voici un script Python dans lequel on crée une variable globale <code>nombre</code> qui vaut 0 au départ et à laquelle on ajoute 100 quatre fois successivement grâce à la fonction <code>ajoute_100</code>.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">ajoute_100</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">nombre</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>  <span class="c1"># pour simuler un traitement avec des calculs</span>
+        <span class="n">nombre</span> <span class="o">=</span> <span class="n">nombre</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>  
+    <span class="n">nombre</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+        <span class="n">ajoute_100</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;valeur finale :&quot;</span><span class="p">,</span> <span class="n">nombre</span><span class="p">)</span>
+</pre></div>
+<p><strong>Q1</strong> : Copiez et exécutez le script dans un terminal pour vérifier que la valeur finale de la variable <code>nombre</code> est bien égale à 400.</p>
+<hr>
+<p>On va maintenant supposer qu'une telle variable est partagée par 4 processus, chacun étant chargé d'ajouter 100 à cette variable.</p>
+<p>On a vu dans le cours le programme suivant qui permettait d'illustrer les problèmes de synchronisation dans le cas de ressources partagées (ici une variable partagée) entre plusieurs processus.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">Value</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">prendre_un_pion</span><span class="p">(</span><span class="n">nombre</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">nombre</span><span class="o">.</span><span class="n">value</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>  <span class="c1"># pour simuler un traitement avec des calculs</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">nombre</span><span class="o">.</span><span class="n">value</span> 
+        <span class="n">nombre</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1"># on décrémente le nombre de pions</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># création de la variable partagée initialisée à 1</span>
+    <span class="n">nb_pions</span> <span class="o">=</span> <span class="n">Value</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># on crée deux processus</span>
+    <span class="n">p1</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">prendre_un_pion</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">nb_pions</span><span class="p">])</span>
+    <span class="n">p2</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">prendre_un_pion</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">nb_pions</span><span class="p">])</span>
+    <span class="c1"># on démarre les deux processus </span>
+    <span class="n">p1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">p2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="c1"># on attend la fin des deux processus</span>
+    <span class="n">p1</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+    <span class="n">p2</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;nombre final de pions :&quot;</span><span class="p">,</span> <span class="n">nb_pions</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q2</strong> : Inspirez-vous de ce programme pour créer un script permettant :</p>
+<ul>
+<li>de créer une variable partagée entière appelée <code>nombre_partage</code> et initialisée à 0</li>
+<li>de créer 4 processus ayant pour rôle d'exécuter une fonction <code>ajouter_100</code> à laquelle on passe <code>nombre_partage</code> en argument :<ul>
+<li>la fonction <code>ajouter_100(nombre)</code> doit ajouter 100 à la variable partagée <code>nombre</code> en utilisant une boucle <code>for</code> qui incrémente 100 fois d'une unité la variable</li>
+<li>on laissera une temporisation pour simuler d'autres calculs</li>
+</ul>
+</li>
+<li>de démarrer les 4 processus et d'attendre la fin de leur exécution</li>
+<li>d'afficher la valeur finale de la variable <code>nombre_partage</code></li>
+</ul>
+<p><strong>Q3</strong> : Exécutez ce script dans un terminal et observez que la valeur finale de la variable <code>nombre_partage</code> n'est pas (toujours) égale à 400 comme on pourrait s'y attendre. Comment peut-on expliquer cela ?</p>
+<p><strong>Q4</strong> : Ajoutez des affichages dans la fonction <code>ajouter_100</code> pour observer ce qu'il se passe. Vous afficherez le numéro du processus en cours d'exécution et la valeur de la variable partagée à la fin de chaque tour de boucle.</p>
+<p><strong>Q5</strong> : Utilisez ensuite un verrou pour régler ce problème de synchronisation en protégeant la section critique de la fonction <code>ajouter_100</code>. Vérifiez que la valeur finale est toujours égale à 400.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-5">Exercice 5<a class="anchor-link" href="#Exercice-5">&#182;</a></h1><p>d'après le sujet du bac NSI 2021</p>
+<p>1) La commande ps suivie éventuellement de diverses options permet de lister les processus actifs ou en attente sur une machine.
+Sur une machine équipée du système d’exploitation GNU/Linux, la commande “ps -aef” permet d’obtenir la sortie suivante (extrait) :</p>
+<p><img src="data/c19e_1.png" alt=""></p>
+<p>a) Quelle est la particularité de l’utilisateur “root” ?</p>
+<p>b) Quel est le processus parent du processus ayant pour PID 3383</p>
+<p>Dans un bureau d’architectes, on dispose de certaines ressources qui ne peuvent être utilisées simultanément par plus d’un processus, comme l’imprimante, la table traçante, le modem. Chaque programme, lorsqu’il s’exécute, demande l’allocation des ressources qui lui sont nécessaires. Lorsqu’il a fini de s’exécuter, il libère ses ressources.</p>
+<p><img src="data/c19e_2.png" alt=""></p>
+<p>2) On appelle p1, p2 et p3 les processus associés respectivement aux programmes 1, 2 et 3.</p>
+<p>a) Justifier qu'une situation d'interblocage peut se produire.</p>
+<p>b) Modifier l'ordre des instructions du programme 3 pour qu'une telle situation ne puisse pas se produire.</p>
+<h1 id="Exercice-6">Exercice 6<a class="anchor-link" href="#Exercice-6">&#182;</a></h1><p>cet exercice est issu du sujet 2021 du bac NSI</p>
+<p><strong>Partie A</strong></p>
+<p>Cette partie est un questionnaire à choix multiples (QCM).
+Pour chacune des questions, une seule des quatre réponses est exacte. Le candidat indiquera sur sa copie le numéro de la question et la lettre correspondant à la réponse exacte.
+Aucune justification n’est demandée. Une réponse fausse ou une absence de réponse n’enlève aucun point.</p>
+<p>1) Parmi les commandes ci-dessous, laquelle permet d’afficher les processus en cours d’exécution ?</p>
+
+<pre><code>    a. dir
+    b. ps
+    c. man
+    d. ls
+
+</code></pre>
+<p>2) Quelle abréviation désigne l’identifiant d’un processus dans un système d’exploitation de type UNIX ?</p>
+
+<pre><code>    a. PIX
+    b. SIG
+    c. PID
+    d. SID
+
+</code></pre>
+<p>3) Comment s’appelle la gestion du partage du processeur entre différents processus ?</p>
+
+<pre><code>    a. L’interblocage
+    b. L’ordonnancement
+    c. La planification
+    d. La priorisation
+
+</code></pre>
+<p>4) Quelle commande permet d’interrompre un processus dans un système d’exploitation de type UNIX ?</p>
+
+<pre><code>    a. stop
+    b. interrupt
+    c. end
+    d. kill
+
+</code></pre>
+<p><strong>Partie B</strong></p>
+<p>1) Un processeur choisit à chaque cycle d’exécution le processus qui doit être exécuté. Le tableau ci-dessous donne pour trois processus P1, P2, P3 :</p>
+<ul>
+<li><p>la durée d’exécution (en nombre de cycles),</p>
+</li>
+<li><p>l’instant d’arrivée sur le processeur (exprimé en nombre de cycles à partir de 0),</p>
+</li>
+<li><p>le numéro de priorité.</p>
+</li>
+</ul>
+<p>Le numéro de priorité est d’autant plus petit que la priorité est grande. On suppose qu’à chaque instant, c’est le processus qui a le plus petit numéro de priorité qui est exécuté, ce qui peut provoquer la suspension d’un autre processus, lequel reprendra lorsqu’il sera le plus prioritaire.</p>
+<p><img src="data/c19e_3.png" alt=""></p>
+<p>Reproduire le tableau ci-dessous sur la copie et indiquer dans chacune des cases le processus exécuté à chaque cycle.</p>
+<p><img src="data/c19e_4.png" alt=""></p>
+<p>2) On suppose maintenant que les trois processus précédents s’exécutent et utilisent une ou plusieurs ressources parmi R1, R2 et R3.
+Parmi les scénarios suivants, lequel provoque un interblocage ? Justifier.</p>
+<p><img src="data/c19e_5.png" alt=""></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Références :</strong></p>
+<ul>
+<li>Equipe éducative DIU EIL, cours et exercices sur le <em>Partage des ressources et virtualisation</em>, Audrey Queudet, Université de Nantes.</li>
+<li>Cours d'Olivier Lecluse sur la <a href="https://www.lecluse.fr/nsi/NSI_T/archi/process/">Gestion des ressources</a></li>
+<li>Documentation officielle de la bilbiothèque <a href="https://docs.python.org/fr/3/library/multiprocessing.html">multiprocessing</a> de Python.</li>
+<li>Dépôt GitHub de David Roche pour les <a href="https://github.com/dav74/nsi_terminale/blob/master/c19e.md">énoncés</a> des exercices 5 et 6 au format Markdown (extrait d'exercices de bac).</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p>Germain BECKER, Lycée Mounier, ANGERS</p>
+<p>Ressource éducative libre distribuée sous <a href="http://creativecommons.org/licenses/by-sa/4.0/">Licence Creative Commons Attribution - Partage dans les Mêmes Conditions 4.0 International</a></p>
+<p><img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+
