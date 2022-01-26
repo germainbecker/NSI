@@ -1,0 +1,198 @@
+﻿<h1 id="projet--créer-une-application-en-ligne-de-commande-avec-python-pour-interroger-une-api">Projet : Créer une application en ligne de commande avec Python pour interroger une API</h1>
+<img class="image-responsive centre" src="data/api.svg" alt="illustration API" width="200">
+<p>Une <strong>interface en ligne de commande</strong> (<strong>CLI</strong> en anglais pour <em>Command Line Interface</em>) est une interface homme-machine dans laquelle la communication entre l’utilisateur et l’ordinateur s’effectue en mode texte (au moyen du terminal dans notre cas).</p>
+<p>L’objectif est de créer une telle application avec Python et plus précisément avec la bibliothèque <a href="https://typer.tiangolo.com/">Typer</a> qui permet de créer rapidement de telles applications.</p>
+<img class="image-responsive centre" src="data/logoPython.svg" alt="logo Python" width="500">
+<h1 id="configuration">Configuration</h1>
+<h2 id="installation-de-typer">Installation de Typer</h2>
+<img class="image-responsive centre" src="data/typer.svg" alt="logo Typer" width="500">
+<p>Pour commencer, il faut installer la bibliothèque <strong>Typer</strong> avec la ligne de commande suivante dans un terminal :</p>
+<pre class=" language-bash"><code class="prism  language-bash">pip <span class="token function">install</span> typer
+</code></pre>
+<blockquote>
+<p><strong>Remarque</strong> : au lycée, vous n’avez pas les droits pour faire cela, la bibliothèque sera installée par l’administrateur.</p>
+</blockquote>
+<h2 id="création-des-fichiers">Création des fichiers</h2>
+<p><strong>Q1</strong> : Utilisez uniquement les lignes de commandes pour créer un répertoire vide <code>projet_cli_api</code>, et créer les 3 fichiers suivants (vides pour le moment) dans ce répertoire :</p>
+<ul>
+<li><code>__init__.py</code> : pour faire de ce répertoire un module Python (ce fichier restera vide) ;</li>
+<li><code>main.py</code> : le fichier qui contiendra le code de notre application en ligne de commande Typer ;</li>
+<li><code>config.py</code> : pour stocker les données secrètes (notre clé d’API notamment).</li>
+</ul>
+<p><strong>Q2</strong> : Vérifiez que le répertoire et les fichiers ont bien été créés, toujours en utilisant les lignes de commande.</p>
+<h1 id="création-dune-application">Création d’une application</h1>
+<h2 id="exemple-le-plus-simple">Exemple (le plus) simple</h2>
+<p><strong>Q3</strong> : Dans le fichier <code>main.py</code>, ajoutez le code suivant :</p>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">import</span> typer
+
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span>nom<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    typer<span class="token punctuation">.</span>echo<span class="token punctuation">(</span>f<span class="token string">"Bonjour {nom}"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    typer<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">)</span>
+</code></pre>
+<p><strong>Analyse</strong> :</p>
+<ul>
+<li>On a défini une fonction <code>main()</code> qui prend une chaîne <code>nom</code> en paramètre et qui écrit une chaîne dans la console (grâce à la fonction <code>typer.echo()</code>).</li>
+<li><code>if __name__ == "__main__":</code> permet de définir les instructions à exécuter (ici <code>typer.run(main)</code> pour exécuter la fonction <code>main()</code> définie au-dessus) lorsque le fichier est exécuté directement (et pas importé), comme nous allons le faire de suite.</li>
+</ul>
+<p><strong>Q4</strong> : Exécutez l’application en exécutant dans le terminal (en étant placé dans le répertoire <code>projet_api_cli</code>) la commande suivante :</p>
+<pre class=" language-bash"><code class="prism  language-bash">$ python main.py
+</code></pre>
+<p>Vous devriez voir apparaître le message</p>
+<pre class=" language-bash"><code class="prism  language-bash">Usage: main.py <span class="token punctuation">[</span>OPTIONS<span class="token punctuation">]</span> NOM
+Try <span class="token string">'main.py --help'</span> <span class="token keyword">for</span> help.
+
+Error: Missing argument <span class="token string">'NOM'</span><span class="token keyword">.</span>
+</code></pre>
+<p>qui pointe une erreur indiquant que l’argument <code>'NOM'</code> est manquant. Il s’agit en effet de la chaîne <code>nom</code> qui doit être passée à la fonction <code>main()</code>.</p>
+<p><strong>Q5</strong> : Exécutez la commande proposée pour afficher l’aide. Vous devriez voir apparaître dans le terminal un message commençant par</p>
+<pre class=" language-bash"><code class="prism  language-bash">Usage: main.py <span class="token punctuation">[</span>OPTIONS<span class="token punctuation">]</span> NOM
+
+Arguments:
+  NOM  <span class="token punctuation">[</span>required<span class="token punctuation">]</span>
+</code></pre>
+<p>qui indique qu’il faut exécuter la commande <code>main.py [OPTIONS] NOM</code> dans le terminal où l’argument <code>NOM</code> est obligatoire.</p>
+<p><strong>Q6</strong> : En tenant compte de cette aide, exécutez maintenant la bonne commande pour que l’application vous passe le bonjour.</p>
+<h2 id="un-exemple-avec-deux-commandes">Un exemple avec deux commandes</h2>
+<p><strong>Q7</strong> : Modifiez le fichier <code>main.py</code> comme suit :</p>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">import</span> typer
+<span class="token keyword">from</span> datetime <span class="token keyword">import</span> datetime
+
+app <span class="token operator">=</span> typer<span class="token punctuation">.</span>Typer<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+@app<span class="token punctuation">.</span>command<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">bonjour</span><span class="token punctuation">(</span>nom<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">""" Commande 1 : affiche "Salut {nom}" dans le terminal """</span>
+    typer<span class="token punctuation">.</span>echo<span class="token punctuation">(</span>f<span class="token string">"Salut {nom}"</span><span class="token punctuation">)</span>
+
+@app<span class="token punctuation">.</span>command<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">jour_de_la_semaine</span><span class="token punctuation">(</span>date<span class="token punctuation">:</span> datetime<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">""" Commande 2: affiche le jour de la semaine correspondant à la date 
+    donnée (au format YYYY-MM-DD). """</span>
+    typer<span class="token punctuation">.</span>echo<span class="token punctuation">(</span>date<span class="token punctuation">.</span>strftime<span class="token punctuation">(</span><span class="token string">'%A'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    app<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p><strong>Analyse</strong> : Le programme ci-dessus va</p>
+<ul>
+<li>créer de manière explicite une application Typer avec <code>typer.Typer</code> (précédemment, <code>typer.run</code> en créait une implicitement).</li>
+<li>ajouter deux commandes avec le décorateur <code>@app.command()</code> à notre application : concrètement on pourra alors indiquer dans notre ligne de commande celle que l’on veut exécuter (voir plus bas).</li>
+<li>exécuter l’<code>app()</code> elle-même, comme s’il s’agissait d’une fonction (au lieu de <code>typer.run</code>).</li>
+</ul>
+<p><strong>IMPORTANT</strong> : On peut maintenant exécuter la commande que l’on souhaite de la façon suivante</p>
+<pre class=" language-bash"><code class="prism  language-bash">$ python main.py <span class="token operator">&lt;</span>nom de la commande<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>arguments<span class="token operator">&gt;</span>
+</code></pre>
+<p><strong>Q8</strong> : Exécutez la ligne de commande <code>python main.py --help</code> pour trouver les noms des deux commandes de notre application. Quels sont-ils ?</p>
+<blockquote>
+<p><em>Remarque</em> : Pour obtenir l’aide d’une commande précise il suffit d’exécuter l’instruction suivante (on voit notamment les arguments à passer à la commande).</p>
+</blockquote>
+<pre class=" language-bash"><code class="prism  language-bash">$ python main.py <span class="token operator">&lt;</span>nom de la commande<span class="token operator">&gt;</span> --help
+</code></pre>
+<p><strong>Q9</strong> : Écrivez et exécutez la ligne de commande permettant à l’application de vous dire bonjour.</p>
+<p><strong>Q10</strong> : Écrivez et exécutez la ligne de commande permettant de connaître le jour de la semaine correspondant à la date du jour. Et pour connaître le jour de la semaine de votre naissance ?</p>
+<h2 id="des-arguments-optionnels-facultatif-au-moins-dans-un-premier-temps">Des arguments optionnels (facultatif, au moins dans un premier temps)</h2>
+<h3 id="arguments-par-défaut">Arguments par défaut</h3>
+<p>Il est possible de définir des arguments par défaut à nos commandes, cela revient à définir des arguments par défaut aux fonctions Python correspondantes.</p>
+<p><strong>Exemple</strong></p>
+<p>Pour le moment, il nécessaire de passer la date souhaité comme argument à notre commande <code>jour-de-la-semaine</code>. Pour afficher le jour correspondant au 16 janvier 2022, il faut écrire l’instruction :</p>
+<pre class=" language-bash"><code class="prism  language-bash">$ python main.py jour-de-la-semaine 2022-01-16
+</code></pre>
+<p>On aimerait avoir le choix de ne pas préciser la date en argument, auquel cas c’est la date du jour qui serait choisie par défaut. C’est-à-dire que la ligne de commande</p>
+<pre class=" language-bash"><code class="prism  language-bash">$ python main.py jour-de-la-semaine
+</code></pre>
+<p>affiche le jour actuel.</p>
+<p>Pour cela, on peut modifier le fichier <code>main.py</code> de la façon suivante :</p>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">import</span> typer
+<span class="token keyword">from</span> datetime <span class="token keyword">import</span> datetime
+
+app <span class="token operator">=</span> typer<span class="token punctuation">.</span>Typer<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+@app<span class="token punctuation">.</span>command<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">bonjour</span><span class="token punctuation">(</span>nom<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">""" Commande 1 : affiche "Salut {nom}" dans le terminal """</span>
+    typer<span class="token punctuation">.</span>echo<span class="token punctuation">(</span>f<span class="token string">"Salut {nom}"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Date par défaut</span>
+date_par_defaut <span class="token operator">=</span> typer<span class="token punctuation">.</span>Argument<span class="token punctuation">(</span>datetime<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strftime<span class="token punctuation">(</span><span class="token string">'%Y-%m-%d'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+@app<span class="token punctuation">.</span>command<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">jour_de_la_semaine</span><span class="token punctuation">(</span>date<span class="token punctuation">:</span> datetime <span class="token operator">=</span> date_par_defaut<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">""" Commande 2 : affiche le jour de la semaine correspondant à la date 
+    donnée (au format YYYY-MM-DD). """</span>
+    typer<span class="token punctuation">.</span>echo<span class="token punctuation">(</span>date<span class="token punctuation">.</span>strftime<span class="token punctuation">(</span><span class="token string">'%A'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    app<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p><strong>Analyse</strong> : On a ajouté une valeur par défaut (<code>date_par_defaut</code>) à notre paramètre <code>date</code> de la fonction <code>jour_de_la_semaine()</code>. Cette valeur est définie en utilisant <code>typer.Argument()</code> dont le premier paramètre est la valeur par défaut : ici <code>datetime.now().strftime('%Y-%m-%d')</code> soit la date du jour.</p>
+<h3 id="définir-une-option">Définir une option</h3>
+<p>Dans une ligne de commande, une <strong>option</strong> modifie le fonctionnement d’une commande. La syntaxe d’une ligne de commande est :</p>
+<pre class=" language-bash"><code class="prism  language-bash">$ commande <span class="token punctuation">[</span>options<span class="token punctuation">]</span> arguments
+</code></pre>
+<p>où les options sont optionnelles et commencent (selon les conventions actuelles) par deux tirets <code>--</code> suivis du nom de l’option souhaité (comme <code>--help</code>).</p>
+<p><strong>Exemple</strong></p>
+<p>On aimerait ajouter une option <code>--</code> à notre commande <code>bonjour</code> qui permette de saluer quelqu’un de manière formelle si l’option est choisie.</p>
+<p>Pour cela, on peut modifier la fonction <code>bonjour</code> de la façon suivante :</p>
+<pre class=" language-python"><code class="prism  language-python">@app<span class="token punctuation">.</span>command<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">bonjour</span><span class="token punctuation">(</span>nom<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">,</span> formel<span class="token punctuation">:</span> <span class="token builtin">bool</span> <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> formel<span class="token punctuation">:</span>
+       typer<span class="token punctuation">.</span>echo<span class="token punctuation">(</span>f<span class="token string">"Bien le bonjour {nom}"</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        typer<span class="token punctuation">.</span>echo<span class="token punctuation">(</span>f<span class="token string">"Salut {nom}"</span><span class="token punctuation">)</span>
+</code></pre>
+<p><strong>Analyse</strong> : On a définit un paramètre booléen <code>formel</code> dont la valeur par défaut est <code>False</code>. Selon la valeur de ce paramètre, la commande affiche “Salut {nom}” ou “Bien le bonjour {nom}”.</p>
+<p>Essayez les deux lignes de commandes :</p>
+<pre class=" language-bash"><code class="prism  language-bash">$ python main.py bonjour --formel Germain
+</code></pre>
+<p>et</p>
+<pre class=" language-bash"><code class="prism  language-bash">$ python main.py bonjour Germain
+</code></pre>
+<blockquote>
+<p>Il est possible de définir des options autres que des booléens en utilisant <code>typer.Options()</code>, pour cela se référer à la documentation officielle : <a href="https://typer.tiangolo.com/tutorial/options/">https://typer.tiangolo.com/tutorial/options/</a>.</p>
+</blockquote>
+<h1 id="à-vous-de-jouer-">À vous de jouer !</h1>
+<p>Vous devez écrire une application en ligne de commande pour interroger une ou plusieurs API.</p>
+<p><strong>Contraintes</strong> :</p>
+<ul>
+<li>L’application doit posséder au moins 3 commandes distinctes, chacune interrogeant au moins une API, et devant au moins posséder un argument par défaut et/ou au moins une option
+<ul>
+<li>la première commande est chargée d’afficher le nombres de places disponibles dans les parkings à Angers en utilisant l’API de <a href="https://data.angers.fr/explore/dataset/parking-angers/information/">data/angers.fr</a></li>
+<li>la seconde commande est chargé d’afficher des informations sur la météo (température, etc.) dans une ville passée en paramètre en utilisant l’API <em>Current weather data</em> du site OpenWeather : <a href="https://openweathermap.org/current">https://openweathermap.org/current</a> pour des données sur la météo en temps réel (l’accès à cette API est gratuit mais un compte doit être créé pour obtenir une clé d’API)</li>
+<li>la troisième commande aura le rôle de votre choix et interrogera l’API de votre choix (vous en trouverez quelques-unes intéressantes ci-dessous)</li>
+</ul>
+</li>
+<li>Si une API nécessite une clé d’identification, cette clé devra être renseignée dans le fichier <code>config.py</code> en tant que chaîne de caractères et sera importée dans le fichier <code>main.py</code> (en production, ce fichier ne serait pas visible pour garder ses informations secrètes).</li>
+</ul>
+<p><em>Quelques autres API intéressantes</em> :</p>
+<ul>
+<li>toutes les API de données ouvertes</li>
+<li>les API de la NASA : <a href="https://api.nasa.gov/">https://api.nasa.gov/</a></li>
+<li><a href="https://quadratic-solver-api.herokuapp.com/">https://quadratic-solver-api.herokuapp.com/</a> pour résoudre une équation du second degré</li>
+<li><a href="https://agify.io/">https://agify.io/</a> pour prédire l’âge d’une personne selon son nom et son pays</li>
+<li><a href="https://www.themoviedb.org/documentation/api">https://www.themoviedb.org/documentation/api</a> pour des informations sur des films (création d’un compte nécessaire)</li>
+<li><a href="http://open-notify.org/">http://open-notify.org/</a> pour la localisation et les atronautes de l’ISS</li>
+<li><a href="https://genius.com/api-clients">https://genius.com/api-clients</a> (création d’un compte nécessaire)</li>
+<li><a href="https://isevenapi.xyz/">https://isevenapi.xyz/</a></li>
+<li><a href="https://picsum.photos/">https://pixabay.com/api/docs/</a> pour des photos (création d’un compte pixabay nécessaire)</li>
+<li><a href="https://picsum.photos/">https://picsum.photos/</a> pour des photos</li>
+<li><a href="https://docs.blague.xyz/">https://docs.blague.xyz/</a> pour des blagues (en français)</li>
+<li><a href="https://goqr.me/api/">https://goqr.me/api/</a> pour générer (et lire) des QR Codes</li>
+<li><a href="https://www.remove.bg/fr/api#remove-background">https://www.remove.bg/fr/api#remove-background</a> pour supprimer l’arrière-plan d’une photo (= détourage), création d’un compte gratuit pour 50 appels par mois</li>
+<li>vous en trouverez d’autres ici : <a href="https://github.com/public-apis/public-apis">https://github.com/public-apis/public-apis</a></li>
+</ul>
+<hr>
+<p><strong>Références</strong> :</p>
+<ul>
+<li>Le documentation du la bibliothèque Python <em>Typer</em> : <a href="https://typer.tiangolo.com/">https://typer.tiangolo.com/</a></li>
+<li>Les articles de blog de <em>Bugbytes</em> : <a href="https://bugbytes.io/posts/nasa-command-line-application-with-typer-and-python/">https://bugbytes.io/posts/nasa-command-line-application-with-typer-and-python/</a> et <a href="https://www.bugbytes.io/posts/nasa-command-line-application-with-typer-and-python-fetching-images/">https://www.bugbytes.io/posts/nasa-command-line-application-with-typer-and-python-fetching-images/</a></li>
+<li>Les deux vidéos associées : <a href="https://youtu.be/rXAo8zaXQJY">https://youtu.be/rXAo8zaXQJY</a> et <a href="https://youtu.be/aOEZ449Ufz8">https://youtu.be/aOEZ449Ufz8</a></li>
+</ul>
+<hr>
+<p>Germain BECKER, Lycée Mounier, ANGERS</p>
+<p>Ressource éducative libre distribuée sous <a href="http://creativecommons.org/licenses/by-sa/4.0/">Licence Creative Commons Attribution - Partage dans les Mêmes Conditions 4.0 International</a></p>
+<p><img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+

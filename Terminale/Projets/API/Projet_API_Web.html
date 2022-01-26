@@ -1,0 +1,57 @@
+﻿<h1 id="projet--créer-une-application-web-qui-interroge-une-api-et-qui-affiche-les-données-récupérées">Projet : Créer une application Web qui interroge une API et qui affiche les données récupérées</h1>
+<img class="image-responsive centre" src="data/api.svg" alt="illustration API" width="200">
+<p>L’objectif de ce projet est d’interroger une API avec JavaScript puis d’afficher les données récupérées dans une page Web.</p>
+<img class="image-responsive centre" src="data/logoJS.svg" alt="logo JS" width="200">
+<h1 id="création-des-fichiers-du-projet">Création des fichiers du projet</h1>
+<p>Aucune installation n’est nécessaire pour ce projet.</p>
+<p><strong>Q1</strong> : Utilisez uniquement les lignes de commandes pour créer un répertoire vide <code>projet_api_web</code>, et créer les 3 fichiers suivants (vides pour le moment) dans ce répertoire :</p>
+<ul>
+<li><code>index.html</code> : pour le code HTML de la page Web ;</li>
+<li><code>script.js</code> : le fichier JavaScript qui interrogera l’API et ajoutera les données à la page Web.</li>
+<li><code>apikey.js</code> : le fichier JavaScript qui contiendra la clé d’API utilisée (qui doit normalement restée cachée. En production, ce fichier ne serait bien sûr pas visible)</li>
+</ul>
+<p><strong>Q2</strong> : Vérifiez que le répertoire et les fichiers ont bien été créés, toujours en utilisant les lignes de commande.</p>
+<h1 id="exemple-dillustration">Exemple d’illustration</h1>
+<p>On propose ici d’utiliser la balise HTML <code>&lt;template&gt;</code> qui permet de créer un modèle de contenu. Ensuite, on interrogera l’API (via la méthode <code>fetch</code> de JavaScript) puis on ajoutera les données récupérés à notre page Web selon le modèle défini dans la balise <code>&lt;template&gt;</code>.</p>
+<p><strong>Q3</strong> : Regardez attentivement la vidéo suivante qui présente exactement ce que l’on souhaite faire (n’hésitez pas à reproduire ce qui est fait pour tester !) :</p>
+<div class="video-responsive">
+    <iframe class="centre" width="560" height="315" src="https://www.youtube-nocookie.com/embed/oh6Wtys98ig" title="YouTube video player" allowfullscreen=""></iframe>
+</div>
+<p><strong>Aide</strong> : Voici quelques ressources supplémentaires :</p>
+<ul>
+<li>documentation sur la balise <code>&lt;template&gt;</code> : <a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/template">https://developer.mozilla.org/fr/docs/Web/HTML/Element/template</a></li>
+<li>documentation sur l’utilisation de la méthode <code>fetch</code> : <a href="https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch">https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch</a></li>
+<li>vidéos sur la méthode <code>fetch</code> :
+<ul>
+<li>Chaîne “Le Designer du Web” : <em>La méthode Fetch JS pour aller chercher des données</em> : <a href="https://youtu.be/sGvEqHkDyFc">https://youtu.be/sGvEqHkDyFc</a></li>
+<li>Chaîne “Nouvelle Techno” : <em>Utilisation de fetch</em> <a href="https://youtu.be/gNPRe_lxosE">https://youtu.be/gNPRe_lxosE</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="à-vous-de-jouer-">À vous de jouer !</h1>
+<p>Vous devez écrire deux petites applications Web :</p>
+<ul>
+<li>La première doit interroger l’API de <a href="https://data.angers.fr/explore/dataset/parking-angers/information/">data/angers.fr</a> et afficher le nombre de places disponibles pour chaque parking angevin. Vous utiliserez la balise <code>&lt;template&gt;</code> pour afficher selon le même modèle les données pour chaque parking.</li>
+<li>La seconde doit permettre à un utilisateur de saisir une ville dans un champ de saisie et un bouton pour interroger l’API <em>Current weather data</em> du site OpenWeather : <a href="https://openweathermap.org/current">https://openweathermap.org/current</a> pour obtenir et afficher des données sur la météo en temps réel de cette ville (l’accès à cette API est gratuit mais un compte doit être créé pour obtenir une clé d’API)</li>
+</ul>
+<p><strong>Remarques</strong> :</p>
+<ul>
+<li><strong>Attention</strong> : dans la seconde application, la clé d’API devra être mémorisée dans une chaîne de caractères dans le fichier <code>apikey.js</code> et devra être importée dans le fichier <code>script.js</code> qui l’utilise. Pour cela, cherchez du côté des instructions <code>import</code> et <code>export</code> de la JavaScript.</li>
+<li>On n’attend pas de CSS pour ce projet, mais libre à vous de styliser votre page si vous le souhaitez.</li>
+<li>Vous pouvez consulter le cours de Première pour revoir comment créer un champ de saisie et récupérer son contenu :
+<ul>
+<li>le cours <a href="https://info-mounier.fr/premiere_nsi/web/data/T4_C1_Interaction_page_web.pdf">https://info-mounier.fr/premiere_nsi/web/data/T4_C1_Interaction_page_web.pdf</a></li>
+<li>la vidéo <a href="https://youtu.be/LE4SHWN2FWk">https://youtu.be/LE4SHWN2FWk</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>Références</strong> :</p>
+<ul>
+<li>La vidéo de la chaîne YouTube <em>Nouvelle Techno</em> sur la balise <code>&lt;template&gt;</code>: <a href="https://youtu.be/oh6Wtys98ig">https://youtu.be/oh6Wtys98ig</a> pour l’idée du projet</li>
+</ul>
+<hr>
+<p>Germain BECKER, Lycée Mounier, ANGERS</p>
+<p>Ressource éducative libre distribuée sous <a href="http://creativecommons.org/licenses/by-sa/4.0/">Licence Creative Commons Attribution - Partage dans les Mêmes Conditions 4.0 International</a></p>
+<p><img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
