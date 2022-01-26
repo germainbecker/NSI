@@ -1,4 +1,4 @@
-﻿<h1 id="projet--créer-une-application-en-ligne-de-commande-avec-python-pour-interroger-une-api">Projet : Créer une application en ligne de commande avec Python pour interroger une API</h1>
+﻿<h1 id="projet--créer-une-interface-en-ligne-de-commande-avec-python-pour-interroger-une-api">Projet : Créer une interface en ligne de commande avec Python pour interroger une API</h1>
 <img class="image-responsive centre" src="data/api.svg" alt="illustration API" width="200">
 <p>Une <strong>interface en ligne de commande</strong> (<strong>CLI</strong> en anglais pour <em>Command Line Interface</em>) est une interface homme-machine dans laquelle la communication entre l’utilisateur et l’ordinateur s’effectue en mode texte (au moyen du terminal dans notre cas).</p>
 <p>L’objectif est de créer une telle application avec Python et plus précisément avec la bibliothèque <a href="https://typer.tiangolo.com/">Typer</a> qui permet de créer rapidement de telles applications.</p>
@@ -87,10 +87,9 @@ app <span class="token operator">=</span> typer<span class="token punctuation">.
 </code></pre>
 <p><strong>Q8</strong> : Exécutez la ligne de commande <code>python main.py --help</code> pour trouver les noms des deux commandes de notre application. Quels sont-ils ?</p>
 <blockquote>
-<p><em>Remarque</em> : Pour obtenir l’aide d’une commande précise il suffit d’exécuter l’instruction suivante (on voit notamment les arguments à passer à la commande).</p>
+<p><em>Remarque</em> : Pour obtenir l’aide d’une commande précise il suffit d’exécuter l’instruction suivante (on voit notamment les arguments à passer à la commande).<br>
+<code>$ python main.py &lt;nom de la commande&gt; --help</code></p>
 </blockquote>
-<pre class=" language-bash"><code class="prism  language-bash">$ python main.py <span class="token operator">&lt;</span>nom de la commande<span class="token operator">&gt;</span> --help
-</code></pre>
 <p><strong>Q9</strong> : Écrivez et exécutez la ligne de commande permettant à l’application de vous dire bonjour.</p>
 <p><strong>Q10</strong> : Écrivez et exécutez la ligne de commande permettant de connaître le jour de la semaine correspondant à la date du jour. Et pour connaître le jour de la semaine de votre naissance ?</p>
 <h2 id="des-arguments-optionnels-facultatif-au-moins-dans-un-premier-temps">Des arguments optionnels (facultatif, au moins dans un premier temps)</h2>

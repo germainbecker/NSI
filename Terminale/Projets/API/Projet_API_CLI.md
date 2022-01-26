@@ -1,4 +1,4 @@
-# Projet : Créer une application en ligne de commande avec Python pour interroger une API
+# Projet : Créer une interface en ligne de commande avec Python pour interroger une API
 
 <img class="image-responsive centre" src="data/api.svg" alt="illustration API" width="200">
 
