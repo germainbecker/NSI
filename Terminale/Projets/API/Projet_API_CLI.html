@@ -23,7 +23,7 @@
 <h1 id="création-dune-application">Création d’une application</h1>
 <h2 id="exemple-le-plus-simple">Exemple (le plus) simple</h2>
 <p><strong>Q3</strong> : Dans le fichier <code>main.py</code>, ajoutez le code suivant :</p>
-<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">import</span> typer
+<pre class=" language-python line-numbers" data-line="3-4,7"><code class="prism  language-python"><span class="token keyword">import</span> typer
 
 <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span>nom<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
     typer<span class="token punctuation">.</span>echo<span class="token punctuation">(</span>f<span class="token string">"Bonjour {nom}"</span><span class="token punctuation">)</span>
@@ -56,7 +56,7 @@ Arguments:
 <p><strong>Q6</strong> : En tenant compte de cette aide, exécutez maintenant la bonne commande pour que l’application vous passe le bonjour.</p>
 <h2 id="un-exemple-avec-deux-commandes">Un exemple avec deux commandes</h2>
 <p><strong>Q7</strong> : Modifiez le fichier <code>main.py</code> comme suit :</p>
-<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">import</span> typer
+<pre class=" language-python line-numbers" data-line="4, 6-7, 11-12, 19"><code class="prism  language-python"><span class="token keyword">import</span> typer
 <span class="token keyword">from</span> datetime <span class="token keyword">import</span> datetime
 
 app <span class="token operator">=</span> typer<span class="token punctuation">.</span>Typer<span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -68,7 +68,7 @@ app <span class="token operator">=</span> typer<span class="token punctuation">.
 
 @app<span class="token punctuation">.</span>command<span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token keyword">def</span> <span class="token function">jour_de_la_semaine</span><span class="token punctuation">(</span>date<span class="token punctuation">:</span> datetime<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token triple-quoted-string string">""" Commande 2: affiche le jour de la semaine correspondant à la date 
+    <span class="token triple-quoted-string string">""" Commande 2: affiche le jour de la semaine correspondant à la date
     donnée (au format YYYY-MM-DD). """</span>
     typer<span class="token punctuation">.</span>echo<span class="token punctuation">(</span>date<span class="token punctuation">.</span>strftime<span class="token punctuation">(</span><span class="token string">'%A'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
@@ -78,9 +78,9 @@ app <span class="token operator">=</span> typer<span class="token punctuation">.
 </code></pre>
 <p><strong>Analyse</strong> : Le programme ci-dessus va</p>
 <ul>
-<li>créer de manière explicite une application Typer avec <code>typer.Typer</code> (précédemment, <code>typer.run</code> en créait une implicitement).</li>
-<li>ajouter deux commandes avec le décorateur <code>@app.command()</code> à notre application : concrètement on pourra alors indiquer dans notre ligne de commande celle que l’on veut exécuter (voir plus bas).</li>
-<li>exécuter l’<code>app()</code> elle-même, comme s’il s’agissait d’une fonction (au lieu de <code>typer.run</code>).</li>
+<li>créer de manière explicite une application Typer avec <code>typer.Typer</code> à la ligne 4 (précédemment, <code>typer.run</code> en créait une implicitement).</li>
+<li>ajouter deux commandes avec le décorateur <code>@app.command()</code> à notre application (lignes 6-9 et 11-15): concrètement on pourra alors indiquer dans notre ligne de commande celle que l’on veut exécuter (voir plus bas).</li>
+<li>exécuter l’<code>app()</code> elle-même (ligne 19), comme s’il s’agissait d’une fonction (au lieu de <code>typer.run</code>).</li>
 </ul>
 <p><strong>IMPORTANT</strong> : On peut maintenant exécuter la commande que l’on souhaite de la façon suivante</p>
 <pre class=" language-bash"><code class="prism  language-bash">$ python main.py <span class="token operator">&lt;</span>nom de la commande<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>arguments<span class="token operator">&gt;</span>
@@ -104,7 +104,7 @@ app <span class="token operator">=</span> typer<span class="token punctuation">.
 </code></pre>
 <p>affiche le jour actuel.</p>
 <p>Pour cela, on peut modifier le fichier <code>main.py</code> de la façon suivante :</p>
-<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">import</span> typer
+<pre class=" language-python line-numbers" data-line="12,15"><code class="prism  language-python"><span class="token keyword">import</span> typer
 <span class="token keyword">from</span> datetime <span class="token keyword">import</span> datetime
 
 app <span class="token operator">=</span> typer<span class="token punctuation">.</span>Typer<span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -119,7 +119,7 @@ date_par_defaut <span class="token operator">=</span> typer<span class="token pu
 
 @app<span class="token punctuation">.</span>command<span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token keyword">def</span> <span class="token function">jour_de_la_semaine</span><span class="token punctuation">(</span>date<span class="token punctuation">:</span> datetime <span class="token operator">=</span> date_par_defaut<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token triple-quoted-string string">""" Commande 2 : affiche le jour de la semaine correspondant à la date 
+    <span class="token triple-quoted-string string">""" Commande 2 : affiche le jour de la semaine correspondant à la date
     donnée (au format YYYY-MM-DD). """</span>
     typer<span class="token punctuation">.</span>echo<span class="token punctuation">(</span>date<span class="token punctuation">.</span>strftime<span class="token punctuation">(</span><span class="token string">'%A'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
@@ -134,9 +134,9 @@ date_par_defaut <span class="token operator">=</span> typer<span class="token pu
 </code></pre>
 <p>où les options sont optionnelles et commencent (selon les conventions actuelles) par deux tirets <code>--</code> suivis du nom de l’option souhaité (comme <code>--help</code>).</p>
 <p><strong>Exemple</strong></p>
-<p>On aimerait ajouter une option <code>--</code> à notre commande <code>bonjour</code> qui permette de saluer quelqu’un de manière formelle si l’option est choisie.</p>
+<p>On aimerait ajouter une option <code>--formel</code> à notre commande <code>bonjour</code> qui permette de saluer quelqu’un de manière formelle si l’option est choisie.</p>
 <p>Pour cela, on peut modifier la fonction <code>bonjour</code> de la façon suivante :</p>
-<pre class=" language-python"><code class="prism  language-python">@app<span class="token punctuation">.</span>command<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre class=" language-python line-numbers" data-line="2-3"><code class="prism  language-python">@app<span class="token punctuation">.</span>command<span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token keyword">def</span> <span class="token function">bonjour</span><span class="token punctuation">(</span>nom<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">,</span> formel<span class="token punctuation">:</span> <span class="token builtin">bool</span> <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword">if</span> formel<span class="token punctuation">:</span>
        typer<span class="token punctuation">.</span>echo<span class="token punctuation">(</span>f<span class="token string">"Bien le bonjour {nom}"</span><span class="token punctuation">)</span>
@@ -194,4 +194,3 @@ date_par_defaut <span class="token operator">=</span> typer<span class="token pu
 <p>Germain BECKER, Lycée Mounier, ANGERS</p>
 <p>Ressource éducative libre distribuée sous <a href="http://creativecommons.org/licenses/by-sa/4.0/">Licence Creative Commons Attribution - Partage dans les Mêmes Conditions 4.0 International</a></p>
 <p><img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
-

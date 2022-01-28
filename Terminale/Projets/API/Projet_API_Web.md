@@ -44,7 +44,7 @@ Vous devez écrire deux petites applications Web :
 
 **Remarques** : 
 
-- **Attention** : dans la seconde application, la clé d'API devra être mémorisée dans une chaîne de caractères dans le fichier `apikey.js` et devra être importée dans le fichier `script.js` qui l'utilise. Pour cela, cherchez du côté des instructions `import` et `export` de la JavaScript.
+- **Attention** : dans la seconde application, la clé d'API devra être mémorisée dans une chaîne de caractères dans le fichier `apikey.js` et devra être importée dans le fichier `script.js` qui l'utilise. Pour cela, cherchez du côté des instructions `import` et `export` dans la documentation de JavaScript.
 - On n'attend pas de CSS pour ce projet, mais libre à vous de styliser votre page si vous le souhaitez.
 - Vous pouvez consulter le cours de Première pour revoir comment créer un champ de saisie et récupérer son contenu : 
     - le cours [https://info-mounier.fr/premiere_nsi/web/data/T4_C1_Interaction_page_web.pdf](https://info-mounier.fr/premiere_nsi/web/data/T4_C1_Interaction_page_web.pdf)
