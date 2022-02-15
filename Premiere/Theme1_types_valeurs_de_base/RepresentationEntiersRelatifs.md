@@ -15,7 +15,8 @@ En procédant ainsi, si on code les entiers naturels sur 4 bits (pour simplifier
   - $3=($<span class="consolas blue" style="color:blue;font-family:Consolas;font-size:1.2em;">011</span>$)_2$
   - et le bit de poids fort est <span class="consolas red" style="color:red;font-family:Consolas;font-size:1.2em;">0</span> donc il s’agit d’un entier positif
 - le binaire <span class="consolas red" style="color:red;font-family:Consolas;font-size:1.2em;">1</span><span class="consolas blue" style="color:blue;font-family:Consolas;font-size:1.2em;">011</span> correspondant à l’entier $-3$ car :
-  - $3=($<span class="consolas blue" style="color:blue;font-family:Consolas;font-size:1.2em;">011</span>$)_2$ et le bit de poids fort est <span class="consolas red" style="color:red;font-family:Consolas;font-size:1.2em;">1</span> donc il s’agit d’un entier négatif
+  - $3=($<span class="consolas blue" style="color:blue;font-family:Consolas;font-size:1.2em;">011</span>$)_2$
+  - et le bit de poids fort est <span class="consolas red" style="color:red;font-family:Consolas;font-size:1.2em;">1</span> donc il s’agit d’un entier négatif
 
 ## Problèmes avec cette méthode
 
