@@ -1,0 +1,95 @@
+﻿<h1 id="représentation-binaire-dun-entier-relatif">Représentation binaire d'un entier relatif</h1>
+<p>Nous avons déjà vu comment coder en binaire des entiers positifs (entiers naturels) dans le chapitre 1. Dans ce chapitre nous allons voir comment sont représentés en machine les entiers relatifs (entiers négatifs et positifs).</p>
+<h1 id="une-première-représentation-intuitive-mais-insatisfaisante--le-binaire-signé">Une première représentation intuitive mais insatisfaisante : le binaire signé</h1>
+<p>Une idée simple pour représenter les entiers relatifs est :</p>
+<ul>
+<li>d’utiliser le bit de poids fort (le plus à gauche) pour représenter le signe de l’entier : 0 pour un entier positif et 1 pour un entier négatif.</li>
+<li>d’utiliser les autres bits pour représenter la valeur absolue de l’entier.</li>
+</ul>
+<p>En procédant ainsi, si on code les entiers naturels sur 4 bits (pour simplifier), alors :</p>
+<ul>
+<li>le binaire <span>0</span><span>011</span> correspondant à l’entier $3$ car :
+<ul>
+<li>$3=($<span>011</span>$)_2$</li>
+<li>et le bit de poids fort est <span>0</span> donc il s’agit d’un entier positif</li>
+</ul>
+</li>
+<li>le binaire <span>1</span><span>011</span> correspondant à l’entier $-3$ car :
+<ul>
+<li>$3=($<span>011</span>$)_2$ et le bit de poids fort est <span>1</span> donc il s’agit d’un entier négatif</li>
+</ul>
+</li>
+</ul>
+<h2 id="problèmes-avec-cette-méthode">Problèmes avec cette méthode</h2>
+<p><strong>1er problème (mineur)</strong> : l’entier $0$ serait codé de deux façons : <span>0000</span> et <span>1000</span> ($+0$ et $-0$ , un entier <em>positif</em> et un entier <em>négatif</em>)</p>
+<p><strong>2ème problème (majeur !)</strong> : l’algorithme d’addition habituel ne fonctionne plus (lorsque l’on additionne deux entiers de signes contraires) comme le montre ces deux exemples :</p>
+<p><img src="data/prob_addition.png" alt="illustration du problème de l'addition"></p>
+<p>Ce n’est donc pas une méthode satisfaisante car il faudrait alors redéfinir l’algorithme de l’addition. La solution la plus commune pour contourner ces problèmes est d’utiliser l’encodage dit <em>par complément à 2</em>.</p>
+<h1 id="la-représentation-choisie--le-complément-à-2">La représentation choisie : le complément à 2</h1>
+<h2 id="la-méthode-du-complément-à-2">La méthode du complément à 2</h2>
+<blockquote class="info">
+  <p>On explique à la fin pourquoi cette méthode s'appelle le <em>complément à 2</em>.</p>
+</blockquote>
+<p>Considérons que l’on code nos entiers sur $n=4$  bits (on peut généraliser tout ce qui sera vu). On ne s’intéresse ici qu’à la représentation des entiers négatifs.</p>
+<p><strong>Exemple : représentation du nombre $-5$ par la méthode du complément à 2</strong></p>
+<ul>
+<li>Étape 1 : On passe d’abord en positif : 5</li>
+<li>Étape 2 : On représente 5 sur 4 bits : <span>0101</span></li>
+<li>Étape 3 : On inverse tous les bits (les 1 deviennent 0 et réciproquement) : <span>1010</span>.</li>
+<li>Étape 4 : On ajoute 1 au nombre obtenu (sans tenir compte de la retenue finale)</li>
+</ul>
+<p><img src="data/ex_resultat.png" alt="addition posée"></p>
+<p><strong>Conclusion</strong> : La représentation de $-5$ en complément à deux sur 4 bits est donc <span>1011</span>.</p>
+<h2 id="représentation-circulaire-de-la-notation-en-complément-à-deux">Représentation circulaire de la notation en complément à deux</h2>
+<p>Les nombres binaires sont écrits dans l’ordre en tournant dans le sens des aiguilles d’une montre, tout en conservant la signification du bit de signe. Comme on n’a pas de « $−0$ » il y a un décalage de 1 dans la symétrie entre entiers positifs et négatifs alors qu’elle est parfaite pour les binaires.</p>
+<p><img src="data/repr_circulaire.png" alt="représentation circulaire"></p>
+<p>Reprenons l’exemple du codage de $-5$. On est parti de 5 (étape 1), on l’a écrit en binaire (étape 2) pour obtenir <span>0101</span> puis on a inversé tous les bits (étape 3, ce qui revient à appliquer l’opérateur NON à chaque bit) pour trouver <span>1010</span> qui représente $-6$ et enfin on a ajouté 1 (étape 4) pour obtenir <span>1011</span> qui représente $-5$.</p>
+<h2 id="et-dans-lautre-sens-">Et dans l'autre sens ?</h2>
+<p>Connaissant une représentation en complément à 2, il est bien sûr possible de déterminer de quel entier il s’agit.</p>
+<p><strong>Exemple : Quel entier est représenté par <span>1011</span> en complément à 2 (sur 4 bits) ?</strong></p>
+<ul>
+<li>Étape 1 : On inverse tous les bits : <span>0100</span></li>
+<li>Étape 2 : On ajoute 1 au résultat : <span>0100</span> + <span>1</span> = <span>0101</span></li>
+<li>Étape 3 : On décode l’entier positif obtenu : $5$ (car $1\times 2^0 + 1\times 2^2 = 5$)</li>
+<li>Étape 4 : On passe en négatif : $-5$</li>
+</ul>
+<p><strong>Conclusion</strong> : Donc <span>1011</span> est la représentation en complément à 2 de l’entier $-5$ (sur 4 bits).</p>
+<h2 id="plage-de-valeurs-possibles">Plage de valeurs possibles</h2>
+<p>Si on code sur 4 bits, il est possible de représenter $2^4$ entiers. Dans la méthode du complément à 2 :</p>
+<ul>
+<li>la moitié sont des entiers positifs (ceux commençant par <span>0</span>) : de <span>0000</span> à <span>0111</span></li>
+<li>et l’autre moitié sont des entiers strictement négatifs (ceux commençant par un <span>1</span>) : de <span>1000</span> à <span>1111</span>.</li>
+</ul>
+<p>On peut donc représenter ainsi les entiers positifs compris entre $0$ et $7$ et les entiers strictement négatifs compris entre $-8$ et $-1$ ; c’est-à-dire tous les entiers relatifs compris entre $-8$ et $7$ (il y en a bien 16 !).</p>
+<p>De manière générale, si on dispose de $n$ bits pour représenter des entiers en complément à 2, on peut en représenter $2^n$. La moitié d’entre eux sont des entiers positifs (il y en a $2^{n-1}$) et l’autre moitié des entiers strictement négatifs (il y en a aussi $2^{n-1}$).</p>
+<p>Ainsi, on peut représenter tous les entiers positifs compris entre $0$ et $2^{n-1}-1$ et tous les entiers strictement négatifs compris entre $-2^{n-1}$ et $-1$, c’est-à-dire tous les entiers relatifs compris entre $-2^{n-1}$ et $2^{n-1}-1$.</p>
+<h2 id="au-fait-pourquoi-dit-on-complément-à-2-">Au fait, pourquoi dit-on <em>complément à 2</em> ?</h2>
+<p>Lorsque l’on cherche à déterminer le codage de $-5$, on cherche en fait le nombre $n$ tel que $n+5=0$.</p>
+<p><img src="data/explication.png" alt="addition posée de 5 + (-5)"></p>
+<p>En binaire, le calcul de $5+(-5)$ est <span>0101</span> + <span>1011</span> qui donne <span>10000</span> c’est-à-dire $2^4$. Cela signifie que <span>1011</span> est le complément à $2^4$ de <span>0101</span>, c’est-à-dire le nombre binaire qu’il faut ajouter à <span>0101</span> pour obtenir $2^4$. On devrait donc dire de manière plus rigoureuse <strong>le complément à $2^4$</strong> (puisque l’on a choisi de coder sur 4 bits).</p>
+<blockquote class="question">
+  <p>Il n'y a pas un problème ? Je croyais que $5 + (-5)$ devait faire $0$ et non $2^4$...</p>
+</blockquote>
+<p>En fait, en binaire le résultat donne <span>1</span><span>0000</span> mais comme on a choisi de coder sur 4 bits, le bit <span>1</span> n’est pas pris en compte (puisque c’est le 5ème bit) et le résultat en machine est donc bien égal à <span>0000</span>, c’est-à-dire 0.</p>
+<p><strong>Pourquoi la méthode proposée permet de déterminer la représentation en complément à 2 d'un entier ?</strong></p>
+<p>Même si la représentation circulaire permettait de comprendre l'idée, voici une explication plus rigoureuse.</p>
+<p>Notons $x$ un entier positif et $x_2$ son écriture binaire. Si on cherche la représentation en complément à 2 de l’opposé de $x$, on cherche en fait le nombre $m$ tel que $x+m=0$.</p>
+<p>Notons $\overline{x_2}$ le nombre binaire dans lequel on inverse tous les bits de $x_2$ (on dit que $\overline{x_2}$ est le complément à 1 de $x_2$).</p>
+<p>On remarque alors qu’on a toujours $x_2+\overline{x_2} =$ <span>1111</span> puisque pour chaque bit on additionne un bit « 1 » avec un bit « 0 » (par exemple, <span>1011</span> + <span>0100</span> = <span>1111</span>).</p>
+<p>Si on ajoute $1$ à ce nombre, on obtient $0$. En effet :</p>
+<p><img src="data/explication2.png" alt="addition posée"></p>
+<p>Comme on a choisi de coder sur 4 bits, on ignore la dernière retenue et le résultat est donc <span>0000</span> soit $0$.</p>
+<p>On vient de montrer que $x_2+\overline{x_2}+1 =0$ et donc a trouvé la représentation binaire de notre nombre $m$ (l’opposé de $x$) :</p>
+<p>$$\overline{x_2}+1.$$</p>
+<p>Ainsi, pour représenter un entier négatif ($m$), on part de sa valeur absolue ($x$), que l’on code en binaire ($x_2$), puis on inverse tous les bits ($\overline{x_2}$) et enfin on ajoute $1$.</p>
+<hr>
+<p><strong>Références</strong> :</p>
+<ul>
+<li>Mickaël Barraud, ressources partagées DIU EIL Nantes, pour la représentation circulaire.</li>
+<li>Manuel <em>Prépabac spécialité 1ère NSI</em>, C. Adobet, G. Connan, G. Rozsavolgyi, L. Signac, éditions HATIER.</li>
+<li>Cours de David Roche sur le complément à deux : <a href="https://pixees.fr/informatiquelycee/n_site/nsi_prem_comp_2.html">https://pixees.fr/informatiquelycee/n_site/nsi_prem_comp_2.html</a>.</li>
+</ul>
+<hr>
+<p>Germain BECKER &amp; Sébastien POINT, Lycée Mounier, ANGERS</p>
+<p><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
