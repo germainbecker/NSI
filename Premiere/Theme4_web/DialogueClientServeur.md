@@ -35,7 +35,7 @@ Supposons qu'un navigateur fasse une requête pour accéder à la page `http://w
 
 # Requête HTTP et réponse du serveur
 
-> ✍️ Faites l'activité 1 : <a href="Act1_RequetesReponsesHTTP.md" target="_blank">Analyse des réponses et requêtes HTTP</a>
+> <span class="emoji">✍️</span> Faites l'activité 1 : <a href="Act1_RequetesReponsesHTTP.md" target="_blank">Analyse des réponses et requêtes HTTP</a>
 
 ## Requête HTTP
 
