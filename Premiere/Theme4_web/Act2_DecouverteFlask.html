@@ -142,31 +142,6 @@ app <span class="token operator">=</span> Flask<span class="token punctuation">(
 <p><span>🆘</span> La documentation du module <code>datetime</code> précise quels sont les attributs permettant d’accéder au jour, au mois et à l’année d’un objet <code>datetime.datetime</code> : <a href="https://docs.python.org/fr/3/library/datetime.html#available-types">https://docs.python.org/fr/3/library/datetime.html#available-types</a></p>
 </blockquote>
 
-    Voir la solution
-    <p><strong>mon_app.py</strong></p>
-    <pre class="language-python">@app.route("/heure")
-def heure():
-    date_heure = datetime.datetime.now()
-    h = date_heure.hour
-    m = date_heure.minute
-    s = date_heure.second
-    annee = date_heure.year
-    mois = date_heure.month
-    jour = date_heure.day
-    return render_template("heure.html",
-                           heure=h,
-                           minute=m,
-                           seconde=s,
-                           annee=annee,
-                           mois=mois,
-                           jour=jour)
-    </pre>
-    <p><strong>templates/heure.html</strong></p>
-    <pre class="language-html">&lt;body&gt;
-    &lt;h1&gt;Quelle heure est-il ? &lt;/h1&gt;
-    &lt;p&gt;Il est {{ heure }} h {{ minute }} min {{ seconde }} s et nous sommes le {{jour}}/{{ mois }}/{{ annee }}.&lt;/p&gt;
-&lt;/body&gt;</pre>
-
 <h1 id="bilan">Bilan</h1>
 <ul>
 <li>Flask permet de créer une application Web.</li>
