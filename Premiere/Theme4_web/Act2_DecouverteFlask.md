@@ -182,7 +182,7 @@ Il n'y a plus qu'à observer le résultat dans le navigateur en visitant `http:/
 
 ![capture d'écran du navigateur](data/heure.png)
 
-**<span style="font-size:1.5em;">✍️</span> À vous de jouer !**
+# ✍️ À vous de jouer !
 
 Modifiez la fonction `bonjour()` et le template `heure.html` de manière à pouvoir afficher l'heure mais également la date actuelle, par exemple : "Il est 14 h 2 min 23 s et nous sommes le 7/2/2022".
 
