@@ -4,7 +4,7 @@
 
 **Flask** est un micro-framework Python facilitant la création d'application Web. Il est parfait pour créer de manière simple et rapide de petites applications Web.
 
-Voici la vidéo associée à cette activité :
+Voici la vidéo associée à cette activité : [https://youtu.be/Ihp_cG7c2Rk](https://youtu.be/Ihp_cG7c2Rk)
 
 <div class="video-responsive">
     <iframe class="centre" width="560" height="315" src="https://www.youtube.com/embed/Ihp_cG7c2Rk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

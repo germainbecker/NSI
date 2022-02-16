@@ -47,7 +47,7 @@ En revanche, comme les navigateurs ont des limites sur la taille d'une URL, il n
 
 ![logo Flask](data/Flask_logo.svg)
 
-Voici la vidéo associée à cette activité :
+Voici la vidéo associée à cette activité : [https://youtu.be/lvxqvNXniVc](https://youtu.be/lvxqvNXniVc)
 
 <div class="video-responsive">
     <iframe class="centre" width="560" height="315" src="https://www.youtube.com/embed/lvxqvNXniVc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
