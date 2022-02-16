@@ -1,0 +1,160 @@
+﻿<h1 id="transmettre-des-paramètres-dans-lurl">Transmettre des paramètres dans l’URL</h1>
+<p><strong>Objectif</strong> : Comprendre comment on peut passer des paramètres à un serveur pour qu’il fabrique la page Web demandée en fonction des valeurs de ces paramètres.</p>
+<p>On a vu qu’un serveur est capable de fabriquer des pages Web en fonction de certaines informations. Nous allons voir dans cette activité comment on peut passer des informations au serveur via l’URL.</p>
+<h1 id="exemple-avec-un-moteur-de-recherche">Exemple avec un moteur de recherche</h1>
+<p><img src="data/Qwant_logo.png" alt="logo Qwant"></p>
+<p>En tapant le mot “Qwant” dans un moteur de recherche, le premier lien devrait renvoyer vers la page d’accueil de ce moteur de recherche : <code>https://www.qwant.com/?l=fr</code> (c’est la route <code>/</code> de <code>qwant.com</code>).</p>
+<blockquote>
+<p>Vous devez constater que l’URL se termine par <code>?l=fr</code>, il s’agit d’un paramètre passé au serveur <code>qwant.com</code>. Nous allons voir comment cela fonctionne tout de suite.</p>
+</blockquote>
+<p><strong>1.</strong> Rendez-vous à cette URL et remplacez le <code>fr</code> à la fin par <code>en</code>. Vous devez constater que la page demandée (la même !) est désormais en anglais.</p>
+<p><strong>IMPORTANT</strong> :</p>
+<ul>
+<li>Le client peut passer des paramètres à un serveur via l’URL de la ressource demandée en utilisant un point d’interrogation <code>?</code> suivi des différents paramètres écrits sous la forme <code>nom=valeur</code>.</li>
+<li>S’il y a plusieurs paramètres, ceux-ci sont séparés par une esperluette <code>&amp;</code>.</li>
+<li>Le serveur peut utiliser la valeur de ces paramètres pour fabriquer la page Web demandée et l’envoyer au client.</li>
+</ul>
+<p><strong>2.</strong> Dans l’URL <code>https://www.qwant.com/?l=fr</code>, un paramètre est transmis au moteur de recherche.</p>
+<ul>
+<li>Quel est son nom ?</li>
+<li>Quelle est sa valeur ?</li>
+</ul>
+<p>Vous pouvez remettre la page en Français si vous le souhaitez avant de poursuivre.</p>
+<p><strong>3.</strong> Tapez le mot “chat” dans le champ de recherche puis validez</p>
+<ul>
+<li>Quelle est l’URL de la page Web affichant les résultats de la recherche ?</li>
+<li>Quels sont les paramètres passés au serveur de Qwant via cette URL ? Et quelles sont leurs valeurs ?</li>
+</ul>
+<p><strong>4.</strong> Pour obtenir les résultats pour le mot “robot”, il suffit de remplacer la valeur du paramètre <code>q</code> par <code>robot</code>. Le paramètre <code>t</code> correspond au type de recherche souhaité : en remplaçant sa valeur par <code>images</code> on obtient les images correspondant au mot cherché. Essayez tout cela !</p>
+<p><strong>5.</strong> Lancez les outils de développement Web du navigateur (touche F12) puis actualisez refaites une recherche dans Qwant et observez la première requête. Vous devez constater que la ressource demandée est <code>/</code> et que des paramètres ont été passés au serveur dans la requête (comme sur l’écran ci-dessous).</p>
+<p><img src="data/parametres_url.png" alt="capture d'écran du navigateur"></p>
+<p><strong>Remarques</strong> : Comme les paramètres passés au serveur sont écrits dans l’URL, il n’est pas possible de transmettre des informations secrètes de cette façon (mot de passe, numéro de carte bancaire, etc.). Dans les autres cas, cela peut s’avérer très pratique car il est alors possible de copier directement le lien complet, comme par exemple :</p>
+<ul>
+<li>pour renvoyer vers un script Basthon : <a href="https://console.basthon.fr/?script=eJxLSU1TyE2syMwtzdUI0bTi5VIAApCAgq1CSLRBLEQgLb9IIVUhM08hBKoCBDLTgGJ2YMVIokj6UyGiRaklpUV5YEFeLl6ugqLMvBINmJ3RRjoK5joKFjoKhjoKZjoKljoKprGamgA2PCUl">https://console.basthon.fr/?script=eJxLSU1TyE2syMwtzdUI0bTi5VIAApCAgq1CSLRBLEQgLb9IIVUhM08hBKoCBDLTgGJ2YMVIokj6UyGiRaklpUV5YEFeLl6ugqLMvBINmJ3RRjoK5joKFjoKhjoKZjoKljoKprGamgA2PCUl</a></li>
+<li>ou encore vers un notebook Basthon : <a href="https://notebook.basthon.fr/?from=https://raw.githubusercontent.com/germainbecker/NSI/master/Premiere/Theme3_traitement_donnees_tables/DonneesTables.ipynb&amp;aux=https://raw.githubusercontent.com/germainbecker/NSI/master/Premiere/Theme3_traitement_donnees_tables/eleves.csv">https://notebook.basthon.fr/?from=https://raw.githubusercontent.com/germainbecker/NSI/master/Premiere/Theme3_traitement_donnees_tables/DonneesTables.ipynb&amp;aux=https://raw.githubusercontent.com/germainbecker/NSI/master/Premiere/Theme3_traitement_donnees_tables/eleves.csv</a></li>
+</ul>
+<blockquote>
+<p>Prenez une minute pour repérer les paramètres et leurs valeurs dans ces URL.</p>
+</blockquote>
+<p>En revanche, comme les navigateurs ont des limites sur la taille d’une URL, il ne faut pas que celle-ci soit trop longue, ce qui peut vite être le cas si la valeurs de paramètres représentent tout le code de certains programmes.</p>
+<h1 id="mise-en-oeuvre-avec-flask">Mise en oeuvre avec Flask</h1>
+<p><img src="data/Flask_logo.svg" alt="logo Flask"></p>
+<p>Voici la vidéo associée à cette activité :</p>
+<div class="video-responsive">
+    <iframe class="centre" width="560" height="315" src="https://www.youtube.com/embed/lvxqvNXniVc" title="YouTube video player" allowfullscreen=""></iframe>
+</div>
+<p>Dans cet exemple on va travailler avec un tableau d’élèves représentés par des dictionnaires :</p>
+<pre class=" language-python"><code class="prism  language-python">liste_eleves <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span><span class="token string">'nom'</span><span class="token punctuation">:</span> <span class="token string">'Dupont'</span><span class="token punctuation">,</span> <span class="token string">'prenom'</span><span class="token punctuation">:</span> <span class="token string">'Jean'</span><span class="token punctuation">,</span> <span class="token string">'classe'</span><span class="token punctuation">:</span> <span class="token string">'2A'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'nom'</span><span class="token punctuation">:</span> <span class="token string">'Dupont'</span><span class="token punctuation">,</span> <span class="token string">'prenom'</span><span class="token punctuation">:</span> <span class="token string">'Jeanne'</span><span class="token punctuation">,</span> <span class="token string">'classe'</span><span class="token punctuation">:</span> <span class="token string">'TG2'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'nom'</span><span class="token punctuation">:</span> <span class="token string">'Marchand'</span><span class="token punctuation">,</span> <span class="token string">'prenom'</span><span class="token punctuation">:</span> <span class="token string">'Marie'</span><span class="token punctuation">,</span> <span class="token string">'classe'</span><span class="token punctuation">:</span> <span class="token string">'2A'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'nom'</span><span class="token punctuation">:</span> <span class="token string">'Martin'</span><span class="token punctuation">,</span> <span class="token string">'prenom'</span><span class="token punctuation">:</span> <span class="token string">'Adeline'</span><span class="token punctuation">,</span> <span class="token string">'classe'</span><span class="token punctuation">:</span> <span class="token string">'1G1'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'nom'</span><span class="token punctuation">:</span> <span class="token string">'Dupont'</span><span class="token punctuation">,</span> <span class="token string">'prenom'</span><span class="token punctuation">:</span> <span class="token string">'Lucas'</span><span class="token punctuation">,</span> <span class="token string">'classe'</span><span class="token punctuation">:</span> <span class="token string">'2A'</span><span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre>
+<p>On va créer une route <code>/eleves</code> à laquelle on peut passer un paramètre <code>c</code> dont la valeur représente une classe. L’objectif est d’afficher à l’écran uniquement les élèves correspondant à la recherche. Par exemple, si on navigue vers l’URL <code>/eleves?c=2A</code> alors la page construite ne doit afficher que les élèves de 2A.</p>
+<blockquote>
+<p>Ici, on utilise directement la table <code>liste_eleves</code> pour simplifier mais on pourrait très bien charger une telle table à partir d’un fichier CSV (comme on l’a vu dans le thème sur le Traitement des données en table) ou d’une base de données (programme de Terminale) pour coller davantage à la réalité.</p>
+</blockquote>
+<p>Pour faire cela, on ajoute <code>listes_eleves</code> dans le script <code>mon_app.py</code> et on crée une nouvelle route <code>/eleves</code> comme ci-dessous :</p>
+<p><strong>mon_app.py</strong></p>
+<pre class=" language-python"><code class="prism  language-python"><span class="token comment"># ne pas oublier d'importer l'objet request</span>
+<span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span> render_template<span class="token punctuation">,</span> request
+
+liste_eleves <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span><span class="token string">'nom'</span><span class="token punctuation">:</span> <span class="token string">'Dupont'</span><span class="token punctuation">,</span> <span class="token string">'prenom'</span><span class="token punctuation">:</span> <span class="token string">'Jean'</span><span class="token punctuation">,</span> <span class="token string">'classe'</span><span class="token punctuation">:</span> <span class="token string">'2A'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'nom'</span><span class="token punctuation">:</span> <span class="token string">'Dupont'</span><span class="token punctuation">,</span> <span class="token string">'prenom'</span><span class="token punctuation">:</span> <span class="token string">'Jeanne'</span><span class="token punctuation">,</span> <span class="token string">'classe'</span><span class="token punctuation">:</span> <span class="token string">'TG2'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'nom'</span><span class="token punctuation">:</span> <span class="token string">'Marchand'</span><span class="token punctuation">,</span> <span class="token string">'prenom'</span><span class="token punctuation">:</span> <span class="token string">'Marie'</span><span class="token punctuation">,</span> <span class="token string">'classe'</span><span class="token punctuation">:</span> <span class="token string">'2A'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'nom'</span><span class="token punctuation">:</span> <span class="token string">'Martin'</span><span class="token punctuation">,</span> <span class="token string">'prenom'</span><span class="token punctuation">:</span> <span class="token string">'Adeline'</span><span class="token punctuation">,</span> <span class="token string">'classe'</span><span class="token punctuation">:</span> <span class="token string">'1G1'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'nom'</span><span class="token punctuation">:</span> <span class="token string">'Dupont'</span><span class="token punctuation">,</span> <span class="token string">'prenom'</span><span class="token punctuation">:</span> <span class="token string">'Lucas'</span><span class="token punctuation">,</span> <span class="token string">'classe'</span><span class="token punctuation">:</span> <span class="token string">'2A'</span><span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">"/eleves"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">eleves</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># on récupère la valeur du paramètre</span>
+    classe <span class="token operator">=</span> request<span class="token punctuation">.</span>args<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'c'</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># si cette valeur existe (n'est pas None)</span>
+    <span class="token keyword">if</span> classe<span class="token punctuation">:</span>
+        <span class="token comment"># on sélectionne les élèves correspondants</span>
+        eleves_selectionnes <span class="token operator">=</span> <span class="token punctuation">[</span>eleve <span class="token keyword">for</span> eleve <span class="token keyword">in</span> liste_eleves
+                               <span class="token keyword">if</span> eleve<span class="token punctuation">[</span><span class="token string">'classe'</span><span class="token punctuation">]</span> <span class="token operator">==</span> classe<span class="token punctuation">]</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token comment"># sinon aucun élève n'est sélectionné</span>
+        eleves_selectionnes <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+    <span class="token comment"># on passe le tableau eleves_selectionnes au template</span>
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">'eleves.html'</span><span class="token punctuation">,</span> eleves<span class="token operator">=</span>eleves_selectionnes<span class="token punctuation">)</span>
+</code></pre>
+<p><strong>Analyse</strong> :</p>
+<ul>
+<li>On utilise l’objet <code>request</code> qui contient toutes les informations inclues dans la requête HTTP.</li>
+<li>En particulier <code>request.args</code> est un dictionnaire contenant tous les paramètres passés dans l’URL et on peut accéder aux valeurs de paramètres grâce à leur nom : <code>requests.args['nom_du_parametre']</code> mais il préférable d’utiliser la syntaxe <code>requests.args.get('nom_du_parametre', '')</code> qui permet de ne pas déclencher d’erreurs en cas d’absence de la clé (sa valeur est remplacée par <code>''</code>). Ainsi, l’instructions <code>classe = request.args.get('c', '')</code> permet de stocker dans la variable <code>classe</code> la valeurs du paramètre.</li>
+<li>Si la valeur de ce paramètre est bien définie on peut alors filtrer les élèves cherchés en créant un tableau <code>eleves_selectionnes</code>. Sinon, ce tableau sera vide.</li>
+<li>On renvoie ensuite le template <code>eleves.html</code> auquel on passe le paramètre <code>eleves</code> dont la valeur est le tableau <code>eleves_selectionnes</code>.</li>
+</ul>
+<p>Ensuite, on va pouvoir exploiter ce tableau dans le template <code>eleves.html</code> qu’il reste à écrire :</p>
+<p><strong>templates/eleves.html</strong></p>
+<pre class=" language-html"><code class="prism  language-html"><span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>fr<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>X-UA-Compatible<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>IE=edge<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Mon appli<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>Élèves<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+    {% if eleves|length == 0 %}
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Aucun élève ne correspond à la recherche.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+    {% else %}
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Voici les élèves demandés :<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
+            {% for eleve in eleves %}
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>{{ eleve['nom'] }} {{ eleve['prenom'] }}, {{ eleve['classe'] }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+            {% endfor %}
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+    {% endif %}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<p><strong>Analyse</strong> : Cet exemple illustre toute la puissance des templates car on peut y écrire des structures Python (instructions, conditionnelles, boucles, etc.) grâce aux délimiteurs <code>{% %}</code>. Dans le “langage” des templates, il est important de noter que contrairement à Python, il faut fermer les différentes structures avec un <code>{% end.. %}</code></p>
+<ul>
+<li>
+<p>On utilise une instruction conditionnelle <code>{% if eleves|length == 0 %}</code> pour tester si le tableau <code>eleves</code> transmis pas la fonction <code>eleves()</code> est vide. Si c’est le cas, on écrit un paragraphe indiquant que le recherche n’a pas abouti, sinon on affiche les élèves correspondants à la recherche.</p>
+</li>
+<li>
+<p>Pour afficher les élèves, on utilise une boucle <code>for</code> qui parcoure tous les élèves du tableau <code>eleves</code> et qui affiche pour chacun d’eux, son nom, son prénom et sa classe. Chaque élève étant représenté par un dictionnaire, on accède aux valeurs grâce aux clés, exactement comme en Python.</p>
+</li>
+</ul>
+<p>Désormais, en naviguant vers l’URL <code>http://127.0.0.1:5000/eleves?c=2A</code>, le serveur fabrique et renvoie la page suivante :</p>
+<p><img src="data/eleves.png" alt="capture d'écran du navigateur"></p>
+<blockquote>
+<p>Le moteur de template utilisé par Flask s’appelle <strong>Jinja</strong>, voici un lien vers sa documentation où vous trouverez tous les éléments de syntaxe permettant de créer du contenu dynamique dans un template : <a href="https://jinja.palletsprojects.com/en/3.0.x/">https://jinja.palletsprojects.com/en/3.0.x/</a>.</p>
+</blockquote>
+<h1 id="✍️-à-vous-de-jouer-">✍️ À vous de jouer !</h1>
+<h2 id="exercice-1">Exercice 1</h2>
+<p>Modifiez le script pour que l’on puisse passer un nom en paramètre via l’URL et construire la page qui affiche tous les élèves portant ce nom de famille.</p>
+<p><em>Exemple</em> : En naviguant vers <code>http://127.0.0.1:5000/eleves?n=Dupont</code>, on doit obtenir la liste des élèves dont le nom est “Dupont”.</p>
+
+<h2 id="exercice-2">Exercice 2</h2>
+<p>Créer une fonction associée à une nouvelle route <code>/imc</code> à laquelle on peut passer deux paramètres :</p>
+<ul>
+<li>le premier correspond à la masse (en kg) d’un individu</li>
+<li>le second à la taille (en m) d’un individu.</li>
+</ul>
+<p>Cette fonction doit renvoyer une page affichant l’IMC (Indice de Masse Corporelle) de l’individu.</p>
+<blockquote>
+<p>Vous ne chercherez pas à gérer les erreurs de saisie d’un utilisateur (sauf si vous êtes en avance !).</p>
+</blockquote>
+
+<hr>
+<p><strong>Références</strong> :</p>
+<ul>
+<li>Documentation officielle de Flask : <a href="https://flask.palletsprojects.com/en/2.0.x/">https://flask.palletsprojects.com/en/2.0.x/</a></li>
+<li>Documentation officielle de Jinja : <a href="https://jinja.palletsprojects.com/en/3.0.x/">https://jinja.palletsprojects.com/en/3.0.x/</a></li>
+</ul>
+<hr>
+<p>Germain BECKER &amp; Sébastien POINT, Lycée Emmanuel Mounier, ANGERS</p>
+<p><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+

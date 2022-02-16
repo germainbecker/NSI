@@ -1,0 +1,187 @@
+﻿<h1 id="découverte-du-framework-flask">Découverte du framework Flask</h1>
+<p><img src="data/Flask_logo.svg" alt="logo Flask"></p>
+<p><strong>Flask</strong> est un micro-framework Python facilitant la création d’application Web. Il est parfait pour créer de manière simple et rapide de petites applications Web.</p>
+<p>Voici la vidéo associée à ce TP :</p>
+<div class="video-responsive">
+    <iframe class="centre" width="560" height="315" src="https://www.youtube.com/embed/Ihp_cG7c2Rk" title="YouTube video player" allowfullscreen=""></iframe>
+</div>
+<p>Voici un lien vers la documentation officielle de Flask (en anglais) : <a href="https://flask.palletsprojects.com/en/2.0.x/">https://flask.palletsprojects.com/en/2.0.x/</a></p>
+<blockquote>
+<p>Flask est un des frameworks Python les plus populaires (avec Django notamment) car il permet également de créer des applications Web très complexes.</p>
+</blockquote>
+<p>Sur les ordinateurs du lycée, Flask est installé. Si vous souhaitez l’installer chez vous, il suffit d’exécuter la ligne de commande</p>
+<pre class=" language-shell"><code class="prism  language-shell">pip install flask
+</code></pre>
+<blockquote>
+<p>On cherche ici la simplicité mais sachez qu’il est normalement préférable de créer un <em>environnement virtuel</em> dans lequel vous installerez Flask et tous les autres modules que vous souhaitez. La procédure d’installation est bien expliquée dans la documentation officielle de Flask : <a href="https://flask.palletsprojects.com/en/2.0.x/installation/">https://flask.palletsprojects.com/en/2.0.x/installation/</a>.</p>
+</blockquote>
+<h1 id="création-dune-application">Création d’une application</h1>
+<h2 id="une-application-minimale">Une application minimale</h2>
+<p>Dans le dossier <code>Documents</code> on commence par créer un dossier appelé <code>flask_demo</code> dans lequel on crée un fichier appelé <code>mon_app.py</code>. On obtient l’arborescence suivante :</p>
+<pre><code>/Documents
+    /flask_demo
+        /mon_app.py
+</code></pre>
+<p>Avec un éditeur de texte, on écrit les lignes suivantes dans le fichier <code>mon_app.py</code> :</p>
+<p><strong>mon_app.py</strong></p>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask
+
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">bonjour</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">"&lt;p&gt;Bienvenue sur mon site !&lt;/p&gt;"</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    app<span class="token punctuation">.</span>run<span class="token punctuation">(</span>debug<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+</code></pre>
+<blockquote>
+<p>Ces 7 lignes de code vont permettre de créer démarrer un serveur Web (local) contenant une page à laquelle on va pouvoir accéder dans un navigateur.</p>
+</blockquote>
+<p><strong>Analyse</strong> :</p>
+<ul>
+<li>les deux premières lignes permettent d’importer la classe <code>Flask</code> et de l’utiliser pour créer une application appelée <code>app</code> grâce à l’instruction <code>app = Flask(__name__)</code>.</li>
+<li>on a ensuite créé une <strong>route</strong> pour notre application, avec le décorateur <code>@app.route()</code> qui indique à Flask quelle URL doit déclencher un appel à la fonction qui suit : ici, si un utilisateur visite l’URL <code>'/'</code> c’est-à-dire la racine de notre site, alors la fonction <code>bonjour()</code> est appelée et cette fonction renvoie le code HTML qui doit être affiché par le navigateur.</li>
+<li>les deux dernières lignes permettent de lancer l’application avec <code>app.run()</code> lorsque le script <code>mon_app.py</code> est exécuté directement.</li>
+</ul>
+<blockquote>
+<p>On a donné la valeur <code>True</code> au paramètre <code>debug</code> de <code>app.run()</code> pour que le serveur se relance automatiquement à chaque modification de fichiers et pour voir dans le navigateur les éventuelles erreurs (à enlever pour une application en production !)</p>
+</blockquote>
+<h2 id="exécuter-lapplication">Exécuter l’application</h2>
+<p>Pour exécuter l’application, suffit d’exécuter le fichier <code>mon_app.py</code> dans un terminal.</p>
+<p>Pour cela, on lance un Terminal, on se déplace dans le répertoire <code>flask_demo</code> et on exécute le script <code>mon_app.py</code> :</p>
+<p><img src="data/execution_app.png" alt="capture écran terminal"></p>
+<p>Cela permet de lancer un serveur Web à l’adresse <code>http://127.0.0.1:5000/</code> (ne faites pas attention au message d’alerte).</p>
+<p>Il n’y a plus qu’à se rendre à cette adresse dans un navigateur. Si tout s’est passé correctement, vous devriez voir la page suivante :</p>
+<p><img src="data/navigateur.png" alt="capture d'écran du navigateur"></p>
+<blockquote>
+<p><strong>Remarques</strong> : Pour arrêter le serveur, il suffit de taper Ctrl + C dans le terminal. Pour relancer le serveur après un arrêt, il suffit d’exécuter à nouveau le script <code>mon_app.py</code> avec l’instruction <code>python mon_app.py</code>.</p>
+</blockquote>
+<h1 id="ajout-de-templates">Ajout de templates</h1>
+<p>On a écrit le code HTML à renvoyer dans la fonction <code>bonjour()</code>, ce n’est pas très pratique surtout lorsque le contenu HTML est important, et surtout cela nous fait mélanger du code Python et du code HTML, ce qui est à éviter.</p>
+<p>Pour éviter cela, on peut créer ce que l’on appelle des <strong>templates</strong>, c’est-à-dire des modèles de documents HTML.</p>
+<p>Modifions notre application pour illuster cela. On crée un dossier <code>templates</code> dans le répertoire <code>flask_demo</code> dans lequel on va créer un fichier <code>index.html</code>. Cela donne l’arborescence suivante :</p>
+<pre><code>/flask_demo
+    /templates
+        /index.html
+    /mon_app.py
+</code></pre>
+<p>Dans le template <code>index.html</code> on écrit le code :</p>
+<p><strong>index.html</strong></p>
+<pre class=" language-html"><code class="prism  language-html"><span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>fr<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>X-UA-Compatible<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>IE=edge<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Mon appli<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Bienvenue sur mon site !<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<p>et on modifie notre script <code>mon_app.py</code> de la façon suivante :</p>
+<p><strong>mon_app.py</strong></p>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span> render_template
+
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">bonjour</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"index.html"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    app<span class="token punctuation">.</span>run<span class="token punctuation">(</span>debug<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+</code></pre>
+<p><strong>Analyse</strong> : La fonction <code>bonjour()</code> ne renvoie plus directement le code HTML : on utilise la méthode <code>render_template()</code> pour indiquer à Flask, que le code HTML à renvoyer doit être construit à partir d’un template, que l’on passe en paramètres. Ici, c’est le template <code>index.html</code> qui est chargé, interprété et transmis au navigateur.</p>
+<p>Si on actualise l’URL <code>http://127.0.0.1:5000/</code> on voit la même chose que précédemment mais on a utilisé un template. Vous pouvez afficher le code source de la page et constater qu’il correspond au code HTML du template <code>index.html</code>.</p>
+<h1 id="fabrication-dune-page-par-le-serveur">Fabrication d’une page par le serveur</h1>
+<p>La plupart des sites Web actuels sont dits <em>dynamiques</em> car ils sont capables de fabriquer des pages Web qui peuvent varier en fonction de certaines informations ou actions d’un utilisateur.</p>
+<p>Pour illustrer cela, profitons-en pour créer une deuxième route <code>/heure</code> qui permet d’afficher l’heure actuelle.</p>
+<p>On commence par créer la seconde route en <em>ajoutant</em> ceci à notre script :</p>
+<p><strong>mon_app.py</strong></p>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">import</span> datetime  <span class="token comment"># ne pas oublier d'importer le module datetime</span>
+
+@app<span class="token punctuation">.</span>route<span class="token punctuation">(</span><span class="token string">"/heure"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">heure</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    date_heure <span class="token operator">=</span> datetime<span class="token punctuation">.</span>datetime<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    h <span class="token operator">=</span> date_heure<span class="token punctuation">.</span>hour
+    m <span class="token operator">=</span> date_heure<span class="token punctuation">.</span>minute
+    s <span class="token operator">=</span> date_heure<span class="token punctuation">.</span>second
+    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">"heure.html"</span><span class="token punctuation">,</span> heure<span class="token operator">=</span>h<span class="token punctuation">,</span> minute<span class="token operator">=</span>m<span class="token punctuation">,</span> seconde<span class="token operator">=</span>s<span class="token punctuation">)</span>
+</code></pre>
+<p><strong>Analyse</strong> :</p>
+<ul>
+<li>La première ligne permet de construire, grâce à la méthode <code>datetime.now()</code>, un objet <code>date_heure</code> qui représente la date et l’heure actuelle.</li>
+<li>On peut ensuite stocker l’heure, les minutes et les secondes dans <code>h</code>, <code>m</code> et <code>s</code> grâce aux attributs <code>hour</code>, <code>minute</code> et <code>second</code>.</li>
+<li>Enfin, on passe à la méthode <code>render_template()</code> le nom du template (ici <code>heure.html</code>) ainsi que trois paramètres <code>heure</code>, <code>minute</code> et <code>seconde</code> qui prennent respectivement les valeurs <code>h</code>, <code>m</code> et <code>s</code>. <strong>Ainsi, le template va pouvoir utiliser ces trois paramètres pour construire la page web</strong>.</li>
+</ul>
+<p>Il reste à créer le template <code>heure.html</code> dans le répertoire <code>templates</code> :</p>
+<p><strong>heure.html</strong></p>
+<pre class=" language-html"><code class="prism  language-html"><span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>fr<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>X-UA-Compatible<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>IE=edge<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Mon appli<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>Quelle heure est-il ?<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Il est {{ heure }} h {{ minute }} min {{ seconde }} s.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<p><strong>Analyse</strong> : On utilise les délimiteurs <code>{{ ... }}</code> pour utiliser des variables ou des expressions dans le template. Celles-ci sont remplacées par leurs valeurs lorsque de la production du template. Par exemple, <code>{{ heure }}</code> sera remplacée par la valeur de la variable <code>h</code> calculée par la fonction <code>bonjour()</code>.</p>
+<p>Il n’y a plus qu’à observer le résultat dans le navigateur en visitant <code>http://127.0.0.1:5000/heure</code> :</p>
+<p><img src="data/heure.png" alt="capture d'écran du navigateur"></p>
+<p><strong><span>✍️</span> À vous de jouer !</strong></p>
+<p>Modifiez la fonction <code>bonjour()</code> et le template <code>heure.html</code> de manière à pouvoir afficher l’heure mais également la date actuelle, par exemple : “Il est 14 h 2 min 23 s et nous sommes le 7/2/2022”.</p>
+<blockquote>
+<p><span>🆘</span> La documentation du module <code>datetime</code> précise quels sont les attributs permettant d’accéder au jour, au mois et à l’année d’un objet <code>datetime.datetime</code> : <a href="https://docs.python.org/fr/3/library/datetime.html#available-types">https://docs.python.org/fr/3/library/datetime.html#available-types</a></p>
+</blockquote>
+
+    Voir la solution
+    <p><strong>mon_app.py</strong></p>
+    <pre class="language-python">@app.route("/heure")
+def heure():
+    date_heure = datetime.datetime.now()
+    h = date_heure.hour
+    m = date_heure.minute
+    s = date_heure.second
+    annee = date_heure.year
+    mois = date_heure.month
+    jour = date_heure.day
+    return render_template("heure.html",
+                           heure=h,
+                           minute=m,
+                           seconde=s,
+                           annee=annee,
+                           mois=mois,
+                           jour=jour)
+    </pre>
+    <p><strong>templates/heure.html</strong></p>
+    <pre class="language-html">&lt;body&gt;
+    &lt;h1&gt;Quelle heure est-il ? &lt;/h1&gt;
+    &lt;p&gt;Il est {{ heure }} h {{ minute }} min {{ seconde }} s et nous sommes le {{jour}}/{{ mois }}/{{ annee }}.&lt;/p&gt;
+&lt;/body&gt;</pre>
+
+<h1 id="bilan">Bilan</h1>
+<ul>
+<li>Flask permet de créer une application Web.</li>
+<li>On peut ajouter des routes à cette application en associant une fonction à une URL</li>
+<li>Lorsqu’un utilisateur envoie une requête en se rendant à une URL, Flask exécute la fonction correspondant à l’URL.</li>
+<li>Cette fonction renvoie un template, qui est un modèle (ou un <em>gabarit</em>) de fichier HTML préalablement définit dans un dossier <code>templates</code>, qui sera renvoyé en guise de réponse au navigateur.</li>
+<li>Il est possible (et très courant) que la fonction passe des paramètres pouvant être utilisés pour produire le template renvoyé.</li>
+</ul>
+<hr>
+<p><strong>Références</strong> :</p>
+<ul>
+<li>Documentation officielle de Flask : <a href="https://flask.palletsprojects.com/en/2.0.x/">https://flask.palletsprojects.com/en/2.0.x/</a>.</li>
+<li>Cours de David Roche pour l’idée de la page dynamique sur l’heure : <a href="https://pixees.fr/informatiquelycee/prem/c28a.html">https://pixees.fr/informatiquelycee/prem/c28a.html</a>.</li>
+</ul>
+<hr>
+<p>Germain BECKER &amp; Sébastien POINT, Lycée Emmanuel Mounier, ANGERS</p>
+<p><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+

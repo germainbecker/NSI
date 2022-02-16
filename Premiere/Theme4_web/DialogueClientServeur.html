@@ -1,0 +1,162 @@
+﻿<h1 id="le-dialogue-client-serveur-sur-le-web">Le dialogue client-serveur sur le Web</h1>
+<p>Sur Internet, on distingue deux catégories d’ordinateurs :</p>
+<ul>
+<li>les <strong>clients</strong> : les ordinateurs des internautes comme vous.</li>
+<li>les <strong>serveurs</strong> (Web): ce sont des ordinateurs puissants qui stockent (on dit aussi <em>hébergent</em>) et délivrent des sites Web aux internautes, c’est-à-dire aux clients.</li>
+</ul>
+<img class="centre image-responsive" src="data/client-server-model.svg" alt="modèle client-serveur">
+<p>Le World Wide Web utilise le <strong>modèle client-serveur</strong>. Il s’agit d’un mode d’échange de données dans lequel :</p>
+<ul>
+<li>les <em>clients</em> envoie des <em>requêtes</em></li>
+<li>le <em>serveur</em> attend les requêtes des clients et y répond</li>
+</ul>
+<p>Dans le cas du Web, c’est le protocole HTTP qui permet cet échange entre client et serveur, ou sa version sécurisée HTTPS.</p>
+<h1 id="http-le-protocole-du-web">HTTP, le protocole du Web</h1>
+<p>Le protocole <strong>HTTP</strong> (<em>HyperText Transfer Protocol</em>, soit “protocole de transfert hypertexte”) est un protocole de type client-serveur qui définit les messages envoyés entre le navigateur (client) et le serveur Web (serveur).</p>
+<p>Les messages envoyés par le client sont appelés des <strong>requêtes</strong>, ceux envoyés en retour par le serveur sont appelés des <strong>réponses</strong>.</p>
+<img class="centre image-responsive" src="data/requete-reponse.png" alt="requête et réponse">
+<p>Concrètement le client va envoyer une requête au serveur pour accéder à une page Web et le serveur va lui répondre en lui envoyant la page Web.</p>
+<h2 id="déroulé-dune-interaction-client-serveur">Déroulé d’une interaction client-serveur</h2>
+<p>Supposons qu’un navigateur fasse une requête pour accéder à la page <code>http://www.info-mounier.fr/premiere_nsi/essai.html</code>.</p>
+<ol>
+<li>Le navigateur Web isole le nom du serveur <code>www.info-mounier.fr</code></li>
+<li>Le navigateur Web effectue une requête DNS pour obtenir l’adresse IP du serveur. Dans notre cas, l’adresse IP est <code>2001:8d8:100f:f000::20e</code> (IPv6).</li>
+<li>Le navigateur Web se connecte à la machine dont l’adresse IP est <code>2001:8d8:100f:f000::20e</code>, en utilisant le protocole TCP sur le port 80.</li>
+<li>Une fois la connexion établie, le navigateur Web peut effectuer la <strong>requête</strong> pour demander la ressource souhaitée (ici le document <code>/premiere_nsi/essai.html</code>). Concrètement, il envoit un certain nombre de messages au serveur en se conformant au protocole HTTP (on parle de <em>requête HTTP</em>).</li>
+<li>La <strong>réponse</strong> est envoyée au navigateur (on parle de <em>réponse HTTP</em>) qui parcourt le fichier et affiche la page correspondante.</li>
+</ol>
+<h1 id="requête-http-et-réponse-du-serveur">Requête HTTP et réponse du serveur</h1>
+<blockquote>
+<p>✍️ Faites l’activité 1 : <a href="https://info-mounier.fr/premiere_nsi/web/activite_requetes_reponses.php" target="_blank">Analyse des réponses et requêtes HTTP</a></p>
+</blockquote>
+<h2 id="requête-http">Requête HTTP</h2>
+<p>Une requête HTTP (client vers serveur) possède la syntaxe suivante :</p>
+<ul>
+<li>la première ligne s’appelle la <strong>ligne de commande</strong>, elle contient la méthode utilisée, l’URL de la ressource demandée et la version du protocole utilisée</li>
+<li>les lignes suivantes correpondent à toutes les <strong>en-têtes de la requête</strong> où l’on trouve : le nom du serveur, le client utilisé, le typde de document demandé, etc.</li>
+<li>une <strong>ligne vide</strong> pour séparer les en-têtes du corps de la requête (si le corps de la requête n’est pas vide)</li>
+<li>le <strong>corps de la requête</strong></li>
+</ul>
+<p>En naviguant vers <code>http://www.info-mounier.fr/premiere_nsi/essai.html</code>, le navigateur envoie la requête HTTP suivante :</p>
+<pre><code>GET /premiere_nsi/essai.html HTTP/1.1
+Host: info-mounier.fr
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:96.0) Gecko/20100101 Firefox/96.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Pragma: no-cache
+Cache-Control: no-cache
+</code></pre>
+<blockquote>
+<p>Dans notre cas, le corps de la requête est vide mais ce n’est pas toujours le cas, en particulier lorsque le navigateur doit transmettre des paramètres au serveur (nous allons voir cela un peu plus tard).</p>
+</blockquote>
+<h3 id="les-méthodes-de-requête-http">Les méthodes de requête HTTP</h3>
+<p>Il existe plusieurs méthodes pour une requête HTTP. Les plus importantes sont :</p>
+<ul>
+<li><code>GET</code> : c’est la plus courante pour demander une ressource au serveur. Cette requête ne modifie pas la ressource.</li>
+<li><code>HEAD</code> : cette méthode ne demande que des informations sur la ressource, sans demander la ressource elle-même.</li>
+<li><code>POST</code> : Cette méthode est utilisée pour soumettre des données en vue d’un traitement côté serveur. C’est celle employée lorsque l’on envoie au serveur les données d’un formulaire (nous verrons cela plus tard)</li>
+</ul>
+<h2 id="réponse-http">Réponse HTTP</h2>
+<p>Une réponse HTTP (serveur vers client) possède la syntaxe suivante :</p>
+<ul>
+<li>la première ligne s’appelle la <em>ligne de statut</em>, elle indique la version du protocole utilisée, le <em>code réponse</em> ainsi que le <em>texte réponse</em>.</li>
+<li>les lignes suivantes correspondent à toutes les <em>en-têtes de la réponse</em> où l’on trouve : le type de document envoyé, le type de serveur, les cookies éventuels, etc.</li>
+<li>une ligne vide pour séparer les en-têtes du corps de la réponse (si le corps de la réponse n’est pas vide)</li>
+<li>le <em>corps de la réponse</em> qui est le contenu de la ressource demandée</li>
+</ul>
+<p>La réponse à la requête précédente ressemble à ceci :</p>
+<pre><code>HTTP/1.1 200 OK
+Content-Type: text/html
+Transfer-Encoding: chunked
+Connection: keep-alive
+Keep-Alive: timeout=15
+Date: Sun, 06 Feb 2022 10:59:26 GMT
+Server: Apache
+Last-Modified: Mon, 15 Mar 2021 15:16:52 GMT
+ETag: W/"159-5bd94bd53f5fa"
+Content-Encoding: gzip
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;title&gt;Informatique au lycée Mounier ANGERS&lt;/title&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Protocole HTTP&lt;/h1&gt;
+    &lt;p&gt;Ceci est une page pour comprendre le protocole &lt;b&gt;HTTP&lt;/b&gt;&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<blockquote>
+<p>Ici, le corps de la réponse est le code HTML de la ressource demandée : <code>/premiere_nsi/essai.html</code>.</p>
+</blockquote>
+<h3 id="les-différents-codes-de-réponse">Les différents codes de réponse</h3>
+<p>On peut trouver tous les codes de réponse possibles à l’adresse <a href="https://developer.mozilla.org/fr/docs/Web/HTTP/Status">https://developer.mozilla.org/fr/docs/Web/HTTP/Status</a>. Voici les plus importants :</p>
+<ul>
+<li><code>200</code> : Lorsque la ressource est disponible, la requête est donc un succès. Le texte-réponse associé est « OK ».</li>
+<li><code>404</code> : Lorsque la ressource est indisponible. Le texte-réponse associé est « NOT FOUND ».</li>
+<li><code>403</code> : Lorsque la permission d’accéder à la ressource est refusée. Le texte-réponse associé est « FORBIDDEN ».</li>
+<li><code>500</code> : Lorsque le serveur rencontre une erreur interne. Le texte réponse associé est « INTERNAL ERROR ».</li>
+</ul>
+<h2 id="échanges-chiffrés-avec-https">Échanges chiffrés avec HTTPS</h2>
+<p>Le protocole HTTP a un problème majeur : les données sont échangées « en clair ». Cela signifie que, n’importe qui ayant des droits suffisants sur une des machines par lesquelles transitent les requêtes et les réponses HTTP, peut intercepter les paquets échangés et connaître leurs contenus. Or, certaines données échangées sont très sensibles, comme un mot de passe, des coordonnées bancaires, …</p>
+<p>Il est important que les messages échangés contenant des données sensibles soient chiffrées. Dans ce cas, le client et le serveur utilisent le protocole <strong>HTTPS</strong> (pour <em>HyperText Transfer Protocol Secure</em>) pour communiquer. Ainsi, si un pirate informatique intercepte les paquets échangés, il ne pourra observer qu’une suite d’octets d’apparence aléatoire car seuls le client et le serveur sont capables de déchiffrer les paquets.</p>
+<p>Le protocole HTTPS est la combinaison du protocole HTTP et d’un protocole de sécurisation des données échangées sur Internet (comme SSL ou TLS). Les pages chiffrées sont reconnaissables dans la barre d’adresse car leur URL commence toujours par <code>https://...</code> souvent précédé d’un pictogramme représentant un cadenas.</p>
+<h1 id="passage-de-paramètres-à-un-site">Passage de paramètres à un site</h1>
+<h2 id="site-statique-vs.-site-dynamique">Site <em>statique</em> vs. site <em>dynamique</em></h2>
+<p>Sur le Web, on trouve des sites <em>statiques</em> et des sites <em>dynamiques</em>.</p>
+<p>Un site statique est réalisé à l’aide des langages HTML, CSS et JavaScript (côté client) uniquement. Dans ce cas, tous les internautes demandant une page (par une requête HTTP) reçoivent le même contenu (réponse HTTP). On retrouve le schéma évoqué au début :</p>
+<p><img src="data/site_statique.png" alt="site web statique"></p>
+<p class="image-licence">Cas d'un site statique. Crédits : OpenClassrooms</p>
+<p>Le serveur stocke les pages web et les envoie aux clients qui les demandent, sans les modifier. Cela peut être adapté pour un site “vitrine” par exemple.</p>
+<p>De nos jours, la plupart des sites permettent l’interaction avec l’utilisateur (par un formulaire par exemple), on parle alors de sites <em>dynamiques</em>. Dans ce cas, il y a une étape intermédiaire entre la requête et la réponse : le serveur peut fabriquer la page demandée en fonction de certaines informations ou actions d’un utilisateur.</p>
+<p><img src="data/site_dynamique.png" alt="site web dynamique"></p>
+<p class="image-licence">Cas d'un site dynamique. Crédits : OpenClassrooms</p>
+<p>Les internautes demandant une page ne reçoivent pas tous le même contenu. Par exemple, lorsque vous vous connectez sur l’ENT vous demandez tous la même page Web mais chacun obtient une page d’accueil différente (qui dépend de votre nom, de votre classe, de vos matières, etc.).</p>
+<h2 id="fabrication-dune-page-par-le-serveur">Fabrication d’une page par le serveur</h2>
+<p>Une page est <em>fabriquée</em> côté serveur par un langage de programmation (côté serveur) comme Python, PHP, Ruby, etc.</p>
+<p>Nous allons voir dans l’activité 2 comment créer un site dynamique grâce au langage Python, et plus précisément avec le framework Flask.</p>
+<blockquote>
+<p><span class="emoji">✍️</span> Faites l’activité 2 : <a href="https://info-mounier.fr/premiere_nsi/web/activite_decouverte_flask.php" target="_blank">Découverte du framework Flask</a>.</p>
+</blockquote>
+<p>Concrètement, les pages fabriquées par le serveur dépendent souvent des données transmises par l’utilisateur. En effet, <strong>le client peut passer des paramètres au serveur lors de la requête HTTP</strong> (étape 1 ci-dessus) :</p>
+<ul>
+<li>soit directement <strong>via l’URL</strong> (cf. paragraphe suivant)</li>
+<li>soit en utilisant des éléments graphiques comme les <strong>formulaires</strong> permettant à l’utilisateur de saisir des valeurs et de les envoyer au serveur (cf. Chapitre 3 sur les formulaires et leur traitement).</li>
+</ul>
+<p>Pour finir, nous abordons le passage de paramètres via l’URL.</p>
+<h2 id="passage-de-paramètres-via-lurl">Passage de paramètres via l’URL</h2>
+<p>L’activité 3 montre comment on peut passer des paramètres à un serveur via l’URL (dans la requête HTTP) et comment le serveur peut récupérer et traiter ces informations de manière à construire la page Web qui sera renvoyée au client (réponse HTTP). La mise en oeuvre est faite avec Flask.</p>
+<blockquote>
+<p><span class="emoji">✍️</span> Faites l’activité 3 : <a href="https://info-mounier.fr/premiere_nsi/web/activite_parametres_url.php" target="_blank">Transmettre des paramètres dans l’URL</a>.</p>
+</blockquote>
+<p>Le client peut passer des paramètres à un serveur via l’URL de la ressource demandée en utilisant un point d’interrogation <code>?</code> suivi des différents paramètres écrits sous la forme <code>nom=valeur</code>. S’il y a plusieurs paramètres, ceux-ci sont séparés par une esperluette <code>&amp;</code>.</p>
+<p>Ainsi, lorsque des paramètres sont transmis au serveur dans une URL, celle-ci possède la syntaxe suivante :</p>
+<pre><code>protocole://nom-ou-adresse:port/chemin?n1=v1&amp;n2=v2&amp;…&amp;nk=vk
+</code></pre>
+<p>où <code>n1</code>, <code>n2</code>, …, <code>nk</code> sont les noms des paramètres et <code>v1</code>, <code>v2</code>, …, <code>vk</code> leurs valeurs respectives. Le <code>chemin</code> était aux origines du Web le chemin “physique” vers le fichier à qui sont transmises les données mais il ne correspond désormais plus toujours à une réalité “physique” mais plus à une abstraction gérée par le serveur comme une <em>route</em> associée à une fonction chargée de récupérer et traiter les données.</p>
+<h1 id="bilan">Bilan</h1>
+<ul>
+<li>Le <strong>protocole HTTP</strong> permet d’assurer les échanges entre <strong>clients</strong> et <strong>serveurs</strong> sur le Web.</li>
+<li>Un client envoie une <strong>requête</strong> HTTP au serveur qui lui envoie en retour une <strong>réponse</strong> HTTP avec la ressource demandée (si elle existe, sinon la réponse contient un code et un message d’erreur).</li>
+<li>De nos jours, la plupart des sites sont <em>dynamiques</em> : il y a une étape intermédiaire entre la requête et la réponse : le serveur peut fabriquer la page demandée en fonction de certaines informations ou actions d’un utilisateur. Cette “fabrication” est réalisée par un langage de programmation côté serveur.</li>
+<li>Par exemple, le protocole HTTP permet d’envoyer au serveur des <em>paramètres de requêtes</em> via l’URL ou via un formulaire (voir chapitre 3). Le serveur peut utiliser ces paramètres par fabriquer le contenu de la page à renvoyer au client.</li>
+<li>Le protocole HTTP transmet les paramètres <em>en clair</em> au serveur, ce qui n’assure aucune sécurité. Il faut utiliser le protocole HTTPS pour sécuriser les transmissions car ce dernier est couplé à une méthode de chiffrement des données (programme de Terminale).</li>
+<li>On a visualisé et mis en oeuvre ce dialogue entre client et serveur avec le framework Flask qui permet de créer facilement un serveur Web avec le langage Python.</li>
+</ul>
+<hr>
+<p><strong>Références</strong></p>
+<ul>
+<li>Manuel <em>Numérique et Sciences Informatiques</em>, niveau Première, T. BALABONSKI, S. CONCHON, J.-C. FILLIATRE, K. NGUYEN, éditions Ellipses.</li>
+<li>Article Wikipédia sur le protocole HTTP : <a href="https://fr.wikipedia.org/wiki/Hypertext_Transfer_Protocol">https://fr.wikipedia.org/wiki/Hypertext_Transfer_Protocol</a></li>
+<li>Cours OpenClassrooms <em>Concevez votre site Web avec PHP et MySQL</em> : <a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/4237646-decouvrez-le-fonctionnement-dun-site-ecrit-en-php">https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/4237646-decouvrez-le-fonctionnement-dun-site-ecrit-en-php</a>.</li>
+</ul>
+<hr>
+<p>Germain BECKER &amp; Sébastien POINT, Lycée Emmanuel Mounier, ANGERS</p>
+<p><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
