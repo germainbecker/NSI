@@ -125,7 +125,7 @@
 <ul>
 <li>état <strong>élu</strong> : lorsqu'il est en cours d'exécution, c'est-à-dire qu'il obtient l'accès au processeur</li>
 <li>état <strong>prêt</strong> : lorsqu'il attend de pouvoir accéder au processeur</li>
-<li>état <strong>en bloqué</strong> : lorsque le processus est interrompu car il a besoin d'attendre une ressource quelconque (entrée/sortie, allocation mémoire, etc.)</li>
+<li>état <strong>bloqué</strong> : lorsque le processus est interrompu car il a besoin d'attendre une ressource quelconque (entrée/sortie, allocation mémoire, etc.)</li>
 </ul>
 <p>Il est important de comprendre que le processeur ne peut gérer qu'un seul processus à la fois : le processus <em>élu</em>.</p>
 <p>En pratique, lorsqu'un processus est créé il est dans l'état <em>prêt</em> et attend de pouvoir accéder au processeur (d'être <em>élu</em>). Lorsqu'il est élu, le processus est exécuté par le processeur mais cette exécution peut être interrompue :</p>
@@ -136,7 +136,7 @@
 <p>Lorsque le processus bloqué finit par obtenir la ressource attendue, il peut théoriquement reprendre son exécution mais probablement qu'un autre processus a pris sa place et est passé dans l'état élu. Auquel cas, le processus qui vient d'être "débloqué" repasse dans l'état <em>prêt</em> en attendant d'être à nouveau élu.</p>
 <p>Ainsi, l'état d'un processus au cours de sa vie varie entre les états <em>prêt</em>, <em>élu</em> et <em>bloqué</em> comme le résume le schéma suivant :</p>
 <p><img class="centre image-responsive" src="data/etats_processus.svg" width="500"></p>
-<p>Lorsqu'un processus est interrompu, il doit pouvoir reprendre à l'endroit même où il a été interrompu. Pour cela, le système d'exploitation conserve pour chaque processus créé une zone mémoire (appelée PCB, pour <em>Process Control Bloc</em>, ou bloc de contrôle du processus) dans laquelle sont stockées les informations sur le processus : son PIB, son état, la valeur des registres lors de sa dernière interruption, la zone mémoire allouée par le processus lors de son exécution, les ressources utilisées par le processus (fichiers ouverts, connexions réseaux en cours d'utilisation, etc.).</p>
+<p>Lorsqu'un processus est interrompu, il doit pouvoir reprendre à l'endroit même où il a été interrompu. Pour cela, le système d'exploitation conserve pour chaque processus créé une zone mémoire (appelée PCB, pour <em>Process Control Bloc</em>, ou bloc de contrôle du processus) dans laquelle sont stockées les informations sur le processus : son PID, son état, la valeur des registres lors de sa dernière interruption, la zone mémoire allouée par le processus lors de son exécution, les ressources utilisées par le processus (fichiers ouverts, connexions réseaux en cours d'utilisation, etc.).</p>
 <blockquote><p>✍️ Faites les exercices 1 et 2.</p>
 </blockquote>
 
