@@ -1,0 +1,157 @@
+﻿<h1 id="formulaire-dune-page-web">Formulaire d’une page Web</h1>
+<p>Dans une page Web, un <strong>formulaire</strong> permet à un utilisateur de renseigner et transmettre des données au serveur, qui peut les utiliser pour :</p>
+<ul>
+<li>(construire et) renvoyer une page Web</li>
+<li>enregistrer les données dans un fichier, ou plus généralement dans une base de données</li>
+</ul>
+<h1 id="création-dun-formulaire">Création d’un formulaire</h1>
+<blockquote>
+<p><span class="emoji">✍️</span> Regardez la vidéo suivante de 00:00 à 10:40 (<a href="https://youtu.be/FdA1P7dY_18" target="_blank">https://youtu.be/FdA1P7dY_18</a>)
+</p></blockquote>
+<div class="video-responsive">
+    <iframe class="centre" width="560" height="315" src="https://www.youtube-nocookie.com/embed/FdA1P7dY_18?end=640" title="YouTube video player" allowfullscreen=""></iframe>
+</div>
+<p>Pour intégrer un formulaire dans une page Web, il suffit d’utiliser la balise <code>form</code> dans le fichier HTML.</p>
+<p>Un formulaire est constitué :</p>
+<ul>
+<li>des différents éléments permettant de saisir des informations, sélectionner des options, téléverser des fichiers, etc.</li>
+<li>d’un bouton permettant de transmettre ces données au serveur, grâce au protocole HTTP (ou HTTPS)</li>
+</ul>
+<p>Voici en vrac, quelques éléments de formulaires :</p>
+<pre class=" language-html"><code class="prism  language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment">&lt;!-- Champ de type "text" --&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>nom<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Nom : <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>nom<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>nom<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment">&lt;!-- Champ de type "password" --&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mdp<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Mot de passe : <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mdp<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mdp<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>
+            <span class="token comment">&lt;!-- Champ de type "email" --&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Email : <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment">&lt;!-- Champ de type "radio" --&gt;</span>
+        Aimez-vous le chocolat ?
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>radio<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>choix-chocolat<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>choix1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>choix1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Non<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>radio<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>choix-chocolat<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>choix2<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>choix2<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Oui<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment">&lt;!-- Choix dans une liste d'options avec la balise &lt;select&gt; --&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>moyen-transport<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Moyen de transport : <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>transport<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>moyen-transport<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>bus<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Bus<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>voiture<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Voiture<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>velo<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Vélo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>autre<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Autre<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment">&lt;!-- Zone de texte plus grande avec la balise &lt;textarea&gt; --&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>commentaire<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Écrire un commentaire : <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>textarea</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>commentaire<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>commentaire<span class="token punctuation">"</span></span> <span class="token attr-name">rows</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>6<span class="token punctuation">"</span></span> <span class="token attr-name">cols</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>50<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>textarea</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment">&lt;!-- Bouton d'envoi du formulaire --&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Envoyer le formulaire<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment">&lt;!-- &lt;button type="submit"&gt;Envoyer le formulaire&lt;/button&gt; --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<p>Et voici l’affichage à l’écran de ce formulaire dans un navigateur :</p>
+<p><img src="data/formulaire.png" alt="capture d'écran du formulaire"></p>
+<p><strong>Analyse</strong> :</p>
+<p>On a associé un <em>libellé</em> à chaque élément du formulaire grâce à l’élément <code>&lt;label&gt;</code>. Il constitue une sorte de légende ou description du champ. Cet élément est techniquement rattaché au champ de façon qu’un lecteur d’écran lirait le contenu du libellé lorsque le champ a le focus, et qu’un clic sur le libellé permet de donner le focus au champ associé.</p>
+<p>Pour associer un élément <code>&lt;label&gt;</code> avec un élément <code>&lt;input&gt;</code>, il faut fournir un identifiant à l’élément <code>&lt;input&gt;</code> sous la forme d’un attribut <code>id</code>. Ensuite, on peut renseigner l’attribut <code>for</code> de l’élément <code>&lt;label&gt;</code> avec la valeur de cet identifiant.</p>
+<p><strong>Remarques</strong> :</p>
+<ul>
+<li>Il existe d’autres éléments de formulaire, vous en trouverez la liste complète en suivant ces liens si vous en avez besoin :
+<ul>
+<li>les différents types de champs <code>&lt;input&gt;</code> : <a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/Input">https://developer.mozilla.org/fr/docs/Web/HTML/Element/Input</a></li>
+<li>tous les éléments de formulaire : <a href="https://www.w3schools.com/html/html_form_elements.asp">https://www.w3schools.com/html/html_form_elements.asp</a></li>
+</ul>
+</li>
+<li>On peut ajouter un attribut <code>required</code> à tous les éléments obligatoires du formulaire. Le formulaire ne pourra pas être envoyé tant que tous les champs obligatoires ne sont pas renseignés. Néanmoins, comme il s’agit d’une vérification (du navigateur) côté client, n’importe qui peut retirer cet attribut : c’est pourquoi une vérification côté serveur est toujours nécessaire.</li>
+</ul>
+<h1 id="transmission-des-données-au-serveur-web">Transmission des données au serveur Web</h1>
+<blockquote>
+<p><span class="emoji">✍️</span> Regardez la vidéo suivante de 10:40 à 19:00 (<a href="https://youtu.be/FdA1P7dY_18?t=640" target="_blank">https://youtu.be/FdA1P7dY_18?t=640</a>)
+</p></blockquote>
+<div class="video-responsive">
+    <iframe class="centre" width="560" height="315" src="https://www.youtube-nocookie.com/embed/FdA1P7dY_18?start=640&amp;end=1140" title="YouTube video player" allowfullscreen=""></iframe>
+</div>
+<p>Les données d’un formulaire sont transmises au serveur lorsque l’utilisateur clique sur le bouton d’envoi du formulaire. Pour cela, il est nécessaire de définir les deux attributs <code>action</code> et <code>method</code> de l’élément <code>&lt;form&gt;</code>.</p>
+<h2 id="les-attributs-action-et-method">Les attributs <code>action</code> et <code>method</code></h2>
+<p>La valeur de l’attribut <code>action</code> est l’URL où doivent être envoyées les données collectées par le formulaire.</p>
+<p>La valeur de l’attribut <code>method</code> définit la méthode HTTP utilisée pour envoyer les données : cela peut être <code>GET</code> ou <code>POST</code>.</p>
+<p>Par exemple, si on veut transmettre les données du formulaire à l’URL <code>/ma-page-de-traitement</code> de notre site en utilisant la méthode <code>POST</code>, alors on écrira :</p>
+<pre class=" language-html"><code class="prism  language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/ma-page-de-traitement<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>POST<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token comment">&lt;!-- tous les éléments du formulaire --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<h2 id="la-méthode-get">La méthode <code>GET</code></h2>
+<p>La méthode <code>GET</code> transmet les données du formulaire via l’URL, comme nous l’avons vu dans l’activité sur le passage de paramètres via l’URL.</p>
+<p>Par exemple, si on complète le formulaire précédent de la façon suivante</p>
+<p><img src="data/formulaire_complete.png" alt="capture d'écran du formulaire"></p>
+<p>alors les données sont transmises dans l’URL comme suit :</p>
+<pre><code>/ma-page-de-traitement?nom=prof&amp;mdp=1234&amp;email=&amp;choix-chocolat=2&amp;transport=velo&amp;commentaire=
+</code></pre>
+<p>Dans ce cas, la première ligne (la <em>ligne de commande</em>) d’en-tête de la requête <code>GET</code> est de la forme</p>
+<pre><code>GET /ma-page-de-traitement?nom=prof&amp;mdp=1234&amp;email=&amp;choix-chocolat=2&amp;transport=velo&amp;commentaire= HTTP/1.1
+</code></pre>
+<p>et le corps de la requête est vide.</p>
+<p><strong>Analyse</strong> : Il est important de noter que :</p>
+<ul>
+<li>les noms des paramètres correspondent aux valeurs des attributs <code>name</code> des éléments du formulaire (<code>nom</code>, <code>mdp</code>, <code>email</code>, <code>choix-chocolat</code>, <code>transport</code> et <code>commentaire</code>)</li>
+<li>les valeurs des paramètres correspondent aux informations saisies par l’utilisateur ou aux valeurs des attributs <code>value</code> selon les éléments du formulaire</li>
+</ul>
+<p><strong>Quand utiliser <code>GET</code> ?</strong></p>
+<p>Comme les données sont visibles dans l’URL, cette méthode est adaptée uniquement si les données transmises ne sont pas à caractère confidentiel. De plus, comme nous l’avons déjà dit, les URL ayant une taille maximale, il ne faut pas non plus que les valeurs transmises soient trop longues.</p>
+<h2 id="la-méthode-post">La méthode <code>POST</code></h2>
+<p>La méthode <code>POST</code> quant à elle, transmet les données au serveur dans le corps de la requête. Concrètement, cela signifie que les données ne sont pas visibles dans l’URL mais qu’elles sont bien présentes dans le corps de la requête. Ainsi, si on transmet le formulaire précédent avec la méthode <code>POST</code>, la requête envoyée au serveur est de cette forme :</p>
+<pre><code>POST /ma-page-de-traitement HTTP/1.1
+...
+puis toutes les en-têtes
+...
+[ ligne vide ]
+nom=prof&amp;mdp=1234&amp;email=&amp;choix-chocolat=2&amp;transport=velo&amp;commentaire=
+</code></pre>
+<blockquote>
+<p><span>⚠️</span> Cette méthode <code>POST</code> ne permet pas de transmettre les données de manière chiffrée : n’importe qui interceptant le paquet correspondant à la requête aurait accès aux données transmises. Pour que la transmission soient sécurisée il faut combiner la méthode <code>POST</code> avec le  protocole sécurisé HTTPS qui dispose d’une couche de chiffrement (comme SSL ou TLS). Dans ce cas, les données sont toujours présentes dans le corps de la requête mais ont été chiffrées et sont donc inexploitables pour quiconque les récupérerait… (ceci est au programme de Terminale).</p>
+</blockquote>
+<p><strong>Quand utiliser <code>POST</code> ?</strong></p>
+<p>C’est la méthode à utiliser lorsque les données à transmettre sont à caractère confidentiel (à combiner avec un protocole chiffré !). Les données transmises peuvent avoir un longueur importante car elles sont dans le corps de la requête et ne sont plus soumises à une taille maximale autorisée d’URL.</p>
+<p>C’est aussi la méthode à utiliser lorsque la requête entraîne des modifications sur le serveur (par exemple, dans un fichier du serveur ou dans la base de données du site) : une publication sur un blog, un validation d’achat sur un site de commerce, etc. Il faut d’ailleurs faire attention à ne pas actualiser une telle requête, car celle-ci serait envoyée deux fois au serveur, avec le risque de payer deux fois une commande !</p>
+<h1 id="traitement-des-données-dun-formulaire-côté-serveur">Traitement des données d’un formulaire côté serveur</h1>
+<p>Un serveur Web peut récupérer et exploiter les données d’un formulaire. Vous allez voir comment en faisant l’activité suivante :</p>
+<p><img src="data/Flask_logo.svg" alt="logo Flask"></p>
+<blockquote>
+<p><span class="emoji">✍️</span> Faites l'activité <a href="/premiere_nsi/web/activite_traitement_formulaire.php" target="_blank">Traitement des données d'un formulaire avec Flask</a>.
+</p></blockquote>
+<h1 id="bilan">Bilan</h1>
+<ul>
+<li>Un formulaire est un élément HTML que l’on crée avec la balise <code>&lt;form&gt;</code>. Il existe beaucoup d’éléments de formulaires, chacun ayant un objectif précis et particulier.</li>
+<li>Les formulaires sont devenus des éléments indispensables pour les applications Web car ils permettent aux utilisateurs d’envoyer des données au serveur, indispensables pour le fonctionnement de la plupart des sites Web actuels.</li>
+<li>Ces données peuvent être envoyées avec la méthode GET ou avec la méthode POST, chacune ayant ses avantages et ses inconvénients.</li>
+<li>La méthode GET transmet les données d’un formulaire au serveur directement via l’URL, ce qui la rend inadaptée à des transmissions de données sensibles.</li>
+<li>La méthode POST transmet les données dans le corps de la requête, mais cela n’en fait pas pour autant un moyen sécurisé de transmission des données. Pour cela, il faudrait coupler la méthode POST avec le protocole HTTPS qui permet de chiffrer les données transmises (pas au programme de Première NSI).</li>
+<li>Le serveur peut récupérer les données d’un formulaire et les exploiter pour construire une page de réponse à renvoyer à l’utilisateur.</li>
+<li>L’activité proposée avec le framework Flask a permis de mettre en oeuvre l’envoi, la récupération et le traitement de données d’un formulaire côté serveur, ainsi que la construction d’une page de réponse.</li>
+</ul>
+<hr>
+<p><strong>Références</strong></p>
+<ul>
+<li>Manuel <em>Numérique et Sciences Informatiques</em>, niveau Première, T. BALABONSKI, S. CONCHON, J.-C. FILLIATRE, K. NGUYEN, éditions Ellipses.</li>
+<li>Cours de Gilles Lassus sur les requêtes GET et POST : <a href="https://glassus.github.io/premiere_nsi/T6_IHM_Web/6.3_Get_Post_Formulaires/cours/">https://glassus.github.io/premiere_nsi/T6_IHM_Web/6.3_Get_Post_Formulaires/cours/</a></li>
+<li>Cours OpenClassrooms <em>Concevez votre site Web avec PHP et MySQL</em> : <a href="https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/4237646-decouvrez-le-fonctionnement-dun-site-ecrit-en-php">https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/4237646-decouvrez-le-fonctionnement-dun-site-ecrit-en-php</a>.</li>
+</ul>
+<hr>
+<p>Germain BECKER &amp; Sébastien POINT, Lycée Emmanuel Mounier, ANGERS</p>
+<p><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
