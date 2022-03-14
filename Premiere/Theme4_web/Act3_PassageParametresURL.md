@@ -105,7 +105,7 @@ def eleves():
 
 **Analyse** :
 - On utilise l'objet `request` qui contient toutes les informations inclues dans la requête HTTP.
-- En particulier `request.args` est un dictionnaire contenant tous les paramètres passés dans l'URL et on peut accéder aux valeurs de paramètres grâce à leur nom : `requests.args['nom_du_parametre']` mais il préférable d'utiliser la syntaxe `requests.args.get('nom_du_parametre', '')` qui permet de ne pas déclencher d'erreurs en cas d'absence de la clé (sa valeur est remplacée par `''`). Ainsi, l'instructions `classe = request.args.get('c', '')` permet de stocker dans la variable `classe` la valeurs du paramètre.
+- En particulier `request.args` est un dictionnaire contenant tous les paramètres passés dans l'URL et on peut accéder aux valeurs de paramètres grâce à leur nom : `requests.args['nom_du_parametre']` mais il préférable d'utiliser la syntaxe `requests.args.get('nom_du_parametre')` qui permet de ne pas déclencher d'erreurs en cas d'absence de la clé (la valeur renvoyée par `.get()` est alors remplacée par `None`). Ainsi, l'instruction `classe = request.args.get('c')` permet de stocker dans la variable `classe` la valeur du paramètre `c` (ou la valeur `None` en cas d'absence du paramètre).
 - Si la valeur de ce paramètre est bien définie on peut alors filtrer les élèves cherchés en créant un tableau `eleves_selectionnes`. Sinon, ce tableau sera vide.
 - On renvoie ensuite le template `eleves.html` auquel on passe le paramètre `eleves` dont la valeur est le tableau `eleves_selectionnes`.
 
