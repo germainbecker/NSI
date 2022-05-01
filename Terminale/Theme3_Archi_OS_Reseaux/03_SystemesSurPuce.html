@@ -1,0 +1,260 @@
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 style="font-size: 30px; text-align: center">Systèmes sur puce (SoC)</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h1><blockquote class="citation">
+    <p>« Les circuits, c’est le grand moteur de l’électronique, de l’informatique. Sans les circuits il n’y en aurait pas ! C’est la progression des circuits qui permet le monde numérique. »
+        <br><strong>G. Berry, Collège de France, avril 2008</strong>.</p>
+</blockquote><p>En guise d'introduction, regardons les 10 premières minutes du cours <em>Des circuits aux systèmes sur puces</em> de <strong>Gérard Berry</strong> au Collège de France : <a href="https://www.college-de-france.fr/site/gerard-berry/course-2008-02-01-10h30.htm">https://www.college-de-france.fr/site/gerard-berry/course-2008-02-01-10h30.htm</a></p>
+<p><a href="https://www.college-de-france.fr/site/gerard-berry/course-2008-02-01-10h30.htm" target="_blank"><img class="centre image-responsive" src="data/cours_Gerard_Berry.png" width="600"></a></p>
+<p>Avant de parler des systèmes sur puce, un petit détour s'impose pour bien comprendre l'évolution des circuits, et donc des ordinateurs, au cours du temps.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Du-premier-ordinateur-aux-smartphones">Du premier ordinateur aux smartphones<a class="anchor-link" href="#Du-premier-ordinateur-aux-smartphones">&#182;</a></h1><h2 id="L'ENIAC">L'ENIAC<a class="anchor-link" href="#L'ENIAC">&#182;</a></h2><p>L'<a href="https://fr.wikipedia.org/wiki/ENIAC">ENIAC</a>, créé en 1945, est le premier ordinateur entièrement électronique pouvant être programmé pour résoudre, en principe, tous les problèmes calculatoires.</p>
+<p><img class="centre image-responsive" src="data/eniac.jpg" alt="photo de l'eniac" width="600"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote class="information">
+    <p>C'est l'armée américaine qui a financé ce projet pour les besoins de son laboratoire de recherche en balistique. Ce sont <a href="https://fr.wikipedia.org/wiki/ENIAC#Programmeuses" target="_blank">six femmes</a> qui sont les premières programmeuses de l'ENIAC, pour un calcul balistique.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Cet ordinateur était capable de réaliser 100 000 additions par seconde, mais ne pouvait gérer que 357 multiplications ou 38 divisions par seconde. Cette "puissance" de calcul lui a permi en 1949 de calculer 2000 décimales de $\pi$ en 70 heures.</p>
+<p>Son poids est de 30 tonnes et il occupe la taille d'une maison individuelle. Sa consommation est de 150 kW : il faudrait la puissance électrique d'une vingtaine de maisons individuelles pour l'alimenter.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Le-calculateur-AGC-des-missions-Apollo">Le calculateur AGC des missions Apollo<a class="anchor-link" href="#Le-calculateur-AGC-des-missions-Apollo">&#182;</a></h2><p>Le programme Apollo a contribué à l’essor de l’informatique : l'envoi d'hommes sur la lune a imposé une puissance de calcul importante dans un espace restreint. Cela a conduit à la conception de l'ordinateur AGC (pour <em>Apollo Guidance Computer</em>) que l'on retrouvait à la fois dans le module de commande et dans le module lunaire Apollo.</p>
+<p><img class="centre image-responsive" src="data/agc_modules.png" alt="les deux modules AGC" width="700"></p>
+<p><span class="image-licence" style="display: block;text-align: center;font-size: 0.9em;color: #aaa;">Source : Ressource Eduscol sur 
+    <a href="https://eduscol.education.fr/document/7283/download" target="_blank">les circuits</a>
+</span></p>
+<p>Cet ordinateur effectue des traitements en temps réel, ce qui est révolutionnaire pour l'époque : il a été utilisé (en temps réel donc) par l'astronaute-pilote pour recueillir et fournir des informations de vol, et pour le contrôle automatique de toutes les fonctions de navigation du vaisseau spatial.</p>
+<p><img class="centre image-responsive" src="data/agc.jpg" alt="photo de l'eniac"></p>
+<p><span class="image-licence" style="display: block;text-align: center;font-size: 0.9em;color: #aaa;">L'AGC à gauche et l'interface utilisateur à droite. Source :
+    <a href="https://en.wikipedia.org/wiki/Apollo_Guidance_Computer#/media/File:Agc_view.jpg" target="_blank">Wikimedia Commons</a>
+</span></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Cet ordinateur ne pèse que 32 kg et sa consommation électrique est suffisamment faible pour être embarqué dans une capsule spatiale fonctionnant sur batteries. Tout cela a été rendu possible grâce à l'utilisation de <strong>circuits intégrés</strong>, qui ont fait leur apparition en 1961.</p>
+<blockquote class="information">
+    <p>La NASA a d'ailleurs acheté au début du programme 60 % de la production mondiale des circuits imprimés pour les besoins des ordinateurs des vaisseaux Apollo.</p>
+</blockquote><p>Le processeur est constitué de plus de 5000 portes <a href="https://fr.wikipedia.org/wiki/Fonction_NON-OU">NOR</a> (on dit <em>NON-OU</em> en français) réalisées à l'aide de <strong>circuits intégrés</strong>. Voici une photo de l'une des portes NOR de l'AGC :</p>
+<p><img class="centre image-responsive" src="data/agc_nor.jpg" alt="une porte NOR de l'AGC" width="300"></p>
+<p>On voit bien sur l'une des pages du schéma (1/16) de l'AGC l'omniprésence des circuits NOR :</p>
+<p><img class="centre image-responsive" src="data/agc_schema.png" alt="une page du schéma de l'AGC"></p>
+<p>Sa mémoire de stockage (mémoire morte) est de 72 ko (soit 36 864 mots de 16 bits) et contenait à la fois les programmes et le système d'exploitation. Sa mémoire de travail (mémoire vive) est de seulement 4 ko. Le système d’exploitation pouvait exécuter six tâches simultanément et gérer l’éjection de tâches moins prioritaires s’il était surchargé.</p>
+<p>L’AGC a été élaboré sous la supervision de l’équipe de Margaret Hamilton, qui se tient ci-dessous auprès du code du logiciel de navigation produit pour le programme Apollo en 1969.</p>
+<p><img class="centre image-responsive" src="data/Margaret_Hamilton.jpg" alt="Margaret Hamilton à côté du code du logiciel de navigation" width="300"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Le-&quot;premier&quot;-microprocesseur-:-le-4004-d'Intel">Le "premier" microprocesseur : le 4004 d'Intel<a class="anchor-link" href="#Le-&quot;premier&quot;-microprocesseur-:-le-4004-d'Intel">&#182;</a></h2><p>En 1971, la société Intel crée et commercialise le premier microprocesseur : le <strong>4004</strong>.</p>
+<p><img class="centre image-responsive" src="data/intel_4004.jpg" alt="l'intel 4004" width="300"></p>
+<p><span class="image-licence" style="display: block;text-align: center;font-size: 0.9em;color: #aaa;">L'Intel 4004. Crédits : Thomas Nguyen, licence CC BY-SA 4.0, source :
+    <a href="https://fr.wikipedia.org/wiki/Intel_4004#/media/Fichier:Intel_C4004.jpg" target="_blank">Wikimedia Commons</a>
+</span></p>
+<p>On parle de <strong>microprocesseur</strong> car c'est la première intégration de toutes les fonctionnalités d'un processeur sur un <strong>unique</strong> circuit intégré. On y retrouve les principaux constituants des processeurs (voir cours de Première sur <a href="https://info-mounier.fr/premiere_nsi/archi_os/modele_archi.php#Principe-de-l&#39;architecture">Le modèle d'architecture d'un ordinateur</a> si nécessaire) :</p>
+<ul>
+<li><span style="color:red">un décodeur d'instruction</span></li>
+<li><span style="color:LimeGreen">une UAL (Unité Arithmétique et Logique)</span></li>
+<li><span style="color:DeepSkyBlue">des registres de mémoires vives</span></li>
+<li><span style="color:darkviolet">un compteur de programme (PC pour *Program Counter*)</span></li>
+<li><span style="color:brown">le contrôle du séquencement des opérations</span></li>
+</ul>
+<p><img class="centre image-responsive" src="data/schema_4004.png" alt="schéma de l'Intel 4004"></p>
+<p><span class="image-licence" style="display: block;text-align: center;font-size: 0.9em;color: #aaa;">Schéma du microprocesseur Intel 4004. Source : Ressource Eduscol sur 
+    <a href="https://eduscol.education.fr/document/7283/download" target="_blank">les circuits</a>
+</span></p>
+<p>Les dimensions du circuit intégré sont de 3,81 mm de long sur 2.79 mm de large, soit seulement 10,62 mm². Il comporte 2300 transistors et possède une puissance d'exécution de 92 600 opérations par seconde à une fréquence maximale de 740 kHz, soit une puissance comparable à celle de l'ENIAC.</p>
+<blockquote class="information">
+    <p>Le 4004 d'Intel offre ainsi des performances équivalentes aux 66 m3 de l'ENIAC concentrées sur seulement 10 mm² !</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Malgré une intégration plus grande, le microprocesseur 4004, comme tous les autres microprocesseurs, ne peut fonctionner seul : il doit être associé à des mémoires vives (pour les données non permanentes), des mémoires mortes (pour le(s) programme(s)), des gestionnaires d'entrées sorties, des horloges, etc. Le microprocesseur contrôle l'ensemble du fonctionnement et des échanges d'information en utilisant des liaisons appelées BUS. On obtient ainsi un <em>système minimum</em> pour obtenir un ordinateur :</p>
+<p><img class="centre image-responsive" src="data/systeme_minimum.png" alt="schéma d'un système minimum"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="D&#233;but-de-la-course-&#224;-l'int&#233;gration">D&#233;but de la course &#224; l'int&#233;gration<a class="anchor-link" href="#D&#233;but-de-la-course-&#224;-l'int&#233;gration">&#182;</a></h2><p>Après la création du prmier micropocesseur en 1971, commence une course à l'intégration : concevoir et fabriquer des circuits de plus en plus petits contenant de plus en plus de transistors. Cette course est toujours d'actualité aujourd'hui !</p>
+<p>Ainsi, en 1975 est apparu le premier microprocesseur bon marché permettant l'essor des ordinateurs personnels : le 6502 de MOS. C'est celui qui a équipé le tout premier ordinateur APPLE (l'APPLE 1).</p>
+<blockquote class="information">
+    <p>Le site <a href="http://visual6502.org/JSSim/index.html" target="_blank">Visual 6502</a> permet de visualiser le fonctionnement interne de ce processeur lors de l'exécution d'un programme.</p>
+</blockquote><p>Ce système minimum, comme nous l’avons vu avec le processeur 4004, peut être réalisé en interconnectant plusieurs circuits sur une même carte. Les progrès de l’intégration permettront, un peu plus tard, d’intégrer l’ensemble de ce système minimum sur <strong>une seule puce</strong>, on parle alors de <strong>système sur puce</strong>, ou <em>System on Chip</em> soit <strong>SoC</strong> en anglais.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="La-loi-de-Moore">La loi de Moore<a class="anchor-link" href="#La-loi-de-Moore">&#182;</a></h2><p>En 1975, Gordon Moore, l'un des trois fondateurs d'Intel, prédit que le nombre de transistors des microprocesseurs sur une puce de <em>silicium</em> allait doubler tous les deux ans. Cette extrapolation empirique se révèle finalement vraie puisqu'entre 1971 et 2001, la densité des transistors a doublé toutes les 1,96 années.</p>
+<p><img class="centre image-responsive" src="data/Loi_de_Moore.png" alt="loi de Moore"></p>
+<p><span class="image-licence" style="display: block;text-align: center;font-size: 0.9em;color: #aaa;">Croissance du nombre de transistors dans les microprocesseurs Intel. <br>Crédits : QcRef87, licence CC BY-SA 3.0, source : 
+    <a href="https://fr.wikipedia.org/wiki/Loi_de_Moore#/media/Fichier:Loi_de_Moore.png" target="_blank">Wikimedia Commons</a>
+</span></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ainsi, de 2300 transistors pour l'Intel 4004 on est passé à des milliards de transistors désormais. Tout cela a été rendu possible grâce à la miniaturisation de la gravure sur les puces. Ces gravures étant maintenant gérées par des logiciels de CAO (conception assistée par ordinateur), on utilise des ordinateurs pour en fabriquer de nouveaux encore plus puissants. Cela fait dire à Gérard Berry que :</p>
+<blockquote class="information">
+    <p>« L'informatique est une science qui s'invente elle-même. », G. Berry, Collège de France.</p>
+</blockquote><p>Cette augmentation exponentielle du nombre de transistors a pour conséquence que les machines électroniques sont devenues de plus en plus petites et de moins en moins coûteuses tout en devenant de plus en plus rapides et de plus en plus puissantes (nous allons y revenir !).</p>
+<h2 id="Et-les-PC-?">Et les PC ?<a class="anchor-link" href="#Et-les-PC-?">&#182;</a></h2><p><img class="centre image-responsive" src="data/interieur_pc.png" alt="intérieur d'un pc" width="400"></p>
+<p>Les ordinateurs "de bureau" (PC) disposent d'une carte mère accueillant le microprocesseur (= CPU, caché sous un système de refroidissement), relié à de nombreux composant additionnels commes des disques durs, des cartes graphiques, des extentions mémoire, des cartes réseaux. Dans les cartes mères modernes, en particulier celles des ordinateurs portables, l'intégration est beaucoup plus poussée encore.</p>
+<p>L'aboutissement de toute cette miniaturisation est l'intégration de ces composants sur une seule puce, comme c'est le cas de nos smartphones actuels !</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Les-syst&#232;mes-sur-puce-(SoC-en-anglais)">Les syst&#232;mes sur puce (SoC en anglais)<a class="anchor-link" href="#Les-syst&#232;mes-sur-puce-(SoC-en-anglais)">&#182;</a></h1><p>Un <strong>SoC</strong>, pour <em>System on Chip</em>, accueille donc sur une même puce un microprocesseur (CPU), de la mémoire vive (RAM), un circuit graphique (GPU) et des composants WiFi, Bluetooth, etc. dans une taille très réduite.</p>
+<p><img class="centre image-responsive" src="data/puce.png" alt="une puce"></p>
+<h2 id="L'exemple-ultime-du-smartphone">L'exemple ultime du smartphone<a class="anchor-link" href="#L'exemple-ultime-du-smartphone">&#182;</a></h2><p>Un smartphone intègre les mêmes composants qu'un PC (CPU, RAM, carte graphique, interfaces réseaux, etc.) mais sur une seule puce d'une centaine de mm² seulement !</p>
+<p>On trouve sur cette puce les circuits suivants :</p>
+<ul>
+<li><strong>Microprocesseurs</strong> : calculs généraux</li>
+<li><strong>Digital Signal Processor (DSP)</strong> : calculs numériques généraux, spécialités : addition / multiplication, matrices</li>
+<li><strong>Accélérateurs graphiques</strong> : calculs parallèles sur images</li>
+<li><strong>Accélérateurs divers</strong> : compression image / son, cryptographie, ...</li>
+<li><strong>Contrôleurs de périphériques</strong> : mémoires, disques, réseau, ...</li>
+<li><strong>Gestionnaires internes</strong> : horloges, puissance, ...</li>
+</ul>
+<p><img class="centre image-responsive" src="data/soc.png" alt="Les sous-circuits d'un SoC" width="500"></p>
+<p><span class="image-licence" style="display: block;text-align: center;font-size: 0.9em;color: #aaa;">Un SoC. Source : <a href="https://www.college-de-france.fr/media/gerard-berry/UPL6555088133665514575_20080201.pdf" target="_blank">support</a> de la présentation de Gérard Berry.
+</span></p>
+<p>Les smartphones sont donc des <strong>systèmes sur puce</strong> (= <strong>SoC</strong>) qui intègrent tout ce que la technologie peut nous apporter : un microprocesseur puissant, de la mémoire, des interfaces de communication rapides (4G, 5G, Wifi...), un contrôleur graphique (GPU) digne d'une console de jeu, tout cela fonctionnant sur batterie avec une durée de fonctionnement de plusieurs heures.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Voici des photos d'un iPhone 4S démonté. Comme vous le voyez, le nombre de composants est très réduit au regard des fonctionnalités. La puce principale SoC est la puce A5.</p>
+<p><img class="centre image-responsive" src="data/iphone4s_1.png" alt="iphone démonté" width="700">
+<img class="centre image-responsive" src="data/iphone4s_3.png" alt="iphone démonté" width="700">
+<img class="centre image-responsive" src="data/iphone4s_2.png" alt="iphone démonté" width="700"></p>
+<p><span class="image-licence" style="display: block;text-align: center;font-size: 0.9em;color: #aaa;">Un iPhone 4S démonté. Crédits : <a href="https://www.lecluse.fr/nsi/NSI_T/archi/soc/" target="_blank">Cours</a> de Olivier Lécluse sur les SoC.
+</span></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Autres-exemples-de-SoC">Autres exemples de SoC<a class="anchor-link" href="#Autres-exemples-de-SoC">&#182;</a></h2><p>D'autres exemples de SoC sont abordés dans les exercices.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Avantages-et-inconv&#233;nients">Avantages et inconv&#233;nients<a class="anchor-link" href="#Avantages-et-inconv&#233;nients">&#182;</a></h1><p>Le premier avantage évident des SoC est leur <strong>taille réduite</strong>. Mais cette réduction de la taille s'accompagne d'autres avantages très intéressants :</p>
+<ul>
+<li>le <strong>coût est réduit</strong> : en effet, le coût de construction d'une puce est essentiellement lié à sa surface : comme ils sont petits, les SoC demandent moins de matière et dans le même temps on en produit davantage.</li>
+<li>la <strong>consommation d'énergie est réduite</strong> : en effet, une part importante part dans le câblage, qui est réduit dans un SoC</li>
+<li>un SoC est <strong>silencieux</strong> : la consommation d'énergie étant beaucoup faible, il n'est plus nécessaire d'intégrer des systèmes de refroidissement lourds, volumineux et sonores. </li>
+<li>la <strong>performances sont meilleures</strong> : on peut augmenter la fréquence puisque les signaux se propagent sur de plus courtes distances, on gagne ainsi en performance</li>
+</ul>
+<blockquote class="information">
+    <p>Tous ces avantages font que désormais des grands constructeurs, comme Apple, souhaite en équiper toute leur gamme d'ordinateurs.</p>
+</blockquote><p>Les SoC sont pour le moment moins performants que les ordinateurs de bureau "haut de gamme" et <strong>ne peuvent pas être personnalisés</strong>, mais le principal inconvénient des SoC est qu'une défaillance quelconque d'un composant nécessite le <strong>remplacement complet du SoC</strong>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h1><ul>
+<li>« Les circuits, c’est le grand moteur de l’électronique, de l’informatique. Sans les circuits il n’y en aurait pas ! C’est la progression des circuits qui permet le monde numérique. » <strong>G. Berry, Collège de France, avril 2008.</strong></li>
+<li>En particulier, ce sont les progrès dans la miniaturisation de gravure des circuits sur les puces de silicium qui a permis tous ces progrès depuis une cinquantaine d'années. La loi de Moore, qui prévoyait que le nombre de transistors gravés sur une puce allait doubler tous les 2 ans, s'est révélée très fidèle à la réalité.</li>
+<li>Les ordinateurs sont de plus en plus miniatures et on parvient à créer des ordinateurs complets qui tiennent désormais sur une seule puce de quelques dizaines de mm² : ce sont les <strong>SoC</strong> (<em>System on Chip</em>) ou <strong>systèmes sur puce</strong>. Ces SoC équipent les smartphones actuels mais aussi différents microntroleurs, des objets connectés, et même certains ordinateurs portables.</li>
+<li>Une puce d'un SoC peut désormais intégrer les circuits suivants : microprocesseurs, DSP (<em>Digital Signal Processor</em>, qui sont spécialisés dans les calculs numériques), GPU (<em>Graphics Processing Unit</em> = processeur graphique spécialisé dans les calculs sur les images), des contrôleurs de périphériques, des accélérateurs divers : de traitement des images ou du son, de cryptographie (pour la sécurité), de réseaux de neurones (NPU = <em>Neural Processing Unit</em>, pour l'IA)...</li>
+<li>Les SoC ont des tailles très réduites et leur coût de fabrication est faible. Mais ils sont aussi moins consommateurs d'énergie, puisqu'on se passe de cablâges coûteux en énergie, et donc plus silencieux car il n'est plus nécessaire d'utiliser des systèmes de refroidissements sonores. Enfin, les performances sont meilleures puisque les signaux se propagent sur des plus courtes distances et on peut donc augmenter la fréquence des processeurs.</li>
+<li>En revanche, les SoC ne peuvent pas être personnalisés et une défaillance d'un composant quelconque impose le remplacement complet du SoC.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Références</strong> :</p>
+<ul>
+<li>Ressource Eduscol sur <a href="https://eduscol.education.fr/document/7283/download">les circuits</a></li>
+<li>Cours d'Olivier Lécluse sur les <a href="https://www.lecluse.fr/nsi/NSI_T/archi/soc/">systèmes sur puce</a></li>
+<li>Articles Wikipédia : <a href="https://fr.wikipedia.org/wiki/ENIAC">ENIAC</a>, <a href="https://fr.wikipedia.org/wiki/Apollo_Guidance_Computer">Apollo Guidance Computer</a>, <a href="https://fr.wikipedia.org/wiki/Intel_4004">Intel 4004</a>, <a href="https://fr.wikipedia.org/wiki/Loi_de_Moore">Loi de Moore</a></li>
+<li>Cours de Gérard Berry au collège de France : <a href="https://www.college-de-france.fr/site/gerard-berry/course-2008-02-01-10h30.htm">Des circuits aux systèmes sur puces</a> ainsi que le <a href="https://www.college-de-france.fr/media/gerard-berry/UPL6555088133665514575_20080201.pdf">document de présentation</a>.</li>
+<li>Cours de David Roche sur les <a href="https://dav74.github.io/site_nsi_term/c18c/">systèmes sur puce</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p>Germain BECKER, Lycée Mounier, ANGERS</p>
+<p>Ressource éducative libre distribuée sous <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a></p>
+<p><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+
