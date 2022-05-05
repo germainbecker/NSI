@@ -1,17 +1,16 @@
-
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<blockquote><p><em>greedy algorithms</em> en anglais, l'adjectif "greedy" signifiant avare/glouton.</p>
+<h1 style="font-size: 30px; text-align: center;">Algorithmes gloutons</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>On dit <em>greedy algorithms</em> en anglais, l'adjectif "greedy" signifiant avare/glouton.</p>
 </blockquote>
-<p><img src="data/monsieurGlouton.jpg" alt="monsieurGlouton"></p>
-<p>Les <em>algorithmes gloutons</em> forment une catégorie d'algorithmes permettant de donner une solution à des problèmes d'optimisation qui visent à maximiser/minimiser une quantité (<strong>plus court</strong> chemin (GPS), <strong>plus petit</strong> temps d'exécution, <strong>meilleure</strong> organisation d'un emploi du temps, etc.)</p>
-<p>Le principe d'un algorithme glouton est le suivant :</p>
-<ul>
-<li>résoudre un problème étape par étape</li>
-<li>à chaque étape, faire le choix optimal de moindre coût (de meilleur gain)</li>
-</ul>
-<p>Le choix effectué à chaque étape n'est jamais remis en cause, ce qui fait que cette stratégie permet d'aboutir rapidement à une solution au problème de départ. C'est en ce sens que l'adjectif <em>greedy</em> (glouton/avare) caractérise ces algorithmes : ils terminent rapidement (<em>glouton</em>) sans fournir beaucoup d'efforts (<em>avare</em>).</p>
+<p><img class="centre image-responsive" src="data/monsieurGlouton.jpg" alt="monsieur glouton" width="300"></p>
 
 </div>
 </div>
@@ -19,13 +18,29 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Le-probl&#232;me-du-rendu-de-monnaie">Le probl&#232;me du rendu de monnaie<a class="anchor-link" href="#Le-probl&#232;me-du-rendu-de-monnaie">&#182;</a></h1><h2 id="Enonc&#233;">Enonc&#233;<a class="anchor-link" href="#Enonc&#233;">&#182;</a></h2><p>Vous êtes commerçant et devez rendre de la monnaie à vos clients de façon optimale, c'est-à-dire avec le <strong>nombre minimal</strong> de pièces et de billets.</p>
+<div class="important">
+    <p>Les <strong>algorithmes gloutons</strong> forment une catégorie d'algorithmes permettant de donner une solution à des <em>problèmes d'optimisation</em> qui visent à <em>maximiser/minimiser</em> une quantité (<strong>plus court</strong> chemin (GPS), <strong>plus petit</strong> temps d'exécution, <strong>meilleure</strong> organisation d'un emploi du temps, etc.)</p>
+    <p>Le principe d'un algorithme glouton est le suivant :</p>
+    <ul>
+        <li>résoudre un problème étape par étape</li>
+        <li>à chaque étape, faire le choix optimal de moindre coût (de meilleur gain)</li>
+    </ul>
+    <p>Le choix effectué à chaque étape n'est jamais remis en cause, ce qui fait que cette stratégie permet d'aboutir rapidement à une solution au problème de départ. C'est en ce sens que l'adjectif <em>greedy</em> (glouton/avare) caractérise ces algorithmes : ils terminent rapidement (<em>glouton</em>) sans fournir beaucoup d'efforts (<em>avare</em>)</p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Le-probl&#232;me-du-rendu-de-monnaie">Le probl&#232;me du rendu de monnaie<a class="anchor-link" href="#Le-probl&#232;me-du-rendu-de-monnaie">&#182;</a></h1><p><img class="centre image-responsive" src="data/money.png" alt="des pièces" width="300"></p>
+<h2 id="Enonc&#233;">Enonc&#233;<a class="anchor-link" href="#Enonc&#233;">&#182;</a></h2><p>Vous êtes commerçant et devez rendre de la monnaie à vos clients de façon optimale, c'est-à-dire avec le <strong>nombre minimal</strong> de pièces et de billets.</p>
 <ul>
 <li>On suppose que les clients ne vous donnent que des sommes entières en euros (pas de centimes pour simplifier).</li>
 <li>Les valeurs des pièces et billets à votre disposition sont : 1, 2, 5, 10, 20, 50, 100, 200 et 500. On suppose que vous avez autant d'exemplaires de chaque pièce et billet</li>
 <li>Dans la suite, afin de simplifier, nous désignerons par "pièces" à la fois les pièces et les billets.</li>
 </ul>
-<h2 id="Strat&#233;gie-&#224;-adopter">Strat&#233;gie &#224; adopter<a class="anchor-link" href="#Strat&#233;gie-&#224;-adopter">&#182;</a></h2><p><em>Exemple</em> : Myriam vous achète un objet qui coûte 53 euros. Elle paye avec un billet de 200 euros. Vous devez donc lui rendre 147 euros. La meilleure façon de lui rendre la monnaie est de le faire avec un billet de 100, deux billets de 20, un billet de 5 et une pièce de 2.</p>
+<h2 id="Strat&#233;gie-&#224;-adopter">Strat&#233;gie &#224; adopter<a class="anchor-link" href="#Strat&#233;gie-&#224;-adopter">&#182;</a></h2><p><strong>Exemple</strong> : Myriam vous achète un objet qui coûte 53 euros. Elle paye avec un billet de 200 euros. Vous devez donc lui rendre 147 euros. La meilleure façon de lui rendre la monnaie est de le faire avec un billet de 100, deux billets de 20, un billet de 5 et une pièce de 2.</p>
 <p>Pour minimiser le nombre de pièces à rendre, il apparaît la stratégie suivante :</p>
 <ul>
 <li>on commence par rendre la pièce de la plus grande valeur possible</li>
@@ -40,7 +55,7 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Impl&#233;mentation-en-Python">Impl&#233;mentation en Python<a class="anchor-link" href="#Impl&#233;mentation-en-Python">&#182;</a></h2><p>On peut implémenter cet algorithme avec une fonction de deux paramètres : la somme <code>s</code> à rendre et le tableau <code>pieces</code> contenant les valeurs des pièces à disposition rangées dans l'ordre croissant.</p>
+<h2 id="Impl&#233;mentation-en-Python">Impl&#233;mentation en Python<a class="anchor-link" href="#Impl&#233;mentation-en-Python">&#182;</a></h2><p>On peut implémenter cet algorithme avec une fonction de deux paramètres : la somme <code>s</code> à rendre et le tableau <code>pieces</code> contenant les valeurs des pièces à disposition rangées dans l'ordre décroissant.</p>
 <p>Pour commencer, on se place sur la plus grande pièce et on reprend la stratégie précédente en plaçant au fur et à mesure les pièces à rendre dans une liste <code>solution</code>. Ne sachant pas à l'avance combien d'étapes seront nécessaires on utilise de manière logique une boucle <code>while</code> qui s'arrêtera lorsque toute la somme sera rendue (ou que toutes les pièces ont été testées).</p>
 
 </div>
@@ -55,14 +70,13 @@
         <span class="sd">&quot;&quot;&quot;Renvoie la solution gloutonne du rendu de monnaie d&#39;une somme s entière et positive. </span>
 <span class="sd">        Le tableau pieces contient les valeurs des pièces à disposition dans l&#39;ordre décroissant.&quot;&quot;&quot;</span>
         <span class="n">solution</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># position de la première pièce à tester (la plus grande)</span>
-        <span class="k">while</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">pieces</span><span class="p">):</span> <span class="c1"># tant qu&#39;il reste de l&#39;argent à rendre et que toutes les pièces n&#39;ont pas été testées</span>
-            <span class="n">valeur</span> <span class="o">=</span> <span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="c1"># on prend la pièce d&#39;indice i</span>
-            <span class="k">if</span> <span class="n">valeur</span> <span class="o">&lt;=</span> <span class="n">s</span><span class="p">:</span> <span class="c1"># s&#39;il est possible de rendre la pièce</span>
-                <span class="n">solution</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">valeur</span><span class="p">)</span> <span class="c1"># on l&#39;ajoute à solution</span>
-                <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-</span> <span class="n">valeur</span> <span class="c1"># et on déduit sa valeur de la somme à rendre</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># i est l&#39;indice de la pièce à tester (on commence par la plus grande qui a pour indice 0)</span>
+        <span class="k">while</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">pieces</span><span class="p">):</span>  <span class="c1"># tant qu&#39;il reste de l&#39;argent à rendre et que toutes les pièces n&#39;ont pas été testées</span>
+            <span class="k">if</span> <span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">s</span><span class="p">:</span>  <span class="c1"># s&#39;il est possible de rendre la pièce d&#39;indice i</span>
+                <span class="n">solution</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>  <span class="c1"># on l&#39;ajoute à solution</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-</span> <span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>  <span class="c1"># et on déduit sa valeur de la somme à rendre</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="c1"># sinon on passe à la pièce immédiatement inférieure</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># sinon on passe à la pièce suivante</span>
         <span class="k">return</span> <span class="n">solution</span>
 </pre></div>
 
@@ -139,7 +153,7 @@
 </ol>
 </blockquote>
 <p>L'algorithme glouton donne la solution <code>[6, 1, 1]</code> donc rend trois pièces. Ce n'est la pas la solution optimale car <code>[4, 4]</code> permet de rendre 8 avec seulement deux pièces.</p>
-<p><em>Moralité :</em> l'algorithme glouton ne donne pas nécessairement une solution optimale dans le rendu de monnaie, cela dépend du système monétaire.</p>
+<p><strong>Moralité :</strong> l'algorithme glouton ne donne pas nécessairement une solution optimale dans le rendu de monnaie, cela dépend du système monétaire.</p>
 <p><strong>Et si on n'a pas de pièce <em>unité</em> ?</strong></p>
 <p>Imaginons qu'il faille rendre la somme 8 avec à notre disposition les pièces <code>[5, 2]</code>.</p>
 <blockquote><p><strong>Questions</strong></p>
@@ -149,7 +163,7 @@
 </ol>
 </blockquote>
 <p>L'algorithme glouton rend la pièce 5, puis la pièce 2, puis ... on est coincés car il n'y a pas de pièce unité. On constate que l'algorithme glouton ne donne pas une solution exacte. Pourtant, il en existe une : <code>[2, 2, 2, 2]</code>.</p>
-<p><em>Moralité :</em> l'algorithme glouton ne donne pas toujours une solution exacte au problème.</p>
+<p><strong>Moralité :</strong> l'algorithme glouton ne donne pas toujours une solution exacte au problème.</p>
 
 </div>
 </div>
@@ -242,7 +256,7 @@
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Le-probl&#232;me-du-sac-&#224;-dos-(version-Lupin)">Le probl&#232;me du sac &#224; dos (version Lupin)<a class="anchor-link" href="#Le-probl&#232;me-du-sac-&#224;-dos-(version-Lupin)">&#182;</a></h1><blockquote><p><em>Knapsack Problem</em> en anglais, souvent abrégé <strong>KP</strong>.</p>
 </blockquote>
-<p><img src="data/kp.svg" alt=""></p>
+<p><img class="centre image-responsive" src="data/kp.svg" alt="sa" width="400"></p>
 <h2 id="Enonc&#233;-possible">Enonc&#233; possible<a class="anchor-link" href="#Enonc&#233;-possible">&#182;</a></h2><p>Vous êtes un voleur et souhaitez emporter les objets pour maximiser la valeur totale du butin. Cependant, votre sac ne peut supporter qu'une masse maximale de 10 kg.  On dispose d’un sac pouvant supporter un poids maximal donné et de divers objets ayant chacun une valeur et un poids. Il s’agit de choisir les objets à emporter dans le sac afin maximiser la valeur totale tout en respectant la contrainte du poids maximal. C’est un problème d’<em>optimisation avec contrainte</em>.</p>
 <p>Considérons les objets suivants et un sac de capacité maximale 10 kg. Quels objets faut-il prendre ?</p>
 <table>
@@ -304,7 +318,7 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">$\frac{\text{valeur}}{\text{masse}}$ (€/kg)</td>
+<td style="text-align:center">$$\frac{\text{valeur}}{\text{masse}} \text{(€/kg)}$$</td>
 <td style="text-align:center">1300</td>
 <td style="text-align:center">1200</td>
 <td style="text-align:center">1200</td>
@@ -316,7 +330,7 @@
 </table>
 <p>On constate donc que <em>pour cet exemple</em>, la stratégie n°3 est la meilleure. Mais on peut faire mieux ! En effet, le sac $\{B, C\}$ fait 10 kg et possède une valeur de 12000 €. Il s'agit de la solution optimale au problème.</p>
 <h3 id="Moralit&#233;">Moralit&#233;<a class="anchor-link" href="#Moralit&#233;">&#182;</a></h3><p>On constate que la qualité de la solution dépend de la stratégie gloutonne utilisée. Selon les exemples, c'est l'une ou l'autre qui sera meilleure. Cependant, cette solution n'est pas forcément la solution optimale.</p>
-<h2 id="Impl&#233;mentation-en-Python">Impl&#233;mentation en Python<a class="anchor-link" href="#Impl&#233;mentation-en-Python">&#182;</a></h2><p>Faite en exercices.</p>
+<h2 id="Impl&#233;mentation-en-Python">Impl&#233;mentation en Python<a class="anchor-link" href="#Impl&#233;mentation-en-Python">&#182;</a></h2><p>Faite en exercice.</p>
 
 </div>
 </div>
@@ -385,7 +399,7 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<p>Germain BECKER, Lycée Mounier, ANGERS <img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+<p>Germain BECKER &amp; Sébastien POINT, Lycée Mounier, ANGERS <img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
 
 </div>
 </div>
