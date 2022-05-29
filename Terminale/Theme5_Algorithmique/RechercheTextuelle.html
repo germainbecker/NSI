@@ -253,22 +253,21 @@ M       <span style="background-color: #F5B7B1;">r</span> a p
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="important">
-
-<p>L'<strong>algorithme de Boyer-Moore-Horspool</strong> est toujours un algorithme de recherche par <em>fenetre glissante</em> :</p>
-<ul>
-<li>M "glisse" de gauche à droite le long de T</li>
-<li><strong>mais</strong> la comparaison <span style="font-family: Consolas">M[0..m-1]</span> vs <span style="font-family: Consolas">T[i..i+m-1]</span> se fait <strong>de droite à gauche</strong></li>
-<li>le décalage de M se fait de la façon suivante :<ul>
-<li>si le motif est trouvé, on décale le motif d'un cran</li>
-<li>sinon, le décalage se calcule en fonction de ce qu'on appelle la <strong>règle du mauvais caractère</strong> qui consiste :<ul>
-<li>à aligner le premier caractère fautif du texte avec son occurrence la plus à droite dans <span style="font-family: Consolas">M[0..<strong>m-2</strong>]</span> (on ne prend pas en compte le dernier caractère du motif), sauf si celle-ci est déjà "passée", auquel cas on décale le motif d'un cran. </li>
-<li>si le motif ne contient pas le caractère fautif du texte, on décale le motif pour le positionner juste après la position fautive</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
+    <p>L'<strong>algorithme de Boyer-Moore-Horspool</strong> est toujours un algorithme de recherche par <em>fenetre glissante</em> :</p>
+    <ul>
+        <li>M "glisse" de gauche à droite le long de T</li>
+        <li><strong>mais</strong> la comparaison <span style="font-family: Consolas">M[0..m-1]</span> vs <span style="font-family: Consolas">T[i..i+m-1]</span> se fait <strong>de droite à gauche</strong></li>
+        <li>le décalage de M se fait de la façon suivante :</li>
+        <ul>
+            <li>si le motif est trouvé, on décale le motif d'un cran</li>
+            <li>sinon, le décalage se calcule en fonction de ce qu'on appelle la <strong>règle du mauvais caractère</strong> qui consiste :</li>
+            <ul>
+                <li>à aligner le premier caractère fautif du texte avec son occurrence la plus à droite dans <span style="font-family: Consolas">M[0..<strong>m-2</strong>]</span> (on ne prend pas en compte le dernier caractère du motif), sauf si celle-ci est déjà "passée", auquel cas on décale le motif d'un cran.</li>
+                <li>si le motif ne contient pas le caractère fautif du texte, on décale le motif pour le positionner juste après la position fautive</li>
+            </ul>
+        </ul>
+    </ul>
+</div>
 </div>
 </div>
 </div>
