@@ -1,0 +1,504 @@
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 style="font-size:30px; text-align:center" class="titre-nb">Recherche d'un motif dans un texte</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h1><p>En <em>algorithmique du texte</em>, l'un des grands problèmes est la <strong>recherche de motif dans un texte</strong>.</p>
+<p>Concrètement, rechercher le motif M dans un texte T consiste à rechercher toutes les occurrences de M dans T.</p>
+<p><strong>Exemple</strong> : Si M = GCAG et T = GGCAGCCGAACCGCAGCAGCAC alors M apparaît 3 fois dans T, aux positions 1, 12 et 15 :</p>
+<p style="text-align: center">
+G<span style="text-decoration: underline; background-color: #D5F5E3;">GCAG</span>CCGAACC<span style="text-decoration: underline; background-color: #D5F5E3;">GCA</span><span style="text-decoration: underline overline; background-color: #D5F5E3;">G</span><span style="text-decoration: overline; background-color: #D5F5E3;">CAG</span>CAC
+</p><p><strong>Applications fréquentes</strong> :</p>
+<ul>
+<li>Recherche d'un mot dans un document (le célèbre CTRL+F)</li>
+</ul>
+<p><img class="centre image-responsive" alt="i love ctrl+f" src="data/ctrl-f.jpg" width="180"></p>
+<p style="text-align: center; color: #888">Source : <a href="https://flic.kr/p/7Qb6aM">Ahora estoy</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a>, Flickr</p></p><ul>
+<li>Recherche d'un mot sur le Web par les moteurs de recherche</li>
+</ul>
+<p><img class="centre image-responsive" alt="barre de recherche" src="data/search-bar.jpg" width="300"></p>
+<ul>
+<li>Recherche d'une sous-séquence d'intérêt dans une séquence biologique</li>
+</ul>
+<p><img class="centre image-responsive" alt="brin d'ADN" src="data/ADN.svg" width="300"></p>
+<p style="text-align: center; color: #888">Source : <a href="https://commons.wikimedia.org/wiki/File:DNA_structure_and_bases_FR.svg">derivative work: Dosto (talk)DNA_structure_and_bases_PL.svg: MesserWoland</a>, <a href="https://creativecommons.org/licenses/by-sa/2.5">CC BY-SA 2.5</a>, via Wikimedia Commons</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Notations</strong> : Dans la suite on notera <span style="font-family: Consolas">m</span> la taille du motif M et <span style="font-family: Consolas">n</span> la taille du texte T. On considérera que le motif est de "petite" taille par rapport à celle du motif : <span style="font-family: Consolas">m</span> est négligeable devant <span style="font-family: Consolas">n</span>.</p>
+<p><strong>Exemples</strong> : La taille du texte T peut être (très) grande !</p>
+<ul>
+<li>chercher M = <span style="font-family: Consolas; background-color: #AED6F1;">algorithme</span> dans le programme de NSI de Terminale :<ul>
+<li><span style="font-family: Consolas">n</span> = 201 097</li>
+<li><span style="font-family: Consolas">m</span> = 10</li>
+<li>on trouve 9 occurrences</li>
+</ul>
+</li>
+<li>chercher M = <span style="font-family: Consolas; background-color: #AED6F1;">TTGACA</span> (promoteur de gène) dans le chromosome 1 de l'humain :<ul>
+<li><span style="font-family: Consolas">n</span> = 249 250 621</li>
+<li><span style="font-family: Consolas">m</span> = 6</li>
+<li>on trouve plus de 1000 occurrences</li>
+</ul>
+</li>
+</ul>
+<p>En pratique il est donc nécessaire d'utiliser des algorithmes efficaces, qui donnent la réponse en un temps raisonnable.</p>
+<blockquote class="information">
+    <p>Nous verrons dans un premier temps un <em>algorithme de recherche naïf</em> qui permettra de comprendre le principe d'une recherche puis, dans un second temps, un algorithme plus efficace appelé <em>algorithme de Boyer-Moore</em> dans sa version simplifiée publiée par Nigel Horspool.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Recherche-par-fen&#234;tre-glissante">Recherche par fen&#234;tre glissante<a class="anchor-link" href="#Recherche-par-fen&#234;tre-glissante">&#182;</a></h1><p>Les différents algorithmes de recherche exacte de motif sont basés sur une recherche par <em>fenêtre glissante</em> dont l'idée est la suivante :</p>
+<ul>
+<li>Positionner le motif M à différentes positions de T</li>
+<li>Pour chaque position <span style="font-family: Consolas">i</span> choisie, tester si M apparaît dans T (c'est-à-dire si <span style="font-family: Consolas">M[0..m-1] = T[i..i+m-1]</span> ?)</li>
+<li>Décaler M (changement de position dans T) et recommencer</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Exemple</strong> :</p>
+<pre style="font-size: 15px; line-height: 20px;">
+<span style="color: #aaa;">i   0 1 2 3 4 5 6 7 8 9 ... </span>
+T = G <span style="background-color: #D5F5E3;">G C A G</span> C C <span style="background-color: #F5B7B1;">G A A C</span> C <span style="background-color: #D5F5E3;">G C A </span><span style="background-color: #D5F5E3;">G</span> C A G</span> C A C
+        &#10004;&#65039;          &#10060;        &#10004;&#65039;
+M     <span style="background-color: #AED6F1;">G C A G</span>     
+            &xrarr;    <span style="background-color: #AED6F1;">G C A G</span>
+                        &xrarr;  <span style="background-color: #AED6F1;">G C A G</span>
+                                  &xrarr; ...
+</pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Important : Dans la suite, on notera toujours <span style="font-family: Consolas">i</span> la position dans T et <span style="font-family: Consolas">j</span> la position dans M.</strong></p>
+<p>Pour une position <span style="font-family: Consolas">i</span> choisie on est dans la situation suivante</p>
+<p><img class="centre image-responsive" alt="schéma comparaison en position i" src="data/compa_pos_i.png"></p>
+<p>et on peut comparer <span style="font-family: Consolas; font-size: 15px;">M[0..m-1]</span> et <span style="font-family: Consolas; font-size: 15px;">T[i..i+m-1]</span></p>
+<p>C'est la façon de décaler le motif M et la façon de le comparer avec le texte T qui diffèrent d'un algorithme à l'autre.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Algorithme-de-recherche-na&#239;ve">Algorithme de recherche na&#239;ve<a class="anchor-link" href="#Algorithme-de-recherche-na&#239;ve">&#182;</a></h1><p>L'idée est de tester si M apparaît dans T pour <strong>chaque position</strong> <span style="font-family: Consolas">i</span> de T. Autrement dit, on va <strong>décaler le motif M d'un cran à chaque fois</strong>.</p>
+<pre style="font-size: 15px; line-height: 20px;">
+<span style="color: #aaa;">i   0 1 2 3 4 5 6 7 8 9 ... </span>
+T   G G C A G C C G A A C C G C A G C A G C A C
+M   <span style="background-color: #AED6F1;">G C A G</span>     
+      <span style="background-color: #AED6F1;">G C A G</span>
+        <span style="background-color: #AED6F1;">G C A G</span>
+          <span style="background-color: #AED6F1;">etc.</span>
+</pre><p>On trouvera bien sûr que le motif M = <span style="font-family: Consolas;">GCAG</span> apparaît aux positions 1, 12 et 15.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="M&#233;thode-de-comparaison">M&#233;thode de comparaison<a class="anchor-link" href="#M&#233;thode-de-comparaison">&#182;</a></h2><p>Une fois que le motif est dans une certaine position <span style="font-family: Consolas">i</span>, on doit comparer <span style="font-family: Consolas">M[0..m-1]</span> et <span style="font-family: Consolas">T[i..i+m-1]</span>. Pour la recherche naïve, on peut effectuer cette comparaison de la gauche vers la droite du motif :</p>
+<ul>
+<li>on fait donc varier <span style="font-family: Consolas">j</span> de 0 à <span style="font-family: Consolas">m-1</span></li>
+<li>on s'arrête dès qu'il n'y a pas correspondance et on décale le motif à la position suivante.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Exemple</strong> : On cherche le motif M = GCAG dans le texte T = GGCAGCCGAACCGCAGCAGCAC</p>
+<ul>
+<li>Position <span style="font-family: Consolas">i</span> = 0 :<ul>
+<li>les premiers caractères (G) coïncident mais pas les suivants (G vs C) : <strong>2 comparaisons nécessaires</strong></li>
+<li>on peut stopper la recherche à cette position : le motif n'est pas en position 0 et on décale le motif d'un cran vers la droite et on recommence</li>
+</ul>
+</li>
+</ul>
+<pre style="font-size: 15px; line-height: 20px;">
+<span style="color: #aaa;">i   0 1 2 3 4 5 6 7 8 9 ...</span>
+T   <span style="background-color: #FCEBAB;">G</span> <span style="background-color: #F5B7B1;">G</span> C A G C C G A A C C G C A G C A G C A C
+M   <span style="background-color: #FCEBAB;">G</span> <span style="background-color: #F5B7B1;">C</span> A G</span>     
+</pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Position <span style="font-family: Consolas">i</span> = 1 :<ul>
+<li>les G coïncident, puis les C, puis les A, puis les G : <strong>4 comparaisons nécessaires</strong></li>
+<li><strong>on a trouvé le motif en position 1</strong> et on décale le motif d'un cran vers la droite et on recommence</li>
+</ul>
+</li>
+</ul>
+<pre style="font-size: 15px; line-height: 20px;">
+<span style="color: #aaa;">i   0 1 2 3 4 5 6 7 8 9 ... </span>
+T   G <span style="background-color: #D5F5E3;">G C A G</span> C C G A A C C G C A G C A G C A C
+M     <span style="background-color: #D5F5E3;">G C A G</span>     
+</pre><ul>
+<li>...</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Position <span style="font-family: Consolas">i</span> = 18 (valeur de <span style="font-family: Consolas">n - m = 22 - 4</span>),  dernière position à tester car après le motif dépasse le texte :<ul>
+<li>les G coïncident, puis les C, puis les A, mais pas les derniers caractères (C vs G) : <strong>4 comparaisons nécessaires</strong></li>
+<li>la recherche est terminée</li>
+</ul>
+</li>
+</ul>
+<pre style="font-size: 15px; line-height: 20px;">
+<span style="color: #aaa;">i   0 1 2 3 4 5 6 7 8 9 ... </span>
+T   G G C A G C C G A A C C G C A G C A <span style="background-color: #FCEBAB;">G</span> <span style="background-color: #FCEBAB;">C</span> <span style="background-color: #FCEBAB;">A</span> <span style="background-color: #F5B7B1;">C</span>
+M                                       <span style="background-color: #FCEBAB;">G</span> <span style="background-color: #FCEBAB;">C</span> <span style="background-color: #FCEBAB;">A</span> <span style="background-color: #F5B7B1;">G</span>     
+</pre><p><strong>BILAN</strong> : On trouve au final le motif aux positions 1, 12 et 15 et cela nécessite en tout 35 comparaisons.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Animation">Animation<a class="anchor-link" href="#Animation">&#182;</a></h2><p>On peut visualiser la recherche naïve, en suivant le lien <a href="https://germainbecker.github.io/recherche-textuelle/?t=GGCAGCCGAACCGCAGCAGCAC&amp;m=GCAG">https://germainbecker.github.io/recherche-textuelle/?t=GGCAGCCGAACCGCAGCAGCAC&amp;m=GCAG</a> ou directement en-dessous.</p>
+<iframe class="centre recherche-textuelle" width="800" height="260" frameborder="0" src="https://germainbecker.github.io/recherche-textuelle/iframe-embed.html?t=GGCAGCCGAACCGCAGCAGCAC&m=GCAG"></iframe>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><span style="font-size:1.5em">✏️</span> <strong>À faire</strong> : Exercice 1 (sur la recherche naïve).</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Co&#251;t-de-l'algorithme-na&#239;f">Co&#251;t de l'algorithme na&#239;f<a class="anchor-link" href="#Co&#251;t-de-l'algorithme-na&#239;f">&#182;</a></h2><p>Pour évaluer le coût des algorithmes de recherche d'un motif dans un texte on se base sur le <strong>nombre de comparaisons</strong> nécessaires entre un caractère du motif et un caractère du texte.</p>
+<p>Des données de la forme T = <span style="font-family: Consolas; font-size: 15px;">AAA..AAA</span> et M = <span style="font-family: Consolas; font-size: 15px;">AA..A</span> constituent un <strong>pire cas</strong> pour l'algorithme de recherche naïve.</p>
+<p>En effet, comme M est présent à chaque position de T, cela engendre $m$ comparaisons pour chacune de $n-m$ positions testées. Donc il y a en tout $(n-m)\times m$ comparaisons.</p>
+<p><strong>Le coût (dans le pire cas) de l'algorithme de recherche naïve est de l'ordre de $(n-m)\times m$ (où $n$ et $m$ sont les tailles respectives du texte et du motif).</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Peut-on-acc&#233;l&#233;rer-la-recherche-?">Peut-on acc&#233;l&#233;rer la recherche ?<a class="anchor-link" href="#Peut-on-acc&#233;l&#233;rer-la-recherche-?">&#182;</a></h2><p>Il n'est pas difficile de se rendre compte que parfois, il est possible de faire un saut plus important (que 1).</p>
+<p>Par exemple, si on considère la recherche du motif M = <span style="font-family: Consolas; font-size: 17px;">rap</span> dans le texte T = <span style="font-family: Consolas; font-size: 17px;">rattraper</span>, la première position à tester est la suivante :</p>
+<pre style="font-size: 15px; line-height: 20px;">
+<span style="color: #aaa;">i   0 1 2 3 4 5 6 7 8 9 ...</span>
+T   <span style="background-color: #FCEBAB;">r</span> <span style="background-color: #FCEBAB;">a</span> <span style="background-color: #F5B7B1;">t</span> t r a p e r
+M   <span style="background-color: #FCEBAB;">r</span> <span style="background-color: #FCEBAB;">a</span> <span style="background-color: #F5B7B1;">p</span>     
+</pre><p>En faisant la comparaison à cette position, on remarque que les deux premiers caractères coïncident mais pas le troisième. De plus, le caractère à l'indice 2 dans T est un <span style="font-family: Consolas; font-size: 15px;">"t"</span>, qui n'apparaît pas dans le motif M. On pourrait en déduire qu'il est inutile de tester les deux positions</p>
+<pre style="font-size: 15px; line-height: 20px;">
+<span style="color: #aaa;">i   0 1 2 3 4 5 6 7 8 9 ...</span>
+T   r <span style="background-color: #F5B7B1;">t</span> t t r a p e r
+M     <span style="background-color: #F5B7B1;">r</span> a p     
+</pre><p>et</p>
+<pre style="font-size: 15px; line-height: 20px;">
+<span style="color: #aaa;">i   0 1 2 3 4 5 6 7 8 9 ...</span>
+T   r a <span style="background-color: #F5B7B1;">t</span> t r a p e r
+M       <span style="background-color: #F5B7B1;">r</span> a p     
+</pre><p>puisque le motif n'a aucune chance de s'y trouver. On pourrait donc décaler le motif directement de 3 crans vers la droite.</p>
+<blockquote class="information">
+    <p>Ce type d'analyse va permettre de mettre au point des algorithmes se révélant plus efficaces, comme l'algorithme de <em>Boyer-Moore</em>.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Algorithme-de-Boyer-Moore-Horspool">Algorithme de Boyer-Moore-Horspool<a class="anchor-link" href="#Algorithme-de-Boyer-Moore-Horspool">&#182;</a></h1><p>L'algorithme de <em>Boyer-Moore</em> a été développé par Robert S. Boyer (en) et J. Strother Moore en 1977.</p>
+<p>C'est un algorithme souvent utilisé dans les éditeurs de texte, tel quel ou optimisé (le célèbre CTRL + F).</p>
+<blockquote class="information">
+    <p><strong>Remarque importante</strong> : On ne présente ici que la version simplifiée de l'algorithme de Boyer-Moore. Cette version simplifiée a été proposée par Nigel Horspool en 1980, d'où le nom d'algorithme de <em>Boyer-Moore-Horspool</em>.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="important">
+
+<p>L'<strong>algorithme de Boyer-Moore-Horspool</strong> est toujours un algorithme de recherche par <em>fenetre glissante</em> :</p>
+<ul>
+<li>M "glisse" de gauche à droite le long de T</li>
+<li><strong>mais</strong> la comparaison <span style="font-family: Consolas">M[0..m-1]</span> vs <span style="font-family: Consolas">T[i..i+m-1]</span> se fait <strong>de droite à gauche</strong></li>
+<li>le décalage de M se fait de la façon suivante :<ul>
+<li>si le motif est trouvé, on décale le motif d'un cran</li>
+<li>sinon, le décalage se calcule en fonction de ce qu'on appelle la <strong>règle du mauvais caractère</strong> qui consiste :<ul>
+<li>à aligner le premier caractère fautif du texte avec son occurrence la plus à droite dans <span style="font-family: Consolas">M[0..<strong>m-2</strong>]</span> (on ne prend pas en compte le dernier caractère du motif), sauf si celle-ci est déjà "passée", auquel cas on décale le motif d'un cran. </li>
+<li>si le motif ne contient pas le caractère fautif du texte, on décale le motif pour le positionner juste après la position fautive</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="R&#232;gle-du-mauvais-caract&#232;re-:-exemples">R&#232;gle du mauvais caract&#232;re : exemples<a class="anchor-link" href="#R&#232;gle-du-mauvais-caract&#232;re-:-exemples">&#182;</a></h2><p>Si le motif est trouvé à une position, il suffit de le décaler d'un cran vers la droite. Les autres cas de figure méritent davantage un exemple.</p>
+<h3 id="Si-le-premier-caract&#232;re-fautif-du-texte-se-trouve-dans-le-motif">Si le premier caract&#232;re fautif du texte <em>se trouve</em> dans le motif<a class="anchor-link" href="#Si-le-premier-caract&#232;re-fautif-du-texte-se-trouve-dans-le-motif">&#182;</a></h3><p><strong>1er cas</strong> : la première lettre du texte ne coïncide pas et <em>se trouve</em> dans le motif</p>
+<pre style="font-size: 15px; line-height: 20px;">
+<span style="color: #aaa;">i   0 1 2 3 4 5 6 7 8 9 ...</span>
+T   A B G G R A <span style="background-color: #F5B7B1;">T</span> L M T G ...
+M     T G <strong>T</strong> N A C
+<span style="color: #aaa;">j     0 1 2 3 4 5</span>
+        &xrarr;  T G <strong>T</strong> N A C
+</pre><p>On décale le motif de manière à aligner le <code>"T"</code> fautif avec l'occurrence de <code>"T"</code> la plus à droite dans le motif, ce qui revient à faire un décalage de 3 crans (il faut remonter de 3 crans à partir de la droite du motif pour trouver un T).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>2ème cas</strong> : il y a une correspondance partielle et le premier caractère fautif du texte <em>se trouve</em> dans le motif</p>
+<pre style="font-size: 15px; line-height: 20px;">
+<span style="color: #aaa;">i   0 1 2 3 4 5 6 7 8 9 ...</span>
+T   A B G G A <span style="background-color: #F5B7B1;">G</span> <span style="background-color: #FCEBAB;">C</span> <span style="background-color: #FCEBAB;">L</span> M T G ...
+M     T A <strong>G</strong> N A <span style="background-color: #FCEBAB;">C</span> <span style="background-color: #FCEBAB;">L</span>
+<span style="color: #aaa;">j     0 1 2 3 4 5</span>
+      &xrarr;  T A <strong>G</strong> N A C L
+</pre><p>On décale le motif de manière à aligner le <code>"G"</code> fautif avec l'occurrence de <code>"G"</code> la plus à droite dans le motif, ce qui revient à faire un décalage de 2 crans (il faut remonter de 4 crans à partir de la droite du motif pour trouver un G mais comme il y a 2 caractères qui coïncident, le décalage est égal à 4 - 2 = 2 crans).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>3ème cas</strong> : il y a une correspondance partielle et le premier caractère fautif du texte <em>se trouve</em> dans le motif mais son occurrence la plus à droite est déjà "passée"</p>
+<pre style="font-size: 15px; line-height: 20px;">
+<span style="color: #aaa;">i   0 1 2 3 4 5 6 7 8 9 ...</span>
+T   A B G G A <span style="background-color: #F5B7B1;">G</span> <span style="background-color: #FCEBAB;">G</span> <span style="background-color: #FCEBAB;">L</span> M T G ...
+M     T A G N A <span style="background-color: #FCEBAB;"><strong>G</strong></span> <span style="background-color: #FCEBAB;">L</span>
+<span style="color: #aaa;">j     0 1 2 3 4 5</span>
+    &xrarr;  T A G N A G L
+</pre><p>On décale le motif d'un cran vers la droite.</p>
+<blockquote class="information">
+    <p>Si un caractère est présent plusieurs fois dans le motif, on pourrait optimiser en décalant le motif vers l'occurrence la plus à droite possible, mais ce n'est pas prévu par l'algorithme de Boyer-Moore-Horspool. Dans notre exemple, cela conduirait à décaler le motif de 2 crans directement pour aligner le <code>"G"</code> fautif avec le second <code>"G"</code> du motif.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Si-le-premier-caract&#232;re-fautif-du-texte-ne-se-trouve-pas-dans-le-motif">Si le premier caract&#232;re fautif du texte <em>ne se trouve pas</em> dans le motif<a class="anchor-link" href="#Si-le-premier-caract&#232;re-fautif-du-texte-ne-se-trouve-pas-dans-le-motif">&#182;</a></h3><p><strong>1er cas</strong> : la première lettre du texte ne coïncide pas et <em>ne se trouve pas</em> dans le motif</p>
+<pre style="font-size: 15px; line-height: 20px;">
+<span style="color: #aaa;">i   0 1 2 3 4 5 6 7 8 9 ...</span>
+T   A B G G R A <span style="background-color: #F5B7B1;">X</span> L M T G ...
+M     T G T N A C
+<span style="color: #aaa;">j     0 1 2 3 4 5</span>
+              &xrarr;  T G T N A C  
+</pre><p>On décale le motif de manière à le positionner juste après le <code>"X"</code> fautif car cela ne sert à rien de tester toutes les positions intermédiaires. On fait donc un décalage égal à 6, soit la taille du motif.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>2ème cas</strong> : il y a une correspondance partielle et le premier caractère fautif du texte <em>ne se trouve pas</em> dans le motif</p>
+<pre style="font-size: 15px; line-height: 20px;">
+<span style="color: #aaa;">i   0 1 2 3 4 5 6 7 8 9 ...</span>
+T   A B G G <span style="background-color: #F5B7B1;">X</span> <span style="background-color: #FCEBAB;">A</span> <span style="background-color: #FCEBAB;">C</span> L M T G ...
+M     T G T N <span style="background-color: #FCEBAB;">A</span> <span style="background-color: #FCEBAB;">C</span>
+<span style="color: #aaa;">j     0 1 2 3 4 5</span>
+          &xrarr;  T G T N A C  
+</pre><p>On décale le motif de manière à le positionner juste après le <code>"X"</code> fautif car cela ne sert à rien de tester toutes les positions intermédiaires. On fait un décalage de 4 crans (le X ne se trouve pas dans le motif donc il faudrait remonter de 6 crans le motif en partant de la droite, mais comme il y a 2 caractères qui coïncident, le décalage est égal à 6 - 2 = 4 crans).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exemple">Exemple<a class="anchor-link" href="#Exemple">&#182;</a></h2><p>On peut visualiser, comme précédemment, la recherche du motif M = GCAG dans le texte T = GGCAGCCGAACCGCAGCAGCAC, avec l'algorithme de Boyer-Moore-Horspool, en suivant le lien 
+<a href="https://germainbecker.github.io/recherche-textuelle/?r=bmh&amp;t=GGCAGCCGAACCGCAGCAGCAC&amp;m=GCAG">https://germainbecker.github.io/recherche-textuelle/?r=bmh&amp;t=GGCAGCCGAACCGCAGCAGCAC&amp;m=GCAG</a> ou directement en-dessous :</p>
+<iframe class="centre recherche-textuelle" width="800" height="320" frameborder="0" src="https://germainbecker.github.io/recherche-textuelle/iframe-embed.html?r=bmh&t=GGCAGCCGAACCGCAGCAGCAC&m=GCAG"></iframe>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>BILAN</strong> : On trouve au final le motif aux positions 1, 12 et 15 et cela nécessite en tout 25 comparaisons, soit 10 de moins qu'avec l'algorithme naïf.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Pr&#233;traitement-du-motif-M">Pr&#233;traitement du motif M<a class="anchor-link" href="#Pr&#233;traitement-du-motif-M">&#182;</a></h2><p>Pour mettre en oeuvre la règle du mauvais caractère, il est nécessaire de <strong>prétraiter le motif</strong>, c'est-à-dire de l'analyser au préalable (avant de lancer la recherche) pour déterminer le décalage maximum possible selon les cas.</p>
+<p>En pratique, on construit un tableau associatif <code>MC</code> (un dictionnaire) qui associe à chaque caractère <span style="font-family: Consolas;">c</span> du motif M, le nombre de position à "remonter" dans M pour trouver <span style="font-family: Consolas;">c</span>. Autrement dit, la distance entre l'occurrence la plus à droite de chaque caractère et le dernier caractère du motif.</p>
+<p><strong>Cas particulier</strong> : si <span style="font-family: Consolas;">c</span> est le caractère en dernière position du motif, on cherche son avant-dernière occurrence (en partant de la droite bien sûr)</p>
+<p><strong>Exemple</strong> : Pour le motif M = GCAG, on obtient le tableau suivant</p>
+<table>
+<thead><tr>
+<th>Caractère <span style="font-family: Consolas;">c</span></th>
+<th>A</th>
+<th>C</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MC[c]</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En effet, on se positionne en dernière position du motif (sur le <span style="font-family: Consolas;">"G"</span>). Il faut remonter :</p>
+<ul>
+<li>1 position pour trouver un <span style="font-family: Consolas;">"A"</span></li>
+<li>2 positions pour trouver un <span style="font-family: Consolas;">"C"</span></li>
+<li>3 positions pour trouver un <span style="font-family: Consolas;">"G"</span></li>
+</ul>
+<p>Pour tout caractère qui est absent dans le motif, on sait que le décalage maximum est égal à la longueur du motif, c'est-à-dire 4.</p>
+<blockquote class="information">
+    <p>En Python, on pourra facilement utiliser un dictionnaire pour implémenter ce tableau associatif..</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ce tableau contient le <em>saut maximal</em> que l'on peut faire, lorsque la comparaison échoue dès la première lettre (celle la plus à droite). En revanche, si la correspondance est partielle il faut récupérer la valeur associée à la première lettre fautive du texte et lui retrancher le nombre de caractères qui correspondaient dans la comparaison.</p>
+<p>On peut retenir qu'en pratique le décalage à effectuer lorsque l'on rencontre un caractère <span style="font-family: Consolas;">c</span> fautif dans le texte, est égale à :</p>
+$$\text{décalage} = \text{MC[c]} - \text{nb de caractères qui correspondent}$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Exemple</strong> : Déterminons le décalage à appliquer dans la situation suivante :</p>
+<pre style="font-size: 15px; line-height: 20px;">
+<span style="color: #aaa;">i   0 1 2 3 4 5 6 7 8 9 ...</span>
+T   G G C A G C <span style="background-color: #F5B7B1;">C</span> <span style="background-color: #FCEBAB;">G</span> A A C C G C A G C A G C A C
+M           G <strong>C</strong> A <span style="background-color: #FCEBAB;">G</span></span>
+          &xrarr;  G <strong>C</strong> A G 
+</pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Les deux <span style="font-family: Consolas;">"G"</span> coïncident et le premier caractère fautif est un <span style="font-family: Consolas;">"C"</span>. On regarde dans le tableau <code>MC</code> : <code>MC["C"] = 2</code>, cela veut dire qu'en partant de la droite, il faudrait décaler le motif de 2 crans pour trouver un <span style="font-family: Consolas;">"C"</span>. Mais comme il y a 1 caractère qui coïncide dans la comparaison (le <span style="font-family: Consolas;">"G"</span> tout droite), le décalage à faire n'est que de 2 - 1 = 1 cran, pour aligner le <span style="font-family: Consolas;">"C"</span> fautif avec son occurrence la plus à droite dans le motif.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><span style="font-size:1.5em">✏️</span> <strong>À faire</strong> : Exercice 2 (sur l'algorithme de Boyer-Moore-Horspool).</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Performances-de-l'algorithme-de-Boyer-Moore-Horspool">Performances de l'algorithme de Boyer-Moore-Horspool<a class="anchor-link" href="#Performances-de-l'algorithme-de-Boyer-Moore-Horspool">&#182;</a></h2><p>L'étude du coût de l'algorithme de Boyer-Moore-Horspool n'est pas du tout au programme.</p>
+<p>Dans le pire cas, il est égal à celui de la recherche naïve (si T = <span style="font-family: Consolas; font-size: 15px;">AAA..AAA</span> et M = <span style="font-family: Consolas; font-size: 15px;">AA..A</span> le décalage sera de 1 à chaque fois, comme pour la recherche naïve).</p>
+<p>Mais dans le cas moyen (et dans le meilleur cas), il se révèle très efficace car on peut obtenir de "plus grands" décalages assez souvent (il est <em>sous-linéaire</em> au mieux).</p>
+<p>Le prétraitement du motif (pour déterminer le tableau de la règle du mauvais caractère) est certes coûteux mais seulement de l'ordre de $m$ (où $m$ est la taille du motif), ce qui est finalement rentable car cela permet ensuite de faire souvent des "grands" décalages.</p>
+<p>L'algorithme de <em>Boyer-Moore</em> (sans <em>Horspool</em>) utilise une autre règle en plus de celle du mauvais caractère, appelée règle du <em>bon suffixe</em>, que nous n'aborderons pas ici, mais qui permet de faire des décalages plus intéressants encore. En pratique, cet algorithme se révèle extrêmement efficace par rapport à celui de la recherche naïve comme le montre le schéma suivant (dans lequel le motif M est noté P, pour <em>pattern</em>) :</p>
+<p><img src="data/compa_bm_naive.png" alt="comparaison efficacité Boyer-Moore vs recherche naïve" width="700"></p>
+<p style="text-align:center; color:#888">Réalisé par Ben Langmead (John Hopkins University, USA)</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Bilan">Bilan<a class="anchor-link" href="#Bilan">&#182;</a></h1><ul>
+<li>Les algorithmes de recherche textuelle font partie des algorithmes classiques. Ils sont très importants et souvent utilisé : dans les logiciels avec le célèbre CTRL+F, en bio-informatique pour chercher une sous-séquence dans une séquence d'ADN,...</li>
+<li>Ces algorithmes utilisent la technique de <em>fenêtre glissante</em> où on fait glisser le motif le long du texte pour tester la correspondance à diverses positions.</li>
+<li>L'algorithme de <strong>recherche naïve</strong> teste la correspondance à chaque position en comparant les caractères de la gauche vers la droite. Mais des algorithmes plus efficaces existent.</li>
+<li>L'algorithme de <strong>Boyer-Moore(-Horspool)</strong> teste quant à lui la correspondance à une position donnée à l'envers : de la droite vers la gauche. Il est plus efficace (en moyenne) car il est basé sur un <strong>prétraitement du motif</strong> qui permet de déterminer des décalages plus grands (que 1) et il n'est alors plus nécessaire de tester la correspondance à chaque position.</li>
+<li>Ce gain en temps est d'autant plus important que l'on sait que la recherche se fait parfois dans des textes de plusieurs millions de caractères (en bio-informatique notamment). </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Références</strong> :</p>
+<ul>
+<li>Documents ressources du DIU EIL, Université de Nantes.</li>
+<li>Livre <em>Spécialité Numérique et sciences informatiques : 24 leçons avec exercices corrigés - Terminale</em>, éditions Ellipses, T. Balabonski, S. Conchon, J.-C. Filliâtre, K. Nguyen. Site du livre : [<a href="http://www.nsi-terminale.fr/">http://www.nsi-terminale.fr/</a>]</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p>Germain BECKER, Lycée Mounier, ANGERS</p>
+<p><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+
