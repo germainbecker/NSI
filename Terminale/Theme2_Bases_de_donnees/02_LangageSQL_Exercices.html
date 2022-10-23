@@ -1,0 +1,2245 @@
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 style="font-size: 30px; text-align: center">Langage SQL - EXERCICES</h1><hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><a href="#Exercice-1-:-BDD-du-disquaire---Requêtes-portant-sur-une-table">Exercice 1</a> : BDD du disquaire - Requêtes portant sur une table</li>
+<li><a href="#Exercice-2-:-BDD-du-disquaire---Requêtes-croisées">Exercice 2</a> : BDD du disquaire - Requêtes croisées</li>
+<li><a href="#Exercice-3---Questions-interactives-en-ligne-avec-SQLZOO">Exercice 3</a> : Question interactives en ligne avec SQLZOO</li>
+<li><a href="#Exercice-4---Modifier-une-table">Exercice 4</a> : Modifier une table</li>
+<li><a href="#Exercice-5---Modification-de-la-base-du-disquaire">Exercice 5</a> : Modification de la base du disquaire</li>
+<li><a href="#Exercice-6-:-Base-de-données-d&#39;un-hôpital">Exercice 6</a> : Base de données d'un hôpital</li>
+<li><a href="#Exercice-7---S&#39;entraîner-en-ligne">Exercice 7</a> : S'entraîner en ligne</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-1-:-BDD-du-disquaire---Requ&#234;tes-portant-sur-une-table">Exercice 1 : BDD du disquaire - Requ&#234;tes portant sur une table<a class="anchor-link" href="#Exercice-1-:-BDD-du-disquaire---Requ&#234;tes-portant-sur-une-table">&#182;</a></h1><p><img class="centre image-responsive" src="data/vinyl.svg" alt="diagramme" width="200"></p>
+<p>L'objectif de cet exercice est de passer en revue la plupart des requêtes SQL d'interrogation portant sur <em>une seule table</em>.</p>
+<blockquote><p>On travaillera avec la base de données <code>disquaire.db</code> que vous trouverez dans l'archive de ce chapitre. Vous utiliserez le logiciel <em>DB Browser for SQLite</em> ou le logiciel en ligne <a href="https://sqliteonline.com/">sqliteonline.com</a> dans lesquels vous aurez au préalable ouvert la base de données en question.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On rappelle que cette base de données possède le schéma relationnel suivant :</p>
+<pre style="padding-bottom:10px;">
+    <code><em>Album</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_album</em></span> INT, <em>titre</em> TEXT, <em>annee</em> INT, <em>dispo</em> BOOL)</code>
+
+    <code><em>Artiste</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_artiste</em></span> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT)</code>
+
+    <code><em>Artiste_de</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_artiste</em></span> INT, <span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_album</em></span> INT)</code>
+
+    <code><em>Client</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_client</em></span> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT, <em>email</em> TEXT)</code>
+
+    <code><em>Emprunt</em>(<em>#id_client</em> INT, <span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>#id_album</em></span> INT, <em>jour</em> DATE)</code>
+</pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut aussi représenter graphiquement ce schéma par le diagramme suivant :</p>
+<p><img class="centre image-responsive" src="data/diagramme_bdd.png" alt="diagramme"></p>
+<p><span class="image-licence" style="display: block;text-align: center;font-size: 0.9em;color: #aaa;">Réalisé avec l'application <a href="https://app.quickdatabasediagrams.com/#/d/bbXJBD" target="_blank">quickdatabasediagrams.com</a>
+</span></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="S&#233;lectionner-des-colonnes">S&#233;lectionner des colonnes<a class="anchor-link" href="#S&#233;lectionner-des-colonnes">&#182;</a></h2><p><strong>Q1</strong> : Traduisez par une phrase la requête suivante. <em>Vérifiez <strong>ensuite</strong> votre réponse en l'exécutant</em>.</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">Album</span><span class="p">;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q2</strong> : Traduisez par une phrase la requête suivante. <em>Vérifiez <strong>ensuite</strong> votre réponse en l'exécutant</em>.</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">titre</span><span class="p">,</span> <span class="n">dispo</span> <span class="k">FROM</span> <span class="n">Album</span><span class="p">;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q3</strong> : Écrivez et testez une requête permettant de récupérer uniquement les titres et l'année de sortie de chaque album.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q4</strong> : Écrivez et testez une requête permettant de récupérer tous les attributs des clients.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q5</strong> : Écrivez et testez une requête permettant de récupérer uniquement l'id_client, le nom et le prénom de chaque client.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q6</strong> : Écrivez et testez une requête permettant de récupérer uniquement le nom et le prénom de chaque artiste.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="S&#233;lectionner-des-lignes">S&#233;lectionner des lignes<a class="anchor-link" href="#S&#233;lectionner-des-lignes">&#182;</a></h2><p>En plus de sélectionner des colonnes, on peut sélectionner certaines lignes en utilisant la clause <code>WHERE</code> suivie de la condition de sélection.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q7</strong> : Traduisez par une phrase la requête suivante. <em>Vérifiez <strong>ensuite</strong> votre réponse en l'exécutant</em>.</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">titre</span> <span class="k">FROM</span> <span class="n">Album</span> <span class="k">WHERE</span> <span class="n">dispo</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q8</strong> : Écrivez et testez une requête permettant de récupérer les titres de tous les albums sortis en 2000 ou après.<br><em>Résultat attendu : 12 enregistrements</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q9</strong> Écrivez et testez une requête permettant de récupérer tous les albums sortis en 1970.<br><em>Résultat attendu : 3 enregistrements</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q10</strong> : Écrivez et testez une requête permettant de récupérer les titres de tous les albums sortis avant 1950 ou après 2010.
+<br><em>Résultat attendu : 6 enregistrements</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q11</strong> : Écrivez et testez une requête permettant de récupérer tous les albums disponibles et sortis avant 1990.
+<br><em>Résultat attendu : 13 enregistrements</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q12</strong> : Écrivez et testez une requête permettant de récupérer tous les clients dont le nom de famille est "Petit".
+<br><em>Résultat attendu : 2 enregistrements</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q13</strong> : Écrivez et testez une requête permettant de récupérer tous les clients dont le nom de famille est "Sakkal".
+<br><em>Résultat attendu : 0 enregistrements</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q14</strong> : Écrivez et testez une requête permettant de récupérer les noms des artistes ne possédant pas de prénom.
+<br><em>Résultat attendu : 6 enregistrements</em>.</p>
+<blockquote><p><span style="font-size:1.6em">🆘</span> Lisez cette page pour savoir comment tester si une valeur est absente avec SQLite : [<a href="https://sql.sh/cours/where/is">https://sql.sh/cours/where/is</a>)</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Trier-des-donn&#233;es">Trier des donn&#233;es<a class="anchor-link" href="#Trier-des-donn&#233;es">&#182;</a></h2><p>On peut trier des données en utilisant <code>ORDER BY</code> à la fin d'une requête, suivi de l'attribut à trier et de <code>ASC</code> (pour un tri croissant) ou <code>DESC</code> (pour un tri décroissant).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q15</strong> : Traduisez par une phrase la requête suivante. <em>Vérifiez <strong>ensuite</strong> votre réponse en l'exécutant</em>.</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">Artiste</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">nom</span> <span class="k">ASC</span><span class="p">;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q16</strong> : Écrivez et testez une requête permettant de récupérer les albums triés dans l'ordre décroissant de leur année de sortie.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q17</strong> : Écrivez et testez une requête permettant de récupérer les titres par ordre alphabétique des albums sortis entre 1980 et 2010.
+<br><em>Résultat attendu : 10 enregistrements</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q18</strong> : Écrivez et testez une requête permettant de récupérer les noms et prénoms de tous les clients, triés par ordre alphabétique des noms.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q19</strong> : Écrivez et testez une requête permettant de récupérer les noms et prénoms de tous les clients, triés par ordre alphabétique des noms, puis des prénoms en cas de noms identiques.
+<br><em>Vous vérifierez bien que les clients portant le même nom sont bien triés alphabétiquement selon leur prénom (ce qui n'était pas le cas de la précédente requête).</em></p>
+<blockquote><p><span style="font-size:1.6em">🆘</span> On peut trier des données selon plusieurs attributs en les écrivant après <code>ORDER BY</code> dans l'ordre souhaité et en les séparant par des virgules.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Supprimer-les-doublons-gr&#226;ce-&#224;-DISTINCT">Supprimer les doublons gr&#226;ce &#224; <code>DISTINCT</code><a class="anchor-link" href="#Supprimer-les-doublons-gr&#226;ce-&#224;-DISTINCT">&#182;</a></h2><p>On peut supprimer les doublons grâce à <code>DISTINCT</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q20</strong> : Traduisez par une phrase la requête suivante. <em>Vérifiez <strong>ensuite</strong> votre réponse en l'exécutant</em>.</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">id_client</span> <span class="k">FROM</span> <span class="n">Emprunt</span><span class="p">;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q21</strong> : Écrivez et testez une requête permettant de récupérer les titres distincts des albums.
+<br><em>Résultat attendu : 29 enregistrements (car un album était en double).</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Compter-les-enregistrements">Compter les enregistrements<a class="anchor-link" href="#Compter-les-enregistrements">&#182;</a></h2><p>On peut compter le nombre d'enregistrements (ou tuples) en utilisant la fonction <code>COUNT()</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q22</strong> : Traduisez par une phrase la requête suivante. <em>Vérifiez <strong>ensuite</strong> votre réponse en l'exécutant</em>.</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">nbClients</span> <span class="k">FROM</span> <span class="n">Client</span><span class="p">;</span>
+</pre></div>
+<blockquote><p>On rappelle que <code>AS</code> permet de nommer le résultat de la requête, ici on le nomme <code>nbClients</code>. Essayez d'enlever le <code>AS nbClients</code> et observez le résultat de la requête.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q23</strong> : Écrivez et testez une requête permettant de récupérer le nombre d'emprunts en cours, que l'on notera <code>nbEmprunts</code>.
+<br><em>Résultat attendu : 11</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q24</strong> : Écrivez et testez une requête permettant de récupérer le nombre de clients ayant le nom "Petit", que l'on notera <code>nbPetit</code>.
+<br><em>Résultat attendu : 2</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q25</strong> : Écrivez et testez une requête permettant de récupérer le nombre de titres différents d'albums, que l'on notera <code>nbAlbumsDistincts</code>.
+<br><em>Résultat attendu : 29</em>.</p>
+<blockquote><p><span style="font-size:1.6em">🆘</span> Vous lirez la page suivant pour savoir comment faire : <a href="https://sql.sh/fonctions/agregation/count">https://sql.sh/fonctions/agregation/count</a>.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Recherche-par-motif">Recherche par motif<a class="anchor-link" href="#Recherche-par-motif">&#182;</a></h2><p>On peut effectuer des requêtes effectuant des recherches de certains motifs.</p>
+<p>Par exemple, on peut chercher tous les clients dont l'adresse email contient le domaine "domaine.net". La requête s'écrirait :</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">Client</span> <span class="k">WHERE</span> <span class="n">email</span> <span class="k">LIKE</span> <span class="ss">&quot;%domaine.net%&quot;</span><span class="p">;</span>
+</pre></div>
+<p><strong>Analyse</strong> :</p>
+<ul>
+<li>On a remplacé le <code>=</code> qui fait une recherche exacte par <code>LIKE</code>. Ainsi, <code>email LIKE "%domaine.net%"</code> est évaluée à vrai si et seulement si l'attribut <code>email</code> correspond au motif <code>"%domaine.net%"</code>.</li>
+<li>Dans un motif le symbole <code>%</code> est un <em>joker</em> et peut être substitué par n'importe quelle chaîne de caractères.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q26</strong> : Écrivez et testez une requête permettant de récupérer les titres de tous les albums contenant le mot <code>"Love"</code>.
+<br><em>Résultat attendu : 2 enregistrements</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q27</strong> : Écrivez et testez une requête permettant de récupérer le nombre d'albums dont le titre contient la lettre <code>"a"</code>.
+<br><em>Résultat attendu : 11 enregistrements</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q28</strong> : Écrivez et testez une requête permettant de récupérer les noms et prénoms de tous les artistes <em>commençant</em> par la lettre <code>"M"</code>.
+<br><em>Résultat attendu : 3 enregistrements</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-2-:-BDD-du-disquaire---Requ&#234;tes-crois&#233;es">Exercice 2 : BDD du disquaire - Requ&#234;tes crois&#233;es<a class="anchor-link" href="#Exercice-2-:-BDD-du-disquaire---Requ&#234;tes-crois&#233;es">&#182;</a></h1><p><img class="centre image-responsive" src="data/vinyl.svg" alt="diagramme" width="200"></p>
+<blockquote><p>On travaillera toujours avec la base de données <code>disquaire.db</code> que vous trouverez dans l'archive de ce chapitre. Vous utiliserez le logiciel <em>DB Browser for SQLite</em> ou le logiciel en ligne <a href="https://sqliteonline.com/">sqliteonline.com</a> dans lesquels vous aurez au préalable ouvert la base de données en question.</p>
+</blockquote>
+<p>L'exercice précédent portait sur des requêtes ne portant à chaque fois que sur une seule table. C'est malheureusement insuffisant pour chercher certaines informations qui nécessitent de croiser plusieurs tables.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><blockquote><p>On présente dans cette introdution la notion de <strong>jointure</strong> qui permet de croiser plusieurs tables. Prenez le temps de lire attentivement cette partie, de tester les requêtes proposées, de les modifier, etc. pour bien comprendre cette notion fondamentale des bases de données relationnelles.</p>
+</blockquote>
+<p>Imaginons que l'on veuille connaître les clients ayant des emprunts en cours. Ces derniers sont ceux présents dans la table <code>Emprunt</code> et on peut les obtenir avec la requête</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">Emprunt</span><span class="p">;</span>
+</pre></div>
+<p>qui produit la réponse suivante :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>id_client</th>
+        <th>id_album</th>
+        <th>jour</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>5</td>
+        <td>2021-09-10</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>8</td>
+        <td>2021-08-18</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>24</td>
+        <td>2021-08-18</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>25</td>
+        <td>2021-09-12</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>6</td>
+        <td>2021-10-10</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>20</td>
+        <td>2021-09-28</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>14</td>
+        <td>2021-10-08</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>15</td>
+        <td>2021-10-08</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>19</td>
+        <td>2021-10-08</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>16</td>
+        <td>2021-10-15</td>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td>29</td>
+        <td>2021-10-01</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Mais ce n'est pas très satisfaisant car on aimerait plutôt afficher les noms, prénoms et adresse email de ces clients plutot que <code>id_client</code>.</p>
+<p>Le problème est que les noms, prénoms, adresses email sont uniquement présents dans la table <code>Client</code>. Il est nécessaire de faire <strong>une jointure</strong> entre les deux tables <code>Emprunt</code> et <code>Client</code>.</p>
+<h3 id="Premi&#232;re-jointure">Premi&#232;re jointure<a class="anchor-link" href="#Premi&#232;re-jointure">&#182;</a></h3><p>Une jointure consiste à créer toutes les combinaisons de lignes des deux tables ayant un attribut de même valeur (l'attribut <code>id_client</code> dans notre exemple). Pour effectuer une jointure, on utilise <code>JOIN</code> !</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ainsi, la requête</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">Emprunt</span>
+<span class="k">JOIN</span> <span class="n">Client</span> <span class="k">ON</span> <span class="n">Emprunt</span><span class="p">.</span><span class="n">id_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">.</span><span class="n">id_client</span><span class="p">;</span>
+</pre></div>
+<p>crée la jointure des deux tables <code>Emprunt</code> et <code>Client</code>, représentée ci-dessous.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>id_client</th>
+        <th>id_album</th>
+        <th>jour</th>
+        <th>id_client_1</th>
+        <th>nom</th>
+        <th>prenom</th>
+        <th>email</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>5</td>
+        <td>2021-09-10</td>
+        <td>1</td>
+        <td>Dupont</td>
+        <td>Florine</td>
+        <td>dupont.florine@domaine.net</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>8</td>
+        <td>2021-08-18</td>
+        <td>3</td>
+        <td>Marchand</td>
+        <td>Grégoire</td>
+        <td>greg.marchand49@music.com</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>24</td>
+        <td>2021-08-18</td>
+        <td>3</td>
+        <td>Marchand</td>
+        <td>Grégoire</td>
+        <td>greg.marchand49@music.com</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>25</td>
+        <td>2021-09-12</td>
+        <td>5</td>
+        <td>Pacot</td>
+        <td>Jean</td>
+        <td>jpacot@music.com</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>6</td>
+        <td>2021-10-10</td>
+        <td>5</td>
+        <td>Pacot</td>
+        <td>Jean</td>
+        <td>jpacot@music.com</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>20</td>
+        <td>2021-09-28</td>
+        <td>9</td>
+        <td>Dubois</td>
+        <td>Philippe</td>
+        <td>pdubois5@chezmoi.net</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>14</td>
+        <td>2021-10-08</td>
+        <td>11</td>
+        <td>Fournier</td>
+        <td>Marie</td>
+        <td>mfournier@abc.de</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>15</td>
+        <td>2021-10-08</td>
+        <td>7</td>
+        <td>Moreau</td>
+        <td>Alain</td>
+        <td>amoreau1@abc.de</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>19</td>
+        <td>2021-10-08</td>
+        <td>7</td>
+        <td>Moreau</td>
+        <td>Alain</td>
+        <td>amoreau1@abc.de</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>16</td>
+        <td>2021-10-15</td>
+        <td>7</td>
+        <td>Moreau</td>
+        <td>Alain</td>
+        <td>amoreau1@abc.de</td>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td>29</td>
+        <td>2021-10-01</td>
+        <td>16</td>
+        <td>Bernardin</td>
+        <td>Stéphanie</td>
+        <td>sbernard1@chezmoi.net</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Analyse</strong> :</p>
+<ul>
+<li>La jointure (<code>SELECT * FROM Emprunt JOIN Client</code>) a permis de recopier toutes les colonnes des deux tables.</li>
+<li>Le choix des lignes à conserver, appelée <em>condition de jointure</em>, suit le mot clé <code>ON</code>. Cela permet de fusionner uniquement les lignes vérifiant la condition <code>Emprunt.id_client = Client.id_client</code>, autrement dit les lignes pour lesquelle l'attribut <code>id_client</code> est identique donc celles concernant un même client.<blockquote><p>Essayez d'enlever le <code>ON ...</code>, vous constaterez que toutes les lignes sont fusionnées, ce qui est absurde car une même ligne peut alors correspondre à deux clients distincts.</p>
+</blockquote>
+</li>
+<li>Vous avez constaté que l'on a préfixé chaque attribut par le nom de la table auquel il appartient. Cela permet de faire la différence entre deux attributs portant le même nom dans deux tables différentes, et c'est une bonne pratique de toujours le faire même lorsqu'il n'y a pas d'ambiguïté.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote class="information">
+    <p>Ce sont les clés étrangères qui permettent de faire le lien entre les tables, il est donc normal que la condition de jointure fasse intervenir <code>id_client</code> (puisque c'est une clé étrangère de la table <code>Emprunt</code> qui la lie à la table <code>Client</code>).</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut combiner une jointure avec la clause <code>SELECT</code> pour n'afficher que ce qui nous intéresse. Par exemple, si on ne veut que les noms, prénoms et adresses email des clients ayant des emprunts en cours ainsi que les albums empruntés, on peut faire la requête</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">Emprunt</span><span class="p">.</span><span class="n">id_album</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">nom</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">prenom</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">email</span>
+<span class="k">FROM</span> <span class="n">Emprunt</span>
+<span class="k">JOIN</span> <span class="n">Client</span> <span class="k">ON</span> <span class="n">Emprunt</span><span class="p">.</span><span class="n">id_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">.</span><span class="n">id_client</span><span class="p">;</span>
+</pre></div>
+<p>qui produit le résultat</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>id_album</th>
+        <th>jour</th>
+        <th>nom</th>
+        <th>prenom</th>
+        <th>email</th>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>2021-09-10</td>
+        <td>Dupont</td>
+        <td>Florine</td>
+        <td>dupont.florine@domaine.net</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>2021-08-18</td>
+        <td>Marchand</td>
+        <td>Grégoire</td>
+        <td>greg.marchand49@music.com</td>
+    </tr>
+    <tr>
+        <td>24</td>
+        <td>2021-08-18</td>
+        <td>Marchand</td>
+        <td>Grégoire</td>
+        <td>greg.marchand49@music.com</td>
+    </tr>
+    <tr>
+        <td>25</td>
+        <td>2021-09-12</td>
+        <td>Pacot</td>
+        <td>Jean</td>
+        <td>jpacot@music.com</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>2021-10-10</td>
+        <td>Pacot</td>
+        <td>Jean</td>
+        <td>jpacot@music.com</td>
+    </tr>
+    <tr>
+        <td>20</td>
+        <td>2021-09-28</td>
+        <td>Dubois</td>
+        <td>Philippe</td>
+        <td>pdubois5@chezmoi.net</td>
+    </tr>
+    <tr>
+        <td>14</td>
+        <td>2021-10-08</td>
+        <td>Fournier</td>
+        <td>Marie</td>
+        <td>mfournier@abc.de</td>
+    </tr>
+    <tr>
+        <td>15</td>
+        <td>2021-10-08</td>
+        <td>Moreau</td>
+        <td>Alain</td>
+        <td>amoreau1@abc.de</td>
+    </tr>
+    <tr>
+        <td>19</td>
+        <td>2021-10-08</td>
+        <td>Moreau</td>
+        <td>Alain</td>
+        <td>amoreau1@abc.de</td>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td>2021-10-15</td>
+        <td>Moreau</td>
+        <td>Alain</td>
+        <td>amoreau1@abc.de</td>
+    </tr>
+    <tr>
+        <td>29</td>
+        <td>2021-10-01</td>
+        <td>Bernardin</td>
+        <td>Stéphanie</td>
+        <td>sbernard1@chezmoi.net</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Combiner-les-jointures">Combiner les jointures<a class="anchor-link" href="#Combiner-les-jointures">&#182;</a></h3><p>Plutôt que d'affichier l'<code>id_album</code>, qui est peu lisible, on peut préférer afficher le titre de l'album. Pour cela, on peut faire une nouvelle jointure :</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">Album</span><span class="p">.</span><span class="n">titre</span><span class="p">,</span> <span class="n">Emprunt</span><span class="p">.</span><span class="n">jour</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">nom</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">prenom</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">email</span>
+<span class="k">FROM</span> <span class="n">Emprunt</span>
+<span class="k">JOIN</span> <span class="n">Client</span> <span class="k">ON</span> <span class="n">Emprunt</span><span class="p">.</span><span class="n">id_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">.</span><span class="n">id_client</span>
+<span class="k">JOIN</span> <span class="n">Album</span> <span class="k">ON</span> <span class="n">Emprunt</span><span class="p">.</span><span class="n">id_album</span> <span class="o">=</span> <span class="n">Album</span><span class="p">.</span><span class="n">id_album</span><span class="p">;</span>
+</pre></div>
+<p><strong>Analyse</strong> : On a ajouté la dernière ligne qui permet de faire une jointure sur l'attribut <code>id_album</code> entre la table produite par la requête précédente et la table <code>Album</code>. Et on a remplacé la première colonne <code>Emprunt.id_album</code> par <code>Album.titre</code> pour faire apparaître les titres des albums comme souhaité :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>titre</th>
+        <th>jour</th>
+        <th>nom</th>
+        <th>prenom</th>
+        <th>email</th>
+    </tr>
+    <tr>
+        <td>Axis : Bold As Love</td>
+        <td>2021-09-10</td>
+        <td>Dupont</td>
+        <td>Florine</td>
+        <td>dupont.florine@domaine.net</td>
+    </tr>
+    <tr>
+        <td>Riding With The King</td>
+        <td>2021-08-18</td>
+        <td>Marchand</td>
+        <td>Grégoire</td>
+        <td>greg.marchand49@music.com</td>
+    </tr>
+    <tr>
+        <td>Continuum</td>
+        <td>2021-08-18</td>
+        <td>Marchand</td>
+        <td>Grégoire</td>
+        <td>greg.marchand49@music.com</td>
+    </tr>
+    <tr>
+        <td>Continuum</td>
+        <td>2021-09-12</td>
+        <td>Pacot</td>
+        <td>Jean</td>
+        <td>jpacot@music.com</td>
+    </tr>
+    <tr>
+        <td>Thriller</td>
+        <td>2021-10-10</td>
+        <td>Pacot</td>
+        <td>Jean</td>
+        <td>jpacot@music.com</td>
+    </tr>
+    <tr>
+        <td>Power Up</td>
+        <td>2021-09-28</td>
+        <td>Dubois</td>
+        <td>Philippe</td>
+        <td>pdubois5@chezmoi.net</td>
+    </tr>
+    <tr>
+        <td>Let It Be</td>
+        <td>2021-10-08</td>
+        <td>Fournier</td>
+        <td>Marie</td>
+        <td>mfournier@abc.de</td>
+    </tr>
+    <tr>
+        <td>44/876</td>
+        <td>2021-10-08</td>
+        <td>Moreau</td>
+        <td>Alain</td>
+        <td>amoreau1@abc.de</td>
+    </tr>
+    <tr>
+        <td>Songs in the Key of Life</td>
+        <td>2021-10-08</td>
+        <td>Moreau</td>
+        <td>Alain</td>
+        <td>amoreau1@abc.de</td>
+    </tr>
+    <tr>
+        <td>Lady Soul</td>
+        <td>2021-10-15</td>
+        <td>Moreau</td>
+        <td>Alain</td>
+        <td>amoreau1@abc.de</td>
+    </tr>
+    <tr>
+        <td>Leave the Light On</td>
+        <td>2021-10-01</td>
+        <td>Bernardin</td>
+        <td>Stéphanie</td>
+        <td>sbernard1@chezmoi.net</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut combiner tout ce qui a été vu précédemment (dans l'exercice 1 par exemple) avec les jointures, on peut par exemple ajouter des conditions. La requête</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">Album</span><span class="p">.</span><span class="n">titre</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">nom</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">prenom</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">email</span>
+<span class="k">FROM</span> <span class="n">Emprunt</span>
+<span class="k">JOIN</span> <span class="n">Client</span> <span class="k">ON</span> <span class="n">Emprunt</span><span class="p">.</span><span class="n">id_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">.</span><span class="n">id_client</span>
+<span class="k">JOIN</span> <span class="n">Album</span> <span class="k">ON</span> <span class="n">Emprunt</span><span class="p">.</span><span class="n">id_album</span> <span class="o">=</span> <span class="n">Album</span><span class="p">.</span><span class="n">id_album</span>
+<span class="k">WHERE</span> <span class="n">Client</span><span class="p">.</span><span class="n">nom</span> <span class="o">=</span> <span class="ss">&quot;Moreau&quot;</span><span class="p">;</span>
+</pre></div>
+<p>produit le résultat</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>titre</th>
+        <th>nom</th>
+        <th>prenom</th>
+        <th>email</th>
+    </tr>
+    <tr>
+        <td>44/876</td>
+        <td>Moreau</td>
+        <td>Alain</td>
+        <td>amoreau1@abc.de</td>
+    </tr>
+    <tr>
+        <td>Lady Soul</td>
+        <td>Moreau</td>
+        <td>Alain</td>
+        <td>amoreau1@abc.de</td>
+    </tr>
+    <tr>
+        <td>Songs in the Key of Life</td>
+        <td>Moreau</td>
+        <td>Alain</td>
+        <td>amoreau1@abc.de</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Utiliser-des-alias">Utiliser des alias<a class="anchor-link" href="#Utiliser-des-alias">&#182;</a></h3><p>Certaines requêtes peuvent commencer à être assez longues à écrire. Pour réduire leur longueur on peut utiliser des <em>alias</em> pour les noms de table grâce au mot clé <code>AS</code>.</p>
+<p>Ainsi, la requête précédente peut aussi s'écrire</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">a</span><span class="p">.</span><span class="n">titre</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">nom</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">prenom</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">email</span>
+<span class="k">FROM</span> <span class="n">Emprunt</span> <span class="k">AS</span> <span class="n">e</span>
+<span class="k">JOIN</span> <span class="n">Client</span> <span class="k">AS</span> <span class="k">c</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">id_client</span> <span class="o">=</span> <span class="k">c</span><span class="p">.</span><span class="n">id_client</span>
+<span class="k">JOIN</span> <span class="n">Album</span> <span class="k">AS</span> <span class="n">a</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">id_album</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">id_album</span>
+<span class="k">WHERE</span> <span class="k">c</span><span class="p">.</span><span class="n">nom</span> <span class="o">=</span> <span class="ss">&quot;Moreau&quot;</span><span class="p">;</span>
+</pre></div>
+<p><strong>Analyse</strong> : <code>Emprunt AS e</code> permet de renommer la table <code>Emprunt</code> par <code>e</code>, ce qui permet de raccourcir les écritures du type <code>Emprunt.id_client</code> en <code>e.id_client</code>. Idem pour <code>c</code> et <code>a</code> qui sont les alias respectifs des tables <code>Client</code> et <code>Album</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#192;-vous-de-jouer-!">&#192; vous de jouer !<a class="anchor-link" href="#&#192;-vous-de-jouer-!">&#182;</a></h2><p><strong>Q1</strong> : Écrivez et testez une requête permettant de récupérer l'adresse email de chaque client ayant un emprunt en cours.
+<br><em>Résultat attendu : 11 enregistrements (comme un peu au-dessus).</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q2</strong> : Écrivez et testez une requête permettant de récupérer les noms, prénoms et adresses email des clients ayant un emprunt en cours et dont la date d'emprunt est postérieure au 2 octobre 2021.
+<br><em>Résultat attendu : 5 enregistrements.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q3</strong> : En réalité, l'attribut <code>dispo</code> (de la table <code>Album</code>) n'est pas utile car on peut retrouver tous les albums empruntés avec une jointure. <strong>En supposant que l'attribut <code>dispo</code> n'existe pas</strong>, écrivez et testez une requête permettant de récupérer le titre de tous les albums empruntés.
+<br><em>Résultat attendu : 11 enregistrements.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q4</strong> : Toujours sans utiliser l'attribut <code>dispo</code>, écrivez et testez une requête permettant de récupérer le titre de tous les albums empruntés par le client dont l'attribut <code>id_client</code> vaut 7. 
+<br><em>Résultat attendu : 3 enregistrements.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q5</strong> : Toujours sans utiliser l'attribut <code>dispo</code>, écrivez et testez une requête permettant de récupérer le nom, le prénom et le titre de tous les albums empruntés par le client dont l'attribut <code>id_client</code> vaut 7. 
+<br><em>Résultat attendu : 3 enregistrements (comme à la question précédenet, le client en question est Alain Moreau).</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q6</strong> : Écrivez et testez une requête permettant de récupérer les titres ainsi que les noms et prénoms des artistes de chaque album.
+<br><em>Résultat attendu : 34 enregistrements</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q7</strong> : Écrivez et testez une requête permettant de récupérer les titres et l'année de sortie de tous les albums de Michael Jackson.
+<br><em>Résultat attendu : 3 enregistrements</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q8</strong> : Écrivez et testez une requête permettant de récupérer les titres et l'année de sortie de tous les albums de Sting, rangés par ordre croissant d'année de sortie.
+<br><em>Résultat attendu : 3 enregistrements</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q9</strong> : Écrivez et testez une requête permettant de récupérer les noms et prénoms des artistes de l'album initulé <code>"Don't Explain"</code>.
+<br><em>Résultat attendu : 2 enregistrements</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-3---Questions-interactives-en-ligne-avec-SQLZOO">Exercice 3 - Questions interactives en ligne avec SQLZOO<a class="anchor-link" href="#Exercice-3---Questions-interactives-en-ligne-avec-SQLZOO">&#182;</a></h1><p><img src="https://bigdata-world.net/wp-content/uploads/2020/11/sql-zoo.png" alt=""></p>
+<h2 id="1.-Travail-sur-SELECT...">1. Travail sur SELECT...<a class="anchor-link" href="#1.-Travail-sur-SELECT...">&#182;</a></h2><p>... sur une base de données des prix Nobel.</p>
+<p>Lien vers l'activité : <a href="https://sqlzoo.net/wiki/SELECT_from_Nobel_Tutorial">https://sqlzoo.net/wiki/SELECT_from_Nobel_Tutorial</a></p>
+<p><em>Correction disponible ici : <a href="https://github.com/jisaw/sqlzoo-solutions/blob/master/select-from-nobel.sql">https://github.com/jisaw/sqlzoo-solutions/blob/master/select-from-nobel.sql</a></em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.-Travail-sur-SUM-et-COUNT-...">2. Travail sur SUM et COUNT ...<a class="anchor-link" href="#2.-Travail-sur-SUM-et-COUNT-...">&#182;</a></h2><p>... sur une base de données sur les pays du monde.</p>
+<p>Lien vers l'activité : <a href="https://sqlzoo.net/wiki/SUM_and_COUNT">https://sqlzoo.net/wiki/SUM_and_COUNT</a></p>
+<p><em>Correction disponible ici : <a href="https://github.com/jisaw/sqlzoo-solutions/blob/master/sum-and-count.sql">https://github.com/jisaw/sqlzoo-solutions/blob/master/sum-and-count.sql</a></em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.-Travail-sur-JOIN-...">3. Travail sur JOIN ...<a class="anchor-link" href="#3.-Travail-sur-JOIN-...">&#182;</a></h2><p>... sur une base de données sur l'Euro 2012.</p>
+<p>Lien vers l'activité : <a href="https://sqlzoo.net/wiki/The_JOIN_operation">https://sqlzoo.net/wiki/The_JOIN_operation</a></p>
+<blockquote><p><strong>Attention : Vous pouvez vous arrêter à la question 8</strong>. En effet, à partir de la question 9, il s'agit d'utiliser la clause <code>GROUP BY</code> qui n'est pas au programme de Terminale NSI (mais libre à vous de vous y intéresser ou pas).</p>
+</blockquote>
+<p><em>Correction disponible ici : <a href="https://github.com/jisaw/sqlzoo-solutions/blob/master/join.sql">https://github.com/jisaw/sqlzoo-solutions/blob/master/join.sql</a></em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-4---Modifier-une-table">Exercice 4 - Modifier une table<a class="anchor-link" href="#Exercice-4---Modifier-une-table">&#182;</a></h1><p>Les données stockées dans une base de données n'ont pas vocation à être figées, elles peuvent être modifiées au cours du temps grâce à des <strong>requêtes de mise à jour</strong> de la base de donnnées.</p>
+<p>Nous allons voir les requêtes permettant d'ajouter des données à une table, de modifier les données d'une table et de supprimer les données d'une table.</p>
+<p>Avant cela, faisons une petite digression sur la création de tables dans une base de données.</p>
+<h2 id="Cr&#233;ation-d'une-table-avec-CREATE-TABLE">Cr&#233;ation d'une table avec <code>CREATE TABLE</code><a class="anchor-link" href="#Cr&#233;ation-d'une-table-avec-CREATE-TABLE">&#182;</a></h2><blockquote class="information">
+    <p>La création d'une base de données n'est pas au programme de Terminale NSI. Néanmoins, connaître les requêtes permettant de créer une table permet de mieux appréhender les requêtes de mise à jour que l'on verra ensuite.</p>
+</blockquote><p>Créer une base de données consiste à créer les tables de la base. Pour créer une table, on utilise <code>CREATE TABLE</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Exemple">Exemple<a class="anchor-link" href="#Exemple">&#182;</a></h3><p>Pour créer la table <code>Artiste</code> correspondant à la relation suivante :</p>
+<pre style="padding-bottom:10px;">
+    <code><em>Artiste</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_artiste</em></span> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT)</code>
+</pre><p>on peut exécuter cette commande SQL :</p>
+<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">Artiste</span> <span class="p">(</span>
+    <span class="n">id_artiste</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">nom</span> <span class="nb">TEXT</span><span class="p">,</span>
+    <span class="n">prenom</span> <span class="nb">TEXT</span>
+<span class="p">);</span>
+</pre></div>
+<p><strong>Remarque</strong> : On a bien précisé le nom et le type de chaque attribut, et indiqué avec <code>PRIMARY KEY</code> quelle était notre clé primaire.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="&#192;-vous-de-jouer-!">&#192; vous de jouer !<a class="anchor-link" href="#&#192;-vous-de-jouer-!">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q1</strong> : Ouvrez <em>DB Browser for SQLite</em> ou <a href="https://sqliteonline.com/">sqliteonline.com</a> :</p>
+<ul>
+<li><p>si vous utilisez <em>DB Browser for SQLite</em>, cliquez sur "Nouvelle Base de Données" puis appelez-la <code>bac.db</code> et validez. Fermez ensuite la fenêtre de l'assistant de création de table. Vous êtes désormais prêt pour la suite !</p>
+</li>
+<li><p>si vous utilisez <em>sqliteonline.com</em>, remplacez la requête dans la fenêtre SQL par <code>DROP TABLE demo;</code> pour effacer la table <code>demo</code> présente au départ. Vous êtes désormais prêt pour la suite !</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q2</strong> : Écrivez la requête permettant de créer une table <code>Note</code> correspondant à la relation suivante. <em>Vous vérifierez ensuite dans la structure de la base de données que la table a bien été créée avec les bons attributs et les bons types.</em></p>
+<pre style="padding-bottom:10px;">
+    <code><em>Note</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_eleve</em></span> INT, <em>nom</em> TEXT, <em>prenom</em> TEXT, <em>maths</em> INT, <em>anglais</em> INT, <em>info</em> INT)</code>
+</pre>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Insertion-de-valeurs-dans-la-table-avec-INSERT-INTO-...-VALUES">Insertion de valeurs dans la table avec <code>INSERT INTO ... VALUES</code><a class="anchor-link" href="#Insertion-de-valeurs-dans-la-table-avec-INSERT-INTO-...-VALUES">&#182;</a></h2><p>Pour insérer des enregistrements (= des lignes) dans une table, on utilise la commande <code>INSERT INTO ... VALUES</code></p>
+<h3 id="Exemple">Exemple<a class="anchor-link" href="#Exemple">&#182;</a></h3><p>Pour insérer les 3 enregistrements suivants dans la table <code>Artiste</code>.</p>
+<table>
+<thead><tr>
+<th>id_artiste</th>
+<th>nom</th>
+<th>prenom</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Clapton</td>
+<td>Éric</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Mayall</td>
+<td>John</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Hendrix</td>
+<td>Jimi</td>
+</tr>
+</tbody>
+</table>
+<p>on écrit la requête</p>
+<div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Artiste</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Clapton&#39;</span><span class="p">,</span> <span class="s1">&#39;Éric&#39;</span><span class="p">),</span>
+                           <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Mayall&#39;</span><span class="p">,</span> <span class="s1">&#39;John&#39;</span><span class="p">),</span>
+                           <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;Hendrix&#39;</span><span class="p">,</span> <span class="s1">&#39;Jimi&#39;</span><span class="p">);</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Analyse</strong> :</p>
+<ul>
+<li>Après <code>INSERT INTO</code> (que l'on traduit par "insérer dans") on indique le nom de la table (ici <code>Note</code>) dans laquelle on veut insérer des données ;</li>
+<li>Puis on indique grâce au mot clé <code>VALUES</code> les enregistrements que l'on veut insérer, ces derniers étant séparés par des virgules s'il y en a plusieurs (on n'oublie pas le <code>;</code> pour terminer) ;</li>
+<li>Avec cette requête, les valeurs des différents enregistrements (ou $n$-uplets) doivent être données dans le même ordre que lors du <code>CREATE TABLE</code>. Néanmoins, il est possible de les passer dans un ordre différent comme on l'explique juste en-dessous.</li>
+</ul>
+<p>Si on désire passer les valeurs des enregistrements dans un ordre différent de celui de la création de la table, il suffit de préciser l'ordre juste après le nom de la table :</p>
+<div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">Artiste</span> <span class="p">(</span><span class="n">prenom</span><span class="p">,</span> <span class="n">nom</span><span class="p">,</span> <span class="n">id_artiste</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;Mayer&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote class="information">
+    <p>Pour voir le code SQL qui a permi de créer la base de données du disquaire, vous pouvez suivre <a href="https://github.com/germainbecker/NSI/blob/master/Terminale/Theme2_Bases_de_donnees/disquaire.sql" target="_blank">ce lien</a>. Regardez notamment comment on a lié les tables avec les clés étrangères en utilisant <code>REFERENCES</code> et comment on définit la réunion de plusieurs attributs comme clé primaire. Vous constaterez également que l'on n'a pas utilisé le type <code>TEXT</code> pour le domaine des attributs de type "texte". Enfin, vous trouverez dans ce fichier .sql les ordres d'insertions des différents enregistrements de chaque table.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="&#192;-vous-de-jouer-!">&#192; vous de jouer !<a class="anchor-link" href="#&#192;-vous-de-jouer-!">&#182;</a></h3><p><strong>Q3</strong> : Écrivez la requête permettant d'insérer les trois enregistrements suivants dans la table <code>Note</code>.</p>
+<table>
+<thead><tr>
+<th>id_eleve</th>
+<th>nom</th>
+<th>prenom</th>
+<th>maths</th>
+<th>anglais</th>
+<th>info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Marchand</td>
+<td>Alice</td>
+<td>14</td>
+<td>13</td>
+<td>11</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Muller</td>
+<td>Marie</td>
+<td>10</td>
+<td>18</td>
+<td>17</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Prenel</td>
+<td>Laura</td>
+<td>13</td>
+<td>14</td>
+<td>15</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q4</strong> : Écrivez et testez une requête permettant d'afficher tous les enregistrements de la table <code>Note</code> afin de vérifier que les données ont bien été ajoutées.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q5</strong> : Écrivez et testez la requête permettant d'ajouter l'enregistrement <code>(3, 'Dupont', 'Arthur', 18, 14, 13)</code> à la table <code>Note</code>. Quelle est l'erreur provoquée ? Expliquez-la (voir Chapitre 1 si nécessaire).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+
+<pre><code>
+</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q6</strong> : Écrivez et testez une requête permettant d'ajouter l'enregistrement concernant Laura mais avec la clé primaire <code>id_eleve</code> égale à 4. <em>Vous vérifierez que l'enregistrement a bien été ajouté !</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>À ce stade, vous devriez obtenir la table <code>Note</code> suivante :</p>
+<table>
+    <tbody><tr>
+        <th>id_eleve</th>
+        <th>nom</th>
+        <th>prenom</th>
+        <th>maths</th>
+        <th>anglais</th>
+        <th>info</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Marchand</td>
+        <td>Alice</td>
+        <td>14</td>
+        <td>13</td>
+        <td>11</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Muller</td>
+        <td>Marie</td>
+        <td>10</td>
+        <td>18</td>
+        <td>17</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Prenel</td>
+        <td>Laura</td>
+        <td>13</td>
+        <td>14</td>
+        <td>15</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Dupont</td>
+        <td>Arthur</td>
+        <td>18</td>
+        <td>14</td>
+        <td>13</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Modification-de-valeurs-avec-UPDATE-...-SET">Modification de valeurs avec <code>UPDATE ... SET</code><a class="anchor-link" href="#Modification-de-valeurs-avec-UPDATE-...-SET">&#182;</a></h2><p>Il est possible de modifier des valeurs existantes dans une table, avec <code>UPDATE</code>.</p>
+<h3 id="Exemple">Exemple<a class="anchor-link" href="#Exemple">&#182;</a></h3><p>Dans la table <code>Client</code>, le client</p>
+<table>
+    <tbody><tr>
+        <th>id_client</th>
+        <th>nom</th>
+        <th>prenom</th>
+        <th>email</th>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Michel</td>
+        <td>Valérie</td>
+        <td>vmichel5@monmail.com</td>
+    </tr>
+</tbody></table><p>a changé d'adresse email. Pour modifier cette adresse dans la table <code>Client</code>, on peut écrire :</p>
+<div class="highlight"><pre><span></span><span class="k">UPDATE</span> <span class="n">Client</span> <span class="k">SET</span> <span class="n">email</span> <span class="o">=</span> <span class="s1">&#39;valerie.michel@email.fr&#39;</span>
+<span class="k">WHERE</span> <span class="n">id_client</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Analyse</strong> :</p>
+<ul>
+<li>Après <code>UPDATE</code> on indique le nom de la table dans laquelle on veut modifier une valeur (ici <code>Client</code>) ;</li>
+<li>Ensuite, on écrit <code>SET</code> puis une expression de la forme <code>attribut = valeur</code> qui permet de définir une nouvel valeur <code>valeur</code> pour l'attribut <code>attribut</code> (ici <code>'valerie.michel@email.fr'</code> est la nouvelle valeur de l'attribut <code>email</code>) ;</li>
+<li>Enfin, on précise avec <code>WHERE</code> la condition permettant de sélectionner les enregistrements sur lesquels la modification doit être apportée (ici une seule ligne car la condition <code>id_client = 4</code> ne correspond qu'à un seul enregistrement).</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="&#192;-vous-de-jouer-!">&#192; vous de jouer !<a class="anchor-link" href="#&#192;-vous-de-jouer-!">&#182;</a></h3><p><strong>Q7</strong> : Il y a eu une erreur dans la saisie de l'élève numéro 3 : son prénom n'est pas Laur<strong>a</strong> mais Laur<strong>e</strong>. Écrivez et testez une requête permettant d'effectuer la correction.
+<em>Vous vérifierez que la modification a bien été effectuée !</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q8</strong> : Un autre erreur a été détectée : les notes de Mathématiques et d'Anglais de Marchand Alice ont été inversées. Écrivez et testez <strong>une</strong> requête permettant d'effectuer la correction.
+<em>Vous vérifierez que la modification a bien été effectuée !</em>.</p>
+<blockquote><p><span style="font-size:1.6em">🆘</span> Vous lirez la page suivant pour savoir comment modifier plusieurs valeurs simultanément avec <code>UPDATE ... SET</code>: <a href="https://sql.sh/cours/update">https://sql.sh/cours/update</a>.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q9</strong> : Pour des raisons d'équité entre établissement, il a été décidé que les notes de mathématiques de tous les élèves devaient augmenter d'un point. Écrivez et testez une requête permettant d'effectuer la correction. <em>Vous vérifierez que la modification a bien été effectuée !</em>.</p>
+<blockquote><p><span style="font-size:1.6em">🆘</span> Pour ajouter un nombre à une valeur, on peut procéder comme en Python pour ajouter un nombre à une variable.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>À ce stade, vous devriez obtenir la table <code>Note</code> suivante :</p>
+<table>
+    <tbody><tr>
+        <th>id_eleve</th>
+        <th>nom</th>
+        <th>prenom</th>
+        <th>maths</th>
+        <th>anglais</th>
+        <th>info</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Marchand</td>
+        <td>Alice</td>
+        <td>14</td>
+        <td>14</td>
+        <td>11</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Muller</td>
+        <td>Marie</td>
+        <td>11</td>
+        <td>18</td>
+        <td>17</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Prenel</td>
+        <td>Laure</td>
+        <td>14</td>
+        <td>14</td>
+        <td>15</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Dupont</td>
+        <td>Arthur</td>
+        <td>19</td>
+        <td>14</td>
+        <td>13</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Suppression-de-valeurs">Suppression de valeurs<a class="anchor-link" href="#Suppression-de-valeurs">&#182;</a></h2><p>Il est possible de supprimer une ligne d'une table en utilisant <code>DELETE</code>.</p>
+<h3 id="Exemple">Exemple<a class="anchor-link" href="#Exemple">&#182;</a></h3><p>Le client Marchand Grégoire a rendu l'album <code>Continuum</code> (dont l'attribut <code>id_album</code> vaut 25) qu'il avait emprunté. Il faut supprimer la ligne correspondante dans la table <code>Emprunt</code> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>id_client</th>
+        <th>id_album</th>
+        <th>jour</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>5</td>
+        <td>2021-09-10</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>8</td>
+        <td>2021-08-18</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>24</td>
+        <td>2021-08-18</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>25</td>
+        <td>2021-09-12</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>6</td>
+        <td>2021-10-10</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>20</td>
+        <td>2021-09-28</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>14</td>
+        <td>2021-10-08</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>15</td>
+        <td>2021-10-08</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>19</td>
+        <td>2021-10-08</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>16</td>
+        <td>2021-10-15</td>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td>29</td>
+        <td>2021-10-01</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Pour cela, on peut écrire l'ordre suivant :</p>
+<div class="highlight"><pre><span></span><span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">Emprunt</span>
+<span class="k">WHERE</span> <span class="n">id_album</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Analyse</strong> :</p>
+<ul>
+<li>Après <code>DELETE</code> on indique dans quelle table on veut supprimer une ligne avec <code>FROM [nom_table]</code> ;</li>
+<li>Ensuite on précise avec <code>WHERE</code> la condition permettant de sélectionner les enregistrements à supprimer (ici une seule ligne est supprimée car la condition <code>id_album = 25</code> ne correspond qu'à un seul enregistrement).</li>
+</ul>
+<p>On peut vérifier que la ligne correspondante a bien été supprimée de la table <code>Emprunt</code> :</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">Emprunt</span><span class="p">;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>id_client</th>
+        <th>id_album</th>
+        <th>jour</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>5</td>
+        <td>2021-09-10</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>8</td>
+        <td>2021-08-18</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>24</td>
+        <td>2021-08-18</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>6</td>
+        <td>2021-10-10</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>20</td>
+        <td>2021-09-28</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>14</td>
+        <td>2021-10-08</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>15</td>
+        <td>2021-10-08</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>19</td>
+        <td>2021-10-08</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>16</td>
+        <td>2021-10-15</td>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td>29</td>
+        <td>2021-10-01</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remarque</strong> : Avec le schéma de la base de données il faut aussi mettre à jour la table <code>Album</code> puisque l'album en question est à nouveau disponible. La requête de mise à jour suivante permet de faire cela :</p>
+<div class="highlight"><pre><span></span><span class="k">UPDATE</span> <span class="n">Album</span>
+<span class="k">SET</span> <span class="n">dispo</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">WHERE</span> <span class="n">id_album</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="&#192;-vous-de-jouer-!">&#192; vous de jouer !<a class="anchor-link" href="#&#192;-vous-de-jouer-!">&#182;</a></h3><p><strong>Q10</strong> : L'élève Muller Marie ne devrait pas faire partie de la table <code>Note</code> car elle ne fait pas partie du même lycée que les autres élèves. Écrivez et testez une requête permettant de supprimer la ligne correspondante. <em>Vous vérifierez que la suppression a bien été effectuée !</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-5---Modification-de-la-base-du-disquaire">Exercice 5 - Modification de la base du disquaire<a class="anchor-link" href="#Exercice-5---Modification-de-la-base-du-disquaire">&#182;</a></h1><p><img class="centre image-responsive" src="data/vinyl.svg" alt="diagramme" width="200"></p>
+<blockquote><p>On travaillera à nouveau avec la base de données <code>disquaire.db</code> que vous trouverez dans l'archive de ce chapitre. Vous utiliserez le logiciel <em>DB Browser for SQLite</em> ou le logiciel en ligne <a href="https://sqliteonline.com/">sqliteonline.com</a> dans lesquels vous aurez au préalable ouvert la base de données en question.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q1</strong> : Le prénom du client "Robert Pascal" a mal été saisi dans la base de données. En effet, son prénom n'est pas <em>Pascal</em> mais <em>Pascale</em>. Écrivez et testez une requête permettant corriger cette erreur. <em>Vous vérifierez que la correction a bien été effectuée !</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q2</strong> : Un titre d'album a mal été saisi dans la base de données. Il faut remplacer <em>Riding With The King</em> par <em>Riding with the King</em>. Écrivez et testez une requête permettant corriger cette erreur. <em>Vous vérifierez que la correction a bien été effectuée !</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> : L'album en question a pour <code>id_album</code> la valeur 8. Donc on effectue la modification ainsi :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q3</strong> : Le client "Durand Julien" souhaite que les informations personnelles le concernant soient supprimées de la base de données (c'est son droit avec le RGPD). Écrivez et testez la requête permettant d'effectuer ces suppressions. <em>Vous vérifierez que la suppression a bien été effectuée !</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q4</strong> : Essayez de supprimer le client "Dupont Florine". Quelle est l'erreur provoquée ? Expliquez-la (voir Chapitre 1 si nécessaire).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-6">Exercice 6<a class="anchor-link" href="#Exercice-6">&#182;</a></h1><p>On veut créer une base de données <code>baseHopital.db</code>  qui contiendra les trois tables suivantes (les clés primaires sont en gras) :</p>
+<p><img alt="diagramme de la base" src="data/base_hopital.png"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On suppose que les dates sont données sous la forme <code>jj-mm-aaaa</code>.</p>
+<p><strong>Q1</strong> : Donner les commandes SQLite permettant de créer ces tables.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q2</strong> : On a oublié une colonne pour noter les codes postaux des patients. Donner la commande SQLite permettant cet ajout.</p>
+<blockquote><p><span style="font-size:1.6em">🆘</span> Vous lirez la page suivant pour savoir comment ajouter une colonne à une table avec <code>ALTER TABLE</code>: <a href="https://sql.sh/cours/alter-table">https://sql.sh/cours/alter-table</a>. <em>Cette commande n'est a priori pas au exigible en Terminale NSI !</em></p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q3</strong> : Mme Anne Wizeunid, née en 2000 et demeurant 3 rue des Pignons Verts 12345 Avonelit doit être enregistrée comme patiente. Donner la commande SQLite correspondante.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q4</strong> : Le patient numéro 100 a changé de genre et est maintenant une femme. Donner la commande SQLite modifiant en conséquence ses données.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q5</strong> : Par souci d'économie, la direction décide de se passer des médecins spécialisés en épidémiologie. Donner la commande permettant de supprimer leurs fiches.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q6</strong> : Donner la requête permettant d'obtenir la liste des prénoms et noms des patientes habitant le Finistère triées dans l'ordre croissant des âges.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> : Les codes postaux du Finistère commencent par "29". Comme on veut par âge croissant, il faut trier par année de naissance décroissant :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q7</strong> : Donner la liste des patient(e)s ayant été examiné(e)s par un(e) psychiatre en avril 2020.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercice-7---S'entra&#238;ner-en-ligne">Exercice 7 - S'entra&#238;ner en ligne<a class="anchor-link" href="#Exercice-7---S'entra&#238;ner-en-ligne">&#182;</a></h1><blockquote><p>Vous utiliserez le site réalisé par Jean Le Coupannec, un grand merci à lui pour cette ressource !</p>
+</blockquote>
+<p>Rendez-vous sur la page <a href="http://colbert.bzh/nsi/sql/">http://colbert.bzh/nsi/sql/</a> et suivez les deux TP directement en ligne pour réviser la plupart des notions du chapitre.</p>
+<h2 id="TP1-:-Gestion-d'un-r&#233;seau-d'agences-de-location-de-voitures">TP1 : Gestion d'un r&#233;seau d'agences de location de voitures<a class="anchor-link" href="#TP1-:-Gestion-d'un-r&#233;seau-d'agences-de-location-de-voitures">&#182;</a></h2><p><img src="data/locations.png" alt="diagramme de la bdd"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="TP2-:-Le-championnat-de-France-2015-2016">TP2 : Le championnat de France 2015-2016<a class="anchor-link" href="#TP2-:-Le-championnat-de-France-2015-2016">&#182;</a></h2><p><img src="data/soccer.png" alt="diagramme de la bdd"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Références :</strong></p>
+<ul>
+<li><a href="https://glassus.github.io/terminale_nsi/T4_Bases_de_donnees/4.2_Langage_SQL/02_exercices/#exercice-1">Exercices sur le langage SQL</a> proposés par Gilles Lassus pour la découverte des sites <a href="https://sqlzoo.net/wiki/SQL_Tutorial">sqlzoo.net</a> (Exercice 3) et <a href="http://colbert.bzh/nsi/sql/">http://colbert.bzh/nsi/sql/</a> de Jean Le Coupannec (Exercice 7).</li>
+<li>Livre <em>Prepabac NSI, Tle</em>, G. Connan, V. Petrov, G. Rozsavolgyi, L. Signac, éditions HATIER, pour l'idée de l'exercice 4 ainsi que l'exercice 6.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p>Germain BECKER, Lycée Mounier, ANGERS</p>
+<p>Ressource éducative libre distribuée sous <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a></p>
+<p><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+

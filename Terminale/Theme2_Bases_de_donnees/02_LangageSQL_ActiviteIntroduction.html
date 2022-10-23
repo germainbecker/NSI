@@ -1,0 +1,1570 @@
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 style="font-size: 30px; text-align: center">Langage SQL - Activité d'introduction</h1><hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Dans cette activité, vous allez découvrir comment effectuer des requêtes sur une table d'une base de données, en utilisant le langage SQL (pour <em>Structured Query Language</em>).</p>
+<p>Pour cela, nous allons travailler avec une table déjà étudiée l'année dernière en classe de Première, ce sera l'occasion de faire le lien avec ce qui a été vu l'an dernier.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Voici un extrait de la table utilisée l'année dernière :</p>
+<table>
+<thead><tr>
+<th><strong>prénom</strong></th>
+<th><strong>jour</strong></th>
+<th><strong>mois</strong></th>
+<th><strong>année</strong></th>
+<th><strong>sexe</strong></th>
+<th><strong>groupe</strong></th>
+<th><strong>projet</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Loona</td>
+<td>29</td>
+<td>11</td>
+<td>2005</td>
+<td>F</td>
+<td>1</td>
+<td>être heureuse</td>
+</tr>
+<tr>
+<td>Quentin</td>
+<td>28</td>
+<td>5</td>
+<td>2005</td>
+<td>G</td>
+<td>2</td>
+<td>manger une glace</td>
+</tr>
+<tr>
+<td>Sania</td>
+<td>30</td>
+<td>7</td>
+<td>2005</td>
+<td>F</td>
+<td>1</td>
+<td>gagner au loto</td>
+</tr>
+<tr>
+<td>Yanis</td>
+<td>14</td>
+<td>4</td>
+<td>2005</td>
+<td>G</td>
+<td>1</td>
+<td>devenir quelqu’un de célèbre</td>
+</tr>
+<tr>
+<td>Nolan</td>
+<td>16</td>
+<td>4</td>
+<td>2005</td>
+<td>G</td>
+<td>2</td>
+<td>avoir une bonne note au prochain devoir</td>
+</tr>
+<tr>
+<td>Mathis</td>
+<td>12</td>
+<td>1</td>
+<td>2005</td>
+<td>G</td>
+<td>1</td>
+<td>devenir astronaute</td>
+</tr>
+<tr>
+<td>Hippolyte</td>
+<td>20</td>
+<td>10</td>
+<td>2005</td>
+<td>G</td>
+<td>2</td>
+<td>marcher sur la lune</td>
+</tr>
+<tr>
+<td>Martial</td>
+<td>22</td>
+<td>4</td>
+<td>2005</td>
+<td>G</td>
+<td>2</td>
+<td>dormir plus longtemps le matin</td>
+</tr>
+<tr>
+<td>Arthur</td>
+<td>10</td>
+<td>8</td>
+<td>2005</td>
+<td>G</td>
+<td>2</td>
+<td>µaider les autres</td>
+</tr>
+<tr>
+<td>Aïris</td>
+<td>24</td>
+<td>3</td>
+<td>2005</td>
+<td>F</td>
+<td>2</td>
+<td>apprendre à piloter une Formule 1</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Cette dernière était stockée dans un fichier <code>eleves.csv</code> que l'on pouvait importer en Python pour mémoriser son contenu dans un tableau de dictionnaires <code>eleves</code> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
+<span class="n">fichier</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;eleves.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span>  <span class="c1"># ouverture du fichier</span>
+<span class="c1"># Lecture de son contenu avec la méthode DictReader qui renvoie une valeur spéciale représentant le fichier CSV</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">fichier</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>  <span class="c1"># caractère de séparation : la virgule</span>
+<span class="n">eleves</span> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="n">ligne</span><span class="p">)</span> <span class="k">for</span> <span class="n">ligne</span> <span class="ow">in</span> <span class="n">table</span><span class="p">]</span>  <span class="c1"># chaque élément est un dictionnaire</span>
+<span class="n">fichier</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># fermeture du fichier</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eleves</span><span class="p">)</span> <span class="c1"># pour afficher le contenu du tableau &#39;eleves&#39;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[{&#39;prénom&#39;: &#39;Loona&#39;, &#39;jour&#39;: &#39;29&#39;, &#39;mois&#39;: &#39;11&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;F&#39;, &#39;groupe&#39;: &#39;1&#39;, &#39;projet&#39;: &#39;être heureuse&#39;}, {&#39;prénom&#39;: &#39;Quentin&#39;, &#39;jour&#39;: &#39;28&#39;, &#39;mois&#39;: &#39;5&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;2&#39;, &#39;projet&#39;: &#39;manger une glace&#39;}, {&#39;prénom&#39;: &#39;Sania&#39;, &#39;jour&#39;: &#39;30&#39;, &#39;mois&#39;: &#39;7&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;F&#39;, &#39;groupe&#39;: &#39;1&#39;, &#39;projet&#39;: &#39;gagner au loto&#39;}, {&#39;prénom&#39;: &#39;Yanis&#39;, &#39;jour&#39;: &#39;14&#39;, &#39;mois&#39;: &#39;4&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;1&#39;, &#39;projet&#39;: &#39;devenir quelqu’un de célèbre&#39;}, {&#39;prénom&#39;: &#39;Nolan&#39;, &#39;jour&#39;: &#39;16&#39;, &#39;mois&#39;: &#39;4&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;2&#39;, &#39;projet&#39;: &#39;avoir une bonne note au prochain devoir&#39;}, {&#39;prénom&#39;: &#39;Mathis&#39;, &#39;jour&#39;: &#39;12&#39;, &#39;mois&#39;: &#39;1&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;1&#39;, &#39;projet&#39;: &#39;devenir astronaute&#39;}, {&#39;prénom&#39;: &#39;Hippolyte&#39;, &#39;jour&#39;: &#39;20&#39;, &#39;mois&#39;: &#39;10&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;2&#39;, &#39;projet&#39;: &#39;marcher sur la lune&#39;}, {&#39;prénom&#39;: &#39;Martial&#39;, &#39;jour&#39;: &#39;22&#39;, &#39;mois&#39;: &#39;4&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;2&#39;, &#39;projet&#39;: &#39;dormir plus longtemps le matin&#39;}, {&#39;prénom&#39;: &#39;Arthur&#39;, &#39;jour&#39;: &#39;10&#39;, &#39;mois&#39;: &#39;8&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;2&#39;, &#39;projet&#39;: &#39;aider les autres&#39;}, {&#39;prénom&#39;: &#39;Aïris&#39;, &#39;jour&#39;: &#39;24&#39;, &#39;mois&#39;: &#39;3&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;F&#39;, &#39;groupe&#39;: &#39;2&#39;, &#39;projet&#39;: &#39;apprendre à piloter une Formule 1&#39;}, {&#39;prénom&#39;: &#39;Léo&#39;, &#39;jour&#39;: &#39;28&#39;, &#39;mois&#39;: &#39;7&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;2&#39;, &#39;projet&#39;: &#39;devenir président&#39;}, {&#39;prénom&#39;: &#39;Romain&#39;, &#39;jour&#39;: &#39;23&#39;, &#39;mois&#39;: &#39;1&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;2&#39;, &#39;projet&#39;: &#39;créer un jeu vidéo&#39;}, {&#39;prénom&#39;: &#39;Tanguy&#39;, &#39;jour&#39;: &#39;9&#39;, &#39;mois&#39;: &#39;6&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;1&#39;, &#39;projet&#39;: &#39;gérer sa propre entreprise&#39;}, {&#39;prénom&#39;: &#39;Nolwenn&#39;, &#39;jour&#39;: &#39;24&#39;, &#39;mois&#39;: &#39;11&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;F&#39;, &#39;groupe&#39;: &#39;2&#39;, &#39;projet&#39;: &#39;jouer dans le prochain James Bond&#39;}, {&#39;prénom&#39;: &#39;Célian&#39;, &#39;jour&#39;: &#39;17&#39;, &#39;mois&#39;: &#39;11&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;1&#39;, &#39;projet&#39;: &#39;gagner le Tour de France&#39;}, {&#39;prénom&#39;: &#39;Rayane&#39;, &#39;jour&#39;: &#39;23&#39;, &#39;mois&#39;: &#39;1&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;1&#39;, &#39;projet&#39;: &#39;devenir champion du monde de bras de fer&#39;}, {&#39;prénom&#39;: &#39;Ancelin&#39;, &#39;jour&#39;: &#39;15&#39;, &#39;mois&#39;: &#39;1&#39;, &#39;année&#39;: &#39;2007&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;2&#39;, &#39;projet&#39;: &#39;devenir youtuber&#39;}, {&#39;prénom&#39;: &#39;Ewen&#39;, &#39;jour&#39;: &#39;16&#39;, &#39;mois&#39;: &#39;5&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;2&#39;, &#39;projet&#39;: &#39;avoir son émission de TV&#39;}, {&#39;prénom&#39;: &#39;Nolan&#39;, &#39;jour&#39;: &#39;16&#39;, &#39;mois&#39;: &#39;5&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;1&#39;, &#39;projet&#39;: &#39;écrire un livre&#39;}, {&#39;prénom&#39;: &#39;Valentin&#39;, &#39;jour&#39;: &#39;8&#39;, &#39;mois&#39;: &#39;8&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;1&#39;, &#39;projet&#39;: &#39;inventer la machine à voyager dans le temps&#39;}, {&#39;prénom&#39;: &#39;Mathis&#39;, &#39;jour&#39;: &#39;14&#39;, &#39;mois&#39;: &#39;1&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;1&#39;, &#39;projet&#39;: &#39;devenir une rockstar&#39;}, {&#39;prénom&#39;: &#39;Jade&#39;, &#39;jour&#39;: &#39;14&#39;, &#39;mois&#39;: &#39;3&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;F&#39;, &#39;groupe&#39;: &#39;2&#39;, &#39;projet&#39;: &#39;développer une application&#39;}, {&#39;prénom&#39;: &#39;Charles&#39;, &#39;jour&#39;: &#39;23&#39;, &#39;mois&#39;: &#39;1&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;2&#39;, &#39;projet&#39;: &#39;ouvrir un restaurant&#39;}, {&#39;prénom&#39;: &#39;Sylliane&#39;, &#39;jour&#39;: &#39;7&#39;, &#39;mois&#39;: &#39;6&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;1&#39;, &#39;projet&#39;: &#39;aller à Poudlard&#39;}, {&#39;prénom&#39;: &#39;Clément&#39;, &#39;jour&#39;: &#39;6&#39;, &#39;mois&#39;: &#39;12&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;1&#39;, &#39;projet&#39;: &#39;monter le tapis rouge à Cannes&#39;}, {&#39;prénom&#39;: &#39;Kilian&#39;, &#39;jour&#39;: &#39;3&#39;, &#39;mois&#39;: &#39;11&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;1&#39;, &#39;projet&#39;: &#39;gagner un Oscar&#39;}, {&#39;prénom&#39;: &#39;Haroun&#39;, &#39;jour&#39;: &#39;27&#39;, &#39;mois&#39;: &#39;5&#39;, &#39;année&#39;: &#39;2004&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;1&#39;, &#39;projet&#39;: &#39;devenir un joueur professionel de billard&#39;}, {&#39;prénom&#39;: &#39;Hugo&#39;, &#39;jour&#39;: &#39;10&#39;, &#39;mois&#39;: &#39;1&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;2&#39;, &#39;projet&#39;: &#39;sortir un film&#39;}, {&#39;prénom&#39;: &#39;Lois&#39;, &#39;jour&#39;: &#39;17&#39;, &#39;mois&#39;: &#39;11&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;2&#39;, &#39;projet&#39;: &#39;créer un objet révolutionnaire&#39;}, {&#39;prénom&#39;: &#39;Agathe&#39;, &#39;jour&#39;: &#39;15&#39;, &#39;mois&#39;: &#39;7&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;F&#39;, &#39;groupe&#39;: &#39;2&#39;, &#39;projet&#39;: &#34;devenir championne du monde d&#39;échecs&#34;}, {&#39;prénom&#39;: &#39;Baptiste&#39;, &#39;jour&#39;: &#39;10&#39;, &#39;mois&#39;: &#39;12&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;1&#39;, &#39;projet&#39;: &#39;manger des frites tous les jours à la cantine&#39;}, {&#39;prénom&#39;: &#39;Sébastien&#39;, &#39;jour&#39;: &#39;14&#39;, &#39;mois&#39;: &#39;1&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;1&#39;, &#39;projet&#39;: &#39;devenir champion olympique&#39;}, {&#39;prénom&#39;: &#39;Nicolas&#39;, &#39;jour&#39;: &#39;24&#39;, &#39;mois&#39;: &#39;4&#39;, &#39;année&#39;: &#39;2006&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;2&#39;, &#39;projet&#39;: &#39;participer à The Voice&#39;}, {&#39;prénom&#39;: &#39;Maé&#39;, &#39;jour&#39;: &#39;18&#39;, &#39;mois&#39;: &#39;8&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;F&#39;, &#39;groupe&#39;: &#39;2&#39;, &#39;projet&#39;: &#39;enregistrer un album&#39;}, {&#39;prénom&#39;: &#39;Nolan&#39;, &#39;jour&#39;: &#39;25&#39;, &#39;mois&#39;: &#39;7&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;1&#39;, &#39;projet&#39;: &#39;acheter une Ferrari&#39;}, {&#39;prénom&#39;: &#39;Timothé&#39;, &#39;jour&#39;: &#39;11&#39;, &#39;mois&#39;: &#39;1&#39;, &#39;année&#39;: &#39;2006&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;1&#39;, &#39;projet&#39;: &#39;participer au trophée Jules Verne&#39;}, {&#39;prénom&#39;: &#39;Inès&#39;, &#39;jour&#39;: &#39;13&#39;, &#39;mois&#39;: &#39;12&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;F&#39;, &#39;groupe&#39;: &#39;1&#39;, &#39;projet&#39;: &#39;battre le record du monde du marathon&#39;}, {&#39;prénom&#39;: &#39;Kylian&#39;, &#39;jour&#39;: &#39;13&#39;, &#39;mois&#39;: &#39;3&#39;, &#39;année&#39;: &#39;2005&#39;, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: &#39;2&#39;, &#39;projet&#39;: &#39;battre Usain Bolt&#39;}]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Par défaut, toutes les valeurs sont mémorisées comme des chaînes de caractères, y compris le jour, le mois et l'année. On peut effectuer un prétraitement pour convertir en type <code>int</code> chaque valeur associée aux clés <code>'jour'</code>, <code>'mois'</code>, <code>'annee'</code> et <code>'groupe'</code> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">eleves</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s1">&#39;prénom&#39;</span><span class="p">:</span> <span class="n">e</span><span class="p">[</span><span class="s1">&#39;prénom&#39;</span><span class="p">],</span>
+     <span class="s1">&#39;jour&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="s1">&#39;jour&#39;</span><span class="p">]),</span>
+     <span class="s1">&#39;mois&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="s1">&#39;mois&#39;</span><span class="p">]),</span>
+     <span class="s1">&#39;année&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="s1">&#39;année&#39;</span><span class="p">]),</span>
+     <span class="s1">&#39;sexe&#39;</span><span class="p">:</span> <span class="n">e</span><span class="p">[</span><span class="s1">&#39;sexe&#39;</span><span class="p">],</span>
+     <span class="s1">&#39;groupe&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="s1">&#39;groupe&#39;</span><span class="p">]),</span>
+     <span class="s1">&#39;projet&#39;</span><span class="p">:</span> <span class="n">e</span><span class="p">[</span><span class="s1">&#39;projet&#39;</span><span class="p">]}</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">eleves</span>
+<span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">eleves</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[{&#39;prénom&#39;: &#39;Loona&#39;, &#39;jour&#39;: 29, &#39;mois&#39;: 11, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;F&#39;, &#39;groupe&#39;: 1, &#39;projet&#39;: &#39;être heureuse&#39;}, {&#39;prénom&#39;: &#39;Quentin&#39;, &#39;jour&#39;: 28, &#39;mois&#39;: 5, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 2, &#39;projet&#39;: &#39;manger une glace&#39;}, {&#39;prénom&#39;: &#39;Sania&#39;, &#39;jour&#39;: 30, &#39;mois&#39;: 7, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;F&#39;, &#39;groupe&#39;: 1, &#39;projet&#39;: &#39;gagner au loto&#39;}, {&#39;prénom&#39;: &#39;Yanis&#39;, &#39;jour&#39;: 14, &#39;mois&#39;: 4, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 1, &#39;projet&#39;: &#39;devenir quelqu’un de célèbre&#39;}, {&#39;prénom&#39;: &#39;Nolan&#39;, &#39;jour&#39;: 16, &#39;mois&#39;: 4, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 2, &#39;projet&#39;: &#39;avoir une bonne note au prochain devoir&#39;}, {&#39;prénom&#39;: &#39;Mathis&#39;, &#39;jour&#39;: 12, &#39;mois&#39;: 1, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 1, &#39;projet&#39;: &#39;devenir astronaute&#39;}, {&#39;prénom&#39;: &#39;Hippolyte&#39;, &#39;jour&#39;: 20, &#39;mois&#39;: 10, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 2, &#39;projet&#39;: &#39;marcher sur la lune&#39;}, {&#39;prénom&#39;: &#39;Martial&#39;, &#39;jour&#39;: 22, &#39;mois&#39;: 4, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 2, &#39;projet&#39;: &#39;dormir plus longtemps le matin&#39;}, {&#39;prénom&#39;: &#39;Arthur&#39;, &#39;jour&#39;: 10, &#39;mois&#39;: 8, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 2, &#39;projet&#39;: &#39;aider les autres&#39;}, {&#39;prénom&#39;: &#39;Aïris&#39;, &#39;jour&#39;: 24, &#39;mois&#39;: 3, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;F&#39;, &#39;groupe&#39;: 2, &#39;projet&#39;: &#39;apprendre à piloter une Formule 1&#39;}, {&#39;prénom&#39;: &#39;Léo&#39;, &#39;jour&#39;: 28, &#39;mois&#39;: 7, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 2, &#39;projet&#39;: &#39;devenir président&#39;}, {&#39;prénom&#39;: &#39;Romain&#39;, &#39;jour&#39;: 23, &#39;mois&#39;: 1, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 2, &#39;projet&#39;: &#39;créer un jeu vidéo&#39;}, {&#39;prénom&#39;: &#39;Tanguy&#39;, &#39;jour&#39;: 9, &#39;mois&#39;: 6, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 1, &#39;projet&#39;: &#39;gérer sa propre entreprise&#39;}, {&#39;prénom&#39;: &#39;Nolwenn&#39;, &#39;jour&#39;: 24, &#39;mois&#39;: 11, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;F&#39;, &#39;groupe&#39;: 2, &#39;projet&#39;: &#39;jouer dans le prochain James Bond&#39;}, {&#39;prénom&#39;: &#39;Célian&#39;, &#39;jour&#39;: 17, &#39;mois&#39;: 11, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 1, &#39;projet&#39;: &#39;gagner le Tour de France&#39;}, {&#39;prénom&#39;: &#39;Rayane&#39;, &#39;jour&#39;: 23, &#39;mois&#39;: 1, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 1, &#39;projet&#39;: &#39;devenir champion du monde de bras de fer&#39;}, {&#39;prénom&#39;: &#39;Ancelin&#39;, &#39;jour&#39;: 15, &#39;mois&#39;: 1, &#39;année&#39;: 2007, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 2, &#39;projet&#39;: &#39;devenir youtuber&#39;}, {&#39;prénom&#39;: &#39;Ewen&#39;, &#39;jour&#39;: 16, &#39;mois&#39;: 5, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 2, &#39;projet&#39;: &#39;avoir son émission de TV&#39;}, {&#39;prénom&#39;: &#39;Nolan&#39;, &#39;jour&#39;: 16, &#39;mois&#39;: 5, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 1, &#39;projet&#39;: &#39;écrire un livre&#39;}, {&#39;prénom&#39;: &#39;Valentin&#39;, &#39;jour&#39;: 8, &#39;mois&#39;: 8, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 1, &#39;projet&#39;: &#39;inventer la machine à voyager dans le temps&#39;}, {&#39;prénom&#39;: &#39;Mathis&#39;, &#39;jour&#39;: 14, &#39;mois&#39;: 1, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 1, &#39;projet&#39;: &#39;devenir une rockstar&#39;}, {&#39;prénom&#39;: &#39;Jade&#39;, &#39;jour&#39;: 14, &#39;mois&#39;: 3, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;F&#39;, &#39;groupe&#39;: 2, &#39;projet&#39;: &#39;développer une application&#39;}, {&#39;prénom&#39;: &#39;Charles&#39;, &#39;jour&#39;: 23, &#39;mois&#39;: 1, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 2, &#39;projet&#39;: &#39;ouvrir un restaurant&#39;}, {&#39;prénom&#39;: &#39;Sylliane&#39;, &#39;jour&#39;: 7, &#39;mois&#39;: 6, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 1, &#39;projet&#39;: &#39;aller à Poudlard&#39;}, {&#39;prénom&#39;: &#39;Clément&#39;, &#39;jour&#39;: 6, &#39;mois&#39;: 12, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 1, &#39;projet&#39;: &#39;monter le tapis rouge à Cannes&#39;}, {&#39;prénom&#39;: &#39;Kilian&#39;, &#39;jour&#39;: 3, &#39;mois&#39;: 11, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 1, &#39;projet&#39;: &#39;gagner un Oscar&#39;}, {&#39;prénom&#39;: &#39;Haroun&#39;, &#39;jour&#39;: 27, &#39;mois&#39;: 5, &#39;année&#39;: 2004, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 1, &#39;projet&#39;: &#39;devenir un joueur professionel de billard&#39;}, {&#39;prénom&#39;: &#39;Hugo&#39;, &#39;jour&#39;: 10, &#39;mois&#39;: 1, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 2, &#39;projet&#39;: &#39;sortir un film&#39;}, {&#39;prénom&#39;: &#39;Lois&#39;, &#39;jour&#39;: 17, &#39;mois&#39;: 11, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 2, &#39;projet&#39;: &#39;créer un objet révolutionnaire&#39;}, {&#39;prénom&#39;: &#39;Agathe&#39;, &#39;jour&#39;: 15, &#39;mois&#39;: 7, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;F&#39;, &#39;groupe&#39;: 2, &#39;projet&#39;: &#34;devenir championne du monde d&#39;échecs&#34;}, {&#39;prénom&#39;: &#39;Baptiste&#39;, &#39;jour&#39;: 10, &#39;mois&#39;: 12, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 1, &#39;projet&#39;: &#39;manger des frites tous les jours à la cantine&#39;}, {&#39;prénom&#39;: &#39;Sébastien&#39;, &#39;jour&#39;: 14, &#39;mois&#39;: 1, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 1, &#39;projet&#39;: &#39;devenir champion olympique&#39;}, {&#39;prénom&#39;: &#39;Nicolas&#39;, &#39;jour&#39;: 24, &#39;mois&#39;: 4, &#39;année&#39;: 2006, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 2, &#39;projet&#39;: &#39;participer à The Voice&#39;}, {&#39;prénom&#39;: &#39;Maé&#39;, &#39;jour&#39;: 18, &#39;mois&#39;: 8, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;F&#39;, &#39;groupe&#39;: 2, &#39;projet&#39;: &#39;enregistrer un album&#39;}, {&#39;prénom&#39;: &#39;Nolan&#39;, &#39;jour&#39;: 25, &#39;mois&#39;: 7, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 1, &#39;projet&#39;: &#39;acheter une Ferrari&#39;}, {&#39;prénom&#39;: &#39;Timothé&#39;, &#39;jour&#39;: 11, &#39;mois&#39;: 1, &#39;année&#39;: 2006, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 1, &#39;projet&#39;: &#39;participer au trophée Jules Verne&#39;}, {&#39;prénom&#39;: &#39;Inès&#39;, &#39;jour&#39;: 13, &#39;mois&#39;: 12, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;F&#39;, &#39;groupe&#39;: 1, &#39;projet&#39;: &#39;battre le record du monde du marathon&#39;}, {&#39;prénom&#39;: &#39;Kylian&#39;, &#39;jour&#39;: 13, &#39;mois&#39;: 3, &#39;année&#39;: 2005, &#39;sexe&#39;: &#39;G&#39;, &#39;groupe&#39;: 2, &#39;projet&#39;: &#39;battre Usain Bolt&#39;}]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On a créé une base de données <code>eleves.db</code> qui ne contient que la <em>relation</em> <code>Eleve</code> suivante :</p>
+<pre style="padding-bottom:10px;">
+    <code><em>Eleve</em>(<span style="padding-bottom:3px; border-bottom: 1px solid black;"><em>id_eleve</em></span> INT, <em>prenom</em> TEXT, <em>jour</em> INT, <em>mois</em> INT, <em>annee</em> INT, <em>sexe</em> TEXT, <em>groupe</em> INT, <em>projet</em> TEXT)</code>
+</pre><blockquote><p>On a ajouté un attribut <code>id_eleve</code>, pourquoi ?</p>
+</blockquote>
+<p><strong>Remarque</strong> : Le fichier <code>eleves.db</code> que nous utiliserons est accessible dans l'archive de ce chapitre.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Utilisation-d'un-SGBD">Utilisation d'un SGBD<a class="anchor-link" href="#Utilisation-d'un-SGBD">&#182;</a></h1><p>Seul un logiciel de type SGBD (Système de Gestion de Bases de Données) peut manipuler les données présentes dans une base de données.</p>
+<p>Vous pouvez utiliser :</p>
+<ul>
+<li><p><strong>DB Browser for SQLite</strong> qui est installé sur vos ordinateurs :</p>
+<ul>
+<li>(ce logiciel est téléchargeable à l'adresse : <a href="https://sqlitebrowser.org/">https://sqlitebrowser.org/</a>)</li>
+<li>Lancez le logiciel</li>
+<li>Ouvrez le fichier <code>eleves.db</code> en le sélectionnant après avoir cliqué sur "Ouvrir une base de données"</li>
+</ul>
+</li>
+<li><p><strong>sqliteonline</strong> accessible en ligne à l'adresse <a href="https://sqliteonline.com/">https://sqliteonline.com/</a>.</p>
+<ul>
+<li>Rendez-vous à l'adresse <a href="https://sqliteonline.com/">https://sqliteonline.com/</a></li>
+<li>Cliquez sur <em>File</em> puis sur <em>Open DB</em> et sélectionnez le fichier <code>eleves.db</code></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Premi&#232;re-requ&#234;te-SQL">Premi&#232;re requ&#234;te SQL<a class="anchor-link" href="#Premi&#232;re-requ&#234;te-SQL">&#182;</a></h1><p>Commençons par une requête permettant d’afficher tout le contenu de la table <code>Eleve</code>.</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">Eleve</span><span class="p">;</span>
+</pre></div>
+<p><strong>Analyse</strong> :</p>
+<ul>
+<li>En SQL, chaque requête contient au moins les clauses <code>SELECT</code> et <code>FROM</code> et <strong>se termine par un point-virgule</strong>.</li>
+<li>Le mot-clé <code>SELECT</code> demande au SGBD d’afficher ce que contient une table.</li>
+<li>Après <code>SELECT</code>, il faut indiquer quels champs de la table, le SGBD doit récupérer dans celle-ci. Ici le caractère « <code>*</code> » indique qu’il faut récupérer <strong>tous</strong> les champs de la table.</li>
+<li>Après le <code>FROM</code> (de l’anglais « de ») on indique la table dans laquelle on veut récupérer des informations (ici <code>Eleve</code>)</li>
+<li>Bilan : cette requête se traduit par « prend tout ce qu’il y a dans la table <code>Eleve</code>, sous-entendu prend tous les champs de cette table.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q1</strong> : Écrivez cette requête dans le SGBD puis exécutez-la. Vous devriez voir apparaître la table <code>Eleve</code> complète comme ci-dessous.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>id_eleve</th>
+        <th>prenom</th>
+        <th>jour</th>
+        <th>mois</th>
+        <th>annee</th>
+        <th>sexe</th>
+        <th>groupe</th>
+        <th>projet</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Loona</td>
+        <td>29</td>
+        <td>11</td>
+        <td>2005</td>
+        <td>F</td>
+        <td>1</td>
+        <td>être heureuse</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Quentin</td>
+        <td>28</td>
+        <td>5</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>2</td>
+        <td>manger une glace</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Sania</td>
+        <td>30</td>
+        <td>7</td>
+        <td>2005</td>
+        <td>F</td>
+        <td>1</td>
+        <td>gagner au loto</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Yanis</td>
+        <td>14</td>
+        <td>4</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>1</td>
+        <td>devenir quelqu’un de célèbre</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Nolan</td>
+        <td>16</td>
+        <td>4</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>2</td>
+        <td>avoir une bonne note au prochain devoir</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Mathis</td>
+        <td>12</td>
+        <td>1</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>1</td>
+        <td>devenir astronaute</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>Hippolyte</td>
+        <td>20</td>
+        <td>10</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>2</td>
+        <td>marcher sur la lune</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>Martial</td>
+        <td>22</td>
+        <td>4</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>2</td>
+        <td>dormir plus longtemps le matin</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>Arthur</td>
+        <td>10</td>
+        <td>8</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>2</td>
+        <td>aider les autres</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>Aïris</td>
+        <td>24</td>
+        <td>3</td>
+        <td>2005</td>
+        <td>F</td>
+        <td>2</td>
+        <td>apprendre à piloter une Formule 1</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>Léo</td>
+        <td>28</td>
+        <td>7</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>2</td>
+        <td>devenir président</td>
+    </tr>
+    <tr>
+        <td>12</td>
+        <td>Romain</td>
+        <td>23</td>
+        <td>1</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>2</td>
+        <td>créer un jeu vidéo</td>
+    </tr>
+    <tr>
+        <td>13</td>
+        <td>Tanguy</td>
+        <td>9</td>
+        <td>6</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>1</td>
+        <td>gérer sa propre entreprise</td>
+    </tr>
+    <tr>
+        <td>14</td>
+        <td>Nolwenn</td>
+        <td>24</td>
+        <td>11</td>
+        <td>2005</td>
+        <td>F</td>
+        <td>2</td>
+        <td>jouer dans le prochain James Bond</td>
+    </tr>
+    <tr>
+        <td>15</td>
+        <td>Célian</td>
+        <td>17</td>
+        <td>11</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>1</td>
+        <td>gagner le Tour de France</td>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td>Rayane</td>
+        <td>23</td>
+        <td>1</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>1</td>
+        <td>devenir champion du monde de bras de fer</td>
+    </tr>
+    <tr>
+        <td>17</td>
+        <td>Ancelin</td>
+        <td>15</td>
+        <td>1</td>
+        <td>2007</td>
+        <td>G</td>
+        <td>2</td>
+        <td>devenir youtuber</td>
+    </tr>
+    <tr>
+        <td>18</td>
+        <td>Ewen</td>
+        <td>16</td>
+        <td>5</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>2</td>
+        <td>avoir son émission de TV</td>
+    </tr>
+    <tr>
+        <td>19</td>
+        <td>Nolan</td>
+        <td>16</td>
+        <td>5</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>1</td>
+        <td>écrire un livre</td>
+    </tr>
+    <tr>
+        <td>20</td>
+        <td>Valentin</td>
+        <td>8</td>
+        <td>8</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>1</td>
+        <td>inventer la machine à voyager dans le temps</td>
+    </tr>
+    <tr>
+        <td>21</td>
+        <td>Mathis</td>
+        <td>14</td>
+        <td>1</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>1</td>
+        <td>devenir une rockstar</td>
+    </tr>
+    <tr>
+        <td>22</td>
+        <td>Jade</td>
+        <td>14</td>
+        <td>3</td>
+        <td>2005</td>
+        <td>F</td>
+        <td>2</td>
+        <td>développer une application</td>
+    </tr>
+    <tr>
+        <td>23</td>
+        <td>Charles</td>
+        <td>23</td>
+        <td>1</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>2</td>
+        <td>ouvrir un restaurant</td>
+    </tr>
+    <tr>
+        <td>24</td>
+        <td>Sylliane</td>
+        <td>7</td>
+        <td>6</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>1</td>
+        <td>aller à Poudlard</td>
+    </tr>
+    <tr>
+        <td>25</td>
+        <td>Clément</td>
+        <td>6</td>
+        <td>12</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>1</td>
+        <td>monter le tapis rouge à Cannes</td>
+    </tr>
+    <tr>
+        <td>26</td>
+        <td>Kilian</td>
+        <td>3</td>
+        <td>11</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>1</td>
+        <td>gagner un Oscar</td>
+    </tr>
+    <tr>
+        <td>27</td>
+        <td>Haroun</td>
+        <td>27</td>
+        <td>5</td>
+        <td>2004</td>
+        <td>G</td>
+        <td>1</td>
+        <td>devenir un joueur professionel de billard</td>
+    </tr>
+    <tr>
+        <td>28</td>
+        <td>Hugo</td>
+        <td>10</td>
+        <td>1</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>2</td>
+        <td>sortir un film</td>
+    </tr>
+    <tr>
+        <td>29</td>
+        <td>Lois</td>
+        <td>17</td>
+        <td>11</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>2</td>
+        <td>créer un objet révolutionnaire</td>
+    </tr>
+    <tr>
+        <td>30</td>
+        <td>Agathe</td>
+        <td>15</td>
+        <td>7</td>
+        <td>2005</td>
+        <td>F</td>
+        <td>2</td>
+        <td>devenir championne du monde d'échecs</td>
+    </tr>
+    <tr>
+        <td>31</td>
+        <td>Baptiste</td>
+        <td>10</td>
+        <td>12</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>1</td>
+        <td>manger des frites tous les jours à la cantine</td>
+    </tr>
+    <tr>
+        <td>32</td>
+        <td>Sébastien</td>
+        <td>14</td>
+        <td>1</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>1</td>
+        <td>devenir champion olympique</td>
+    </tr>
+    <tr>
+        <td>33</td>
+        <td>Nicolas</td>
+        <td>24</td>
+        <td>4</td>
+        <td>2006</td>
+        <td>G</td>
+        <td>2</td>
+        <td>participer à The Voice</td>
+    </tr>
+    <tr>
+        <td>34</td>
+        <td>Maé</td>
+        <td>18</td>
+        <td>8</td>
+        <td>2005</td>
+        <td>F</td>
+        <td>2</td>
+        <td>enregistrer un album</td>
+    </tr>
+    <tr>
+        <td>35</td>
+        <td>Nolan</td>
+        <td>25</td>
+        <td>7</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>1</td>
+        <td>acheter une Ferrari</td>
+    </tr>
+    <tr>
+        <td>36</td>
+        <td>Timothé</td>
+        <td>11</td>
+        <td>1</td>
+        <td>2006</td>
+        <td>G</td>
+        <td>1</td>
+        <td>participer au trophée Jules Verne</td>
+    </tr>
+    <tr>
+        <td>37</td>
+        <td>Inès</td>
+        <td>13</td>
+        <td>12</td>
+        <td>2005</td>
+        <td>F</td>
+        <td>1</td>
+        <td>battre le record du monde du marathon</td>
+    </tr>
+    <tr>
+        <td>38</td>
+        <td>Kylian</td>
+        <td>13</td>
+        <td>3</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>2</td>
+        <td>battre Usain Bolt</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="S&#233;lection-de-colonnes-en-SQL">S&#233;lection de colonnes en SQL<a class="anchor-link" href="#S&#233;lection-de-colonnes-en-SQL">&#182;</a></h1><p><strong>Rappel</strong> : en classe de Première, on a effectué des projections sur les colonnes de la table. L’instruction suivante permet de créer une table <code>t</code> contenant les attributs <code>prenom</code> et <code>annee</code> de la table <code>eleves</code>. On dit que l'on fait ainsi une projection sur ces deux colonnes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;prénom&#39;</span><span class="p">:</span> <span class="n">e</span><span class="p">[</span><span class="s1">&#39;prénom&#39;</span><span class="p">],</span> <span class="s1">&#39;année&#39;</span><span class="p">:</span> <span class="n">e</span><span class="p">[</span><span class="s1">&#39;année&#39;</span><span class="p">]}</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">eleves</span><span class="p">]</span>
+<span class="n">t</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;prénom&#39;: &#39;Loona&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Quentin&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Sania&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Yanis&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Nolan&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Mathis&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Hippolyte&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Martial&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Arthur&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Aïris&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Léo&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Romain&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Tanguy&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Nolwenn&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Célian&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Rayane&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Ancelin&#39;, &#39;année&#39;: 2007},
+ {&#39;prénom&#39;: &#39;Ewen&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Nolan&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Valentin&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Mathis&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Jade&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Charles&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Sylliane&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Clément&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Kilian&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Haroun&#39;, &#39;année&#39;: 2004},
+ {&#39;prénom&#39;: &#39;Hugo&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Lois&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Agathe&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Baptiste&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Sébastien&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Nicolas&#39;, &#39;année&#39;: 2006},
+ {&#39;prénom&#39;: &#39;Maé&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Nolan&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Timothé&#39;, &#39;année&#39;: 2006},
+ {&#39;prénom&#39;: &#39;Inès&#39;, &#39;année&#39;: 2005},
+ {&#39;prénom&#39;: &#39;Kylian&#39;, &#39;année&#39;: 2005}]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En SQL, il est possible de sélectionner certaines colonnes de la table simplement en indiquant après le <code>SELECT</code>, les noms des attributs à conserver.</p>
+<p>Par exemple, la requête</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">prenom</span><span class="p">,</span> <span class="n">annee</span> <span class="k">FROM</span> <span class="n">Eleve</span><span class="p">;</span>
+</pre></div>
+<p>permet de ne sélectionner que les attributs <code>prenom</code> et <code>annee</code> de la table <code>Eleve</code> (on fait une projection sur ces deux attributs). Elle produit le résultat :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>prenom</th>
+        <th>sexe</th>
+        <th>projet</th>
+    </tr>
+    <tr>
+        <td>Loona</td>
+        <td>F</td>
+        <td>être heureuse</td>
+    </tr>
+    <tr>
+        <td>Quentin</td>
+        <td>G</td>
+        <td>manger une glace</td>
+    </tr>
+    <tr>
+        <td>Sania</td>
+        <td>F</td>
+        <td>gagner au loto</td>
+    </tr>
+    <tr>
+        <td>Yanis</td>
+        <td>G</td>
+        <td>devenir quelqu’un de célèbre</td>
+    </tr>
+    <tr>
+        <td>Nolan</td>
+        <td>G</td>
+        <td>avoir une bonne note au prochain devoir</td>
+    </tr>
+    <tr>
+        <td>Mathis</td>
+        <td>G</td>
+        <td>devenir astronaute</td>
+    </tr>
+    <tr>
+        <td>Hippolyte</td>
+        <td>G</td>
+        <td>marcher sur la lune</td>
+    </tr>
+    <tr>
+        <td>Martial</td>
+        <td>G</td>
+        <td>dormir plus longtemps le matin</td>
+    </tr>
+    <tr>
+        <td>Arthur</td>
+        <td>G</td>
+        <td>aider les autres</td>
+    </tr>
+    <tr>
+        <td>Aïris</td>
+        <td>F</td>
+        <td>apprendre à piloter une Formule 1</td>
+    </tr>
+    <tr>
+        <td>Léo</td>
+        <td>G</td>
+        <td>devenir président</td>
+    </tr>
+    <tr>
+        <td>Romain</td>
+        <td>G</td>
+        <td>créer un jeu vidéo</td>
+    </tr>
+    <tr>
+        <td>Tanguy</td>
+        <td>G</td>
+        <td>gérer sa propre entreprise</td>
+    </tr>
+    <tr>
+        <td>Nolwenn</td>
+        <td>F</td>
+        <td>jouer dans le prochain James Bond</td>
+    </tr>
+    <tr>
+        <td>Célian</td>
+        <td>G</td>
+        <td>gagner le Tour de France</td>
+    </tr>
+    <tr>
+        <td>Rayane</td>
+        <td>G</td>
+        <td>devenir champion du monde de bras de fer</td>
+    </tr>
+    <tr>
+        <td>Ancelin</td>
+        <td>G</td>
+        <td>devenir youtuber</td>
+    </tr>
+    <tr>
+        <td>Ewen</td>
+        <td>G</td>
+        <td>avoir son émission de TV</td>
+    </tr>
+    <tr>
+        <td>Nolan</td>
+        <td>G</td>
+        <td>écrire un livre</td>
+    </tr>
+    <tr>
+        <td>Valentin</td>
+        <td>G</td>
+        <td>inventer la machine à voyager dans le temps</td>
+    </tr>
+    <tr>
+        <td>Mathis</td>
+        <td>G</td>
+        <td>devenir une rockstar</td>
+    </tr>
+    <tr>
+        <td>Jade</td>
+        <td>F</td>
+        <td>développer une application</td>
+    </tr>
+    <tr>
+        <td>Charles</td>
+        <td>G</td>
+        <td>ouvrir un restaurant</td>
+    </tr>
+    <tr>
+        <td>Sylliane</td>
+        <td>G</td>
+        <td>aller à Poudlard</td>
+    </tr>
+    <tr>
+        <td>Clément</td>
+        <td>G</td>
+        <td>monter le tapis rouge à Cannes</td>
+    </tr>
+    <tr>
+        <td>Kilian</td>
+        <td>G</td>
+        <td>gagner un Oscar</td>
+    </tr>
+    <tr>
+        <td>Haroun</td>
+        <td>G</td>
+        <td>devenir un joueur professionel de billard</td>
+    </tr>
+    <tr>
+        <td>Hugo</td>
+        <td>G</td>
+        <td>sortir un film</td>
+    </tr>
+    <tr>
+        <td>Lois</td>
+        <td>G</td>
+        <td>créer un objet révolutionnaire</td>
+    </tr>
+    <tr>
+        <td>Agathe</td>
+        <td>F</td>
+        <td>devenir championne du monde d'échecs</td>
+    </tr>
+    <tr>
+        <td>Baptiste</td>
+        <td>G</td>
+        <td>manger des frites tous les jours à la cantine</td>
+    </tr>
+    <tr>
+        <td>Sébastien</td>
+        <td>G</td>
+        <td>devenir champion olympique</td>
+    </tr>
+    <tr>
+        <td>Nicolas</td>
+        <td>G</td>
+        <td>participer à The Voice</td>
+    </tr>
+    <tr>
+        <td>Maé</td>
+        <td>F</td>
+        <td>enregistrer un album</td>
+    </tr>
+    <tr>
+        <td>Nolan</td>
+        <td>G</td>
+        <td>acheter une Ferrari</td>
+    </tr>
+    <tr>
+        <td>Timothé</td>
+        <td>G</td>
+        <td>participer au trophée Jules Verne</td>
+    </tr>
+    <tr>
+        <td>Inès</td>
+        <td>F</td>
+        <td>battre le record du monde du marathon</td>
+    </tr>
+    <tr>
+        <td>Kylian</td>
+        <td>G</td>
+        <td>battre Usain Bolt</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q2</strong> : Écrivez et testez une requête SQL permettant de sélectionner uniquement les attributs <code>prenom</code>, <code>sexe</code> et <code>projet</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="S&#233;lectionner-de-lignes-en-SQL">S&#233;lectionner de lignes en SQL<a class="anchor-link" href="#S&#233;lectionner-de-lignes-en-SQL">&#182;</a></h1><p><strong>Rappel</strong> : en classe de Première, on a sélectionné des lignes de la table vérifiant une certaine condition. L’instruction suivante permettait de créer une table <code>eleves_nes_mars</code> contenant les lignes des élèves nés en mars.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">eleves_nes_mars</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">eleves</span> <span class="k">if</span> <span class="n">e</span><span class="p">[</span><span class="s1">&#39;mois&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">eleves_nes_mars</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[4]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;prénom&#39;: &#39;Aïris&#39;,
+  &#39;jour&#39;: 24,
+  &#39;mois&#39;: 3,
+  &#39;année&#39;: 2005,
+  &#39;sexe&#39;: &#39;F&#39;,
+  &#39;groupe&#39;: 2,
+  &#39;projet&#39;: &#39;apprendre à piloter une Formule 1&#39;},
+ {&#39;prénom&#39;: &#39;Jade&#39;,
+  &#39;jour&#39;: 14,
+  &#39;mois&#39;: 3,
+  &#39;année&#39;: 2005,
+  &#39;sexe&#39;: &#39;F&#39;,
+  &#39;groupe&#39;: 2,
+  &#39;projet&#39;: &#39;développer une application&#39;},
+ {&#39;prénom&#39;: &#39;Kylian&#39;,
+  &#39;jour&#39;: 13,
+  &#39;mois&#39;: 3,
+  &#39;année&#39;: 2005,
+  &#39;sexe&#39;: &#39;G&#39;,
+  &#39;groupe&#39;: 2,
+  &#39;projet&#39;: &#39;battre Usain Bolt&#39;}]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En SQL, il est possible de préciser la condition de sélection en l’écrivant juste après le mot clé <code>WHERE</code> comme ci-dessous.</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">Eleve</span> <span class="k">WHERE</span> <span class="n">mois</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</pre></div>
+<table>
+    <tbody><tr>
+        <th>id_eleve</th>
+        <th>prenom</th>
+        <th>jour</th>
+        <th>mois</th>
+        <th>annee</th>
+        <th>sexe</th>
+        <th>groupe</th>
+        <th>projet</th>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>Aïris</td>
+        <td>24</td>
+        <td>3</td>
+        <td>2005</td>
+        <td>F</td>
+        <td>2</td>
+        <td>apprendre à piloter une Formule 1</td>
+    </tr>
+    <tr>
+        <td>22</td>
+        <td>Jade</td>
+        <td>14</td>
+        <td>3</td>
+        <td>2005</td>
+        <td>F</td>
+        <td>2</td>
+        <td>développer une application</td>
+    </tr>
+    <tr>
+        <td>38</td>
+        <td>Kylian</td>
+        <td>13</td>
+        <td>3</td>
+        <td>2005</td>
+        <td>G</td>
+        <td>2</td>
+        <td>battre Usain Bolt</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q3</strong> : Écrivez et testez une requête SQL permettant d’afficher les élèves nés en 2005.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q4</strong> : Écrivez et testez une requête SQL permettant d’afficher les filles nées en juillet 2005.</p>
+<blockquote><p>On peut utiliser les opérateurs <code>AND</code> ou <code>OR</code> pour combiner les conditions de sélection.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="S&#233;lectionner-des-lignes-et-des-colonnes">S&#233;lectionner des lignes et des colonnes<a class="anchor-link" href="#S&#233;lectionner-des-lignes-et-des-colonnes">&#182;</a></h1><p><strong>Rappel</strong> : L’instruction suivante permettait de créer une table <code>prenoms_projets_des_filles</code> contenant les prénoms et les projets des filles de la classe.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">prenoms_projets_des_filles</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;prénom&#39;</span><span class="p">:</span> <span class="n">e</span><span class="p">[</span><span class="s1">&#39;prénom&#39;</span><span class="p">],</span> <span class="s1">&#39;projet&#39;</span><span class="p">:</span> <span class="n">e</span><span class="p">[</span><span class="s1">&#39;projet&#39;</span><span class="p">]}</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">eleves</span> <span class="k">if</span> <span class="n">e</span><span class="p">[</span><span class="s1">&#39;sexe&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;F&#39;</span><span class="p">]</span>
+<span class="n">prenoms_projets_des_filles</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;prénom&#39;: &#39;Loona&#39;, &#39;projet&#39;: &#39;être heureuse&#39;},
+ {&#39;prénom&#39;: &#39;Sania&#39;, &#39;projet&#39;: &#39;gagner au loto&#39;},
+ {&#39;prénom&#39;: &#39;Aïris&#39;, &#39;projet&#39;: &#39;apprendre à piloter une Formule 1&#39;},
+ {&#39;prénom&#39;: &#39;Nolwenn&#39;, &#39;projet&#39;: &#39;jouer dans le prochain James Bond&#39;},
+ {&#39;prénom&#39;: &#39;Jade&#39;, &#39;projet&#39;: &#39;développer une application&#39;},
+ {&#39;prénom&#39;: &#39;Agathe&#39;, &#39;projet&#39;: &#34;devenir championne du monde d&#39;échecs&#34;},
+ {&#39;prénom&#39;: &#39;Maé&#39;, &#39;projet&#39;: &#39;enregistrer un album&#39;},
+ {&#39;prénom&#39;: &#39;Inès&#39;, &#39;projet&#39;: &#39;battre le record du monde du marathon&#39;}]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En SQL, pour combiner les les sélections sur les lignes et les projections sur les colonnes, il suffit de préciser les attributs de projection après le <code>SELECT</code> et préciser la condition de sélection après le <code>WHERE</code>.</p>
+<p>Par exemple, la requête</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">prenom</span><span class="p">,</span> <span class="n">projet</span> <span class="k">FROM</span> <span class="n">Eleve</span> <span class="k">WHERE</span> <span class="n">sexe</span><span class="o">=</span><span class="ss">&quot;F&quot;</span><span class="p">;</span>
+</pre></div>
+<p>permet d'afficher une table contenant les prénoms et les projets des filles de la classe :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>prenom</th>
+        <th>projet</th>
+    </tr>
+    <tr>
+        <td>Loona</td>
+        <td>être heureuse</td>
+    </tr>
+    <tr>
+        <td>Sania</td>
+        <td>gagner au loto</td>
+    </tr>
+    <tr>
+        <td>Aïris</td>
+        <td>apprendre à piloter une Formule 1</td>
+    </tr>
+    <tr>
+        <td>Nolwenn</td>
+        <td>jouer dans le prochain James Bond</td>
+    </tr>
+    <tr>
+        <td>Jade</td>
+        <td>développer une application</td>
+    </tr>
+    <tr>
+        <td>Agathe</td>
+        <td>devenir championne du monde d'échecs</td>
+    </tr>
+    <tr>
+        <td>Maé</td>
+        <td>enregistrer un album</td>
+    </tr>
+    <tr>
+        <td>Inès</td>
+        <td>battre le record du monde du marathon</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q5</strong> : Écrivez et testez une requête SQL permettant d’afficher les prénoms des élèves nés en avril 2005.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q6</strong>: Écrivez et testez une requête SQL permettant d’afficher les id, prénoms et projets des élèves nés les six derniers mois de l’année 2005.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Trier-les-r&#233;sultats-avec-ORDER-BY">Trier les r&#233;sultats avec ORDER BY<a class="anchor-link" href="#Trier-les-r&#233;sultats-avec-ORDER-BY">&#182;</a></h1><p>La commande <code>ORDER BY</code> permet de trier les résultats d’une requête en précisant juste après sur quel attribut le tri doit se faire.</p>
+<p>Par exemple, la requête</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">prenom</span><span class="p">,</span> <span class="n">annee</span> <span class="k">FROM</span> <span class="n">Eleve</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">prenom</span> <span class="k">ASC</span><span class="p">;</span>
+</pre></div>
+<p>permet de trier le résultat de la requête <code>SELECT prenom, annee FROM Eleves</code> selon les prénoms des élèves, ici selon l’ordre alphabétique grâce à <code>ASC</code> (« ascendant », du plus petit au plus grand).</p>
+<blockquote><p>Il suffirait de remplacer <code>ASC</code> par <code>DESC</code> (« descendant ») pour que le tri se fasse dans le sens inverse.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q7</strong> Écrivez et testez une requête SQL permettant d’afficher les prénoms et l’année de naissance des élèves, le résultat étant trié par ordre croissant d’année de naissance.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q8</strong> : Écrivez et testez une requête SQL permettant d’afficher, du plus jeune au moins jeune, les prénoms des élèves nés en novembre 2005.</p>
+<blockquote><p>On peut combiner les clauses <code>WHERE</code> et <code>ORDER BY</code></p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Quelques-fonctions-de-calculs">Quelques fonctions de calculs<a class="anchor-link" href="#Quelques-fonctions-de-calculs">&#182;</a></h1><p>Il est possible d'utiliser des fonctions de calculs en SQL. En voici quelques unes.</p>
+<h2 id="Compter-le-nombre-de-tuples-:-COUNT(*)">Compter le nombre de tuples : <code>COUNT(*)</code><a class="anchor-link" href="#Compter-le-nombre-de-tuples-:-COUNT(*)">&#182;</a></h2><p>Donnons tout de suite deux exemples.</p>
+<p>La requête SQL suivante permet de compter le nombre d’élèves de Première NSI.</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">nbEleves</span> <span class="k">FROM</span> <span class="n">Eleve</span><span class="p">;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>nbEleves</th>
+    </tr>
+    <tr>
+        <td>38</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>La requête SQL suivante permet de compter le nombre de garçons de la classe.</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">nbGarcons</span> <span class="k">FROM</span> <span class="n">Eleve</span> <span class="k">WHERE</span> <span class="n">sexe</span> <span class="o">=</span> <span class="ss">&quot;G&quot;</span><span class="p">;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>nbGarcons</th>
+    </tr>
+    <tr>
+        <td>30</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Analyse de la deuxième requête</strong> :</p>
+<ul>
+<li>On sélectionne les tuples de la table <code>Eleve</code> correspondant à des garçons grâce à l’instruction <code>FROM Eleves WHERE sexe="G"</code></li>
+<li>L’instruction <code>COUNT(*)</code> permet de compter <em>tous</em> les tuples sélectionnés </li>
+<li>L’ajout de <code>AS nbGarcons</code> permet de nommer le résultat. Cette astuce est optionnelle mais est particulièrement utile pour faciliter la lecture des requêtes.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q9</strong> : Écrivez une requête SQL permettant de compter le nombre d’élèves du groupe 1 de NSI.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q10</strong> : Écrivez une requête SQL permettant de compter le nombre d’élèves nés en 2005.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q11</strong> : Écrivez une requête SQL permettant de compter le nombre d’élèves nés en février.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Compter-le-nombre-de-valeurs-distinctes-d'un-attribut">Compter le nombre de valeurs distinctes d'un attribut<a class="anchor-link" href="#Compter-le-nombre-de-valeurs-distinctes-d'un-attribut">&#182;</a></h2><p>La requête</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">annee</span> <span class="k">FROM</span> <span class="n">Eleve</span><span class="p">;</span>
+</pre></div>
+<p>va afficher les années de naissance de chacun des 16 élèves (à savoir 2005, 2005, 2005, …, 2007, ..., 2005, 2004, ..., 2005)</p>
+<p>L’utilisation d’un <code>DISTINCT</code> permet d’éviter les redondances dans les résultats affichées. Ainsi, l’instruction</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">annee</span> <span class="k">FROM</span> <span class="n">Eleve</span><span class="p">;</span>
+</pre></div>
+<p>ne va afficher que les années de naissance distinctes des élèves (à savoir 2004, 2005, 2006, 2007). N’hésitez pas à tester ces deux requêtes.</p>
+<p>Pour compter le nombre d’années de naissance distinctes des élèves de la classe, il suffit d’ajouter un <code>COUNT</code> comme suit :</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">annee</span><span class="p">)</span> <span class="k">AS</span> <span class="n">nbAnneesDistinctes</span> <span class="k">FROM</span> <span class="n">Eleve</span><span class="p">;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q12</strong> : Écrivez une requête SQL permettant de compter le nombre de mois de naissances différents des élèves de la classe.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="La-fonction-AVG()">La fonction <code>AVG()</code><a class="anchor-link" href="#La-fonction-AVG()">&#182;</a></h2><p>La fonction d'agrégation <code>AVG()</code> (de l'anglais, <em>average</em> signifiant "moyenne") dans le langage SQL permet de calculer une valeur moyenne d'un ensemble de valeurs numériques.</p>
+<p>Par exemple, la requête</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">AVG</span><span class="p">(</span><span class="n">annee</span><span class="p">)</span> <span class="k">AS</span> <span class="n">anneeMoyenne</span> <span class="k">FROM</span> <span class="n">Eleve</span><span class="p">;</span>
+</pre></div>
+<p>permet de calculer l’année moyenne de naissance des élèves de la classe.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+    <tbody><tr>
+        <th>anneeMoyenne</th>
+    </tr>
+    <tr>
+        <td>2003.857142857143</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Q13</strong> : Écrivez une requête SQL permettant de calculer l’âge moyen des élèves de la classe (en 2022). Ce résultat sera nommé <code>ageMoyen</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Réponse</em> :</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Bilan">Bilan<a class="anchor-link" href="#Bilan">&#182;</a></h1><ul>
+<li>Pour interroger une base de données, on doit écrire des requêtes dans le langage SQL via un logiciel de type SGBD.</li>
+<li>Nous avions ici une base de données formée d'une seule table, ce qui n'est pas souvent le cas. Ainsi, vous découvrirez d'autres fonctionnalités du langage SQL dans la suite de ce chapitre où nous travaillerons aussi sur des bases de données formées de plusieurs tables.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p>Germain BECKER, Sébastien Point, Lycée Mounier, ANGERS</p>
+<p>Ressource éducative libre distribuée sous <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a></p>
+<p><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+
