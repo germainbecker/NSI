@@ -1,0 +1,376 @@
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 style="font-size: 30px">Projet n°1 : JEU DU MORPION</h1><hr>
+<p><img src="data/tic-tac-toe.jpg" alt="illustration" width="300"></p>
+<h1 id="Principe-de-l'algorithme">Principe de l'algorithme<a class="anchor-link" href="#Principe-de-l'algorithme">&#182;</a></h1><p>La plupart des jeux de "plateau" à deux joueurs suivent le même principe :</p>
+<ul>
+<li>Un joueur joue</li>
+<li>S'il a gagné, le jeu s'arrête</li>
+<li>Si ce n'est pas le cas, on reprend au premier point avec l'autre joueur</li>
+</ul>
+<p>Ce processus se répète jusqu'à ce qu'un des joueurs remporte la partie, ou que la partie s'achève sur une égalité.</p>
+<p>Comme on répète tour à tour le même schéma avec chaque joueur, il est intéressant de programmer ce principe par une boucle. Et comme on ne sait pas à l'avance en combien de tours la partie se termine, on utilise une boucle Tant que.</p>
+<p>Dans le cas d'un jeu numérique, il faut également afficher l'état du plateau de jeu à chaque tour. Cet état peut être mémorisé dans un tableau à deux dimensions (un tableau de tableaux).</p>
+<p>Dans le cas du jeu du Morpion, on peut mémoriser l'état initial du plateau du jeu dans le tableau suivant.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">jeu</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span>
+       <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span>
+       <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Analyse-plus-fine-et-d&#233;composition-du-probl&#232;me">Analyse plus fine et d&#233;composition du probl&#232;me<a class="anchor-link" href="#Analyse-plus-fine-et-d&#233;composition-du-probl&#232;me">&#182;</a></h1><p>Dans un projet, la première phase consiste toujours à <strong>décomposer le problème en différentes tâches simples</strong>.</p>
+<p>Pour cela, il est nécessaire de réfléchir de manière plus fine au problème en détaillant davantage le principe de l'algorithme. C'est cette analyse qui va permettre d'identifier les différentes <strong>tâches</strong> attendues dans notre algorithme/programme.</p>
+<h2 id="Principe-de-l'algorithme">Principe de l'algorithme<a class="anchor-link" href="#Principe-de-l'algorithme">&#182;</a></h2><p>Voici le principe de notre algorithme :</p>
+
+<pre><code>On affiche le plateau
+On définit qui joue en premier
+Tant que la partie n'est pas gagnée :
+    Le joueur joue
+    On affiche le plateau après son coup
+    On vérifie s'il a gagné
+        Si oui, la partie est gagnée et le jeu s'arrête ; 
+        Sinon, c'est au tour de l'autre joueur.</code></pre>
+<h2 id="D&#233;composition-en-t&#226;ches">D&#233;composition en t&#226;ches<a class="anchor-link" href="#D&#233;composition-en-t&#226;ches">&#182;</a></h2><p>On peut désormais identifier les tâches principales à accomplir pour programmer notre jeu. Chacune de ces tâches sera programmée par une fonction. Voici les fonctions principales nécessaires :</p>
+<ul>
+<li><code>afficher_plateau()</code> : fonction qui affiche l'état du plateau de jeu à l'écran (dans la console pour nous ici) ;</li>
+<li><code>jouer()</code> : fonction qui demande à l'utilisateur la case qu'il veut jouer et qui actualise le tableau <code>jeu</code> ;</li>
+<li><code>verifier_victoire()</code> : fonction qui vérifie si la partie est gagnée ;</li>
+<li><code>changer_joueur()</code> : fonction qui change le joueur.</li>
+</ul>
+<p>On utilisera les trois variables suivantes :</p>
+<ul>
+<li><code>jeu</code> est le tableau mémorisant l'état du plateau de jeu (voir plus haut) ;</li>
+<li><code>joueur</code> est une chaîne de caractères prenant les valeurs <code>'X'</code> ou <code>'O'</code> et qui désigne le joueur qui doit jouer ;</li>
+<li><code>gagne</code> est un booléen qui vaut FAUX si la partie n'est pas remportée et VRAI si un des joueurs a gagné. C'est ce booléen qui permettra de mettre fin au jeu dès lors qu'il vaut VRAI.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Entr&#233;es-et-sorties-des-diff&#233;rentes-fonctions">Entr&#233;es et sorties des diff&#233;rentes fonctions<a class="anchor-link" href="#Entr&#233;es-et-sorties-des-diff&#233;rentes-fonctions">&#182;</a></h2><p>Les fonctions principales étant identifiées, il faut maintenant réfléchir aux entrées et aux sorties de chacune d'elle : c'est-à-dire aux paramètres de la fonction (de quoi a-t-elle besoin pour travailler ?) et aux valeurs renvoyées par la fonction (que doit-elle renvoyer ?)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="La-fonction-afficher_plateau">La fonction <code>afficher_plateau</code><a class="anchor-link" href="#La-fonction-afficher_plateau">&#182;</a></h3><p>La fonction <code>afficher_plateau</code> a besoin de connaître le contenu du tableau <code>jeu</code> pour afficher le plateau de jeu à l'écran. Et c'est tout ! Ce sera donc son seul paramètre et cette fonction ne renvoie rien (elle affiche quelque chose uniquement).</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">afficher_plateau</span><span class="p">(</span><span class="n">jeu</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Affiche le contenu du tableau jeu.&quot;&quot;&quot;</span>
+    <span class="c1"># sera à compléter !</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Exemple</em> :</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">jeu</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">]]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">afficher_plateau</span><span class="p">(</span><span class="n">jeu</span><span class="p">)</span>
+<span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">]</span>
+<span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">]</span>
+<span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">]</span>
+</pre></div>
+<p><em>Exemple (amélioration possible de l'affichage)</em> :</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">jeu</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">]]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">afficher_plateau</span><span class="p">(</span><span class="n">jeu</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">|</span> <span class="n">O</span> <span class="o">|</span>  
+<span class="o">--+---+--</span>
+  <span class="o">|</span>   <span class="o">|</span>  
+<span class="o">--+---+--</span>
+  <span class="o">|</span>   <span class="o">|</span> <span class="n">X</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<details>
+    <summary style="display: list-item;color: rgb(96 131 228);"><span style="cursor:pointer;">Voir l'aide n°1/2</span></summary>
+
+Cherchez dans le notebook d'exercices sur les tableaux (Thème 2, Chapitre 2).
+
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<details>
+    <summary style="display: list-item;color: rgb(96 131 228);"><span style="cursor:pointer;">Voir l'aide n°2/2</span></summary>
+
+Voici le début d’une fonction envisageable
+
+```python
+def afficher_plateau(jeu):
+    print(jeu[0][0], "|", jeu[0][1], "|", jeu[0][2])
+    print("--+---+--")
+    # à compléter
+```
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="La-fonction-jouer">La fonction <code>jouer</code><a class="anchor-link" href="#La-fonction-jouer">&#182;</a></h3><p>La fonction <code>jouer</code> a pour rôle de demander à l'utilisateur dans quelle ligne et quelle colonne il veut jouer, puis elle doit actualiser et donc modifier l'état du tableau <code>jeu</code> en conséquence. Cette fonction a donc a besoin de ce tableau en paramètre. De plus, cette fonction a besoin de connaître le contenu de la variable <code>joueur</code> (de type <code>str</code>) pour écrire soit <code>'X'</code> soit <code>'O'</code> dans le tableau <code>jeu</code>. Elle possède donc deux paramètres (<code>jeu</code> et <code>joueur</code>) et ne renvoie rien.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">jouer</span><span class="p">(</span><span class="n">jeu</span><span class="p">,</span> <span class="n">joueur</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Demande à l&#39;utilisateur la case à jouer et met à jour le tableau jeu.&quot;&quot;&quot;</span>
+    <span class="c1"># sera à compléter !</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Exemple</em> :</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">jeu</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">]]</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="n">jouer</span><span class="p">(</span><span class="n">jeu</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">)</span>  <span class="c1"># on suppose que le joueur choisit de jouer dans la case centrale</span>
+<span class="n">Quelle</span> <span class="n">colonne</span> <span class="n">veux</span><span class="o">-</span><span class="n">tu</span> <span class="n">jouer</span> <span class="err">?</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="n">ou</span> <span class="mi">2</span><span class="p">)</span> <span class="p">:</span> <span class="mi">1</span>
+<span class="n">Quelle</span> <span class="n">ligne</span> <span class="n">veux</span><span class="o">-</span><span class="n">tu</span> <span class="n">jouer</span> <span class="err">?</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="n">ou</span> <span class="mi">2</span><span class="p">)</span> <span class="p">:</span> <span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">jeu</span>
+<span class="p">[[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">]]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<details>
+    <summary style="display: list-item;color: rgb(96 131 228);"><span style="cursor:pointer;">Voir l'aide n°1/2</span></summary>
+
+Pour demander à l'utilisateur de choisir une case à cocher, on peut lui demander de saisir un numéro de colonne et un numéro de ligne. Par exemple, pour lui demander un numéro de colonne, on peut utiliser l'instruction suivante (cette instruction est la première ligne de la fonction attendue).
+
+```python
+choix_colonne = int(input("Quelle colonne veux-tu jouer ? (0, 1 ou 2) : "))
+```
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<details>
+    <summary style="display: list-item;color: rgb(96 131 228);"><span style="cursor:pointer;">Voir l'aide n°2/2</span></summary>
+
+Voici une fonction incomplète (et pas forcément satisfaisante).
+
+```python
+def jouer(joueur, jeu):
+    choix_colonne = int(input("Quelle colonne veux-tu jouer ? (0, 1 ou 2) : "))
+    ... 
+    if joueur == 'X': 
+        jeu[...][...] = 'X'
+    else:
+        ...
+```
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="La-fonction-verifier_victoire">La fonction <code>verifier_victoire</code><a class="anchor-link" href="#La-fonction-verifier_victoire">&#182;</a></h3><p>La fonction <code>verifier_victoire</code> a besoin de connaître l'état du plateau donc le tableau <code>jeu</code> pour déterminer si la partie est gagnée. Et c'est tout, ce sera son seul paramètre. Cette fonction doit indiquer si la partie est gagnée ou non, elle renverra donc un booléen (VRAI si la partie est gagnée et FAUX sinon).</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">verifier_victoire</span><span class="p">(</span><span class="n">jeu</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Renvoie True si la partie est gagnée et False sinon.&quot;&quot;&quot;</span>
+    <span class="c1"># sera à compléter !</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Exemples</em> :</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">jeu</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">]]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">verifier_victoire</span><span class="p">(</span><span class="n">jeu</span><span class="p">)</span>
+<span class="kc">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">jeu</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">]]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">verifier_victoire</span><span class="p">(</span><span class="n">jeu</span><span class="p">)</span>
+<span class="kc">False</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<details>
+    <summary style="display: list-item;color: rgb(96 131 228);"><span style="cursor:pointer;">Voir l'aide n°1/3</span></summary>
+
+La vérification de victoire peut se faire en trois étapes :
+- vérifier s'il y a victoire horizontale ;
+- vérifier s'il y a victoire verticale ;
+- vérifier s'il y a victoire diagonale.
+
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<details>
+    <summary style="display: list-item;color: rgb(96 131 228);"><span style="cursor:pointer;">Voir l'aide n°2/3</span></summary>
+
+On peut écrire une fonction `verifier_victoire_horizontale(jeu)` qui renvoie `True` s'il y a victoire horizontale et `False` sinon. 
+
+Voici une ébauche de cette fonction. Celle-ci est incomplète et pas forcément satisfaisante en l'état (à vous de trouver pourquoi et de l'améliorer).
+
+```python
+def verifier_victoire_horizontale(jeu):
+    if (jeu[0][0] == jeu[0][1] == jeu[0][2]) or ... or ... : 
+        return ...
+    else: 
+        return ...
+```
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<details>
+    <summary style="display: list-item;color: rgb(96 131 228);"><span style="cursor:pointer;">Voir l'aide n°3/3</span></summary>
+
+Il faut procéder de même en écrivant deux autres fonctions pour tester les victoires verticales et diagonales. Ensuite, on peut écrire la fonction `verifier_victoire(jeu)` en utilisant les trois fonctions de vérifications (horizontale, verticale, diagonale).
+
+```python
+def verifier_victoire(jeu): 
+    return ...
+```
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="La-fonction-changer_joueur">La fonction <code>changer_joueur</code><a class="anchor-link" href="#La-fonction-changer_joueur">&#182;</a></h3><p>La fonction <code>changer_joueur</code> a besoin de connaître qui vient de jouer pour passer à l'autre joueur. Et c'est tout, donc elle n'a besoin que du paramètre <code>joueur</code>. Cette fonction doit aussi modifier le contenu de la variable <code>joueur</code> donc elle doit renvoyer une valeur : la chaîne de caractères <code>'X'</code> ou la chaîne de caractères <code>'O'</code>.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">changer_joueur</span><span class="p">(</span><span class="n">joueur</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Renvoie la chaîne &#39;X&#39; si joueur vaut &#39;O&#39; et la chaîne &#39;O&#39; si joueur vaut &#39;X&#39;.&quot;&quot;&quot;</span>
+    <span class="c1"># sera à compléter !</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<details>
+    <summary style="display: list-item;color: rgb(96 131 228);"><span style="cursor:pointer;">Voir l'aide n°1/1</span></summary>
+
+Relisez bien la spécification de cette fonction. Il y a deux cas à distinguer...
+</details>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Ecriture-de-l'algorithme">Ecriture de l'algorithme<a class="anchor-link" href="#Ecriture-de-l'algorithme">&#182;</a></h2><p>L'algorithme final du jeu peut alors s'écrire de la façon suivante, dans lequel on utilise les variables <code>jeu</code>, <code>joueur</code>, <code>gagne</code>, ainsi que les fonctions <code>afficher_plateau()</code>, <code>jouer()</code>, <code>verifier_victoire()</code>, <code>changer_joueur()</code> définies précédemment.</p>
+
+<pre><code>afficher_plateau(jeu)
+joueur ← 'X'                           # le joueur 'X' commence (arbitraire)
+gagne ← FAUX                           # il n'y a pas de gagnant au départ
+Tant que non gagne faire               # tant qu'il n'y a pas de gagnant
+    Afficher "Au tour de", joueur
+    jouer(jeu, joueur)                 # Le joueur propose sa case et maj du plateau
+    afficher_plateau(jeu)
+    si verifier_victoire(jeu)           # Si verifie_victoire(jeu) renvoie VRAI
+    alors
+        gagne ← VRAI                   # le booleen gagne prend la valeur VRAI (ce qui stoppera la boucle while)
+        Afficher "Le joueur", joueur, "a gagné !"
+    sinon
+        joueur ← changer_joueur(joueur) # sinon on passe au joueur suivant</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="A-vous-de-jouer-!">A vous de jouer !<a class="anchor-link" href="#A-vous-de-jouer-!">&#182;</a></h1><h2 id="D&#233;marche-attendue">D&#233;marche attendue<a class="anchor-link" href="#D&#233;marche-attendue">&#182;</a></h2><p>La démarche de projet est toujours sensiblement la même, quel que soit le projet :</p>
+<p><strong>Étape 1</strong> : Répartition des tâches principales = qui fait quoi ?</p>
+<p>Répartissez-vous les différentes fonctions <code>afficher_plateau()</code>, <code>jouer()</code>, <code>verifier_victoire()</code>, <code>changer_joueur()</code></p>
+<p><strong>Étape 2</strong> : Travail <strong>individuel</strong> pour implémenter (= programmer) la (ou les) fonction(s) qui vous est (sont) attribuée(s). Voici les étapes à suivre pour implémenter une fonction :</p>
+
+<pre><code>- Commencez par bien comprendre ce qu'elle doit faire, en donnant différents exemples d'appels et ce qu'ils doivent produire/renvoyer
+- Programmez la fonction (1ère tentative)
+- Testez la fonction en faisant des appels qui couvrent les différents cas de figure
+    - si les tests sont concluants, passer à la suite
+    - sinon, analysez les erreurs/problèmes et revenez au deuxième point pour procéder aux corrections
+
+
+
+</code></pre>
+<blockquote><p><span style="font-size:25px">⚙️</span> Cette phase de tests/corrections est tout à fait normale et importante ! Il faudra la présenter dans le compte-rendu (quel(s) étai(en)t le(s) problème(s) ? quelle(s) solution(s) avez-vous trouvée(s) ? ...) --&gt; donc il faut garder une trace de tout cela !</p>
+<p><span style="font-size:25px">🆘</span> Demandez si besoin de l'aide à votre professeur sur l'écriture des fonctions, mais seulement après avoir réfléchi suffisamment de temps et testez plusieurs choses.</p>
+</blockquote>
+<p><strong>Étape 3</strong> : Écriture du programme principal : traduire l'algorithme du jeu dans le langage précédent</p>
+<ul>
+<li>le premier à avoir terminé l'étape 2, peut se charger de cela, aidé par les autres si nécessaire lorsqu'ils ont terminé leurs tâches</li>
+<li>le programme principal peut tout à fait être écrit sans que les fonctions principales ne soient programmées ! (évidemment, le programme ne fonctionnera pas dans ce cas, mais on peut déjà l'écrire)</li>
+</ul>
+<p><strong>Étape 4</strong> : Tests du programme principal</p>
+<ul>
+<li>faire des essais de parties pour vérifier si cela fonctionne</li>
+<li>identifier les problèmes restants (il y en a car l'algorithme proposé n'est pas tout à fait satisfaisant, volontairement !) :<ul>
+<li>en se plaçant dans des cas particuliers</li>
+<li>en essayant de faire planter le programme </li>
+</ul>
+</li>
+</ul>
+<p><strong>Étape 5</strong> : Correction et amélioration du programme principal (et éventuellement des fonctions principales) pour qu'il n'y ait plus de problèmes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p>Germain BECKER &amp; Sébastien POINT, Lycée Mounier, ANGERS <img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+
