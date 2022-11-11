@@ -1,6 +1,14 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 style="text-align:center;font-size:2.5em">Représentation des entiers positifs</h1><hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Introduction-:-analogie-avec-la-base-10">Introduction : analogie avec la base 10<a class="anchor-link" href="#Introduction-:-analogie-avec-la-base-10">&#182;</a></h1><p>Nous utilisons tous les jours la base 10 pour compter, c'est la base décimale. Par exemple, le nombre 4097 représente 4 milliers, 0 centaine, 9 dizaines et 7 unités.</p>
 <p>$4097 = 4\times 1000 + 0 \times 100 + 9 \times 10 + 7 \times 1$ c'est-à-dire : $4097 = \textbf 4 \times  10^3 + \textbf 0\times  10^2 + \textbf 9 \times 10^1 + \textbf 7 \times 10^0$</p>
 <p>On retrouve les chiffres $4$, $0$, $9$ et $7$ dans cette écriture avec des puissances de 10. On peut schématiser cela ainsi :</p>
@@ -92,7 +100,7 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="&#128394;&#65039;-Exercice-1-:">&#128394;&#65039; Exercice 1 :<a class="anchor-link" href="#&#128394;&#65039;-Exercice-1-:">&#182;</a></h3><ol>
+<h3 id="&#9997;&#65039;-Exercice-1-:">&#9997;&#65039; Exercice 1 :<a class="anchor-link" href="#&#9997;&#65039;-Exercice-1-:">&#182;</a></h3><ol>
 <li>Combien de valeurs peut-on coder sur 1 bit ?</li>
 <li>Combien de valeurs peut-on coder sur 2 bits ?</li>
 <li>Combien de valeurs peut-on coder sur 3 bits ?</li>
@@ -105,7 +113,7 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="&#128394;&#65039;-Exercice-2-:">&#128394;&#65039; Exercice 2 :<a class="anchor-link" href="#&#128394;&#65039;-Exercice-2-:">&#182;</a></h3><ol>
+<h3 id="&#9997;&#65039;-Exercice-2-:">&#9997;&#65039; Exercice 2 :<a class="anchor-link" href="#&#9997;&#65039;-Exercice-2-:">&#182;</a></h3><ol>
 <li>Quelle est la valeur maximale que l'on peut coder sur 8 bits ?</li>
 <li>Complétez le tableau suivant avec l'écriture binaire de chaque entier. Pour cela, il suffit d'ajouter $1$ exactement de la même manière que ce qui a été vu un peu plus haut pour la base 10.</li>
 </ol>
@@ -113,32 +121,40 @@
 <thead><tr>
 <th>Nombre décimal</th>
 <th>Nombre en binaire</th>
+<th style="text-align:left">Explication</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>0</td>
 <td>0</td>
+<td style="text-align:left"></td>
+<td>0 se code 0 en binaire</td>
 </tr>
 <tr>
 <td>1</td>
 <td>1</td>
+<td style="text-align:left"></td>
+<td>on a ajouté 1 au premier bit</td>
 </tr>
 <tr>
 <td>2</td>
-<td></td>
+<td>10</td>
+<td style="text-align:left">le premier bit a atteint sa valeur maximale : on le passe à 0 et on ajoute 1 au bit suivant</td>
 </tr>
 <tr>
 <td>3</td>
-<td></td>
+<td>11</td>
+<td style="text-align:left">on a ajouté 1 au premier bit</td>
 </tr>
 <tr>
 <td>4</td>
-<td></td>
+<td>100</td>
+<td style="text-align:left">les premier et second bits ont atteint leur valeur maximale : on les passe à 0 et on ajoute 1 au bit suivant</td>
 </tr>
 <tr>
 <td>5</td>
-<td></td>
+<td>...</td>
 </tr>
 <tr>
 <td>6</td>
@@ -169,7 +185,7 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<blockquote><p>Tout cela est un peu pénible, et heureusement que je ne vous ai pas demandé de convertir 2021 en binaire... Il y a bien entendu une méthode pour convertir un nombre décimal en binaire.</p>
+<blockquote><p>Tout cela est un peu pénible, et heureusement que je ne vous ai pas demandé de convertir 2022 en binaire... Il y a bien entendu une méthode pour convertir un nombre décimal en binaire.</p>
 </blockquote>
 
 </div>
@@ -179,16 +195,26 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Algorithme-de-conversion-en-binaire-par-suite-de-divisions">Algorithme de conversion en binaire par suite de divisions<a class="anchor-link" href="#Algorithme-de-conversion-en-binaire-par-suite-de-divisions">&#182;</a></h2><p>En divisant le nombre par 2, on obtient comme premier reste, le nombre d'unités. Si on recommence, on obtient les chiffres suivants de l'écriture en base 2. On s'arrête lorsque le quotient vaut 0.</p>
-<p><strong>Exemple : conversion de 42 en base 2</strong></p>
-
-<pre><code>42 / 2 -&gt; 21 reste 0
-21 / 2 -&gt; 10 reste 1
-10 / 2 -&gt; 5  reste 0
-5 / 2 -&gt; 2 reste 1
-2 / 2 -&gt; 1 reste 0
-1 / 2 -&gt; 0 reste 1</code></pre>
-<p>On obtient le code en écrivant les restes de gauche à droite à partir du dernier reste obtenu.
-On a donc : $42 = (101010)_2$</p>
+<h3 id="Exemple-:-conversion-de-42-en-base-2">Exemple : conversion de 42 en base 2<a class="anchor-link" href="#Exemple-:-conversion-de-42-en-base-2">&#182;</a></h3><p><strong>Méthode 1 : divisions successives par 2 (en ligne)</strong></p>
+<p>42 = 2 $\times$ 21 + <span style="color:red; font-weight:bold">0</span><br>
+21 = 2 $\times$ 10 + <span style="color:red; font-weight:bold">0</span><br>
+10 = 2 $\times$ 5 + <span style="color:red; font-weight:bold">0</span><br>
+5 = 2 $\times$ 2 + <span style="color:red; font-weight:bold">0</span><br>
+2 = 2 $\times$ 1 + <span style="color:red; font-weight:bold">0</span><br>
+1 = 2 $\times$ 0 + <span style="color:red; font-weight:bold">0</span></p>
+<p>On obtient la valeur binaire en concaténant les restes obtenus <strong>du dernier au premier</strong> : $42 = (101010)_2$</p>
+<p><strong>Méthode 2 : divisions successives par 2 (divisions posées)</strong></p>
+<p><img alt="exemple de divisions" src="data/ex_dec_to_bin.png" width="400"></p>
+<p>On obtient la valeur binaire en concaténant les restes obtenus <strong>du dernier au premier</strong> : $42 = (101010)_2$</p>
+<p><strong>Méthode 3 : Somme de puissances de 2</strong></p>
+<p>Les puissances de 2 sont : 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, etc. On peut trouver la plus grande puissance de 2 inférieure ou égale au nombre décimal à convertir. La plus grande puissance de 2 infétieure ou égale à 42 est 32. Il manque alors 10 pour faire 42, donc on recommence avec 10 en cherchant la plus grande puissance de 2 inférieure ou égale à 10, etc :</p>
+$$\begin{align}
+42 &amp;= 32 + (10) \\
+   &amp;= 32 + 8 + (2) \\
+   &amp;= 32 + 8 + 2 \\
+   &amp;= 2^5 + 2^3 + 2^1 \\
+   &amp;= \mathbf{\color{red} 1} \times 2^5 + \mathbf{\color{red} 0} \times 2^4 + \mathbf{\color{red} 1} \times 2^3 + \mathbf{\color{red} 0} \times 2^2 + \mathbf{\color{red} 1} \times 2^1 + \mathbf{\color{red} 0} \times 2^0
+\end{align}$$<p>Donc $42 = (101010)_2$.</p>
 
 </div>
 </div>
@@ -238,7 +264,7 @@ On a donc : $42 = (101010)_2$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="&#128394;&#65039;-Exercice-3-:">&#128394;&#65039; Exercice 3 :<a class="anchor-link" href="#&#128394;&#65039;-Exercice-3-:">&#182;</a></h3><p>Convertissez (à la main) en base 2 les nombres décimaux suivants : 63, 257, 2021. <em>Vous pourrez vérifier vos résultats avec Python.</em></p>
+<h3 id="&#9997;&#65039;-Exercice-3-:">&#9997;&#65039; Exercice 3 :<a class="anchor-link" href="#&#9997;&#65039;-Exercice-3-:">&#182;</a></h3><p>Convertissez (à la main) en base 2 les nombres décimaux suivants : 63, 257, 2021. <em>Vous pourrez vérifier vos résultats avec Python.</em></p>
 
 </div>
 </div>
@@ -380,7 +406,7 @@ $$(11010111)_2 = 1 + 2 + 4 + 0 + 16 + 0 + 64 + 128 = 215.$$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="&#128394;&#65039;-Exercice-4-:">&#128394;&#65039; Exercice 4 :<a class="anchor-link" href="#&#128394;&#65039;-Exercice-4-:">&#182;</a></h3><p>Convertissez en décimal les nombres binaires suivants : $(11011)_2$ et $(1100011011)_2$. <em>Vous pourrez vérifier vos résultats avec Python.</em></p>
+<h3 id="&#9997;&#65039;-Exercice-4-:">&#9997;&#65039; Exercice 4 :<a class="anchor-link" href="#&#9997;&#65039;-Exercice-4-:">&#182;</a></h3><p>Convertissez en décimal les nombres binaires suivants : $(11011)_2$ et $(1100011011)_2$. <em>Vous pourrez vérifier vos résultats avec Python.</em></p>
 
 </div>
 </div>
@@ -520,12 +546,15 @@ Nous allons passer plus rapidement cette partie car les méthodes restent les m�
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Conversion-en-hexad&#233;cimal">Conversion en hexad&#233;cimal<a class="anchor-link" href="#Conversion-en-hexad&#233;cimal">&#182;</a></h2><p>L'algorithme est exactement le même que pour la conversion en binaire. Il suffit juste de diviser successivement par 16 et non par 2.</p>
-<p><strong>Exemple : conversion de 215 en base 16</strong></p>
-
-<pre><code>215 / 16 -&gt; 13 reste 7
-13 / 16 -&gt; 0 reste 13 (→ D)</code></pre>
-<p>On obtient le code en écrivant les restes de gauche à droite à partir du dernier reste obtenu.
-On a donc : $215 = (D7)_{16}$</p>
+<h3 id="Exemple-:-conversion-de-215-en-base-16">Exemple : conversion de 215 en base 16<a class="anchor-link" href="#Exemple-:-conversion-de-215-en-base-16">&#182;</a></h3><p><strong>Méthode 1</strong></p>
+<p>215 = 16 $\times$ 13 + <span style="color:red; font-weight:bold">7</span><br>
+13 = 16 $\times$ 0 + <span style="color:red; font-weight:bold">13 (→ D)</span></p>
+<p>On obtient la valeur hexadécimale en concaténant les restes obtenus <strong>du dernier au premier</strong> : $215 = (D7)_{16}$</p>
+<p><strong>Méthode 2</strong></p>
+<p><img alt="exemple de divisions" src="data/ex_dec_to_hex.png" width="200"></p>
+<p>On obtient la valeur hexadécimale en concaténant les restes obtenus <strong>du dernier au premier</strong> : $215 = (D7)_{16}$</p>
+<blockquote><p>La troisième méthode est possible mais est beaucoup moins adaptée car il faut connaître les puissances de 16.</p>
+</blockquote>
 <p><strong>En Python</strong></p>
 <p>On peut calculer l'écriture en binaire d'un entier avec la fonction Python <code>hex()</code>.</p>
 
@@ -698,7 +727,7 @@ On a donc : $215 = (D7)_{16}$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="&#128394;&#65039;-Exercice-5">&#128394;&#65039; Exercice 5<a class="anchor-link" href="#&#128394;&#65039;-Exercice-5">&#182;</a></h3><ol>
+<h3 id="&#9997;&#65039;-Exercice-5">&#9997;&#65039; Exercice 5<a class="anchor-link" href="#&#9997;&#65039;-Exercice-5">&#182;</a></h3><ol>
 <li>Convertissez $457$ en base 16.</li>
 <li>Convertissez $(876)_{16}$ en base 10.</li>
 </ol>
