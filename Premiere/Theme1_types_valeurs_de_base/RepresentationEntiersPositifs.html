@@ -200,13 +200,14 @@
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Algorithme-de-conversion-en-binaire-par-suite-de-divisions">Algorithme de conversion en binaire par suite de divisions<a class="anchor-link" href="#Algorithme-de-conversion-en-binaire-par-suite-de-divisions">&#182;</a></h2><p>En divisant le nombre par 2, on obtient comme premier reste, le nombre d'unités. Si on recommence, on obtient les chiffres suivants de l'écriture en base 2. On s'arrête lorsque le quotient vaut 0.</p>
 <h3 id="Exemple-:-conversion-de-42-en-base-2">Exemple : conversion de 42 en base 2<a class="anchor-link" href="#Exemple-:-conversion-de-42-en-base-2">&#182;</a></h3><p><strong>Méthode 1 : divisions successives par 2 (en ligne)</strong></p>
-<p>42 = 2 $\times$ 21 + <span style="color:red; font-weight:bold">0</span><br>
-21 = 2 $\times$ 10 + <span style="color:red; font-weight:bold">0</span><br>
-10 = 2 $\times$ 5 + <span style="color:red; font-weight:bold">0</span><br>
-5 = 2 $\times$ 2 + <span style="color:red; font-weight:bold">0</span><br>
-2 = 2 $\times$ 1 + <span style="color:red; font-weight:bold">0</span><br>
-1 = 2 $\times$ 0 + <span style="color:red; font-weight:bold">0</span></p>
-<p>On obtient la valeur binaire en concaténant les restes obtenus <strong>du dernier au premier</strong> : $42 = (101010)_2$</p>
+$$\begin{align}
+42 &amp;= 2\times 21 + \mathbf{\color{red} 0} \\
+21 &amp;= 2 \times 10 + \mathbf{\color{red} 1} \\
+10 &amp;= 2 \times 5 + \mathbf{\color{red} 0} \\
+5  &amp;= 2 \times 2 + \mathbf{\color{red} 1} \\
+2  &amp;= 2 \times 1 + \mathbf{\color{red} 0} \\
+1 &amp;= 2 \times 0 + \mathbf{\color{red} 1}
+\end{align}$$<p>On obtient la valeur binaire en concaténant les restes obtenus <strong>du dernier au premier</strong> : $42 = (101010)_2$</p>
 <p><strong>Méthode 2 : divisions successives par 2 (divisions posées)</strong></p>
 <p><img alt="exemple de divisions" src="data/ex_dec_to_bin.png" width="400"></p>
 <p>On obtient la valeur binaire en concaténant les restes obtenus <strong>du dernier au premier</strong> : $42 = (101010)_2$</p>
