@@ -1,14 +1,16 @@
 # SQL avec Python
 
+<img class="centre image-responsive" src="data/python_sql.svg" width="700" alt="illustration">
+
 On présente dans ce tutoriel comment utiliser le langage Python, via le module `sqlite3`, pour interagir avec une base de données SQLite. Cela vous permettra d'apprendre à utiliser une base de données dans vos futurs projets.
 
 La vidéo associée est la suivante :
 
 <div class="video-responsive">
-    <iframe class="centre" width="560" height="315" src="https://www.youtube-nocookie.com/embed/MXwKr5wGFwU" title="YouTube video player" allowfullscreen=""></iframe>
+    <iframe class="centre" width="560" height="315" src="https://www.youtube-nocookie.com/embed/JiEoZ8Z9oUQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 <p class="impression">
-Source : <a href="https://youtu.be/MXwKr5wGFwU">https://youtu.be/MXwKr5wGFwU</a>
+Source : <a href="https://youtu.be/JiEoZ8Z9oUQ">https://youtu.be/JiEoZ8Z9oUQ</a>
 </p>
 
 # Création et connexion avec la base de données
