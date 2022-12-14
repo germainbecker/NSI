@@ -567,7 +567,7 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Q27</strong> : Écrivez et testez une requête permettant de récupérer le nombre d'albums dont le titre contient la lettre <code>"a"</code>.
-<br><em>Résultat attendu : 11 enregistrements</em>.</p>
+<br><em>Résultat attendu : 16 enregistrements</em>.</p>
 
 </div>
 </div>
@@ -857,8 +857,8 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>On peut combiner une jointure avec la clause <code>SELECT</code> pour n'afficher que ce qui nous intéresse. Par exemple, si on ne veut que les noms, prénoms et adresses email des clients ayant des emprunts en cours ainsi que les albums empruntés, on peut faire la requête</p>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">Emprunt</span><span class="p">.</span><span class="n">id_album</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">nom</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">prenom</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">email</span>
+<p>On peut combiner une jointure avec la clause <code>SELECT</code> pour n'afficher que ce qui nous intéresse. Par exemple, si on ne veut que les noms, prénoms et adresses email des clients ayant des emprunts en cours ainsi que les albums empruntés et le jour d'emprunt, on peut faire la requête</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">Emprunt</span><span class="p">.</span><span class="n">id_album</span><span class="p">,</span> <span class="n">Emprunt</span><span class="p">.</span><span class="n">jour</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">nom</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">prenom</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">email</span>
 <span class="k">FROM</span> <span class="n">Emprunt</span>
 <span class="k">JOIN</span> <span class="n">Client</span> <span class="k">ON</span> <span class="n">Emprunt</span><span class="p">.</span><span class="n">id_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">.</span><span class="n">id_client</span><span class="p">;</span>
 </pre></div>
@@ -962,7 +962,7 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Combiner-les-jointures">Combiner les jointures<a class="anchor-link" href="#Combiner-les-jointures">&#182;</a></h3><p>Plutôt que d'affichier l'<code>id_album</code>, qui est peu lisible, on peut préférer afficher le titre de l'album. Pour cela, on peut faire une nouvelle jointure :</p>
+<h3 id="Combiner-les-jointures">Combiner les jointures<a class="anchor-link" href="#Combiner-les-jointures">&#182;</a></h3><p>Plutôt que d'afficher l'<code>id_album</code>, qui est peu lisible, on peut préférer afficher le titre de l'album. Pour cela, on peut faire une nouvelle jointure :</p>
 <div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">Album</span><span class="p">.</span><span class="n">titre</span><span class="p">,</span> <span class="n">Emprunt</span><span class="p">.</span><span class="n">jour</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">nom</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">prenom</span><span class="p">,</span> <span class="n">Client</span><span class="p">.</span><span class="n">email</span>
 <span class="k">FROM</span> <span class="n">Emprunt</span>
 <span class="k">JOIN</span> <span class="n">Client</span> <span class="k">ON</span> <span class="n">Emprunt</span><span class="p">.</span><span class="n">id_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">.</span><span class="n">id_client</span>
