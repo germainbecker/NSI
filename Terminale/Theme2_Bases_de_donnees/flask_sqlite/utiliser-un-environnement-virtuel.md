@@ -1,11 +1,11 @@
-<h1>TP : Flask et sqlite
-<hr>
-<br>Partie 1 : Utiliser un environnement virtuel et installer les paquets</h1>
+<h1>
+    TP : Flask et sqlite
+    <hr>
+    Partie 1 : Utiliser un environnement virtuel et installer les paquets
+</h1>
 
----
-
-![](https://cdn.pixabay.com/photo/2022/09/11/11/32/project-management-7446581_960_720.jpg)
-https://pixabay.com/fr/illustrations/gestion-de-projet-7446581/
+<img class="centre image-responsive" src="data/gestion_projet.jpg" loading="lazy" alt="illustration de gestion de projet" width="500">
+<p class="legende">Crédit : <a href="https://pixabay.com/fr/illustrations/gestion-de-projet-7446581/">geralt</a>, via Pixabay</p>
 
 On profite de ce TP pour introduire, dans une première partie, quelques bonnes pratiques du développeur dans la conception d'un projet 
 :
@@ -88,10 +88,7 @@ $ source venv/bin/activate
 
 Si tout s'est passé correctement vous devriez voir apparaître le nom de l'environnement virtuel (ici `(venv)` en début de ligne.
 
-<img class="centre image-responsive" src="data/venv_activate_linux.png" loading="lazy" alt="illustration activation d'un environement virtuel">
-<p class="legende">Activation d'un environnement virtuel sous Linux</p>
-
-<img class="centre image-responsive" src="data/venv_activate.png" loading="lazy" alt="illustration activation d'un environement virtuel">
+<img class="centre image-responsive" src="data/venv_activate.png" loading="lazy" alt="illustration activation d'un environnement virtuel">
 <p class="legende">Activation d'un environnement virtuel sous Windows</p>
 
 <blockquote class="info">
@@ -101,12 +98,14 @@ Si tout s'est passé correctement vous devriez voir apparaître le nom de l'envi
 **Remarque** : pour désactiver un environnement virtuel préalablement activé, il suffit d'exécuter la commande `deactivate`. Après la désactivation, le nom de l'environnement virtuel doit disparaître en début de ligne.
 
 <img class="centre image-responsive" src="data/venv_deactivate.png" loading="lazy" alt="illustration activation d'un environement virtuel">
+<p class="legende">Désactivation de l'environnement virtuel sous Windows</p>
 
 # Contenu d'un environement virtuel
 
 Un environement virtuel contient des répertoires et des fichiers. Le répertoire `Scripts` (sous Windows) ou `bin` (sous Linux) contient l'interpréteur Python, les exécutables pouvant être utilisés (comme `pip` par exemple) mais aussi tous les fichiers permettant d'activer ou de désactiver l'environnement virtuel. Le répertoire `Lib` (sous Windows) ou `lib` (sous Linux) contient quant à lui tous les  les scripts pour activer/désactiver l'environnement virtuel ainsi que les différentes commandes exécutables (dans le dossier `Scripts` sous Windows et `bin` sous Linus) mais aussi tous les modules installés dans l'environnement virtuel.
 
-<img class="centre image-responsive" src="data/venv_tree_windows.png" loading="lazy" alt="illustration activation d'un environement virtuel">
+<img class="centre image-responsive" src="data/venv_tree_windows.png" loading="lazy" alt="arborescence de l'environnement virtuel">
+<p class="legende">Arborescence de l'environnement virtuel</p>
 
 # Installation des modules
 

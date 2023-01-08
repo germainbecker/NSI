@@ -1,6 +1,8 @@
-<h1>TP : Flask et sqlite
-<hr>
-<br>Partie 2 : Utiliser une base de données avec Flask</h1>
+<h1>
+    TP : Flask et sqlite
+    <hr>
+    Partie 2 : Utiliser une base de données avec Flask
+</h1>
 
 <img class="centre image-responsive" src="data/flask_sqlite.svg" width="700" alt="illustration">
 
