@@ -91,7 +91,7 @@ Si tout s'est passé correctement vous devriez voir apparaître le nom de l'envi
 <img class="centre image-responsive" src="data/venv_activate.png" loading="lazy" alt="illustration activation d'un environnement virtuel">
 <p class="legende">Activation d'un environnement virtuel sous Windows</p>
 
-<blockquote class="info">
+<blockquote class="information">
     <p>Il faudra toujours activer l'environnement virtuel au départ avant de commencer à travailler dans le dossier du projet. Cela permettra notamment de pouvoir installer et utiliser les différentes versions des modules souhaités de manière isolée et propre à notre projet.</p>   
 </blockquote>
 
@@ -146,7 +146,7 @@ qui crée dans notre dossier projet, un fichier `requirements.txt` contenant dan
     requirements.txt
 ```
 
-<blockquote class="info">
+<blockquote class="information">
     <p>Si vous installez des modules au fur et à mesure, il ne faut pas oublier d'exécuter à nouveau cette commande pour mettre à jour le fichier <code>requirements.txt</code>.</p>   
 </blockquote>
 

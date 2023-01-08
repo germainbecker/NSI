@@ -83,20 +83,17 @@ Press CTRL+C to quit
  * Debugger PIN: nnn-nnn-nnn
 ```
 
-<blockquote class="info">
+<blockquote class="information">
     
-Il est aussi possible de démarrer (en mode debogage) notre application en terminant le fichier `main.py` par les lignes
+<p>Il est aussi possible de démarrer (en mode debogage) notre application en terminant le fichier <code>main.py</code> par les lignes</p>
 
-```python
-if __name__ == '__main__':
-    app.run(debug=True)
-```
+<pre class="language-python"><code>if __name__ == '__main__':
+    app.run(debug=True)</code>
+</pre>
 
-puis en exécutant le fichier `main.py` :
+<p>puis en exécutant le fichier <code>main.py</code> :</p>
 
-```bash
-$ python main.py
-```
+<pre class="language-python"><code>$ python main.py</code></pre>
 
 </blockquote>
 
