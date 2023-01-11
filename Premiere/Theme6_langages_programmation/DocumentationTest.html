@@ -1,0 +1,1586 @@
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 style="font-size:2.5em; text-align:center">Documenter et tester un programme</h1><hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h1><p><img class="centre image-responsive" src="data/documentation_mise_au_point.png"></p>
+<p>Lorsqu'on <em>utilise</em> une fonction, il n'est pas utile de connaître ni même de comprendre le code qui la définit mais on a absolument besoin de connaître son rôle, autrement dit de savoir ce que <em>fait</em> cette fonction. Cela signifie que le programmeur ne peut donc pas se contenter d'écrire uniquement le code de la fonction mais il doit s'assurer d'<strong>expliquer ce que fait son programme</strong> afin que d'autres puissent l'utiliser : pour cela, le programmeur doit créer une <strong>documentation</strong>.</p>
+<p>De plus, pour écrire sa fonction, le programmeur doit s'assurer que <strong>son programme se comporte convenablement</strong>, autrement dit que la fonction renvoie la (ou les) valeur(s) attendue(s), et ce quelles que soient les valeurs (admissibles) des paramètres. Pour cela, le programmeur doit écrire un ou plusieurs <strong>jeux de tests</strong> et s'assurer que les tests passent avec succès. C'est une étape importante voire cruciale s'il s'agit par exemple d'un programme intervenant dans le pilotage d'un avion.</p>
+<p>Vous aller découvrir dans ce chapitre les bonnes pratiques qui permettent au programmeur d'effectuer ces deux tâches.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Que-&#171;-fait-&#187;-un-programme-?">Que &#171; fait &#187; un programme ?<a class="anchor-link" href="#Que-&#171;-fait-&#187;-un-programme-?">&#182;</a></h1><p>Considérons la fonction Python suivante qui a été codée par l'un de vos camarades et que vous devez utiliser dans votre projet.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">x</span>
+    <span class="k">return</span> <span class="n">r</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En la recevant telle quelle, il n'est pas évident que vous sachiez à quoi elle sert. En l'analysant un peu il est possible de comprendre ce que fait cette fonction mais on n'en a pas toujours ni le temps ni l'envie (surtout si ce n'est pas notre travail !)</p>
+<blockquote><p><span style="font-size:1.5em">🤔</span> Alors, elle fait quoi selon vous ?</p>
+</blockquote>
+<p>Ainsi, le version ci-dessous aurait déjà été plus parlante :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">puissance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">x</span>
+    <span class="k">return</span> <span class="n">r</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Un nommage explicite est donc une première (bonne) étape mais elle n'est pas suffisante. En effet, on se doute désormais que cette fonction calcule une puissance mais c'est à peu près tout :</p>
+<ul>
+<li>est-ce $x^n$ ? ou  $n^x$ ? ou autre chose ? ...</li>
+<li>est-ce que cela marche pour n'importe quelles valeurs de <code>x</code> et de <code>n</code> ? ...</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Documenter-son-programme">Documenter son programme<a class="anchor-link" href="#Documenter-son-programme">&#182;</a></h1><p>La bonne pratique pour un codeur est de toujours expliquer son programme (ici sa fonction). Pour cela, une première méthode peut consister à commenter son code de la façon suivante.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># fonction qui renvoie la valeur de x^n</span>
+<span class="k">def</span> <span class="nf">puissance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">x</span>
+    <span class="k">return</span> <span class="n">r</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Cela donne l'information à celui qui a accès au code mais pas aux autres : si par exemple cette fonction appartient à une bibliothèque que l'on importe, nous n'avons pas directement accès au code de la fonction ni à ce commentaire et donc nous ne serions pas beaucoup plus avancé...</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#201;crire-son-propre-texte-d'aide-dans-la-cha&#238;ne-de-documentation">&#201;crire son propre texte d'aide dans la <em>cha&#238;ne de documentation</em><a class="anchor-link" href="#&#201;crire-son-propre-texte-d'aide-dans-la-cha&#238;ne-de-documentation">&#182;</a></h2><p>Il existe une meilleure façon d'expliquer son code. Pour cela, on associera une <em>documentation</em> à notre fonction sous la forme d'une chaîne de caractères écrites entre triples guillemets.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">puissance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Renvoie la valeur de x^n.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">x</span>
+    <span class="k">return</span> <span class="n">r</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On appelle cela la <strong>chaîne de documentation</strong> de la fonction (ou <strong>docstring</strong> en anglais). En procédant ainsi, le programmeur de la fonction permet à quiconque d'afficher cette chaîne de caractères en utilisant la fonction <code>help</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">puissance</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Help on function puissance in module __main__:
+
+puissance(x, n)
+    Renvoie la valeur de x^n.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Vous pouvez essayer d'afficher la docstring de fonctions connues.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">abs</span><span class="p">)</span>  <span class="c1"># abs est la fonction valeur absolue</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Help on built-in function abs in module builtins:
+
+abs(x, /)
+    Return the absolute value of the argument.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Help on built-in function len in module builtins:
+
+len(obj, /)
+    Return the number of items in a container.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Maintenant que l'on sait mieux ce que fait cette fonction on peut facilement l'utiliser pour calculer par exemple $2^3$, $\left(\dfrac{1}{2}\right)^2$, $(-2)^5$ :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">puissance</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c1"># renvoie bien la valeur de 2^3</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[8]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>8</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">puissance</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># renvoie bien la valeur de (1/2)^2 = 1/4</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.25</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">puissance</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="c1"># renvoie bien la valeur de (-2)^5 = -32</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-32</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Cependant, en faisant d'autres tests on se rend vite compte que l'on ne peut pas calculer certaines puissances avec la fonction :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">puissance</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># ne renvoie pas la valeur de 2^(-3) = 1/8</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">puissance</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># ne renvoie pas la valeur de 4^(1/2) = 2 mais lève une erreur</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-12-de97611f6342&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 1</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>puissance<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-cyan-intense-fg ansi-bold">4</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">/</span><span class="ansi-cyan-intense-fg ansi-bold">2</span><span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-red-intense-fg ansi-bold"># ne renvoie pas la valeur de 4^(1/2) = 2 mais lève une erreur</span>
+
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-4-81cdac8eae66&gt;</span> in <span class="ansi-cyan-fg">puissance</span><span class="ansi-blue-intense-fg ansi-bold">(x, n)</span>
+<span class="ansi-green-fg">      4</span>     &#34;&#34;&#34;
+<span class="ansi-green-fg">      5</span>     r <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-cyan-intense-fg ansi-bold">1</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 6</span><span class="ansi-yellow-intense-fg ansi-bold">     </span><span class="ansi-green-intense-fg ansi-bold">for</span> i <span class="ansi-green-intense-fg ansi-bold">in</span> range<span class="ansi-yellow-intense-fg ansi-bold">(</span>n<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">      7</span>         r <span class="ansi-yellow-intense-fg ansi-bold">=</span> r <span class="ansi-yellow-intense-fg ansi-bold">*</span> x
+<span class="ansi-green-fg">      8</span>     <span class="ansi-green-intense-fg ansi-bold">return</span> r
+
+<span class="ansi-red-intense-fg ansi-bold">TypeError</span>: &#39;float&#39; object cannot be interpreted as an integer</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#202;tre-pr&#233;cis-dans-sa-documentation">&#202;tre pr&#233;cis dans sa documentation<a class="anchor-link" href="#&#202;tre-pr&#233;cis-dans-sa-documentation">&#182;</a></h2><p>L'objectif d'une <strong>chaîne de documentation</strong> est d'être courte mais aussi <em>précise</em>.</p>
+<p>On voit sur les deux derniers appels que la fonction ne permet pas de calculer correctement une puissance si l'exposant est négatif ou si l'exposant n'est pas entier. La chaîne de documentation de la fonction n'était donc pas assez précise.</p>
+<p>De manière générale, la chaîne de documentation d'une fonction doit contenir sa <strong>spécification</strong>, c'est-à-dire :</p>
+<ul>
+<li>son <strong>rôle</strong></li>
+<li>les paramètres ainsi que les valeurs acceptées de ces paramètres (= <strong>précondition</strong>)</li>
+<li>la (les) valeur(s) qu'elle renvoie ainsi que d'éventuelles conditions sur ces valeurs (= <strong>postcondition</strong>)</li>
+</ul>
+<p>Ainsi, la version suivante de notre chaine de documentation est bien meilleure car elle indique quelles sont les conditions (sur les paramètres) d'utilisation de la fonction.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">puissance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Renvoie la valeur de x^n, où x est un flottant et n est un entier positif ou nul.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">x</span>
+    <span class="k">return</span> <span class="n">r</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ou encore, de manière plus "professionnelle", on peut écrire :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">puissance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Renvoie la valeur de x^n.</span>
+<span class="sd">    </span>
+<span class="sd">    Paramètres</span>
+<span class="sd">    ----------    </span>
+<span class="sd">        x : float</span>
+<span class="sd">        n : int</span>
+<span class="sd">            n doit être positif ou nul</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">x</span>
+    <span class="k">return</span> <span class="n">r</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><span style="font-size:1.5em">✍️</span> <strong>À FAIRE :</strong> Exercices 1 et 2</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Programmation-d&#233;fensive">Programmation d&#233;fensive<a class="anchor-link" href="#Programmation-d&#233;fensive">&#182;</a></h1><p>Si une fonction est bien documentée et qu'elle est correcte, on peut considérer que le travail du programmeur (de la fonction) a été fait correctement. Cependant, rien n'empêche d'utiliser cette fonction avec des paramètres d'entrée ne respectant pas les préconditions définies dans la docstring : mais l'erreur incombe alors à l'utilisateur qui, soit n'a pas lu correctement la documentation, soit a volontairement testé la fonction avec des valeurs non admises.</p>
+<p>Pour parer à cela, le programmeur a la possibilité d'utiliser la construction <code>assert</code> suivie d'une condition à tester.</p>
+<p>Si cette condition est vraie, alors il ne se passe rien et le programme poursuit son exécution :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Cas d&#39;un test valide</span>
+<span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+<span class="k">assert</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># est exécuté car l&#39;assertion précédente est vraie</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>-2
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En revanche, si la condition est fausse, alors une erreur (de type <code>AssetionError</code>, soit <em>erreur d'assertion</em>) est détectée et stoppe l'exécution du reste du programme.</p>
+<p>Par exemple, le test invalide suivant produit l'affichage d'un message d'erreur et stoppe le programme (ici la dernière ligne n'est pas exécutée)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Cas d&#39;un test invalide</span>
+<span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+<span class="k">assert</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># n&#39;est pas exécuté car l&#39;assertion précédente est fausse</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">AssertionError</span>                            Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-16-2b60d98e5060&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">      1</span> <span class="ansi-red-intense-fg ansi-bold"># Cas d&#39;un test invalide</span>
+<span class="ansi-green-fg">      2</span> a <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-yellow-intense-fg ansi-bold">-</span><span class="ansi-cyan-intense-fg ansi-bold">2</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 3</span><span class="ansi-yellow-intense-fg ansi-bold"> </span><span class="ansi-green-intense-fg ansi-bold">assert</span> a <span class="ansi-yellow-intense-fg ansi-bold">&gt;=</span> <span class="ansi-cyan-intense-fg ansi-bold">0</span>
+<span class="ansi-green-fg">      4</span> print<span class="ansi-yellow-intense-fg ansi-bold">(</span>a<span class="ansi-yellow-intense-fg ansi-bold">)</span>  <span class="ansi-red-intense-fg ansi-bold"># n&#39;est pas exécuté car l&#39;assertion précédente est fausse</span>
+
+<span class="ansi-red-intense-fg ansi-bold">AssertionError</span>: </pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut faire suivre la condition à tester d'un message pour expliquer l'erreur</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># ajout du message à afficher en cas d&#39;erreur</span>
+<span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+<span class="k">assert</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;le nombre a n&#39;est pas positif&quot;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">AssertionError</span>                            Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-17-c989dabdadf5&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">      1</span> <span class="ansi-red-intense-fg ansi-bold"># ajout du message à afficher en cas d&#39;erreur</span>
+<span class="ansi-green-fg">      2</span> a <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-yellow-intense-fg ansi-bold">-</span><span class="ansi-cyan-intense-fg ansi-bold">2</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 3</span><span class="ansi-yellow-intense-fg ansi-bold"> </span><span class="ansi-green-intense-fg ansi-bold">assert</span> a <span class="ansi-yellow-intense-fg ansi-bold">&gt;=</span> <span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-blue-intense-fg ansi-bold">&#34;le nombre a n&#39;est pas positif&#34;</span>
+
+<span class="ansi-red-intense-fg ansi-bold">AssertionError</span>: le nombre a n&#39;est pas positif</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On pourrait donc utiliser ce mécanisme d'assertion dans notre fonction <code>puissance(x, n)</code> de la façon suivante.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">puissance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Renvoie la valeur de x^n, où x est un flottant et n est un entier positif ou nul.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span> <span class="ow">and</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;n n&#39;est pas un entier positif ou nul&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">x</span>
+    <span class="k">return</span> <span class="n">r</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Avant l'écriture du corps de la fonction, on a ajouté une assertion (ligne 5) qui va au préalable tester si le paramètre <code>n</code> est bien un entier et que c'est bien un entier positif. Si ce n'est pas le cas, la fonction est interrompue (à la ligne 5) et le message d'erreur sera affiché (sinon, le programme se poursuit).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">puissance</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># précondition non vérifiée</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">AssertionError</span>                            Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-19-04dc12ea1cf6&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 1</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>puissance<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-cyan-intense-fg ansi-bold">2</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-yellow-intense-fg ansi-bold">-</span><span class="ansi-cyan-intense-fg ansi-bold">3</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>  <span class="ansi-red-intense-fg ansi-bold"># précondition non vérifiée</span>
+
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-18-36877ddaacf4&gt;</span> in <span class="ansi-cyan-fg">puissance</span><span class="ansi-blue-intense-fg ansi-bold">(x, n)</span>
+<span class="ansi-green-fg">      3</span>     Renvoie la valeur de x<span class="ansi-yellow-intense-fg ansi-bold">^</span>n<span class="ansi-yellow-intense-fg ansi-bold">,</span> où x est un flottant et n est un entier positif ou nul<span class="ansi-yellow-intense-fg ansi-bold">.</span>
+<span class="ansi-green-fg">      4</span>     &#34;&#34;&#34;
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 5</span><span class="ansi-yellow-intense-fg ansi-bold">     </span><span class="ansi-green-intense-fg ansi-bold">assert</span> type<span class="ansi-yellow-intense-fg ansi-bold">(</span>n<span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-yellow-intense-fg ansi-bold">==</span> int <span class="ansi-green-intense-fg ansi-bold">and</span> n <span class="ansi-yellow-intense-fg ansi-bold">&gt;=</span> <span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-blue-intense-fg ansi-bold">&#34;n n&#39;est pas un entier positif ou nul&#34;</span>
+<span class="ansi-green-fg">      6</span>     r <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-cyan-intense-fg ansi-bold">1</span>
+<span class="ansi-green-fg">      7</span>     <span class="ansi-green-intense-fg ansi-bold">for</span> i <span class="ansi-green-intense-fg ansi-bold">in</span> range<span class="ansi-yellow-intense-fg ansi-bold">(</span>n<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+
+<span class="ansi-red-intense-fg ansi-bold">AssertionError</span>: n n&#39;est pas un entier positif ou nul</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">puissance</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># précondition vérifiée</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[20]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>8</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En écrivant cette assertion, le programmeur teste au préalable si les <em>préconditions sont valides</em> avant d'exécuter le reste du programme. On parle alors de <em>programmation défensive</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Remarque :</strong> il est possible de combiner plusieurs assertions. Par exemple, l'assertion précédente aurait pu être "séparée" en les deux assertions suivantes :</p>
+<div class="highlight"><pre><span></span><span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;n n&#39;est pas un entier&quot;</span>
+<span class="k">assert</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;n n&#39;est pas positif&quot;</span>
+</pre></div>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><span style="font-size:1.5em">✍️</span> <strong>À FAIRE :</strong> Exercices 3 et 4</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Tester-ses-programmes-pour-(se)-convaincre">Tester ses programmes pour (se) convaincre<a class="anchor-link" href="#Tester-ses-programmes-pour-(se)-convaincre">&#182;</a></h1><p>On peut tout à fait avoir bien spécifié et documenté sa fonction sans que celle-ci ne fonctionne comme prévu. En effet, il n'est pas rare de se tromper dans le code. Pour repérer les éventuelles erreurs, le programmeur peut utiliser sa fonction sur des cas concrets et vérifier que celle-ci renvoie la (ou les) bonne(s) valeur(s). On appelle cela le <em>test</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Utiliser-des-jeux-de-tests">Utiliser des jeux de tests<a class="anchor-link" href="#Utiliser-des-jeux-de-tests">&#182;</a></h2><p>Plutôt que de faire les tests manuellement un par un, il est possible d'utiliser la construction <code>assert</code> directement dans le fichier contenant le programme.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">puissance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Renvoie la valeur de x^n, où x est un flottant et n est un entier positif ou nul.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">x</span>
+    <span class="k">return</span> <span class="n">r</span>
+
+<span class="c1"># jeu de tests :</span>
+<span class="k">assert</span> <span class="n">puissance</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">8</span>
+<span class="k">assert</span> <span class="n">puissance</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="k">assert</span> <span class="n">puissance</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="k">assert</span> <span class="n">puissance</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">32</span>
+<span class="k">assert</span> <span class="n">puissance</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mf">0.25</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Si l'un de ces tests échoue, un message indique le premier échec et la fonction doit être corrigée. Une fois que la correction a été faite, il faut relancer <em>tous</em> les tests. En effet, en corrigeant la fonction il est possible d'introduire une autre erreur (et donc qu'un des tests qui passait avec succès, échoue avec la correction apportée).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#201;crire-ses-tests-avant-le-code-de-la-fonction">&#201;crire ses tests avant le code de la fonction<a class="anchor-link" href="#&#201;crire-ses-tests-avant-le-code-de-la-fonction">&#182;</a></h2><p>Une pratique courante consiste à <strong>écrire des tests <em>avant</em> même d'écrire le code de la fonction</strong>.</p>
+<p>En effet, si la spécification de la fonction est claire, on sait quel doit être le comportement de celle-ci. Par exemple, supposons que l'on veuille écrire une fonction <code>appartient(v, T)</code> dont la spécification, écrite dans sa docstring, est la suivante :</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">appartient</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Renvoie True si l&#39;entier v appartient à tableau d&#39;entiers t, et False sinon.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># CODE A ECRIRE</span>
+</pre></div>
+<p>On connaît son comportement et on peut tout suite écrire les tests suivants.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">appartient</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Renvoie True si l&#39;entier v appartient à tableau d&#39;entiers t, et False sinon.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># CODE DE LA FONCTION À ÉCRIRE</span>
+
+    
+<span class="c1"># jeu de tests</span>
+<span class="k">assert</span> <span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span> <span class="o">==</span> <span class="kc">True</span>
+<span class="k">assert</span> <span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span> <span class="o">==</span> <span class="kc">False</span>
+<span class="k">assert</span> <span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="kc">True</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ensuite, on peut écrire le code de la fonction et exécuter le programme. Si l'un des tests échoue on est certain d'avoir fait une erreur et il faut la corriger. Cependant, si tous nos tests <em>passent</em>, nous ne sommes pas sûr que notre fonction est bien écrite pour autant.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="L'importance-de-la-qualit&#233;-du-jeu-de-tests">L'importance de la qualit&#233; du jeu de tests<a class="anchor-link" href="#L'importance-de-la-qualit&#233;-du-jeu-de-tests">&#182;</a></h2><p>Il est souvent impossible d'écrire de manière exhaustive tous les tests possibles car il y en a bien souvent une infinité. Pour se convaincre que notre fonction est bien écrite, l'enjeu consiste donc à trouver un ensemble de tests qui couvrent les différents comportements du programme.</p>
+<p>Par exemple, avec le code suivant pour la fonction <code>appartient</code> aucun des tests proposés n'échoue.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">appartient</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Renvoie True si l&#39;entier v appartient à tableau d&#39;entiers t, et False sinon.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">v</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+
+<span class="c1"># jeu de tests</span>
+<span class="k">assert</span> <span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span> <span class="o">==</span> <span class="kc">True</span>
+<span class="k">assert</span> <span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span> <span class="o">==</span> <span class="kc">False</span>
+<span class="k">assert</span> <span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="kc">True</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Tous les tests de notre jeu de tests passent avec succès, super notre fonction est correcte ! 😎💪</p>
+<p>... Et pourtant, avec l'appel suivant c'est le drame ... 😲😱</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[23]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>False</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Cet appel met en évidence que <strong>le code de notre fonction est incorrect</strong> puisque 2 appartient bien au tableau <code>[0, 4, 2, 5]</code>.</p>
+<p>Pire, l'appel ci-dessous ne renvoie rien alors qu'il devrait renvoyer <code>False</code> 😲😱...</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notre code est donc (au moins) doublement incorrect !! Et pourtant tous les tests de notre jeu de tests sont passés avec succès... Cela montre que notre jeu de tests n'était pas bon et que la qualité du jeu de tests est primordiale !</p>
+<blockquote class="question">
+    <p>Mais qu'est-ce qu'un <em>bon</em> jeu de tests ?</p>
+</blockquote><p>Il n'est pas simple de définir ce qu'est un <strong><em>bon</em> jeu de tests</strong> mais de  manière générale, voici quelques règles que l'on peut appliquer :</p>
+<ul>
+<li>si la spécification mentionne plusieurs cas, il faut s'assurer de tous les tester ;</li>
+<li>si la fonction renvoie un booléen, il faut s'assurer de tester les deux résultats possibles ;</li>
+<li>si la fonction s'applique à un tableau, il faut tester le cas où le tableau est vide ;</li>
+<li>si la fonction doit parcourir un tableau en entier, il faut s'assurer que celui-ci est parcouru entièrement ;</li>
+<li>si la fonction s'applique à un nombre, il faut s'assurer de tester des cas où le nombre est positif, où le nombre négatif et où le nombre vaut zéro ;</li>
+<li>si la fonction s'applique à un nombre appartenant à un intervalle, il faut s'assurer de tester les cas où le nombre est égal aux bornes de l'intervalle.</li>
+</ul>
+<blockquote><p>Essayons d'améliorer notre jeu de tests pour la fonction <code>appartient</code> en suivant ces préconisations !</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Am&#233;liorer-le-jeu-de-tests">Am&#233;liorer le jeu de tests<a class="anchor-link" href="#Am&#233;liorer-le-jeu-de-tests">&#182;</a></h2><p>Notre jeu de tests est pour le moment le suivant :</p>
+<div class="highlight"><pre><span></span><span class="c1"># jeu de tests</span>
+<span class="k">assert</span> <span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span> <span class="o">==</span> <span class="kc">True</span>
+<span class="k">assert</span> <span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span> <span class="o">==</span> <span class="kc">False</span>
+<span class="k">assert</span> <span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="kc">True</span>
+</pre></div>
+<p>On a bien écrit un test pour lequel la fonction renvoie <code>True</code> et un autre pour lequel la fonction renvoie <code>False</code>. On a pensé à faire un test pour un tableau particuler : celui réduit à un seul élément (le troisième test). Par ailleurs, nos deux tests pour lesquels la fonction renvoie <code>True</code> sont particuliers car à chaque fois la valeur <code>v</code> cherchée se trouve en première position (d'indice 0) dans le tableau.</p>
+<p>Améliorons cela en partant des deux appels <code>appartient(2, [0, 4, 2, 5])</code> et <code>appartient(2, [])</code> effectués précédemment et qui ont montré que notre fonction était incorrecte. Si on a analyse ces deux exemples, on se rend compte que :</p>
+<ul>
+<li>notre fonction ne renvoie pas la bonne valeur dans le cas d'un tableau vide. Il faudra donc intégrer un test pour le cas très particulier du tableau vide :</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[])</span> <span class="o">==</span> <span class="kc">False</span>
+</pre></div>
+<ul>
+<li>notre fonction ne renvoie pas la bonne valeur dans le cas où la valeur cherchée se trouve en "milieu" de tableau. On va intégrer un tel test à notre jeu de tests :</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span> <span class="o">==</span> <span class="kc">True</span>
+</pre></div>
+<p>Tant qu'à faire, on peut ajouter un dernier test où la valeur <code>v</code> se trouve en dernière position du tableau, ce qui est aussi un cas particulier à considérer. Voici donc le jeu tests amélioré proposé (qui ne passera pas avec succès puisque nous n'avons toujours pas modifié le code de notre fonction <code>appartient</code>) :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">appartient</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Renvoie True si l&#39;entier v appartient à tableau d&#39;entiers t, et False sinon.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">v</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+<span class="c1"># un meilleur jeu de tests :</span>
+<span class="k">assert</span> <span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span> <span class="o">==</span> <span class="kc">True</span>
+<span class="k">assert</span> <span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span> <span class="o">==</span> <span class="kc">False</span>
+<span class="k">assert</span> <span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="kc">True</span>
+<span class="k">assert</span> <span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span> <span class="o">==</span> <span class="kc">True</span>  <span class="c1"># cas où v est au &quot;milieu du tableau&quot;</span>
+<span class="k">assert</span> <span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="kc">True</span>  <span class="c1"># cas où v est en dernière position</span>
+<span class="k">assert</span> <span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[])</span> <span class="o">==</span> <span class="kc">False</span>  <span class="c1"># cas du tableau vide</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>On va terminer en corrigeant notre fonction pour tous les tests soient validés !</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Corriger-sa-fonction">Corriger sa fonction<a class="anchor-link" href="#Corriger-sa-fonction">&#182;</a></h2><p>Il n'est pas toujours évident de trouver pourquoi notre code ne fonctionne pas. Les tests qui échouent nous donne cependant de précieux éléments sur les erreurs dans le programme. En effet, <strong>c'est souvent en partant d'un test qui échoue que l'on trouve les erreurs en suivant l'état des variables</strong>.</p>
+<p>Ceci peut se faire mentalement ou sur papier mais il également possible d'utiliser des outils numériques.</p>
+<h3 id="Premi&#232;re-possibilit&#233;-:-afficher-les-valeurs-de-certaines-variables">Premi&#232;re possibilit&#233; : afficher les valeurs de certaines variables<a class="anchor-link" href="#Premi&#232;re-possibilit&#233;-:-afficher-les-valeurs-de-certaines-variables">&#182;</a></h3><p>Pour un programmeur débutant, la première idée à mettre en oeuvre est souvent d'afficher les valeurs de certaines variables à des endroits stratégiques du programme. Par exemple, on peut afficher la valeur de la variable <code>i</code> à chaque tour de boucle, et afficher le message <code>"ici"</code> ou <code>"là"</code> selon que l'on passe dans le <code>if</code> ou dans le <code>else</code> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">appartient</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Renvoie True si l&#39;entier v appartient à tableau d&#39;entiers t, et False sinon.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;i =&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">v</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ici&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;là&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On utilise le premier appel qui posait problème :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>i = 1
+là
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[26]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>False</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On se rend compte que la variable <code>i</code> ne prend que la valeur <code>0</code>, autrement dit que l'on ne fait qu'un seul tour de boucle : le premier (celui d'indice <code>0</code>). De plus, lors de ce premier tour de boucle, on voit que le message <code>"là"</code> est affiché, autrement dit que l'on passe dans le <code>else</code>. Or, si on arrive dans le <code>else</code> notre fonction renvoie <code>False</code>.</p>
+<p>Or, il ne faut pas renvoyer <code>False</code> mais poursuivre la recherche si la valeur <code>v</code> n'est pas en première position (ni à une autre position d'ailleurs). On peut alors corriger notre programme en retirant le <code>else</code> et en renvoyant <code>False</code> <strong>après</strong> la boucle <code>for</code> !</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">appartient</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Renvoie True si l&#39;entier v appartient à tableau d&#39;entiers t, et False sinon.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;i =&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">v</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ici&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;là&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>i = 0
+i = 1
+i = 2
+ici
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[28]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut essayer à nouveau notre jeu de tests (en enlevant les affichages) :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">appartient</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Renvoie True si l&#39;entier v appartient à tableau d&#39;entiers t, et False sinon.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">v</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="kc">False</span>
+
+<span class="c1"># un meilleur jeu de tests :</span>
+<span class="k">assert</span> <span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span> <span class="o">==</span> <span class="kc">True</span>
+<span class="k">assert</span> <span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span> <span class="o">==</span> <span class="kc">False</span>
+<span class="k">assert</span> <span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="kc">True</span>
+<span class="k">assert</span> <span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span> <span class="o">==</span> <span class="kc">True</span>  <span class="c1"># cas où v est au &quot;milieu du tableau&quot;</span>
+<span class="k">assert</span> <span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="kc">True</span>  <span class="c1"># cas où v est en dernière position</span>
+<span class="k">assert</span> <span class="n">appartient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[])</span> <span class="o">==</span> <span class="kc">False</span>  <span class="c1"># cas du tableau vide</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Super, tous les tests passent avec succès, et comme notre jeu de tests couvre tous les cas particuliers, on peut considérer que notre fonction est <em>a priori</em> correcte 👍.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Deuxi&#232;me-possibilit&#233;-:-ex&#233;cuter-un-programme-ligne-par-ligne">Deuxi&#232;me possibilit&#233; : ex&#233;cuter un programme ligne par ligne<a class="anchor-link" href="#Deuxi&#232;me-possibilit&#233;-:-ex&#233;cuter-un-programme-ligne-par-ligne">&#182;</a></h3><p>Il existe des outils efficaces permettant d'exécuter ligne par ligne un programme pour y déceler une erreur. L'un d'entre eux se nomme <em>Python tutor</em>. Il n'est alors plus nécessaire d'utiliser des <code>print</code> pour faire des affichages.</p>
+<p>Voici <a href="https://pythontutor.com/visualize.html#code=def%20appartient%28v,%20t%29%3A%0A%20%20%20%20%22%22%22%0A%20%20%20%20Renvoie%20True%20si%20v%20appartient%20%C3%A0%20t,%20et%20False%20sinon.%0A%20%20%20%20%22%22%22%0A%20%20%20%20for%20i%20in%20range%28len%28t%29%29%3A%0A%20%20%20%20%20%20%20%20print%28i%29%0A%20%20%20%20%20%20%20%20if%20t%5Bi%5D%20%3D%3D%20v%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20True%0A%20%20%20%20%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20False%0A%0Aappartient%282,%20%5B0,%204,%202,%205%5D%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false" target="_blank">un lien vers Python tutor</a> pour exécuter l'appel <code>appartient(2, [0, 4, 2, 5])</code> avec la version incorrecte de la fonction <code>appartient</code>. On peut alors suivre les exécutions ligne après ligne pour se rendre compte qu'il n'y a qu'un seul tour de boucle avec renvoi de la valeur <code>False</code> dès ce premier tour.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Troisi&#232;me-possibilit&#233;-:-utiliser-des-outils-de-d&#233;bogage">Troisi&#232;me possibilit&#233; : utiliser des outils de d&#233;bogage<a class="anchor-link" href="#Troisi&#232;me-possibilit&#233;-:-utiliser-des-outils-de-d&#233;bogage">&#182;</a></h3><p>Enfin, les IDE les plus récents proposent généralement des <em>débogueurs</em> (ou <em>debugger</em>) qui permettent d'exécuter les programmes ligne par ligne et d'insérer des <em>points d'arrêts</em> pour stopper l'exécution du programme à certains endroits. On peut ainsi suivre les valeurs des variables pas à pas pour trouver la ou les erreurs.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><span style="font-size:1.5em">✍️</span> <strong>À FAIRE :</strong> Exercices 5, 6, 7 et 8</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Int&#233;gration-des-tests-&#224;-la-cha&#238;ne-de-documentation">Int&#233;gration des tests &#224; la cha&#238;ne de documentation<a class="anchor-link" href="#Int&#233;gration-des-tests-&#224;-la-cha&#238;ne-de-documentation">&#182;</a></h2><p>Choisir et vérifier des tests pertinents est un travail précieux, dont il est important de garder une trace. De plus, des tests bien choisis peuvent constituer une explication très efficace de l'effet d'une fonction.</p>
+<p>Une pratique fréquente est d'inclure une série de tests directement dans la chaîne d'aide d'une fonction.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">puissance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Renvoie la valeur de x^n, où n est un entier positif ou nul</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; puissance(2, 3)</span>
+<span class="sd">    8</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; puissance(0, 2)</span>
+<span class="sd">    0</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; puissance(5, 0)</span>
+<span class="sd">    1</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; puissance(-2, 5)</span>
+<span class="sd">    -32</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; puissance(0.5, 2)</span>
+<span class="sd">    0.25</span>
+<span class="sd">    </span>
+<span class="sd">    etc.</span>
+<span class="sd">    </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">x</span>
+    <span class="k">return</span> <span class="n">r</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Par convention, les tests prennent la forme d'expressions Python précédées de la syntaxe <code>&gt;&gt;&gt;</code>, qui représente l'invite de commande de l'interpréteur Python classique. Chaque expression est suivi de l'affichage (éventuellement vide) qui serait provoqué si elle était évaluée dans l'interpréteur.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Extraction-et-v&#233;rification-automatique-de-tests-:-le-module-doctest">Extraction et v&#233;rification automatique de tests : le module <em>doctest</em><a class="anchor-link" href="#Extraction-et-v&#233;rification-automatique-de-tests-:-le-module-doctest">&#182;</a></h2><p>Un outil prédéfini, accessible par le biais du module <code>doctest</code>, permet d'extraire automatiquement et de vérifier chacun des tests présents dans les chaînes de documentation, dans toutes les fonctions d'un module par exemple (par défaut, les tests du module courant sont extraits et vérifiés).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">doctest</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">doctest</span><span class="o">.</span><span class="n">testmod</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[32]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>TestResults(failed=0, attempted=5)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ici, il n'y a qu'une fonction qui contient des tests inclus dans sa chaîne de documentation. On se rend compte que les 5 tests pour la fonction <code>puissance(x, n)</code> sont passés avec succès.</p>
+<p>Il est possible d'ajouter un paramètre optionnel à la fonction <code>testmod</code> afin d'obtenir plus d'informations sur les tests effectués, même en cas de succès.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">doctest</span><span class="o">.</span><span class="n">testmod</span><span class="p">(</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Trying:
+    puissance(2, 3)
+Expecting:
+    8
+ok
+Trying:
+    puissance(0, 2)
+Expecting:
+    0
+ok
+Trying:
+    puissance(5, 0)
+Expecting:
+    1
+ok
+Trying:
+    puissance(-2, 5)
+Expecting:
+    -32
+ok
+Trying:
+    puissance(0.5, 2)
+Expecting:
+    0.25
+ok
+3 items had no tests:
+    __main__
+    __main__.appartient
+    __main__.f
+1 items passed all tests:
+   5 tests in __main__.puissance
+5 tests in 4 items.
+5 passed and 0 failed.
+Test passed.
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[33]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>TestResults(failed=0, attempted=5)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><span style="font-size:1.5em">✍️</span> <strong>À FAIRE :</strong> Exercice 9.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h1><p>Nous avons vu :</p>
+<ul>
+<li>comment <em>documenter</em> une fonction en spécifiant son comportement de manière concise et précise dans sa docstring. Cette pratique permet aux autres utilisateurs de comprendre le rôle de la fonction et son domaine d'utilisation (préconditions sur les paramètres) ;</li>
+<li>que la construction <code>assert</code> était un bon moyen d'effectuer une série de <em>tests</em> pour se convaincre que notre programme est correct et, éventuellement, de mettre en évidence des erreurs ;</li>
+<li>qu'il est possible de rechercher les erreurs en <em>affichant les valeurs</em> de certaines variables à des endroits stratégiques ou, de manière plus professionnelle, utiliser des <em>debogueurs</em> ;</li>
+<li>qu'il n'y a pas de méthode systématique pour s'assurer qu'on a pensé à tous les tests importants : il faut donc être particulièrement vigilant pour élaborer un <em>jeu de tests de qualité</em> ;</li>
+<li>en particulier, le succès d’un jeu de tests ne garantit pas qu'un programme est correct ;</li>
+<li>qu'il existe une syntaxe permettant d'inclure les tests dans la chaîne de documentation et un outil (comme le module <code>doctest</code>) permettant de les extraire et de les vérifier automatiquement.</li>
+</ul>
+<p><strong>Pour aller plus loin</strong></p>
+<ul>
+<li><p>Il existe bien d'autres outils de documentation (pydoc, Sphinx) et de test (pytest, unittest), pour des usages plus complexes.</p>
+</li>
+<li><p>Il est possible, de manière optionnelle, d'indiquer dans l'en-tête d'une fonction le type de certains paramètres et / ou du résultat. Cela peut être utile par exemple pour alléger la chaîne de documentation. Il existe aussi des outils externes qui permettent de vérifier que ces annotations de types sont vérifiées.</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Références :</strong></p>
+<ul>
+<li>Documents ressources du DIU EIL, Université de Nantes, C. DECLERCQ.</li>
+<li>Numérique et Sciences Informatiques, 1re, T. BALABONSKI, S. CONCHON, J.-C. FILLIATRE, K. NGUYEN, éditions ELLIPSES : <a href="https://www.nsi-premiere.fr/">Site du livre</a></li>
+<li>Ressource Eduscol : <a href="https://cache.media.eduscol.education.fr/file/NSI/77/3/RA_Lycee_G_NSI_lang_tests_1170773.pdf">Mise au point de programmes testés</a></li>
+</ul>
+<hr>
+<p>Germain BECKER &amp; Sébastien POINT, Lycée Mounier, ANGERS <img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+
