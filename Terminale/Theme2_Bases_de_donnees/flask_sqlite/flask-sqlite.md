@@ -72,7 +72,7 @@ La commande `flask run` peut aussi activer le mode de débogage, qui permet de r
 Pour lancer l'application avec le mode `debug` activé, on exécute la commande :
 
 ```bash
-$ flask --app demo --debug run
+$ flask --app main --debug run
  * Serving Flask app 'main'
  * Debug mode: on
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
