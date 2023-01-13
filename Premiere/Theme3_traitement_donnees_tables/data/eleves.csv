@@ -1,39 +1,25 @@
-"prénom","jour","mois","année","sexe","groupe","projet"
-"Loona",29,11,2005,"F",1,"être heureuse"
-"Quentin",28,5,2005,"G",2,"manger une glace"
-"Sania",30,7,2005,"F",1,"gagner au loto"
-"Yanis",14,4,2005,"G",1,"devenir quelqu’un de célèbre"
-"Nolan",16,4,2005,"G",2,"avoir une bonne note au prochain devoir"
-"Mathis",12,1,2005,"G",1,"devenir astronaute"
-"Hippolyte",20,10,2005,"G",2,"marcher sur la lune"
-"Martial",22,4,2005,"G",2,"dormir plus longtemps le matin"
-"Arthur",10,8,2005,"G",2,"aider les autres"
-"Aïris",24,3,2005,"F",2,"apprendre à piloter une Formule 1"
-"Léo",28,7,2005,"G",2,"devenir président"
-"Romain",23,1,2005,"G",2,"créer un jeu vidéo"
-"Tanguy",9,6,2005,"G",1,"gérer sa propre entreprise"
-"Nolwenn",24,11,2005,"F",2,"jouer dans le prochain James Bond"
-"Célian",17,11,2005,"G",1,"gagner le Tour de France"
-"Rayane",23,1,2005,"G",1,"devenir champion du monde de bras de fer"
-"Ancelin",15,1,2007,"G",2,"devenir youtuber"
-"Ewen",16,5,2005,"G",2,"avoir son émission de TV"
-"Nolan",16,5,2005,"G",1,"écrire un livre"
-"Valentin",8,8,2005,"G",1,"inventer la machine à voyager dans le temps"
-"Mathis",14,1,2005,"G",1,"devenir une rockstar"
-"Jade",14,3,2005,"F",2,"développer une application"
-"Charles",23,1,2005,"G",2,"ouvrir un restaurant"
-"Sylliane",7,6,2005,"G",1,"aller à Poudlard"
-"Clément",6,12,2005,"G",1,"monter le tapis rouge à Cannes"
-"Kilian",3,11,2005,"G",1,"gagner un Oscar"
-"Haroun",27,5,2004,"G",1,"devenir un joueur professionel de billard"
-"Hugo",10,1,2005,"G",2,"sortir un film"
-"Lois",17,11,2005,"G",2,"créer un objet révolutionnaire"
-"Agathe",15,7,2005,"F",2,"devenir championne du monde d'échecs"
-"Baptiste",10,12,2005,"G",1,"manger des frites tous les jours à la cantine"
-"Sébastien",14,1,2005,"G",1,"devenir champion olympique"
-"Nicolas",24,4,2006,"G",2,"participer à The Voice"
-"Maé",18,8,2005,"F",2,"enregistrer un album"
-"Nolan",25,7,2005,"G",1,"acheter une Ferrari"
-"Timothé",11,1,2006,"G",1,"participer au trophée Jules Verne"
-"Inès",13,12,2005,"F",1,"battre le record du monde du marathon"
-"Kylian",13,3,2005,"G",2,"battre Usain Bolt"
+prénom,jour,mois,année,sexe,classe,projet
+Sylvain,19,2,2007,F,1G1,manger des frites tous les jours à la cantine
+Romain,22,9,2006,G,1G4,être heureux
+Kenzo,23,9,2006,F,1G3,gagner au loto
+Marin,28,2,2006,G,1G1,devenir quelqu’un de célèbre
+Alexis,27,7,2006,G,1G4,avoir une bonne note au prochain devoir
+Dario,24,5,2006,G,1G3,devenir astronaute
+Adrien,14,11,2006,G,1G3,marcher sur la lune
+Yanis,2,6,2006,G,1G3,dormir plus longtemps le matin
+Sara,14,1,2006,G,1G3,aider les autres
+Augustin,24,10,2006,F,1G3,apprendre à piloter une Formule 1
+Lenny,24,10,2006,G,1G4,devenir président
+Alan,2,8,2006,G,1G2,créer un jeu vidéo
+Clement,18,2,2005,G,1G1,gérer sa propre entreprise
+Nizar,21,12,2006,F,1G1,jouer dans le prochain James Bond
+Gaellys,6,8,2006,G,1G1,monter le tapis rouge à Cannes
+Ianis,29,9,2006,G,1G3,devenir champion du monde de bras de fer
+Martin,7,1,2006,G,1G1,devenir youtuber
+Timothée,6,10,2006,G,1G1,avoir son émission de TV
+Mathis,6,12,2006,G,1G1,écrire un livre
+Bastien,5,1,2007,G,1G3,inventer la machine à voyager dans le temps
+Yann,4,11,2005,G,1G2,devenir une rockstar
+Maël,26,2,2005,F,1G2,devenir un joueur professionel de billard
+Enzo,8,11,2006,G,1G3,ouvrir un restaurant
+Alexandre,27,5,2006,G,1G3,aller à Poudlard
