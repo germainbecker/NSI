@@ -297,7 +297,7 @@ Nous expliquerons cela dans un second tutoriel, pour mettre en garde le dévelop
 ('Marchand', 'Marie', '2C')
 ```
 
-🐍 **Q4** : Écrire une fonction `recuperer_liste_alphabetique_par_classe` qui prend un paramètre `classe` et qui renvoie la liste *triée par ordre alphabétique* de tous les élèves de la table `Eleve` qui sont dans la classe `classe`. *Le tri doit d'être réalisé par la requête SQL (vous pourrez ensuite le réaliser avec Python en triant la liste des résultats)*.
+🐍 **Q4** : Écrire une fonction `recuperer_liste_alphabetique_par_classe` qui prend un paramètre `classe` et qui renvoie la liste *triée par ordre alphabétique* de tous les élèves de la table `Eleve` qui sont dans la classe `classe`. *Le tri doit être réalisé par la requête SQL (vous pourrez dans un second temps essayer de le réaliser avec Python si vous le souhaitez en triant la liste des résultats)*.
 
 *Exemple* :
 
