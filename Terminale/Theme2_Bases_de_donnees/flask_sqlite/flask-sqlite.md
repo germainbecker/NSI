@@ -102,7 +102,7 @@ Press CTRL+C to quit
 
 L'application que l'on souhaite écrire, permet d'interagir avec la base de données `eleves.db` qui a été créée dans le TP [SQL avec Python](https://info-mounier.fr/terminale_nsi/base_de_donnees/sql_avec_python.php) et que vous pouvez télécharger en cliquant sur le lien suivant : <a href="data/eleves.db" download>eleves.db</a>.
 
-<span class="emoji">👉</span> Placez le fichier `eleves.db` dans le répertoire `falsk-sqlite`. À ce stade, l'arborescence du projet est la suivante :
+<span class="emoji">👉</span> Placez le fichier `eleves.db` dans le répertoire `flask-sqlite`. À ce stade, l'arborescence du projet est la suivante :
 
 ```
 /flask-sqlite
@@ -189,7 +189,7 @@ En lançant le serveur avec la commande `$ flask --app demo --debug run` et en n
 
 ### Interroger la base de données
 
-Pour mieux organiser notre projet, on va créer un fichier `bdd.py` dans le répetoire du projet, et dans lequel on utilisera le module `sqlite3` pour interagir avec notre base de données `eleves.db`.
+Pour mieux organiser notre projet, on va créer un fichier `bdd.py` dans le répertoire du projet, et dans lequel on utilisera le module `sqlite3` pour interagir avec notre base de données `eleves.db`.
 
 *Arborescence*
 

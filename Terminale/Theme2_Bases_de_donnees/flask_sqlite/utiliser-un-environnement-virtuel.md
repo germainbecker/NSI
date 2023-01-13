@@ -150,7 +150,7 @@ qui crée dans notre dossier projet, un fichier `requirements.txt` contenant dan
     <p>Si vous installez des modules au fur et à mesure, il ne faut pas oublier d'exécuter à nouveau cette commande pour mettre à jour le fichier <code>requirements.txt</code>.</p>   
 </blockquote>
 
-Dans le cas d'un projet collaboratif et/ou open source, ce fichier permet permet aux autres développeurs de facilement créer un environnement virtuel similaire au vôtre en installant les mêmes modules dans les mêmes versions que vous. Cela peut se faire avec la commande :
+Dans le cas d'un projet collaboratif et/ou open source, ce fichier permet aux autres développeurs de facilement créer un environnement virtuel similaire au vôtre en installant les mêmes modules dans les mêmes versions que vous. Cela peut se faire avec la commande :
 
 ```bash
 $ pip install -r requirements.txt
