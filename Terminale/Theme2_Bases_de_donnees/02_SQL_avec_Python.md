@@ -302,13 +302,13 @@ Nous expliquerons cela dans un second tutoriel, pour mettre en garde le dévelop
 *Exemple* :
 
 ```python
->>> recuperer_liste_alphabetique_par_classe()
+>>> recuperer_liste_alphabetique_par_classe('1G2')
 [('Laurent', 'Diego', 17, '1G2'), ('Richard', 'Louise', 15, '1G2'), ('Rouger', 'Marius', 16, '1G2')]
 ```
 
 ## 💻 Exercice 2 : Créer et utiliser une classe `Eleve`
 
-🐍  **Q1** : Écrire une classe Python appelée `Eleve` dont les instances possèdent 4 attributs : 3 `nom` (de type `str`), `prenom` (de type `str`), `age` (de type `int`) et `classe` (de type `str`).
+🐍  **Q1** : Écrire une classe Python appelée `Eleve` dont les instances possèdent 4 attributs : `nom` (de type `str`), `prenom` (de type `str`), `age` (de type `int`) et `classe` (de type `str`).
 
 🐍 **Q2** : Quelle instruction permet de créer un objet de la classe `Eleve` vous correspondant ?
 
