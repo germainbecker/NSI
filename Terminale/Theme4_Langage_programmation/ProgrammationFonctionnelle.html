@@ -1,0 +1,1548 @@
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h1><p>La <strong>programmation fonctionnelle</strong> est née avec le langage LISP (List Processing) créé par John Mac Carthy en 1958. C'est une mise en oeuvre de ce qu'on appelle le <em>lambda-calcul</em>, une théorie inventée par Alonzo Church dans les années 1930 dont l'idée majeure est que tout programme informatique ou tout calcul peut s'écrire ou s'exprimer uniquement avec des <em>fonctions</em>.</p>
+<p>Le langage LISP a eu ensuite de nombreux descendants dont Common Lisp, Scheme, Haskell, Caml puis son extension objet OcamL (qui est un langage enseigné actuellement en classe préparatoire MP2I).</p>
+<p>Les idées introduites par ces langages ont été reprises dans la plupart des langages modernes qui offrent la possibilité, entre autres, de programmer en suivant un <strong>paradigme fonctionnel</strong>. En particulier, on verra qu'il est possible d'écrire en Python dans un style fonctionnel.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exemple-introduction-:-traitement-de-listes">Exemple introduction : traitement de listes<a class="anchor-link" href="#Exemple-introduction-:-traitement-de-listes">&#182;</a></h2><p>En Lisp, les listes se notent avec des parenthèses et le traitement de listes repose sur 2 primitives <code>car</code> et <code>cdr</code> pour accéder au 1er élément et au reste d'une liste. On remarque la notation préfixée des opérateurs et l'usage abondant des parenthèses qui servent à la fois à structurer les données et les programmes.</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">de</span> <span class="nv">dernier</span> <span class="p">(</span><span class="nv">l</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">cond</span> <span class="p">((</span><span class="nb">null</span> <span class="p">(</span><span class="nb">cdr</span> <span class="nv">l</span><span class="p">))</span> <span class="p">(</span><span class="nb">car</span> <span class="nv">l</span><span class="p">))</span>
+        <span class="p">(</span><span class="no">t</span> <span class="p">(</span><span class="nv">dernier</span> <span class="p">(</span><span class="nb">cdr</span> <span class="nv">l</span><span class="p">)))</span>
+  <span class="p">)</span>
+<span class="p">)</span>
+<span class="p">(</span><span class="nv">dernier</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">2</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">9</span><span class="p">))</span>
+</pre></div>
+<p>À condition de définir au préalable les fonctions primitives, on peut, en Python, définir la fonction <code>dernier</code>, selon le paradigme fonctionnel.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Fonctions primitives</span>
+
+<span class="k">def</span> <span class="nf">listevide</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">[]</span>
+
+<span class="k">def</span> <span class="nf">premier</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">reste</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On a déjà écrit une version impérative de la fonction <code>dernier</code> :</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dernier</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Version impérative.&quot;&quot;&quot;</span>
+    <span class="k">while</span> <span class="n">reste</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="o">!=</span> <span class="n">listevide</span><span class="p">():</span> <span class="c1"># tant que le reste de la liste n&#39;est pas vide</span>
+        <span class="n">L</span> <span class="o">=</span> <span class="n">reste</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="c1"># on passe au reste</span>
+    <span class="k">return</span> <span class="n">premier</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="c1"># on renvoie le premier élément de la dernière paire</span>
+</pre></div>
+<p>Une version fonctionnelle de cette fonction peut s'écrire ainsi :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">dernier</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Version fonctionnelle.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">premier</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="k">if</span> <span class="n">reste</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="o">==</span> <span class="n">listevide</span><span class="p">()</span> <span class="k">else</span> <span class="n">dernier</span><span class="p">(</span><span class="n">reste</span><span class="p">(</span><span class="n">L</span><span class="p">))</span>
+
+<span class="n">dernier</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[2]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>9</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exemple-introduction-:-calcul-du-pgcd">Exemple introduction : calcul du pgcd<a class="anchor-link" href="#Exemple-introduction-:-calcul-du-pgcd">&#182;</a></h2><p>Pour calculer le pgcd de deux nombres entiers positifs donnés, on peut, dans un style <em>impératif</em>, écrire une boucle qui soustrait alternativement le plus petit du plus grand jusqu'à ce qu'on obtienne 0.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">pgcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Version impérative.&quot;&quot;&quot;</span>
+    <span class="k">while</span> <span class="n">a</span> <span class="o">!=</span> <span class="n">b</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">:</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">a</span>
+    <span class="k">return</span> <span class="n">a</span>
+
+<span class="n">pgcd</span><span class="p">(</span><span class="mi">56</span><span class="p">,</span> <span class="mi">184</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>8</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Dans un style fonctionnel, on écrit une fonction qui renvoie le résultat en précisant la valeur dans les cas simples et en se ramenant, le cas échéant, par appel récursif, à des cas plus simples.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">pgcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Version fonctionnelle.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">pgcd</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="k">if</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="n">a</span> <span class="k">else</span> <span class="n">pgcd</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="n">pgcd</span><span class="p">(</span><span class="mi">56</span><span class="p">,</span> <span class="mi">184</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[4]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>8</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Le-paradigme-fonctionnel">Le paradigme fonctionnel<a class="anchor-link" href="#Le-paradigme-fonctionnel">&#182;</a></h1><p>L'usage de toutes ou une partie de quatre notions suivantes est caractéristique de la programmation fonctionnelle :</p>
+<ul>
+<li>la notion de <strong>fonction</strong> qui est évidemment centrale,</li>
+<li>la <strong>composition</strong> de fonctions, qui permet de faire deux calculs successifs (par exemple <code>dernier(reste(L))</code> applique la fonction <code>dernier</code> au résultat de l'application de la fonction <code>reste</code> à la liste <code>L</code>),</li>
+<li>la possibilité d'écrire des <strong>expressions conditionnelles</strong>, en Python sous la forme : <code>exp1 if cond else exp2</code>,</li>
+<li>la <strong>récursion</strong> qui permet de réduire un calcul complexe à un cas plus simple.</li>
+</ul>
+<p>Par contre, on n'a pas utilisé :</p>
+<ul>
+<li>de variable,</li>
+<li>d'instruction élémentaire : affichage ou affectation,</li>
+<li>de boucle pour répéter des instructions</li>
+<li>de séquence pour enchaîner des instructions </li>
+<li>d'instruction conditionnelle.</li>
+</ul>
+<p>Ces notions sont, quant à elles, les briques de base de la programmation impérative.</p>
+<p><strong>Correspondances</strong> :</p>
+<ul>
+<li>En programmation fonctionnelle, la <strong>composition</strong> remplace la <strong>séquence</strong>.</li>
+<li>L'écriture d'<strong>expressions</strong> - en particulier conditionnelles - remplace l'écriture d'<strong>instructions</strong>.</li>
+<li>La <strong>récursion</strong> remplace l'<strong>itération</strong>.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Les-fonctions-d'ordre-sup&#233;rieur">Les fonctions d'ordre sup&#233;rieur<a class="anchor-link" href="#Les-fonctions-d'ordre-sup&#233;rieur">&#182;</a></h1><p>Dans un langage fonctionnel, une fonction est une expression comme une autre, qui peut donc être passée en paramètre à une autre fonction, ou être renvoyée comme résultat.</p>
+<p>Une <strong>fonction d'ordre supérieur</strong> est une fonction qui prend une ou plusieurs fonctions en paramètre, ou qui renvoie une fonction (ou les deux).</p>
+<blockquote><p>Fondamentalement, cela permet de considérer un programme comme une donnée et donc de fabriquer des programmes qui fabriquent ou testent ou vérifient d'autres programmes.</p>
+</blockquote>
+<p>On a déjà vu une tel usage, avec la fonction <code>sorted</code> qui peut prendre un paramètre - nommé <code>key</code> - une fonction calculant la clé sur laquelle effectuer le tri. Pour comparer deux éléments, ce sont leurs clés qui sont comparées.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">sorted</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Help on built-in function sorted in module builtins:
+
+sorted(iterable, /, *, key=None, reverse=False)
+    Return a new list containing all items from the iterable in ascending order.
+    
+    A custom key function can be supplied to customize the sort order, and the
+    reverse flag can be set to request the result in descending order.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">animaux</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;veau&#39;</span><span class="p">,</span> <span class="s1">&#39;vache&#39;</span><span class="p">,</span> <span class="s1">&#39;cochon&#39;</span><span class="p">,</span> <span class="s1">&#39;anaconda&#39;</span><span class="p">,</span> <span class="s1">&#39;chat&#39;</span><span class="p">,</span> <span class="s1">&#39;chien&#39;</span><span class="p">,</span> <span class="s1">&#39;ver&#39;</span><span class="p">,</span> <span class="s1">&#39;poule&#39;</span><span class="p">,</span> <span class="s1">&#39;souris&#39;</span><span class="p">]</span>
+<span class="nb">sorted</span><span class="p">(</span><span class="n">animaux</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;anaconda&#39;,
+ &#39;chat&#39;,
+ &#39;chien&#39;,
+ &#39;cochon&#39;,
+ &#39;poule&#39;,
+ &#39;souris&#39;,
+ &#39;vache&#39;,
+ &#39;veau&#39;,
+ &#39;ver&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut utiliser la fonction <code>len</code> pour trier les chaines selon leur longueur.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">sorted</span><span class="p">(</span><span class="n">animaux</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;ver&#39;,
+ &#39;veau&#39;,
+ &#39;chat&#39;,
+ &#39;vache&#39;,
+ &#39;chien&#39;,
+ &#39;poule&#39;,
+ &#39;cochon&#39;,
+ &#39;souris&#39;,
+ &#39;anaconda&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Dans ce dernier exemple, la fonction <code>len</code> est passée en paramètre à la fonction <code>sorted</code>.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Si on souhaite, on peut trier la liste selon la deuxième lettre de chaque mot.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">deuxieme_lettre</span><span class="p">(</span><span class="n">mot</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">mot</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nb">sorted</span><span class="p">(</span><span class="n">animaux</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">deuxieme_lettre</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[8]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;vache&#39;,
+ &#39;veau&#39;,
+ &#39;ver&#39;,
+ &#39;chat&#39;,
+ &#39;chien&#39;,
+ &#39;anaconda&#39;,
+ &#39;cochon&#39;,
+ &#39;poule&#39;,
+ &#39;souris&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="La-notation-lambda">La notation <code>lambda</code><a class="anchor-link" href="#La-notation-lambda">&#182;</a></h2><p>La notation <code>lambda</code> permet de définir une fonction, puis être nommée - ou pas. On utilise pour cela la syntaxe suivante :</p>
+<div class="highlight"><pre><span></span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span>
+</pre></div>
+<p>qui désigne une fonction prenant en paramètre un nombre <code>x</code> et renvoyant le double de <code>x</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;class &#39;function&#39;&gt;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut la nommer si nécessaire, puis l'utiliser, de la façon suivante :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">double</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span>
+<span class="n">double</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>32</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">addition</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+<span class="n">addition</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Souvent, on va utiliser la notation <code>lambda</code> pour définir une fonction <em>anonyme</em>, c'est-à-dire sans avoir besoin de la nommer. Par exemple, une telle fonction anonyme peut aussi être fournie comme clé à la fonction <code>sorted</code> (ou toute autre fonction ayant pour paramètre une fonction).</p>
+<p>Dans cet exemple, on trie des points selon leur distance de Manhattan au point (0,0) :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">points</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">)]</span>
+
+<span class="nb">sorted</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[12]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(1, 1), (3, 1), (5, 0), (2, 4), (3, 5), (7, 5)]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Les-fonctions-map,-filter-et-reduce">Les fonctions <code>map</code>, <code>filter</code> et <code>reduce</code><a class="anchor-link" href="#Les-fonctions-map,-filter-et-reduce">&#182;</a></h2><p>Les fonctions <code>map</code>, <code>filter</code> et <code>reduce</code> sont des fonctions d'ordre supérieur communes en programmation fonctionnelle. Elle sont aussi présentes en Python, via la distribution standard ou des modules classiques.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[13]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;map at 0x23ec3a54a48&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[14]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[2, 4, 6, 8, 10]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="La-fonction-map">La fonction <code>map</code><a class="anchor-link" href="#La-fonction-map">&#182;</a></h3><p>La fonction <code>map</code> permet d'appliquer la même fonction à tous les éléments d'une liste et de construire la liste des résultats. C'est une fonction qui prend donc en paramètres :</p>
+<ul>
+<li>une fonction (celle à appliquer aux différents éléments)</li>
+<li>une liste contenant les éléments auxquels on va appliquer la fonction </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[15]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;map at 0x23ec3a48dc8&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Cette fonction renvoie un <em>itérateur</em> auquel on peut appliquer la fonction <code>list</code> pour calculer effectivement la liste des valeurs sucessives :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[16]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0, 1, 4, 9, 16, 25]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span><span class="o">**</span><span class="n">x</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[17]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[1, 2, 4, 8, 16, 32, 64, 128, 256, 512]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;veau&#39;</span><span class="p">,</span> <span class="s1">&#39;vache&#39;</span><span class="p">,</span> <span class="s1">&#39;cochon&#39;</span><span class="p">,</span> <span class="s1">&#39;anaconda&#39;</span><span class="p">,</span> <span class="s1">&#39;ver&#39;</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[18]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[4, 5, 6, 8, 3]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="La-fonction-filter">La fonction <code>filter</code><a class="anchor-link" href="#La-fonction-filter">&#182;</a></h3><p>La fonction <code>filter</code> permet de tester un prédicat sur tous les éléments d'une liste et de construire la liste des éléments le vérifiant. C'est une fonction qui prend donc en paramètres :</p>
+<ul>
+<li>une fonction renvoyant un prédicat</li>
+<li>une liste d'éléments sur lesquels le prédicat est testé</li>
+</ul>
+<p>On peut construire la liste des éléments pour lesquels le prédicat est vrai en appliquant la fonction <code>list</code> après <code>filter</code> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">est_pair</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">est_pair</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[35]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0, 2, 4, 6, 8, 10, 12, 14, 16, 18]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;veau&#39;</span><span class="p">,</span> <span class="s1">&#39;vache&#39;</span><span class="p">,</span> <span class="s1">&#39;cochon&#39;</span><span class="p">,</span> <span class="s1">&#39;anaconda&#39;</span><span class="p">,</span> <span class="s1">&#39;ver&#39;</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[20]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;veau&#39;, &#39;ver&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut bien sûr combiner les fonctions <code>map</code> et <code>filter</code> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># on construit la liste des carrés pairs des entiers compris entre 0 et 5</span>
+<span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">est_pair</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">))))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[41]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0, 4, 16]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Néanmoins, l'usage de <code>map</code> et de <code>filter</code> peut être évité en Python grâce à l'écriture par compréhension qui effectue le même calcul en construisant la liste des résultats :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="k">if</span> <span class="n">est_pair</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[38]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0, 4, 16]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="La-fonction-reduce">La fonction <code>reduce</code><a class="anchor-link" href="#La-fonction-reduce">&#182;</a></h3><p>Cette fonction est accessible via le module <code>functools</code> (documentation : <a href="https://docs.python.org/fr/3/library/functools.html">https://docs.python.org/fr/3/library/functools.html</a>).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>La fonction <code>reduce</code> permet de généraliser des opérateurs à tous les éléments d'une liste.</p>
+<p>Elle prend en paramètres :</p>
+<ul>
+<li>une fonction <code>f</code> possédant <strong>exactement deux</strong> paramètres</li>
+<li>une liste d'éléments</li>
+<li>(et éventuellement un paramètre optionnel qui permet de préciser la valeur à renvoyer pour une liste vide (l'élément neutre).)</li>
+</ul>
+<p>La fonction <code>reduce</code> va alors appliquer la fonction <code>f</code> aux éléments de la liste, deux à deux et de façon cumulative jusqu'à ce que tous les éléments aient été visités.</p>
+<p>Concrètement, <code>reduce(f, [1, 2, 3, 4, 5]))</code> va calculer <code>f(f(f(f(1, 2), 3), 4), 5)</code>. C'est donc une fonction qui permet de généraliser la somme, le produit, etc.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>  <span class="c1"># somme des entiers de 1 à 10</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[22]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>55</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>  <span class="c1"># produit des entiers de 1 à 10</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[23]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3628800</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Un-synth&#232;se">Un synth&#232;se<a class="anchor-link" href="#Un-synth&#232;se">&#182;</a></h3><p>Voici un exemple de programme combinant toutes ces fonctions. L'exemple est inspiré du <a href="https://projecteuler.net/problem=1">problème 1 du projet Euler</a> :</p>
+<blockquote><p>Si on liste tous les entiers naturels inférieurs à 10 qui sont multiples de 3 ou de 5, on obtient 3, 5, 6 and 9. La somme des carrés de ces multiples est 151.</p>
+</blockquote>
+<p>Le programme ci-dessous donne la réponse en une seule ligne :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="n">m</span><span class="o">+</span><span class="n">n</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">n</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">n</span><span class="o">%</span><span class="k">3</span> == 0 or n%5 == 0, range(10))))
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[24]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>151</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Analysez bien cette ligne pour la comprendre. Une version itérative pour trouver la réponse aurait été bien plus longue à écrire.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Transparence-r&#233;f&#233;rentielle">Transparence r&#233;f&#233;rentielle<a class="anchor-link" href="#Transparence-r&#233;f&#233;rentielle">&#182;</a></h1><p>Une autre caractéristique importante de la programme fonctionnelle s'appelle la <strong>transparence référentielle</strong>. 
+Il s'agit d'un principe qui prévoit que lorsqu'on applique plusieurs fois la même fonction aux mêmes arguments, alors on obtient à chaque fois le même résultat.</p>
+<p>Ce n'est pas toujours le cas, principalement lorsque notre fonction manipule des objets <em>mutables</em> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">ajouter</span><span class="p">(</span><span class="n">liste</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="s2">&quot;Version impérative&quot;</span>
+    <span class="n">liste</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">liste</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Si on applique cette fonction sur la liste</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">une_liste</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>elle ne renvoie pas toujours le même résultat, même avec des expressions identiques :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ajouter</span><span class="p">(</span><span class="n">une_liste</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[27]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0, 1, 2, 3, 4, 5]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ajouter</span><span class="p">(</span><span class="n">une_liste</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[28]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0, 1, 2, 3, 4, 5, 5]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Comme on le peut le voir, notre fonction <code>ajouter</code> ne respecte pas la transparence référentielle.</p>
+<p>Par ailleurs, comme elle modifie un élément externe à la fonction (la liste <code>liste</code> passée en paramètre), on dit qu'elle possède un <strong>effet de bord</strong>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">une_liste</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">ajouter</span><span class="p">(</span><span class="n">une_liste</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">une_liste</span>  <span class="c1"># est modifiée par la fonction</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[29]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0, 1, 2, 3, 4, 5]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>La programmation fonctionnelle <em>pure</em> prévoit que les fonctions ne doivent pas avoir d'effets de bord, donc elle décourage l'utilisation de variables <em>mutables</em>. Cela n'empêche en rien d'écrire une fonction qui fait le même travail que précédemment. En effet, au lieu de modifier un objet, il suffit d'en créer un nouveau.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">ajouter</span><span class="p">(</span><span class="n">liste</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Version fonctionnelle.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">liste</span><span class="p">[:]</span> <span class="o">+</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span>  <span class="c1"># liste[:] crée une copie la liste (équivalent à liste.copy())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>La concaténation de deux listes en Python (opération <code>+</code>) construit une nouvelle liste, caractéristique d'une approche fonctionnelle (contrairement à <code>.append()</code> caractéristique d'une approche impérative).</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>La nouvelle fonction ne modifie plus la liste passée en paramètre (elle n'a plus d'effet de bord) :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">une_liste</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">ajouter</span><span class="p">(</span><span class="n">une_liste</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">une_liste</span><span class="p">)</span>  <span class="c1"># la liste de départ n&#39;est pas modifiée</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[0, 1, 2, 3, 4]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Et donc l'application de la fonction donne toujours le même résultat si on lui passe les mêmes arguments (elle respecte la transparence référentielle) :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">une_liste</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ajouter</span><span class="p">(</span><span class="n">une_liste</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ajouter</span><span class="p">(</span><span class="n">une_liste</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[0, 1, 2, 3, 4, 5]
+[0, 1, 2, 3, 4, 5]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Avec cette version fonctionnelle, on peut écrire des programmes équivalents à ceux de la version impérative. Cela suppose simplement de modifier légèrement la façon dont on les écrit. Ainsi, pour ajouter 5 puis 6 à notre liste de départ, au lieu d'écrire</p>
+<div class="highlight"><pre><span></span><span class="c1"># version impérative</span>
+<span class="n">une_liste</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">ajouter</span><span class="p">(</span><span class="n">une_liste</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">ajouter</span><span class="p">(</span><span class="n">une_liste</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">une_liste</span><span class="p">)</span>  <span class="c1"># Affiche [0, 1, 2, 3, 4, 5, 6]</span>
+</pre></div>
+<p>on écrirait :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># version &quot;fonctionnelle&quot;</span>
+<span class="n">une_liste</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">une_autre</span> <span class="o">=</span> <span class="n">ajouter</span><span class="p">(</span><span class="n">une_liste</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">encore_une_autre</span> <span class="o">=</span> <span class="n">ajouter</span><span class="p">(</span><span class="n">une_autre</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">encore_une_autre</span><span class="p">)</span>  <span class="c1"># Affiche [0, 1, 2, 3, 4, 5, 6]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[0, 1, 2, 3, 4, 5, 6]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Encore mieux, pour ne pas utiliser d'affectations mais plutôt la <em>composition</em> de fonctions pour faire des calculs successifs (caractéristique d'une approche fonctionnelle), on écrirait :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ajouter</span><span class="p">(</span><span class="n">ajouter</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="mi">5</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[34]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0, 1, 2, 3, 4, 5, 6]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Bilan">Bilan<a class="anchor-link" href="#Bilan">&#182;</a></h1><ul>
+<li>La programmation fonctionnelle est un paradigme de programmation qui considère le calcul en tant qu'<strong>évaluation de fonctions</strong> mathématiques.</li>
+<li>En particulier, en programmation fonctionnelle, il n'y a pas :<ul>
+<li>de boucles : les itérations sont remplacées par la <strong>récursion</strong></li>
+<li>de séquences d'instructions : elles sont remplacées par la <strong>composition</strong> (de fonctions)</li>
+</ul>
+</li>
+<li>Dans un langage fonctionnel, <strong>une fonction est une expression comme une autre</strong>, qui peut donc être passée en paramètre à une autre fonction, ou être renvoyée comme résultat. Une fonction qui prend en paramètre d'autres fonctions ou qui en renvoie s'appelle une <em>fonction d'ordre supérieur</em>.</li>
+<li>Les fonctions <code>map</code>, <code>filter</code> et <code>reduce</code> sont des fonctions d'ordre supérieur communes en programmation fonctionnelle. Elles permettent d'itérer, d'effectuer des tests et d'effectuer des calculs, donc d'écrire la plupart des programmes impératifs déjà écrits en NSI, par des évaluations de fonctions.</li>
+<li>La programmation fonctionnelle respecte en outre le principe de <strong>transparence référentielle</strong> qui prévoit qu'un programme a les mêmes effets et les mêmes sorties si on lui donne les mêmes entrées. Cela impose de fait de ne pas modifier une variable existante, donc de ne pas utiliser de variables mutables. En fonctionnel, on ne modifie pas un objet on en crée un nouveau.</li>
+<li>L'activité du programmeur peut sembler assez différente en programmation impérative ou fonctionnelle. Effectivement, l'ordre dans lequel on appréhende les problèmes à résoudre diffère :<ul>
+<li>en impératif, on doit penser la suite des ordres à appliquer pour progresser des données vers le résultat,</li>
+<li>en fonctionnel, on commence par écrire l'expression du résultat à calculer.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Références</strong></p>
+<ul>
+<li>Documents ressources de l'équipe éducative du DIU EIL, Université de Nantes, Christophe DECLERCQ (licence CC BY-NC-SA 4.0)</li>
+<li>Document ressource sur Eduscol : <a href="https://eduscol.education.fr/document/7313/download">Le paradigme fonctionnel</a></li>
+<li>Articles Wikipédia : <a href="https://fr.wikipedia.org/wiki/Programmation_fonctionnelle">Programmation fonctionnelle</a>, <a href="https://fr.wikipedia.org/wiki/Transparence_r%C3%A9f%C3%A9rentielle">Transparence référentielle</a>, <a href="https://fr.wikipedia.org/wiki/Fonction_pure">Fonction pure</a></li>
+</ul>
+<hr>
+<p>Germain BECKER, Lycée Mounier, ANGERS</p>
+<p>Ressource éducative libre distribuée sous <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a></p>
+<p><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+
