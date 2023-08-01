@@ -383,51 +383,51 @@ On peut voir les correspondances, dans le tableau ci-dessous, où on a écrit en
     <tbody>
         <tr>
             <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
-  overflow:hidden;padding:5px 5px;word-break:normal;background-color:white;">
+  overflow:hidden;padding:5px 5px;word-break:normal;background-color:white;font-family:'Consolas';font-size:1.1em;">
                 <span style="color:#EF2E4B;">00101</span><span style="color:#0C69B2;">000</span><span style="color:#1DB20C;">00000010</span>
             </td>
             <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
-  overflow:hidden;padding:5px 5px;word-break:normal;background-color:white;">
+  overflow:hidden;padding:5px 5px;word-break:normal;background-color:white;font-family:'Consolas';font-size:1.1em;">
                 <span style="color:#EF2E4B;">MOV</span> <span style="color:#0C69B2;">R0</span>,<span style="color:#1DB20C;">#2</span>
             </td>
         </tr>
         <tr>
             <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
-  overflow:hidden;padding:5px 5px;word-break:normal;background-color:white;">
+  overflow:hidden;padding:5px 5px;word-break:normal;background-color:white;font-family:'Consolas';font-size:1.1em;">
                 <span style="color:#EF2E4B;">00101</span><span style="color:#0C69B2;">001</span><span style="color:#1DB20C;">00000111</span>
             </td>
             <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
-  overflow:hidden;padding:5px 5px;word-break:normal;background-color:white;">
+  overflow:hidden;padding:5px 5px;word-break:normal;background-color:white;font-family:'Consolas';font-size:1.1em;">
                 <span style="color:#EF2E4B;">MOV</span> <span style="color:#0C69B2;">R1</span>,<span style="color:#1DB20C;">#7</span>
             </td>
         </tr>
         <tr>
             <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
-  overflow:hidden;padding:5px 5px;word-break:normal;background-color:white;">
+  overflow:hidden;padding:5px 5px;word-break:normal;background-color:white;font-family:'Consolas';font-size:1.1em;">
                 <span style="color:#EF2E4B;">0110000</span><span style="color:#0C69B2;">001</span><span style="color:#1DB20C;">000</span><span style="color:#FF8402;">001</span>
             </td>
             <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
-  overflow:hidden;padding:5px 5px;word-break:normal;background-color:white;">
+  overflow:hidden;padding:5px 5px;word-break:normal;background-color:white;font-family:'Consolas';font-size:1.1em;">
                 <span style="color:#EF2E4B;">ADD</span> <span style="color:#0C69B2;">R1</span>,<span style="color:#1DB20C;">R0</span>,<span style="color:#FF8402;">R1</span>
             </td>
         </tr>
         <tr>
             <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
-  overflow:hidden;padding:5px 5px;word-break:normal;background-color:white;">
+  overflow:hidden;padding:5px 5px;word-break:normal;background-color:white;font-family:'Consolas';font-size:1.1em;">
                 <span style="color:#EF2E4B;">1110</span><span style="color:#0C69B2;">001</span><span style="color:#1DB20C;">000010101</span>
             </td>
             <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
-  overflow:hidden;padding:5px 5px;word-break:normal;background-color:white;">
+  overflow:hidden;padding:5px 5px;word-break:normal;background-color:white;font-family:'Consolas';font-size:1.1em;">
                 <span style="color:#EF2E4B;">STR</span> <span style="color:#0C69B2;">R1</span>,<span style="color:#1DB20C;">21</span>
             </td>
         </tr>
         <tr>
             <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
-  overflow:hidden;padding:5px 5px;word-break:normal;background-color:white;">
+  overflow:hidden;padding:5px 5px;word-break:normal;background-color:white;font-family:'Consolas';font-size:1.1em;">
                 <span style="color:#EF2E4B;">00000</span><span>00000000000</span>
             </td>
             <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
-  overflow:hidden;padding:5px 5px;word-break:normal;background-color:white;">
+  overflow:hidden;padding:5px 5px;word-break:normal;background-color:white;font-family:'Consolas';font-size:1.1em;">
                 <span style="color:#EF2E4B;">HLT</span>
             </td>
         </tr>
