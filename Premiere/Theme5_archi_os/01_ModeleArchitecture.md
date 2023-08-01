@@ -16,7 +16,7 @@ Lorsqu'on ouvre un ordinateur, quelle que soit sa marque, nous retrouvons en gé
 
 **Question 1** : Associez le bon élément à chaque numéro du schéma ci-dessous.
 
-<table class="tg" style="width:100%;border-collapse:collapse;border-spacing:0;margin: auto; font-size:1em;">
+<table class="tg first-column-not-bold" style="width:100%;border-collapse:collapse;border-spacing:0;margin: auto; font-size:1em;">
     <tbody>
         <tr>
             <td rowspan="0" style="width:50%;border-color:black;border-style:solid;border-width:1px;
@@ -76,7 +76,7 @@ Lorsqu'on ouvre un ordinateur, quelle que soit sa marque, nous retrouvons en gé
 
 **Question 2** : Associez chaque élément à sa description
 
-<table class="tg" style="width:100%;border-collapse:collapse;border-spacing:0;margin: auto;font-size:1em;">
+<table class="tg first-column-not-bold" style="width:100%;border-collapse:collapse;border-spacing:0;margin: auto;font-size:1em;">
     <tbody>
         <tr>
             <td style="width:50%;text-align:left;border-color:black;border-style:solid;border-width:1px;
@@ -233,7 +233,7 @@ Une instruction machine est un mot binaire composé de deux parties :
 
 Une instruction machine possède le schéma suivant :
 
-<table class="tg" style="border-collapse:collapse;border-spacing:0;margin: auto;font-size:0.9em;">
+<table class="tg first-column-not-bold" style="border-collapse:collapse;border-spacing:0;margin: auto;font-size:0.9em;">
     <tbody>
         <tr>
             <td style="text-align:left;border-color:black;border-style:solid;border-width:1px;
@@ -266,7 +266,7 @@ Dans la suite on utilisera le jeu d'instructions du simulateur RISC développé 
 
 Voici quelques instructions écrites en assembleur et leurs significations.
 
-<table class="tg" style="border-collapse:collapse;border-spacing:0;margin:auto;font-size:1em;">
+<table class="tg first-column-not-bold" style="border-collapse:collapse;border-spacing:0;margin:auto;font-size:1em;">
     <thead>
         <tr>
             <td style="font-weight:bold; text-align:left;border-color:black;border-style:solid;border-width:1px;
@@ -367,7 +367,7 @@ Ce programme en assembleur peut être converti en une suite d'instructions machi
 
 On peut voir les correspondances, dans le tableau ci-dessous, où on a écrit en rouge le champ _code opération_ :
 
-<table class="tg" style="border-collapse:collapse;border-spacing:0;margin:auto;font-size:1em;">
+<table class="tg first-column-not-bold" style="border-collapse:collapse;border-spacing:0;margin:auto;font-size:1em;">
     <thead>
         <tr>
             <td style="font-weight:bold; text-align:left;border-color:black;border-style:solid;border-width:1px;
