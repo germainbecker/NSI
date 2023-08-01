@@ -487,6 +487,7 @@ Ces deux évolutions ont pour conséquence de mettre la mémoire, plutôt que l'
 - Cours de David Roche sur le [Modèle d'architecture de von Neumann](https://pixees.fr/informatiquelycee/prem/c8c.html)
 - Article [Le modèle d’architecture de von Neumann](https://interstices.info/le-modele-darchitecture-de-von-neumann/) sur le site interstices.info.
 - Wikilivre sur les [composants d'un processeur](https://fr.wikibooks.org/wiki/Fonctionnement_d%27un_ordinateur/Les_composants_d%27un_processeur).
+
 ---
 Germain BECKER, Lycée Mounier, ANGERS 
 
