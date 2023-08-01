@@ -361,7 +361,11 @@ HLT
     <p>Dans ce cas, quels sont les états des registres à la fin du programme ? Où est stockée la valeur de la variable <code>c</code> à la fin du programme ?</p>
 </blockquote>
 
-Ce programme en assembleur peut être converti en une suite d'instructions machine pouvant être exécutées par le processeur. En l'occurrence, dans le cas du simulateur RISC cité plus haut, on obtiendrait, en utilisant la documentation, le code machine suivant (les cases mémoires sont de taille 16 bits ici) : 
+## Conversion en langage machine
+
+Le jeu d'instructions du simulateur RISC accessible <a href="http://www.peterhigginson.co.uk/RISC/instruction_set.pdf" target="_blank">ici</a>, donne la correspondance de chaque instruction assembleur en instruction machine.
+
+Ainsi, en utilisant ce jeu d'instructions, le programme en assembleur précédent peut être converti en une suite d'instructions machine pouvant être exécutées par le processeur. On obtiendrait le code machine suivant (les cases mémoires sont de taille 16 bits ici) : 
 
 <pre><code>0010100000000010 0010100100000111 0110000001000001 1110001000010101 0000000000000000</code></pre>
 
