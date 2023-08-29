@@ -1,0 +1,853 @@
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 style="font-size:2.5em; text-align:center">Les dictionnaires</h1><hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote class="information">
+
+**Crédits** : Une grande partie de ce cours est reprise du cours de Gilles Lassus sur les [dictionnaires](https://glassus.github.io/terminale_nsi/T1_Structures_de_donnees/1.2_Dictionnaires/cours/), diffusé sous licence CC BY-SA.
+
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Préambule</strong></p>
+<p>Les dictionnaires Python ont déjà été utilisés et manipulés en classe de Première. En Python, un <strong>dictionnaire</strong> est une structure native de <strong>tableau associatif</strong>. Ici, nous allons définir le type abstrait <code>Tableau associatif</code> et surtout voir que la recherche d'une valeur dans un dictionnaire est beaucoup (beaucoup !) plus rapide que la recherche dans une liste.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Le-type-abstrait-Tableau-associatif">Le type abstrait <code>Tableau associatif</code><a class="anchor-link" href="#Le-type-abstrait-Tableau-associatif">&#182;</a></h1><p>Un <strong>tableau associatif</strong> est un type abstrait de données (commes les piles, les files, les listes, les arbres, etc.).</p>
+<p>Ce type abstrait n'est pas linéaire car il associe des <strong>valeurs</strong> à des <strong>clés</strong>.</p>
+<p>Voici les opérations usuelles du type <code>Tableau associatif</code> :</p>
+<ul>
+<li>création d'un dictionnaire vide</li>
+<li>ajout d'une nouvelle valeur associée à une nouvelle clé (on parlera de nouveau couple clé-valeur)</li>
+<li>modification d'une valeur associée à une clé existante</li>
+<li>suppression d'un couple clé-valeur</li>
+<li>récupération de la valeur associée à une clé donnée</li>
+</ul>
+<p><strong>Exemple</strong> : un répertoire téléphonique est un exemple de tableau associatif.</p>
+<p>Les dictionnaires Python possèden ces 5 opérations (et d'autres évidemment) :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># création d&#39;un dictionnaire vide</span>
+<span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># ajout de nouveaux couples clé-valeur</span>
+<span class="n">d</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="n">d</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">d</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+<span class="c1"># modification d&#39;une valeur associée à une clé</span>
+<span class="n">d</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+<span class="c1"># suppression d&#39;un couple clé-valeur</span>
+<span class="k">del</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+<span class="c1"># récupération de la valeur associée à une clé donnée</span>
+<span class="n">valeur</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">valeur</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>{&#39;a&#39;: 2}
+{&#39;a&#39;: 2, &#39;b&#39;: 5, &#39;c&#39;: 3}
+{&#39;a&#39;: 1, &#39;b&#39;: 5, &#39;c&#39;: 3}
+{&#39;a&#39;: 1, &#39;c&#39;: 3}
+3
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Mesure-du-temps-d'acc&#232;s-&#224;-une-valeur-dans-un-dictionnaire">Mesure du temps d'acc&#232;s &#224; une valeur dans un dictionnaire<a class="anchor-link" href="#Mesure-du-temps-d'acc&#232;s-&#224;-une-valeur-dans-un-dictionnaire">&#182;</a></h1><p>Pour tester si une valeur est présente dans un dictionnaire, on peut utiliser le mot clé <code>in</code> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="s1">&#39;a&#39;</span> <span class="ow">in</span> <span class="n">d</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[2]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="s1">&#39;e&#39;</span> <span class="ow">in</span> <span class="n">d</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>False</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Protocole">Protocole<a class="anchor-link" href="#Protocole">&#182;</a></h2><p>On veut mesurer le temps d'accès à une valeur dans un dictionnaire, et le comparer à celui permettant d'accéder à un élément dans une liste. Pour cela, on va se placer dans le pire cas : chercher une valeur absente (du dictionnaire et de la liste).</p>
+<p>Voici le protocole mis en place que vous pouvez analyser :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">fabrique_liste</span><span class="p">(</span><span class="n">nb</span><span class="p">):</span>
+    <span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nb</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">lst</span>
+
+<span class="k">def</span> <span class="nf">fabrique_dict</span><span class="p">(</span><span class="n">nb</span><span class="p">):</span>
+    <span class="n">dct</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nb</span><span class="p">)}</span>
+    <span class="k">return</span> <span class="n">dct</span>
+
+<span class="k">def</span> <span class="nf">mesures</span><span class="p">(</span><span class="n">nb</span><span class="p">):</span>
+    <span class="n">lst</span> <span class="o">=</span> <span class="n">fabrique_liste</span><span class="p">(</span><span class="n">nb</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">fabrique_dict</span><span class="p">(</span><span class="n">nb</span><span class="p">)</span>
+
+    <span class="n">tps_total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">test</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span> <span class="ow">in</span> <span class="n">lst</span> <span class="c1"># on cherche une donnée inexistante</span>
+        <span class="n">delta_t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+        <span class="n">tps_total</span> <span class="o">+=</span> <span class="n">delta_t</span>
+    <span class="n">tps_moyen_lst</span> <span class="o">=</span> <span class="n">tps_total</span> <span class="o">/</span> <span class="mi">10</span>
+
+    <span class="n">tps_total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">test</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span> <span class="ow">in</span> <span class="n">d</span> <span class="c1"># on cherche une donnée inexistante</span>
+        <span class="n">delta_t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+        <span class="n">tps_total</span> <span class="o">+=</span> <span class="n">delta_t</span>
+    <span class="n">tps_moyen_d</span> <span class="o">=</span> <span class="n">tps_total</span> <span class="o">/</span> <span class="mi">10</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;temps pour une liste de taille </span><span class="si">{</span><span class="n">nb</span><span class="si">}</span><span class="s2">       : </span><span class="si">{</span><span class="n">tps_moyen_lst</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;temps pour un dictionnaire de taille </span><span class="si">{</span><span class="n">nb</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="n">tps_moyen_d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Analyse</strong> :</p>
+<ul>
+<li>La fonction <code>mesures</code> prend en paramètre un nombre <code>nb</code> qui sera la taille de la liste ou du dictionnaire. Dans le corps de cette fonction, la liste <code>lst</code> et le dictionnaire <code>d</code> sont fabriqués <em>avant le commencement de la mesure du temps</em>. </li>
+<li>La liste <code>lst</code> contient des nombres (de <code>1</code> à <code>nb</code>), et le dictionnaire <code>d</code> associe à un nombre (de <code>1</code> à <code>nb</code>) sa propre valeur.</li>
+<li>Dans ces deux structures, nous allons partir à la recherche d'une valeur qui n'a aucune chance de s'y trouver : la chaine de caractères <code>'a'</code>.</li>
+<li>On effectue la recherche 10 fois de suite (pour avoir un temps moyen le plus juste possible), on va donc mesurer le temps mis pour chercher la chaine <code>'a'</code>, qui n'est présente ni dans la liste <code>lst</code> ni dans le dictionnaire <code>d</code>. On mesure donc une recherche dans <strong>le pire des cas</strong>.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Mesures">Mesures<a class="anchor-link" href="#Mesures">&#182;</a></h2><p>On effectue 4 mesures, les tailles des listes et dictionnaires étant égales et augmentant d'un facteur 10 à chaque fois :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mesures</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>temps pour une liste de taille 10000       : 0.000372314453125
+temps pour un dictionnaire de taille 10000 : 0.0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mesures</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>temps pour une liste de taille 100000       : 0.0020259618759155273
+temps pour un dictionnaire de taille 100000 : 0.0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mesures</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>temps pour une liste de taille 1000000       : 0.028008055686950684
+temps pour un dictionnaire de taille 1000000 : 0.0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mesures</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>temps pour une liste de taille 10000000       : 0.2826454401016235
+temps pour un dictionnaire de taille 10000000 : 0.0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On constate que :</p>
+<ul>
+<li>le temps de recherche dans une liste augmente d'un facteur 10 lorsque la taille de la liste augmente d'un facteur 10</li>
+<li>le temps de recherche dans un dictionnaire reste dans le même ordre de grandeur, proche de 0 seconde, et ce quelle que soit la taille du dictionnaire.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="important">
+    <p>Il y a donc une différence fondamentale entre les temps de recherche d'un élément dans une liste et dans un dictionnaire :</p>
+    <ul>
+        <li>dans une liste, le coût en temps est <strong>linéaire</strong>, c'est-à-dire qu'il est proportionnel à la taille $n$ de la liste : on écrit que la recherche dans une liste est en $O(n)$.</li>
+        <li>dans un dictionnaire, le coût en temps est <strong>constant</strong>, c'est-à-dire qu'il ne dépend pas de la taille du dictionnaire : on écrit que la recherche dans un dictionnaire est en $O(1)$.</li>
+    </ul>
+</div><p>Ainsi, si on sait à l'avance que l'on va devoir chercher régulièrement des valeurs dans une structure de données, l'utilisation d'un dictionnaire sera beaucoup plus efficace en temps que pour une liste (à condition que ces structures soient adaptées au stockage de nos données bien sûr).</p>
+<p><strong>Remarque</strong> : En Python, le <strong>temps d'accès</strong> à un élément d'une liste ou d'un dictionnaire se fait en temps constant dans les deux cas, car les listes de Python sont implémentées par des tableaux dynamiques (voir le cours sur <a href="https://info-mounier.fr/terminale_nsi/structures_donnees/listes.php">Les listes</a>).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Comment est-ce possible que la recherche dans un dictionnaire soit en temps constant ? On explique l'idée ci-dessous, mais cela reste hors programme.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Fonctions-de-hachage-(hors-programme)">Fonctions de hachage (<em>hors programme</em>)<a class="anchor-link" href="#Fonctions-de-hachage-(hors-programme)">&#182;</a></h1><p>Il est important de se rappeler qu'un dictionnaire n'est pas <strong>ordonné</strong> (contrairement à l'objet « dictionnaire » de la vie courante, où chaque mot est classé suivant l'ordre alphabétique).</p>
+<p>On n'accède pas à une valeur suivant sa position, mais suivant sa clé.</p>
+<p>Dans une liste, lorsqu'on veut savoir si un élément appartient à une liste (problème de la <em>recherche d'élément</em>), il n'y a pas (dans le cas général) de meilleure méthode que le parcours exhaustif de tous les éléments de la liste jusqu'à (éventuellement) trouver la valeur cherchée.</p>
+<p>Dans un dictionnaire, on pourrait s'imaginer qu'il va falloir parcourir toutes les clés et regarder les valeurs correspondantes. Il n'en est rien.<br>
+Pour comprendre cela nous allons faire un petit détour par les <strong>fonctions de hachage.</strong></p>
+<h2 id="Qu'est-ce-qu'une-fonction-de-hachage-?">Qu'est-ce qu'une fonction de hachage ?<a class="anchor-link" href="#Qu'est-ce-qu'une-fonction-de-hachage-?">&#182;</a></h2><p>Une <strong>fonction de hachage</strong> est une fonction qui va calculer une empreinte unique à partir de la donnée fournie en entrée. Elle doit respecter les règles suivantes :</p>
+<ul>
+<li>la longueur de l'empreinte (valeur retournée par la fonction de hachage) doit être toujours la même, indépendamment de la donnée fournie en entrée.</li>
+<li>connaissant l'empreinte, il ne doit pas être possible de reconstituer la donnée d'origine</li>
+<li>des données différentes doivent donner dans la mesure du possible des empreintes différentes.</li>
+<li>des données identiques doivent donner des empreintes identiques.</li>
+</ul>
+<p><strong>Exemple</strong> : la fonction de hachage <code>md5</code> permet de convertir un mot binaire (une chaîne, un fichier, ...) de taille quelconque en un mot de 128 bits représenté par une chaîne hexadécimale de 32 caractères (il y a donc $2^128 \simeq 10^39$ empreintes MD5 différentes).</p>
+<p><img src="data/hachage_md5.svg" alt="exemple md5"></p>
+<p style="text-align:center;font-size:0.9em;color:#333">Crédits : <a href="https://commons.wikimedia.org/wiki/File:Hachage.svg">Unique Nitrogen</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, via Wikimedia Commons</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remarques</strong> :</p>
+<ul>
+<li>Le mécanisme de calcul de la fonction MD5 est complexe, pour en savoir plus allez voir <a href="https://www.bibmath.net/crypto/index.php?action=affiche&amp;quoi=moderne/md5">cette page</a>. </li>
+<li>Il est évidemment <strong>impossible</strong> de revenir en arrière, sinon on serait capable de compresser sans perte n'importe quel fichier en une chaîne de 128 bits. Cette impossibilité de trouver une fonction réciproque à la fonction de hachage est très important en cryptographie.</li>
+<li>La fonction MD5 n'est plus utilisée depuis 2005 pour des applications sensibles car des chercheurs ont prouvé qu'il était possible de créer facilement deux messages ayant la même empreinte, ce qui contredit la troisième règle donnée au-dessus.</li>
+<li>Aujourd'hui, on utilise principalement la fonction de hachage SHA-256 (voir <a href="https://fr.wikipedia.org/wiki/Secure_Hash_Algorithm">ici</a>)</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Utilisations-concr&#232;tes-de-fonctions-de-hachage">Utilisations concr&#232;tes de fonctions de hachage<a class="anchor-link" href="#Utilisations-concr&#232;tes-de-fonctions-de-hachage">&#182;</a></h2><h3 id="V&#233;rifier-l'int&#233;grit&#233;-d'un-fichier">V&#233;rifier l'int&#233;grit&#233; d'un fichier<a class="anchor-link" href="#V&#233;rifier-l'int&#233;grit&#233;-d'un-fichier">&#182;</a></h3><p>Lorsque vous téléchargez un fichier important et que vous souhaitez vérifier qu'il n'a pas été corrompu lors du téléchargement (ou avant), vous avez parfois la possibilité de vérifier l'intégrité de votre fichier téléchargé, en calculant une «empreinte» de votre fichier et en la comparant avec celle que vous êtes censée obtenir :</p>
+<p>Voilà par exemple ce qui apparaît sur la page de téléchargement de l'image de Linux Mint 21.1 "Vera" (voir <a href="https://www.linuxmint.com/edition.php?id=303">ici</a>) :</p>
+<p><img src="data/linux_mint_integrity.png" alt="capture d&#39;écran site Linux Mint"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En cliquant sur le bouton <code>sha256sum.txt</code> on peut voir l'empreinte hachée de l'image de Linux :</p>
+
+<pre><code>2df322f030d8ff4633360930a92d78829d10e515d2f6975b9bdfd1c0de769aca *linuxmint-21.1-cinnamon-64bit.iso
+f7fb9c0500e583c46587402578547ea56125e0a054097f9f464a2500830c8b25 *linuxmint-21.1-mate-64bit.iso
+6fea221b5b0272d55de57f3d31498cdf76682f414e60d28131dc428e719efa8b *linuxmint-21.1-xfce-64bit.iso</code></pre>
+<p>Il est alors possible de vérifier que le fichier iso téléchargé n'est pas corrompu, en calculant son empreinte avec la fonction de hachage SHA-256 et en vérifiant qu'elle est bien égale à celle indiqué au-dessus. On peut appliquer la fonction de hachage directement dans un terminal comme suit :</p>
+<div class="highlight"><pre><span></span>sha256sum -b yourfile.iso
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Stockage-des-mots-de-passe">Stockage des mots de passe<a class="anchor-link" href="#Stockage-des-mots-de-passe">&#182;</a></h3><p>L'utilisation la plus courante est le stockage des mots de passe dans un système informatique un peu sécurisé. En effet, lorsqu'on crée un compte sur un service en ligne, le mot de passe <strong>ne doit pas être stocké en clair</strong>, une empreinte est générée (le hash du mot de passe) et c'est ce hash du mot de passe qui est stocké sur le serveur. Cela permet d'éviter, en cas de piratage, de protéger les comptes car il n'est pas possible de reconstituer les mots de passe à partir et des empreintes.</p>
+<p><strong>Remarque</strong> : Des hackers possèdent des tables avec des empreintes des mots de passe les plus courants (rainbow table) ce qui leur permet de chercher par force brute le mot de passe correspondant à une empreinte dérobée. En particulier, la fonction de hachage MD5 ne résiste pas longtemps à ce type d'attaque : voyez que le mot de passe correspond à l'empreinte <code>bdc87b9c894da5168059e00ebffb9077</code> ne résiste pas longtemps sur ce site : <a href="https://md5.gromweb.com/">https://md5.gromweb.com/</a>. C'est pourquoi, cette fonction de hachage ne doit plus être utilisée !</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Retour-aux-dictionnaires-Python">Retour aux dictionnaires Python<a class="anchor-link" href="#Retour-aux-dictionnaires-Python">&#182;</a></h2><blockquote><p>Quel est le lien entre les fonctions de hachage et les  dictionnaires ?</p>
+</blockquote>
+<p>L'idée essentielle est que chaque clé est hachée pour donner une empreinte unique, qui est ensuite transformée en un indice de positionnement dans un tableau.</p>
+<p>Le dictionnaire :</p>
+<div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;pommes&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;poires&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;bananes&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+</pre></div>
+<p>serait donc par exemple implémenté dans un tableau comme celui-ci :</p>
+<p><img src="data/hashdico.png" alt=""></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut remarquer que ce tableau laisse beaucoup de cases vides.</p>
+<p>Si je souhaite ensuite accéder à l'élément <code>d["kiwis"]</code> :</p>
+<ul>
+<li>le hash de la chaîne <code>"kiwis"</code> est calculé. Par exemple, <code>4512d2202</code>.</li>
+<li>l'indice de la position (éventuelle) de la clé <code>"kiwis"</code> dans mon dictionnaire est calculé à partir de ce hash <code>4512d2202</code>. Dans notre exemple, cela pourrait donner l'indice 3.</li>
+<li>Python accède <strong>directement</strong> à cet indice du tableau :<ul>
+<li>si la valeur de la clé sur cette ligne du tableau est None, cela signifie que <code>"kiwis"</code> n'est pas une clé existante du tableau. C'est notre cas ici car il n'y a rien à la ligne 3.</li>
+<li>si la valeur de la clé sur cette ligne du tableau est bien <code>"kiwis"</code>, la valeur correspondante est renvoyée.</li>
+</ul>
+</li>
+</ul>
+<p>En résumé, Python sait toujours où aller chercher un élément de son dictionnaire : soit il le trouve à l'endroit calculé, soit il n'y a rien à cet endroit calculé, ce qui veut dire que l'élément ne fait pas partie du dictionnaire.</p>
+<p>Par ce mécanisme, l'accès à un élément du dictionnaire se fait toujours en temps <strong>constant</strong>.</p>
+<p>Il existe une manière de « voir » que Python utilise une fonction de hachage pour implémenter un dictionnaire :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mondico</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># un nombre peut-il être une clé ? --&gt; OUI</span>
+<span class="n">mondico</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;foo&quot;</span>
+
+<span class="c1"># une chaîne de caractères peut-elle être une clé ? --&gt; OUI</span>
+<span class="n">mondico</span><span class="p">[</span><span class="s2">&quot;riri&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;fifi&quot;</span>
+
+<span class="c1"># une liste peut-elle être une clé ? --&gt; NON</span>
+<span class="n">mondico</span><span class="p">[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">]]</span> <span class="o">=</span> <span class="s2">&quot;loulou&quot;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-9-e3c61f37c6b5&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">      8</span> 
+<span class="ansi-green-fg">      9</span> <span class="ansi-red-intense-fg ansi-bold"># une liste peut-elle être une clé ? --&gt; NON</span>
+<span class="ansi-green-intense-fg ansi-bold">---&gt; 10</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>mondico<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">2</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-cyan-intense-fg ansi-bold">5</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">]</span> <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-blue-intense-fg ansi-bold">&#34;loulou&#34;</span>
+
+<span class="ansi-red-intense-fg ansi-bold">TypeError</span>: unhashable type: &#39;list&#39;</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Le message d'erreur est explicite : le type <code>list</code> que nous avons voulu utiliser comme clé n'est pas hachable, car c'est un type d'objet pouvant être modifié a posteriori tout en gardant la même référence (on dit que c'est un objet <strong>mutable</strong>) :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>2819681505736
+2819681505736
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ce changement de valeur tout en gardant la même référence détruirait le principe associant à une clé unique une position unique dans le tableau implémentant le dictionnaire.</p>
+<p>Ce problème ne se pose pas si la variable désigne une chaîne de caractères, ou un nombre :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">2023</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>2819682534256
+2819682534480
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Un variable contenant un entier est donc un objet <strong>immuable</strong> car si on modifie la valeur de l'entier, la référence de la variable changera aussi. Comme un dictionnaire a besoin d'avoir des clés dont les références soient définitives, seuls les objets <strong>immuables</strong> peuvent donc servir de clés dans les dictionnaires.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Utilisation-de-quelques-fonctions-de-hachage">Utilisation de quelques fonctions de hachage<a class="anchor-link" href="#Utilisation-de-quelques-fonctions-de-hachage">&#182;</a></h2><h3 id="En-Python">En Python<a class="anchor-link" href="#En-Python">&#182;</a></h3><p>En Python, la fonction <code>hash()</code> est accessible nativement, mais n'est pas à utiliser pour des applications sensibles :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">hash</span><span class="p">(</span><span class="s2">&quot;Vive la NSI&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[12]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-2945528429037095996</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">hash</span><span class="p">(</span><span class="s2">&quot;vive la NSI&quot;</span><span class="p">)</span>  <span class="c1"># un seul caractère différent --&gt; hash totalement différent</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[13]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-1612067756032566050</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Pour utiliser la fonction SHA-256, on peut utiliser le module <code>hashlib</code> (voir <a href="https://docs.python.org/fr/3/library/hashlib.html">documentation officielle</a>). Par exemple, pour hacher un mot de passe (destiné à être écrit en base de données) :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">hashlib</span>
+
+<span class="k">def</span> <span class="nf">hash_mdp</span><span class="p">(</span><span class="n">mdp</span><span class="p">):</span>
+    <span class="n">mdp_utf8</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">mdp</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">mdp_utf8</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+<span class="n">hash_mdp</span><span class="p">(</span><span class="s2">&quot;password1234&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[14]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;b9c950640e1b3740e98acb93e669c65766f6670dd1609ba91ff41052ba48c6f3&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Dans-le-terminal">Dans le terminal<a class="anchor-link" href="#Dans-le-terminal">&#182;</a></h3><p>On peut utiliser la fonction <code>md5sum</code> sous Linux de la façon suivante dans un <strong>terminal</strong> :</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s2">&quot;Vive la NSI&quot;</span> <span class="p">|</span> md5sum
+0578f6f1845600d4eeea883d610fccfe  -
+$ <span class="nb">echo</span> <span class="s2">&quot;vive la NSI&quot;</span> <span class="p">|</span> md5sum
+b3596079dc6c389c62a62f62e83d8aee  -
+$ <span class="nb">echo</span> Vive la NSI <span class="p">|</span> md5sum
+0578f6f1845600d4eeea883d610fccfe  -
+</pre></div>
+<p>On peut également utiliser cette fonction pour calculer l'empreinte d'un fichier :</p>
+<div class="highlight"><pre><span></span>$ md5sum mon_fichier.txt
+</pre></div>
+<p>Il est aussi possible d'utiliser la fonction <code>sha256sum</code> pour appliquer la fonction de hachage SHA-256 :</p>
+<div class="highlight"><pre><span></span>$ sha256sum -b mon_fichier.txt
+</pre></div>
+<p><strong>À tester !</strong></p>
+<ol>
+<li>Créez une fichier <code>mon_fichier.txt</code> avec plusieurs paragraphes (vous pouvez utiliser <a href="https://fr.lipsum.com/">https://fr.lipsum.com/</a> puis calculer son empreinte avec les fonctions <code>md5sum</code> et <code>sha256sum</code>.</li>
+<li>Modifiez légèrement le contenu du fichier (ajoutez un espace par exemple) et recalculez les deux empreintes. Vous devriez constater qu'elles sont totalement différentes que celles précédentes (pour un seul caractère qui diffère).</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h1><ul>
+<li>Les dictionnaires sont des structures de données de type <em>tableau associatif</em> qui permettent d'associer des valeurs à des clés.</li>
+<li>La recherche d'un élément dans un dictionnaire est très rapide : elle se fait en <strong>temps constant</strong>. En particulier, elle est beaucoup plus rapide que la recherche dans un liste, qui elle se fait en temps linéaire.</li>
+<li>Cette rapidité de recherche dans un dictionnaire Python est possible car ces derniers sont implémentés par des <em>tables de hachages</em> (hors programme).</li>
+<li>Les tables de hachage utilisent des <em>fonctions de hachage</em> qui permettent de créer une empreinte de taille fixe à partir d'un objet de départ. Il est impossible de retrouver l'objet de départ à partir de l'empreinte, et deux objets différents donnent deux empreintes différentes.</li>
+<li>Dans le cas des dictionnaires, pour chercher une valeur à partir d'une clé, Python calcule l'empreinte de la clé (rapide), puis déduit de cette empreinte (rapide) l'indice du tableau dans lequel est stocké la valeur. Il peut ensuite accéder <em>directement</em> à cette valeur. Il n'est donc pas nécessaire de parcourir chaque paire clé-valeur pour chercher une valeur dans un dictionnaire, d'où la rapidité de recherche.</li>
+<li>Les fonctions de hachage sont très utilisés en informatique : ce sont les valeurs hashées des mots de passe qui sont stockées en base de données, on peut vérifier l'intégrité et l'authenticité d'un fichier avec une fonction de hachage. Les fonctions de hachage sont à la base de la technologie de la blockchain sur laquelle s'appuient les cryptomonnaies.</li>
+<li>Pour voir un résumé sur les tables de hachage, cette vidéo est très bien faite : <a href="https://youtu.be/IhJo8sXLfVw">https://youtu.be/IhJo8sXLfVw</a>.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Références</strong> :</p>
+<ul>
+<li>Cours de Gilles Lassus sur les dictionnaires : <a href="https://glassus.github.io/terminale_nsi/T1_Structures_de_donnees/1.2_Dictionnaires/cours/">https://glassus.github.io/terminale_nsi/T1_Structures_de_donnees/1.2_Dictionnaires/cours/</a></li>
+<li>Cours d'Olivier Lécluse sur les dictionnaires : <a href="https://www.lecluse.fr/nsi/NSI_T/donnees/dico/">https://www.lecluse.fr/nsi/NSI_T/donnees/dico/</a></li>
+<li>Vidéo de la chaîne <em>Cours Python</em> sur les dictionnaires : <a href="https://youtu.be/VnhBoQAgIVs">https://youtu.be/VnhBoQAgIVs</a></li>
+</ul>
+<hr>
+<p>Germain BECKER, Lycée Mounier, ANGERS</p>
+<p>Ressource éducative libre distribuée sous <a href="http://creativecommons.org/licenses/by-sa/4.0/">Licence Creative Commons Attribution - Partage dans les Mêmes Conditions 4.0 International</a></p>
+<p><img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
+
+</div>
+</div>
+</div>
+ 
+
