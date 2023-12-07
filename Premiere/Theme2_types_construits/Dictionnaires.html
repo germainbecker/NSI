@@ -12,7 +12,6 @@
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">liste_tel</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;Paul&quot;</span><span class="p">,</span> <span class="mi">5234</span><span class="p">],</span>
-             <span class="p">[</span><span class="s2">&quot;Emile&quot;</span><span class="p">,</span> <span class="mi">5345</span><span class="p">],</span>
              <span class="p">[</span><span class="s2">&quot;Victor&quot;</span><span class="p">,</span> <span class="mi">5186</span><span class="p">],</span>
              <span class="p">[</span><span class="s2">&quot;Rose&quot;</span><span class="p">,</span> <span class="mi">5678</span><span class="p">],</span>
              <span class="p">[</span><span class="s2">&quot;Hélène&quot;</span><span class="p">,</span> <span class="mi">5432</span><span class="p">]]</span>
@@ -39,7 +38,7 @@
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">liste_tel</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># il faut savoir que l&#39;index de Rose est 3</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">liste_tel</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># il faut savoir que l&#39;index de Rose est 2</span>
 </pre></div>
 
     </div>
@@ -147,7 +146,7 @@ Un **dictionnaire** est un ensemble **non ordonné** de paires (clé, valeur). O
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">repertoire</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Paul&#39;</span><span class="p">:</span> <span class="mi">5234</span><span class="p">,</span> <span class="s1">&#39;Emile&#39;</span><span class="p">:</span> <span class="mi">5345</span><span class="p">,</span> <span class="s1">&#39;Victor&#39;</span><span class="p">:</span> <span class="mi">5186</span><span class="p">,</span> <span class="s1">&#39;Rose&#39;</span><span class="p">:</span> <span class="mi">5678</span><span class="p">,</span> <span class="s1">&#39;Hélène&#39;</span><span class="p">:</span> <span class="mi">5432</span><span class="p">}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">repertoire</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Paul&#39;</span><span class="p">:</span> <span class="mi">5234</span><span class="p">,</span> <span class="s1">&#39;Victor&#39;</span><span class="p">:</span> <span class="mi">5186</span><span class="p">,</span> <span class="s1">&#39;Rose&#39;</span><span class="p">:</span> <span class="mi">5678</span><span class="p">,</span> <span class="s1">&#39;Hélène&#39;</span><span class="p">:</span> <span class="mi">5432</span><span class="p">}</span>
 </pre></div>
 
     </div>
@@ -163,7 +162,7 @@ Un **dictionnaire** est un ensemble **non ordonné** de paires (clé, valeur). O
 <li>Vous aurez noté que les dictionnaires Python se représentent entre accolades <code>{}</code>.</li>
 <li>Les différentes paires sont séparées par des virgules et sont de la forme <code>clé: valeur</code>. Dans cet exemple :<ul>
 <li>la valeur <code>5234</code> est associée à la clé <code>'Paul'</code></li>
-<li>la valeur <code>5345</code> est associée à la clé <code>'Emile'</code></li>
+<li>la valeur <code>5186</code> est associée à la clé <code>'Victor'</code></li>
 <li>etc.</li>
 </ul>
 </li>
@@ -228,9 +227,6 @@ Créez un dictionnaire appelé `notes` qui contient les paires (matières, moyen
 <p>Par exemple, le dictionnaire suivant est tout à fait correct (essayez de repérer les clés et les valeurs associées, ainsi que leurs types respectifs) :</p>
 <div class="highlight"><pre><span></span><span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;deux&#39;</span><span class="p">,</span> <span class="s1">&#39;trois&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s1">&#39;sept&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">8</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">:</span> <span class="s1">&#39;onze&#39;</span><span class="p">},</span> <span class="mi">12</span><span class="p">:</span> <span class="mi">13</span><span class="p">}</span>
 </pre></div>
-<ul>
-<li>En Python, le dictionnaire est un objet <strong>mutable</strong>, autrement dit, on peut le modifier (comme nous allons le voir dans le paragraphe suivant)</li>
-</ul>
 
 </div>
 </div>
@@ -238,7 +234,8 @@ Créez un dictionnaire appelé `notes` qui contient les paires (matières, moyen
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Acc&#232;s,-modification,-ajout,-suppression">Acc&#232;s, modification, ajout, suppression<a class="anchor-link" href="#Acc&#232;s,-modification,-ajout,-suppression">&#182;</a></h2><p>L'<strong>accès</strong> à une valeur d'un dictionnaire se fait par sa clé :</p>
+<h2 id="Acc&#232;s,-modification,-ajout,-suppression">Acc&#232;s, modification, ajout, suppression<a class="anchor-link" href="#Acc&#232;s,-modification,-ajout,-suppression">&#182;</a></h2><p>En Python, le dictionnaire est un objet <strong>mutable</strong>, autrement dit, on peut le modifier (comme nous allons le voir dans le paragraphe suivant)</p>
+<p>L'<strong>accès</strong> à une valeur d'un dictionnaire se fait par sa clé :</p>
 
 </div>
 </div>
@@ -248,7 +245,7 @@ Créez un dictionnaire appelé `notes` qui contient les paires (matières, moyen
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">repertoire</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Paul&#39;</span><span class="p">:</span> <span class="mi">5234</span><span class="p">,</span> <span class="s1">&#39;Emile&#39;</span><span class="p">:</span> <span class="mi">5345</span><span class="p">,</span> <span class="s1">&#39;Victor&#39;</span><span class="p">:</span> <span class="mi">5186</span><span class="p">,</span> <span class="s1">&#39;Rose&#39;</span><span class="p">:</span> <span class="mi">5678</span><span class="p">,</span> <span class="s1">&#39;Hélène&#39;</span><span class="p">:</span> <span class="mi">5432</span><span class="p">}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">repertoire</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Paul&#39;</span><span class="p">:</span> <span class="mi">5234</span><span class="p">,</span> <span class="s1">&#39;Victor&#39;</span><span class="p">:</span> <span class="mi">5186</span><span class="p">,</span> <span class="s1">&#39;Rose&#39;</span><span class="p">:</span> <span class="mi">5678</span><span class="p">,</span> <span class="s1">&#39;Hélène&#39;</span><span class="p">:</span> <span class="mi">5432</span><span class="p">}</span>
 <span class="n">repertoire</span><span class="p">[</span><span class="s1">&#39;Rose&#39;</span><span class="p">]</span>
 </pre></div>
 
@@ -341,7 +338,7 @@ Créez un dictionnaire appelé `notes` qui contient les paires (matières, moyen
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">repertoire</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Paul&#39;</span><span class="p">:</span> <span class="mi">5234</span><span class="p">,</span> <span class="s1">&#39;Emile&#39;</span><span class="p">:</span> <span class="mi">5345</span><span class="p">,</span> <span class="s1">&#39;Victor&#39;</span><span class="p">:</span> <span class="mi">5186</span><span class="p">,</span> <span class="s1">&#39;Rose&#39;</span><span class="p">:</span> <span class="mi">5678</span><span class="p">,</span> <span class="s1">&#39;Hélène&#39;</span><span class="p">:</span> <span class="mi">5432</span><span class="p">}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">repertoire</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Paul&#39;</span><span class="p">:</span> <span class="mi">5234</span><span class="p">,</span> <span class="s1">&#39;Victor&#39;</span><span class="p">:</span> <span class="mi">5186</span><span class="p">,</span> <span class="s1">&#39;Rose&#39;</span><span class="p">:</span> <span class="mi">5678</span><span class="p">,</span> <span class="s1">&#39;Hélène&#39;</span><span class="p">:</span> <span class="mi">5432</span><span class="p">}</span>
 <span class="n">repertoire</span><span class="p">[</span><span class="s1">&#39;Rose&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4921</span>  <span class="c1"># clé existante donc modification de la valeur</span>
 <span class="n">repertoire</span>
 </pre></div>
@@ -362,7 +359,7 @@ Créez un dictionnaire appelé `notes` qui contient les paires (matières, moyen
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;Paul&#39;: 5234, &#39;Emile&#39;: 5345, &#39;Victor&#39;: 5186, &#39;Rose&#39;: 4921, &#39;Hélène&#39;: 5432}</pre>
+<pre>{&#39;Paul&#39;: 5234, &#39;Victor&#39;: 5186, &#39;Rose&#39;: 4921, &#39;Hélène&#39;: 5432}</pre>
 </div>
 
 </div>
@@ -396,12 +393,7 @@ Créez un dictionnaire appelé `notes` qui contient les paires (matières, moyen
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;Paul&#39;: 5234,
- &#39;Emile&#39;: 5345,
- &#39;Victor&#39;: 5186,
- &#39;Rose&#39;: 4921,
- &#39;Hélène&#39;: 5432,
- &#39;Louane&#39;: 4118}</pre>
+<pre>{&#39;Paul&#39;: 5234, &#39;Victor&#39;: 5186, &#39;Rose&#39;: 4921, &#39;Hélène&#39;: 5432, &#39;Louane&#39;: 4118}</pre>
 </div>
 
 </div>
@@ -486,8 +478,8 @@ Créez un dictionnaire appelé `notes` qui contient les paires (matières, moyen
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>{&#39;Paul&#39;: 5234, &#39;Emile&#39;: 5345, &#39;Victor&#39;: 5186, &#39;Rose&#39;: 4921, &#39;Hélène&#39;: 5432, &#39;Louane&#39;: 4118}
-{&#39;Emile&#39;: 5345, &#39;Victor&#39;: 5186, &#39;Rose&#39;: 4921, &#39;Hélène&#39;: 5432, &#39;Louane&#39;: 4118}
+<pre>{&#39;Paul&#39;: 5234, &#39;Victor&#39;: 5186, &#39;Rose&#39;: 4921, &#39;Hélène&#39;: 5432, &#39;Louane&#39;: 4118}
+{&#39;Victor&#39;: 5186, &#39;Rose&#39;: 4921, &#39;Hélène&#39;: 5432, &#39;Louane&#39;: 4118}
 </pre>
 </div>
 </div>
@@ -509,7 +501,7 @@ Créez un dictionnaire appelé `notes` qui contient les paires (matières, moyen
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">repertoire</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Paul&#39;</span><span class="p">:</span> <span class="mi">5234</span><span class="p">,</span> <span class="s1">&#39;Emile&#39;</span><span class="p">:</span> <span class="mi">5345</span><span class="p">,</span> <span class="s1">&#39;Victor&#39;</span><span class="p">:</span> <span class="mi">5186</span><span class="p">,</span> <span class="s1">&#39;Rose&#39;</span><span class="p">:</span> <span class="mi">5678</span><span class="p">,</span> <span class="s1">&#39;Hélène&#39;</span><span class="p">:</span> <span class="mi">5432</span><span class="p">}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">repertoire</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Paul&#39;</span><span class="p">:</span> <span class="mi">5234</span><span class="p">,</span> <span class="s1">&#39;Victor&#39;</span><span class="p">:</span> <span class="mi">5186</span><span class="p">,</span> <span class="s1">&#39;Rose&#39;</span><span class="p">:</span> <span class="mi">5678</span><span class="p">,</span> <span class="s1">&#39;Hélène&#39;</span><span class="p">:</span> <span class="mi">5432</span><span class="p">}</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">repertoire</span><span class="p">)</span>
 </pre></div>
 
@@ -529,7 +521,7 @@ Créez un dictionnaire appelé `notes` qui contient les paires (matières, moyen
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>5</pre>
+<pre>4</pre>
 </div>
 
 </div>
@@ -830,7 +822,7 @@ On reprend le dictionnaire `notes` de l'exercice 1.
 <div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">liste_tel</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;Paul&quot;</span><span class="p">,</span> <span class="mi">5234</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;Emile&quot;</span><span class="p">,</span> <span class="mi">5345</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;Victor&quot;</span><span class="p">,</span> <span class="mi">5186</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;Rose&quot;</span><span class="p">,</span> <span class="mi">5678</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;Hélène&quot;</span><span class="p">,</span> <span class="mi">5432</span><span class="p">]]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">liste_tel</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;Paul&quot;</span><span class="p">,</span> <span class="mi">5234</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;Victor&quot;</span><span class="p">,</span> <span class="mi">5186</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;Rose&quot;</span><span class="p">,</span> <span class="mi">5678</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;Hélène&quot;</span><span class="p">,</span> <span class="mi">5432</span><span class="p">]]</span>
 <span class="n">d5</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">liste_tel</span><span class="p">)</span>
 <span class="n">d5</span>
 </pre></div>
@@ -851,7 +843,7 @@ On reprend le dictionnaire `notes` de l'exercice 1.
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;Paul&#39;: 5234, &#39;Emile&#39;: 5345, &#39;Victor&#39;: 5186, &#39;Rose&#39;: 5678, &#39;Hélène&#39;: 5432}</pre>
+<pre>{&#39;Paul&#39;: 5234, &#39;Victor&#39;: 5186, &#39;Rose&#39;: 5678, &#39;Hélène&#39;: 5432}</pre>
 </div>
 
 </div>
@@ -889,7 +881,8 @@ On peut itérer sur un dictionnaire grâce à l'une de ces méthodes.
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">repertoire</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Paul&#39;</span><span class="p">:</span> <span class="mi">5234</span><span class="p">,</span> <span class="s1">&#39;Emile&#39;</span><span class="p">:</span> <span class="mi">5345</span><span class="p">,</span> <span class="s1">&#39;Victor&#39;</span><span class="p">:</span> <span class="mi">5186</span><span class="p">,</span> <span class="s1">&#39;Rose&#39;</span><span class="p">:</span> <span class="mi">5678</span><span class="p">,</span> <span class="s1">&#39;Hélène&#39;</span><span class="p">:</span> <span class="mi">5432</span><span class="p">}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">repertoire</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Paul&#39;</span><span class="p">:</span> <span class="mi">5234</span><span class="p">,</span> <span class="s1">&#39;Victor&#39;</span><span class="p">:</span> <span class="mi">5186</span><span class="p">,</span> <span class="s1">&#39;Rose&#39;</span><span class="p">:</span> <span class="mi">5678</span><span class="p">,</span> <span class="s1">&#39;Hélène&#39;</span><span class="p">:</span> <span class="mi">5432</span><span class="p">}</span>
+
 <span class="k">for</span> <span class="n">prenom</span> <span class="ow">in</span> <span class="n">repertoire</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">prenom</span><span class="p">)</span>
 </pre></div>
@@ -909,7 +902,6 @@ On peut itérer sur un dictionnaire grâce à l'une de ces méthodes.
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Paul
-Emile
 Victor
 Rose
 Hélène
@@ -945,7 +937,6 @@ Hélène
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>5234
-5345
 5186
 5678
 5432
@@ -981,7 +972,6 @@ Hélène
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Paul -&gt; 5234
-Emile -&gt; 5345
 Victor -&gt; 5186
 Rose -&gt; 5678
 Hélène -&gt; 5432
@@ -1039,7 +1029,7 @@ Hélène -&gt; 5432
 <div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="s1">&#39;Rose&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">repertoire</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="s1">&#39;Rose&#39;</span> <span class="ow">in</span> <span class="n">repertoire</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -1058,7 +1048,7 @@ Hélène -&gt; 5432
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>False</pre>
+<pre>True</pre>
 </div>
 
 </div>
@@ -1070,6 +1060,39 @@ Hélène -&gt; 5432
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="s1">&#39;Victor&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">repertoire</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[23]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>False</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="mi">5186</span> <span class="ow">in</span> <span class="n">repertoire</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
@@ -1085,7 +1108,7 @@ Hélène -&gt; 5432
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[23]:</div>
+    <div class="prompt output_prompt">Out[24]:</div>
 
 
 

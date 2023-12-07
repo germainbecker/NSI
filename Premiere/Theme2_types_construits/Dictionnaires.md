@@ -5,7 +5,6 @@ Prenons l'exemple d'un répertoire téléhonique. Nous pouvons la modéliser sim
 
 ```python
 liste_tel = [["Paul", 5234],
-             ["Emile", 5345],
              ["Victor", 5186],
              ["Rose", 5678],
              ["Hélène", 5432]]
@@ -16,7 +15,7 @@ Si nous voulons appeler Rose, nous avons deux possibilités avec un tel tableau 
 
 
 ```python
-print(liste_tel[3][1])  # il faut savoir que l'index de Rose est 3
+print(liste_tel[2][1])  # il faut savoir que l'index de Rose est 2
 ```
 
     5678
@@ -50,14 +49,14 @@ Le répertoire téléphonique précédent peut se mémoriser dans le dictionnair
 
 
 ```python
-repertoire = {'Paul': 5234, 'Emile': 5345, 'Victor': 5186, 'Rose': 5678, 'Hélène': 5432}
+repertoire = {'Paul': 5234, 'Victor': 5186, 'Rose': 5678, 'Hélène': 5432}
 ```
 
 **Analyse** : 
 - Vous aurez noté que les dictionnaires Python se représentent entre accolades `{}`.
 - Les différentes paires sont séparées par des virgules et sont de la forme `clé: valeur`. Dans cet exemple :
     - la valeur `5234` est associée à la clé `'Paul'`
-    - la valeur `5345` est associée à la clé `'Emile'`
+    - la valeur `5186` est associée à la clé `'Victor'`
     - etc.
     
 Dans ce cas, on dit qu'on a créé le dictionnaire *par extension*.
@@ -99,15 +98,15 @@ Par exemple, le dictionnaire suivant est tout à fait correct (essayez de repér
 {1: 'deux', 'trois': [4, 5, 6], 'sept': {8: 9, 10: 'onze'}, 12: 13}
 ```
 
-- En Python, le dictionnaire est un objet **mutable**, autrement dit, on peut le modifier (comme nous allons le voir dans le paragraphe suivant)
-
 ## Accès, modification, ajout, suppression
+
+En Python, le dictionnaire est un objet **mutable**, autrement dit, on peut le modifier (comme nous allons le voir dans le paragraphe suivant)
 
 L'**accès** à une valeur d'un dictionnaire se fait par sa clé :
 
 
 ```python
-repertoire = {'Paul': 5234, 'Emile': 5345, 'Victor': 5186, 'Rose': 5678, 'Hélène': 5432}
+repertoire = {'Paul': 5234, 'Victor': 5186, 'Rose': 5678, 'Hélène': 5432}
 repertoire['Rose']
 ```
 
@@ -139,7 +138,7 @@ Le dictionnaire étant un objet *mutable* on peut **modifier** la valeur associ�
 
 
 ```python
-repertoire = {'Paul': 5234, 'Emile': 5345, 'Victor': 5186, 'Rose': 5678, 'Hélène': 5432}
+repertoire = {'Paul': 5234, 'Victor': 5186, 'Rose': 5678, 'Hélène': 5432}
 repertoire['Rose'] = 4921  # clé existante donc modification de la valeur
 repertoire
 ```
@@ -147,7 +146,7 @@ repertoire
 
 
 
-    {'Paul': 5234, 'Emile': 5345, 'Victor': 5186, 'Rose': 4921, 'Hélène': 5432}
+    {'Paul': 5234, 'Victor': 5186, 'Rose': 4921, 'Hélène': 5432}
 
 
 
@@ -160,12 +159,7 @@ repertoire
 
 
 
-    {'Paul': 5234,
-     'Emile': 5345,
-     'Victor': 5186,
-     'Rose': 4921,
-     'Hélène': 5432,
-     'Louane': 4118}
+    {'Paul': 5234, 'Victor': 5186, 'Rose': 4921, 'Hélène': 5432, 'Louane': 4118}
 
 
 
@@ -197,8 +191,8 @@ del repertoire['Paul']
 print(repertoire)
 ```
 
-    {'Paul': 5234, 'Emile': 5345, 'Victor': 5186, 'Rose': 4921, 'Hélène': 5432, 'Louane': 4118}
-    {'Emile': 5345, 'Victor': 5186, 'Rose': 4921, 'Hélène': 5432, 'Louane': 4118}
+    {'Paul': 5234, 'Victor': 5186, 'Rose': 4921, 'Hélène': 5432, 'Louane': 4118}
+    {'Victor': 5186, 'Rose': 4921, 'Hélène': 5432, 'Louane': 4118}
     
 
 ## Taille d'un dictionnaire
@@ -207,14 +201,14 @@ La fonction `len` renvoie la taille d'un dictionnaire.
 
 
 ```python
-repertoire = {'Paul': 5234, 'Emile': 5345, 'Victor': 5186, 'Rose': 5678, 'Hélène': 5432}
+repertoire = {'Paul': 5234, 'Victor': 5186, 'Rose': 5678, 'Hélène': 5432}
 len(repertoire)
 ```
 
 
 
 
-    5
+    4
 
 
 
@@ -341,7 +335,7 @@ d4
 
 
 ```python
-liste_tel = [["Paul", 5234], ["Emile", 5345], ["Victor", 5186], ["Rose", 5678], ["Hélène", 5432]]
+liste_tel = [["Paul", 5234], ["Victor", 5186], ["Rose", 5678], ["Hélène", 5432]]
 d5 = dict(liste_tel)
 d5
 ```
@@ -349,7 +343,7 @@ d5
 
 
 
-    {'Paul': 5234, 'Emile': 5345, 'Victor': 5186, 'Rose': 5678, 'Hélène': 5432}
+    {'Paul': 5234, 'Victor': 5186, 'Rose': 5678, 'Hélène': 5432}
 
 
 
@@ -369,13 +363,13 @@ On peut itérer sur un dictionnaire grâce à l'une de ces méthodes.
 
 
 ```python
-repertoire = {'Paul': 5234, 'Emile': 5345, 'Victor': 5186, 'Rose': 5678, 'Hélène': 5432}
+repertoire = {'Paul': 5234, 'Victor': 5186, 'Rose': 5678, 'Hélène': 5432}
+
 for prenom in repertoire.keys():
     print(prenom)
 ```
 
     Paul
-    Emile
     Victor
     Rose
     Hélène
@@ -388,7 +382,6 @@ for num in repertoire.values():
 ```
 
     5234
-    5345
     5186
     5678
     5432
@@ -401,7 +394,6 @@ for prenom, num in repertoire.items():
 ```
 
     Paul -> 5234
-    Emile -> 5345
     Victor -> 5186
     Rose -> 5678
     Hélène -> 5432
@@ -423,7 +415,19 @@ On peut aussi interroger l'appartenance d'une valeur ou d'une clé grâce au mot
 
 
 ```python
-'Rose' not in repertoire.keys()
+'Rose' in repertoire.keys()
+```
+
+
+
+
+    True
+
+
+
+
+```python
+'Victor' not in repertoire.keys()
 ```
 
 
