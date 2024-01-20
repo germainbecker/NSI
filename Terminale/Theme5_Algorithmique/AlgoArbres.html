@@ -1,4 +1,3 @@
-
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -8,6 +7,64 @@
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Dans la suite, pour écrire les algorithmes dans le langage Python, on utilisera la classe <code>Noeud</code> ci-dessous pour implémenter nos arbres binaires. On utilisera également la classe <code>File</code> suivante pour implémenter une file qui sera utile dans le parcours en largeur d'un arbre binaire.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Noeud</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Pour manipuler des arbres binaires&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">etiquette</span> <span class="o">=</span> <span class="n">e</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gauche</span> <span class="o">=</span> <span class="n">g</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">droit</span> <span class="o">=</span> <span class="n">d</span>
+
+    <span class="k">def</span> <span class="nf">est_feuille</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">gauche</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">droit</span>
+    
+    <span class="c1"># Une représentation possible de l&#39;arbre</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ch</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">etiquette</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gauche</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">droit</span><span class="p">:</span>
+            <span class="n">ch</span> <span class="o">=</span> <span class="n">ch</span> <span class="o">+</span> <span class="s1">&#39;-(&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gauche</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">droit</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
+        <span class="k">return</span> <span class="n">ch</span>
+
+<span class="k">class</span> <span class="nc">File</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Pour manipuler des files&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contenu</span> <span class="o">=</span> <span class="p">[]</span>
+        
+    <span class="k">def</span> <span class="nf">enfiler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contenu</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">defiler</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">contenu</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+       
+    <span class="k">def</span> <span class="nf">taille</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contenu</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ch</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">contenu</span><span class="p">:</span>
+            <span class="n">ch</span> <span class="o">=</span> <span class="n">ch</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span>
+        <span class="n">ch</span> <span class="o">=</span> <span class="n">ch</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># pour enlever la dernière virgule</span>
+        <span class="n">ch</span> <span class="o">=</span> <span class="s2">&quot;&lt;&quot;</span> <span class="o">+</span> <span class="n">ch</span> <span class="o">+</span> <span class="s2">&quot;&lt;&quot;</span>
+        <span class="k">return</span> <span class="n">ch</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -76,7 +133,7 @@
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">parcours_en_largeur</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
@@ -84,7 +141,7 @@
     <span class="n">F</span> <span class="o">=</span> <span class="n">File</span><span class="p">()</span>
     <span class="n">F</span><span class="o">.</span><span class="n">enfiler</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
     <span class="k">while</span> <span class="n">F</span><span class="o">.</span><span class="n">taille</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">defiler</span><span class="p">()</span> <span class="c1"># renvoie le sommet</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">defiler</span><span class="p">()</span>  <span class="c1"># renvoie le sommet</span>
         <span class="k">if</span> <span class="n">a</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">etiquette</span><span class="p">)</span>
             <span class="n">F</span><span class="o">.</span><span class="n">enfiler</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">gauche</span><span class="p">)</span>
@@ -92,6 +149,84 @@
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On peut vérifier en appliquant cette fonction à l'arbre de l'exemple précédent :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A1</span> <span class="o">=</span> <span class="n">Noeud</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">Noeud</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">Noeud</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">Noeud</span><span class="p">(</span><span class="mi">5</span><span class="p">)),</span> <span class="n">Noeud</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Noeud</span><span class="p">(</span><span class="mi">3</span><span class="p">)))</span>
+<span class="n">A1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2-(8-(4,5),9-(None,3))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">parcours_en_largeur</span><span class="p">(</span><span class="n">A1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>2
+8
+9
+4
+5
+3
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -167,7 +302,7 @@
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">parcours_prefixe</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
@@ -183,6 +318,42 @@
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">parcours_prefixe</span><span class="p">(</span><span class="n">A1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>2
+8
+4
+5
+9
+3
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -191,6 +362,103 @@
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">parcours_infixe</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Affiche les étiquettes de l&#39;arbre binaire A selon un parcours par ordre infixe.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">A</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">parcours_prefixe</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">gauche</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">etiquette</span><span class="p">)</span>
+        <span class="n">parcours_prefixe</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">droit</span><span class="p">)</span>
+        
+<span class="k">def</span> <span class="nf">parcours_suffixe</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Affiche les étiquettes de l&#39;arbre binaire A selon un parcours par ordre suffixe.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">A</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">parcours_prefixe</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">gauche</span><span class="p">)</span>
+        <span class="n">parcours_prefixe</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">droit</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">etiquette</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">parcours_infixe</span><span class="p">(</span><span class="n">A1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>8
+4
+5
+2
+9
+3
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">parcours_suffixe</span><span class="p">(</span><span class="n">A1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>8
+4
+5
+9
+3
+2
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -248,6 +516,48 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>On implémente l'arbre de gauche par l'objet <code>A2</code> de la classe <code>Noeud</code> ci-dessous :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A2</span> <span class="o">=</span> <span class="n">Noeud</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">Noeud</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">Noeud</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">Noeud</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">Noeud</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">Noeud</span><span class="p">(</span><span class="mi">5</span><span class="p">))))</span>
+<span class="n">A2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2-(1,6-(4-(3,5),None))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Rechercher-une-cl&#233;-dans-un-ABR">Rechercher une cl&#233; dans un ABR<a class="anchor-link" href="#Rechercher-une-cl&#233;-dans-un-ABR">&#182;</a></h2><p>La propriété d'ordre en chaque noeud d'un ABR assure qu'il existe un unique chemin pour toute clé stockée : la comparaison en chaque noeud indique si la recherche doit être poursuivie à gauche ou à droite. La recherche est fructueuse si la clé est trouvée en un noeud; infructueuse s'il est aboutit à un sous-arbre vide.</p>
 <p>Cela permet d'écrire facilement l'algorithme récursif de recherche d'une clé dans un ABR :</p>
 
@@ -256,7 +566,7 @@
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">etq_presente</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
@@ -283,12 +593,95 @@
 <ul>
 <li><code>etq_presente(A, 5)</code> renvoie Vrai
 <img src="data/abr_recherche.png" alt="recherche n°1"></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
 <li><code>etq_presente(A, 0)</code> renvoie Faux
 <img src="data/abr_recherche2.png" alt="recherche n°2"></li>
 </ul>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Par exemple, dans l'abre de gauche <code>A2</code> :</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">etq_presente</span><span class="p">(</span><span class="n">A2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[12]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">etq_presente</span><span class="p">(</span><span class="n">A2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[13]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>False</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -328,7 +721,7 @@
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">ajouter</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
@@ -355,6 +748,50 @@
 <p>Par exemple, <code>ajouter(A, 0)</code> :
 <img src="data/abr_insertion1.png" alt="insertion n°1"></p>
 </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A2</span> <span class="o">=</span> <span class="n">Noeud</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">Noeud</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">Noeud</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">Noeud</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">Noeud</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">Noeud</span><span class="p">(</span><span class="mi">5</span><span class="p">))))</span>
+<span class="n">A2</span> <span class="o">=</span> <span class="n">ajouter</span><span class="p">(</span><span class="n">A2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">A2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[15]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2-(1-(0,None),6-(4-(3,5),None))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
 <li><p>Même en cas d'égalité, on descend toujours jusqu'à un sous-arbre vide.</p>
 <p>Par exemple, <code>ajouter(A, 2)</code> :
 <img src="data/abr_insertion2.png" alt="insertion n°2"></p>
@@ -363,6 +800,40 @@
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A2</span> <span class="o">=</span> <span class="n">ajouter</span><span class="p">(</span><span class="n">A2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">A2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[16]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2-(1-(0,2),6-(4-(3,5),None))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
