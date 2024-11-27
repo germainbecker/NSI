@@ -1,18 +1,17 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 style="font-size:2.5em; text-align:center;">Importer une table et rechercher dans une table [RÉSUMÉ]</h1><hr>
-
+<h1 style="font-size:2.5em; text-align:center;">Importer une table et rechercher dans une table [RÉSUMÉ]</h1>
+<hr/>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h1><p>Organiser des données sous forme de tableaux est très répandu et très ancien car on retrouve des tables de données dans les livres de comptes de l'Egypte ancienne.</p>
+<h1 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">¶</a></h1><p>Organiser des données sous forme de tableaux est très répandu et très ancien car on retrouve des tables de données dans les livres de comptes de l'Egypte ancienne.</p>
 <p>On peut organiser des données dans un tableau pour présenter des informations croisées, faire ses comptes, etc. Le bulletin d'un élève est une table qui indique pour chaque matière, la moyenne de l'élève, la moyenne de la classe, l'appréciation du professeur. La liste de présence des élèves est également représentée sous forme d'une table indiquant pour chaque élève s'il est présent ou absent ce jour.</p>
 <p>En informatique, les tables de données sont rapidement devenues le principal moyen de stocker des données. L'analyse de ces données est utilisée dans de nombreux domaines : calcul scientifique, intelligence artificielle, programmation Web, bio-informatique, informatique financière, etc. De nombreuses données en tables sont disponibles sur les sites de données ouvertes.</p>
-
 </div>
 </div>
 </div>
@@ -22,7 +21,8 @@
 <p><strong>Exemple</strong></p>
 <p>Voici un exemple de table avec des informations sur des élèves :</p>
 <table>
-<thead><tr>
+<thead>
+<tr>
 <th><strong>prénom</strong></th>
 <th><strong>jour</strong></th>
 <th><strong>mois</strong></th>
@@ -34,106 +34,105 @@
 </thead>
 <tbody>
 <tr>
-<td>Naïma</td>
-<td>7</td>
-<td>9</td>
-<td>2007</td>
+<td>Maïa</td>
+<td>12</td>
+<td>6</td>
+<td>2008</td>
 <td>F</td>
-<td>1G4</td>
+<td>1G3</td>
 <td>apprendre à piloter une Formule 1</td>
 </tr>
 <tr>
-<td>Jade</td>
-<td>5</td>
-<td>7</td>
-<td>2007</td>
-<td>F</td>
-<td>1G2</td>
+<td>Baptiste</td>
+<td>2</td>
+<td>10</td>
+<td>2008</td>
+<td>G</td>
+<td>1G3</td>
 <td>ouvrir un restaurant</td>
 </tr>
 <tr>
-<td>Mathilda</td>
-<td>9</td>
-<td>7</td>
-<td>2007</td>
+<td>Batoul</td>
+<td>4</td>
+<td>6</td>
+<td>2008</td>
 <td>F</td>
-<td>1G4</td>
+<td>1G3</td>
 <td>gagner au loto</td>
 </tr>
 <tr>
-<td>Louenn</td>
-<td>8</td>
-<td>7</td>
-<td>2007</td>
-<td>G</td>
+<td>Gwenola</td>
+<td>22</td>
+<td>9</td>
+<td>2008</td>
+<td>F</td>
 <td>1G3</td>
 <td>devenir quelqu’un de célèbre</td>
 </tr>
 <tr>
-<td>Enola</td>
+<td>Nathaël</td>
 <td>13</td>
 <td>2</td>
-<td>2007</td>
-<td>F</td>
+<td>2008</td>
+<td>G</td>
 <td>1G3</td>
 <td>avoir une bonne note au prochain devoir</td>
 </tr>
 <tr>
-<td>Samuel</td>
-<td>2</td>
-<td>8</td>
-<td>2007</td>
+<td>Adam</td>
+<td>21</td>
+<td>4</td>
+<td>2008</td>
 <td>G</td>
-<td>1G4</td>
+<td>1G3</td>
 <td>manger des frites tous les jours à la cantine</td>
 </tr>
 <tr>
-<td>Lucien</td>
-<td>2</td>
-<td>8</td>
-<td>2007</td>
+<td>Corentin</td>
+<td>16</td>
+<td>11</td>
+<td>2008</td>
 <td>G</td>
-<td>1G4</td>
+<td>1G3</td>
 <td>marcher sur la lune</td>
 </tr>
 <tr>
-<td>Matias</td>
-<td>9</td>
-<td>8</td>
-<td>2007</td>
+<td>Alexis</td>
+<td>31</td>
+<td>10</td>
+<td>2008</td>
 <td>G</td>
 <td>1G3</td>
-<td>dormir plus longtemps le matin</td>
+<td>devenir Youtuber</td>
 </tr>
 <tr>
-<td>Nathan</td>
-<td>3</td>
-<td>9</td>
-<td>2007</td>
+<td>Ethan</td>
+<td>12</td>
+<td>5</td>
+<td>2008</td>
 <td>G</td>
-<td>1G2</td>
+<td>1G3</td>
 <td>aider les autres</td>
 </tr>
 <tr>
-<td>Théliau</td>
+<td>Firmin</td>
+<td>19</td>
 <td>7</td>
-<td>3</td>
-<td>2007</td>
+<td>2008</td>
 <td>G</td>
-<td>1G2</td>
-<td>apprendre à piloter une Formule 1</td>
+<td>1G3</td>
+<td>devenir président</td>
 </tr>
 </tbody>
 </table>
 <p>Pour exploiter ces données avec un ordinateur il est nécessaire de les mémoriser dans un fichier.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Enregistrer-les-donn&#233;es-dans-un-fichier">Enregistrer les donn&#233;es dans un fichier<a class="anchor-link" href="#Enregistrer-les-donn&#233;es-dans-un-fichier">&#182;</a></h1><p>Il existe différents formats permettant de mémoriser les informations d'une table dans un fichier. Un des plus utilisés est le format <strong>CSV</strong> (pour <strong>comma-separated values</strong>, soit "données séparées par des virgules") qui est un fichier texte dans lequel :</p>
+<h1 id="Enregistrer-les-donn%C3%A9es-dans-un-fichier">Enregistrer les données dans un fichier<a class="anchor-link" href="#Enregistrer-les-donn%C3%A9es-dans-un-fichier">¶</a></h1><p>Il existe différents formats permettant de mémoriser les informations d'une table dans un fichier. Un des plus utilisés est le format <strong>CSV</strong> (pour <strong>comma-separated values</strong>, soit "données séparées par des virgules") qui est un fichier texte dans lequel :</p>
 <ul>
 <li>chaque ligne correspond à une ligne de la table ;</li>
 <li>chaque ligne est séparée en champs par une virgule (",") ;</li>
@@ -141,11 +140,11 @@
 <li>on peut utiliser les guillemets droits (") pour délimiter le contenu des champs.</li>
 </ul>
 <blockquote class="information">
-    <p><strong>Remarques</strong> :</p>
-    <ul>
-        <li>En France, le caractère de séparation des champs est généralement le point-virgule (";") car la virgule est utilisée pour écrire des nombres décimaux. Il faut donc <strong>être vigilant sur le caractère de séparation utilisé</strong>.</li>
-        <li>Le format CSV est apparu en 1972, soit bien avant l'avènement des ordinateurs personnels.</li>
-    </ul>
+<p><strong>Remarques</strong> :</p>
+<ul>
+<li>En France, le caractère de séparation des champs est généralement le point-virgule (";") car la virgule est utilisée pour écrire des nombres décimaux. Il faut donc <strong>être vigilant sur le caractère de séparation utilisé</strong>.</li>
+<li>Le format CSV est apparu en 1972, soit bien avant l'avènement des ordinateurs personnels.</li>
+</ul>
 </blockquote>
 </div>
 </div>
@@ -153,20 +152,19 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Un-simple-fichier-texte-...">Un simple fichier texte ...<a class="anchor-link" href="#Un-simple-fichier-texte-...">&#182;</a></h3><p>Ainsi, la table précédente peut être mémorisée dans un fichier CSV appelé <code>eleves.csv</code> dont voici le contenu :</p>
-
+<h3 id="Un-simple-fichier-texte-...">Un simple fichier texte ...<a class="anchor-link" href="#Un-simple-fichier-texte-...">¶</a></h3><p>Ainsi, la table précédente peut être mémorisée dans un fichier CSV appelé <code>eleves.csv</code> dont voici le contenu :</p>
 <pre><code>prénom,jour,mois,année,sexe,classe,projet
-Naïma,7,9,2007,F,1G4,apprendre à piloter une Formule 1
-Jade,5,7,2007,F,1G2,ouvrir un restaurant
-Mathilda,9,7,2007,F,1G4,gagner au loto
-Louenn,8,7,2007,G,1G3,devenir quelqu’un de célèbre
-Enola,13,2,2007,F,1G3,avoir une bonne note au prochain devoir
-Samuel,26,4,2007,G,1G4,manger des frites tous les jours à la cantine
-Lucien,2,8,2007,G,1G4,marcher sur la lune
-Matias,9,8,2007,G,1G3,dormir plus longtemps le matin
-Nathan,3,9,2007,G,1G2,aider les autres
-Théliau,7,3,2007,G,1G2,devenir président</code></pre>
-
+Maïa,12,6,2008,F,1G3,apprendre à piloter une Formule 1
+Baptiste,2,10,2008,G,1G3,ouvrir un restaurant
+Batoul,4,6,2008,F,1G3,gagner au loto
+Gwenola,22,9,2008,F,1G3,devenir quelqu’un de célèbre
+Nathaël,13,2,2008,G,1G3,avoir une bonne note au prochain devoir
+Adam,21,4,2008,G,1G3,manger des frites tous les jours à la cantine
+Corentin,16,11,2008,G,1G3,marcher sur la lune
+Alexis,31,10,2008,G,1G3,devenir Youtuber
+Ethan,12,5,2008,G,1G3,aider les autres
+Firmin,19,7,2008,G,1G3,devenir président
+</code></pre>
 </div>
 </div>
 </div>
@@ -174,7 +172,7 @@ Théliau,7,3,2007,G,1G2,devenir président</code></pre>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Un fichier CSV est un simple fichier texte dont on peut visualiser le contenu facilement avec un éditeur de texte :</p>
-<p><img class="centre image-responsive" src="data/texte.png" alt="fichier texte"></p>
+<img alt="fichier texte" class="centre image-responsive" src="data/csv_editeur_texte.png"/>
 <p style="text-align: center; color: #333;"><strong>Fichier CSV ouvert avec un éditeur de texte.</strong></p>
 </div>
 </div>
@@ -182,15 +180,14 @@ Théliau,7,3,2007,G,1G2,devenir président</code></pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="...-qui-peut-s'ouvrir-avec-un-tableur-!">... qui peut s'ouvrir avec un tableur !<a class="anchor-link" href="#...-qui-peut-s'ouvrir-avec-un-tableur-!">&#182;</a></h3><p>Bien qu'étant un simple fichier texte, un fichier CSV peut être importé et exporté par un tableur qui permet d'en visualiser le contenu sous la forme d'un tableau.</p>
-
+<h3 id="...-qui-peut-s'ouvrir-avec-un-tableur-!">... qui peut s'ouvrir avec un tableur !<a class="anchor-link" href="#...-qui-peut-s'ouvrir-avec-un-tableur-!">¶</a></h3><p>Bien qu'étant un simple fichier texte, un fichier CSV peut être importé et exporté par un tableur qui permet d'en visualiser le contenu sous la forme d'un tableau.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img class="centre image-responsive" src="data/tableur.png" alt="fichier texte"></p>
+<img alt="fichier texte" class="centre image-responsive" src="data/csv_tableur.png"/>
 <p style="text-align: center; color: #333;"><strong>Fichier CSV ouvert avec un tableur.</strong></p>
 </div>
 </div>
@@ -198,97 +195,90 @@ Théliau,7,3,2007,G,1G2,devenir président</code></pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<blockquote><p>Pour exploiter et manipuler des tables de données mémorisées dans un fichier CSV, il faut commencer par <em>charger les données</em>. On pourra ensuite utiliser toute la puissance d'un langage de programmation pour les exploiter.</p>
+<blockquote>
+<p>Pour exploiter et manipuler des tables de données mémorisées dans un fichier CSV, il faut commencer par <em>charger les données</em>. On pourra ensuite utiliser toute la puissance d'un langage de programmation pour les exploiter.</p>
 </blockquote>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Charger-les-donn&#233;es-dans-Python">Charger les donn&#233;es dans Python<a class="anchor-link" href="#Charger-les-donn&#233;es-dans-Python">&#182;</a></h1><p>Pour importer les données d'un fichier CSV dans Python il faut commencer par <strong>ouvrir le fichier</strong> avec Python. On utilise pour cela la fonction prédéfinie <code>open</code>.</p>
-
+<h1 id="Charger-les-donn%C3%A9es-dans-Python">Charger les données dans Python<a class="anchor-link" href="#Charger-les-donn%C3%A9es-dans-Python">¶</a></h1><p>Pour importer les données d'un fichier CSV dans Python il faut commencer par <strong>ouvrir le fichier</strong> avec Python. On utilise pour cela la fonction prédéfinie <code>open</code>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># on ouvre le fichier eleves.csv dans un objet appelé &#39;fichier&#39;</span>
-<span class="n">fichier</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;eleves.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span>
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># on ouvre le fichier eleves.csv dans un objet appelé 'fichier'</span>
+<span class="n">fichier</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'eleves.csv'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">'UTF-8'</span><span class="p">)</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<blockquote><p>On a utilisé le paramètre <code>'r'</code> pour indiquer une ouverture en mode <em>lecture</em> (<em>read</em> en anglais).</p>
+<blockquote>
+<p>On a utilisé le paramètre <code>'r'</code> pour indiquer une ouverture en mode <em>lecture</em> (<em>read</em> en anglais).</p>
 </blockquote>
 <p>Il faut ensuite <strong>lire le fichier</strong> pour charger son contenu dans Python. On pourrait pour cela utiliser la méthode <code>read</code> qui renvoie le contenu du fichier sous la forme d'une unique chaîne de caractères.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In [2]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">texte</span> <span class="o">=</span> <span class="n">fichier</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="c1"># on lit le contenu sous la forme d&#39;une unique chaine de caractères</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">texte</span><span class="p">)</span> <span class="c1"># on affiche la chaine de caractères &#39;texte&#39;</span>
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">texte</span> <span class="o">=</span> <span class="n">fichier</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="c1"># on lit le contenu sous la forme d'une unique chaine de caractères</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">texte</span><span class="p">)</span> <span class="c1"># on affiche la chaine de caractères 'texte'</span>
 <span class="c1"># on ferme le flux de lecture</span>
 <span class="n">fichier</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt"></div>
-
-
+<div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>prénom,jour,mois,année,sexe,classe,projet
-Naïma,7,9,2007,F,1G4,apprendre à piloter une Formule 1
-Jade,5,7,2007,F,1G2,ouvrir un restaurant
-Mathilda,9,7,2007,F,1G4,gagner au loto
-Louenn,8,7,2007,G,1G3,devenir quelqu’un de célèbre
-Enola,13,2,2007,F,1G3,avoir une bonne note au prochain devoir
-Samuel,26,4,2007,G,1G4,manger des frites tous les jours à la cantine
-Lucien,2,8,2007,G,1G4,marcher sur la lune
-Matias,9,8,2007,G,1G3,dormir plus longtemps le matin
-Nathan,3,9,2007,G,1G2,aider les autres
-Théliau,7,3,2007,G,1G2,devenir président
-Ali,21,11,2007,G,1G2,devenir un joueur professionnel de billard
-Anastasia,24,9,2006,F,1G4,créer un jeu vidéo
-Yohann,22,7,2007,G,1G2,gérer sa propre entreprise
-Bastien,9,3,2007,G,1G2,jouer dans le prochain James Bond
-Noe,30,12,2007,G,1G3,monter le tapis rouge à Cannes
-Lilian,27,12,2007,G,1G2,devenir champion du monde de bras de fer
-Simon,6,12,2007,G,1G1,aller à Poudlard
-Eliott,12,11,2007,G,1G4,avoir son émission de TV
-Amaël,16,9,2007,G,1G1,devenir une rockstar
+Maïa,12,6,2008,F,1G3,apprendre à piloter une Formule 1
+Baptiste,2,10,2008,G,1G3,ouvrir un restaurant
+Batoul,4,6,2008,F,1G3,gagner au loto
+Gwenola,22,9,2008,F,1G3,devenir quelqu’un de célèbre
+Nathaël,13,2,2008,G,1G3,avoir une bonne note au prochain devoir
+Adam,21,4,2008,G,1G3,manger des frites tous les jours à la cantine
+Corentin,16,11,2008,G,1G3,marcher sur la lune
+Alexis,31,10,2008,G,1G3,devenir Youtuber
+Ethan,12,5,2008,G,1G3,aider les autres
+Firmin,19,7,2008,G,1G3,devenir président
+Abel,9,1,2008,G,1G3,devenir un joueur professionnel de billard
+Sean,13,9,2008,G,1G3,jouer en NBA
+Antoine,15,2,2008,G,1G3,gérer sa propre entreprise
+Tim,20,2,2008,G,1G3,jouer dans le prochain James Bond
+Anastasia,24,9,2006,F,1G3,monter le tapis rouge à Cannes
+Nathanaël,29,10,2008,G,1G3,devenir champion du monde de bras de fer
+Jules,4,6,2008,G,1G3,aller à Poudlard
+Alexis,29,8,2008,G,1G3,avoir son émission de TV
+Lého,24,10,2008,G,1G3,devenir une rockstar
+Valentin,12,12,2008,G,1G3,créer un jeu vidéo
+Hugo,23,7,2008,G,1G3,écrire un livre
+Charlotte,30,4,2008,F,1G3,devenir astronaute
+Ilyes,12,11,2008,G,1G3,inventer la machine à voyager dans le temps
+Corentin,31,5,2008,G,1G3,dormir plus longtemps le matin
 
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -296,33 +286,32 @@ Amaël,16,9,2007,G,1G1,devenir une rockstar
 <p>Cependant, ce n'est pas ainsi que l'on va procéder car exploiter cette grande chaîne de caractères n'est pas pratique. En effet, il sera beaucoup simple et efficace de manipuler des <em>types construits</em> comme les tableaux et surtout les dictionnaires.</p>
 <p>Ainsi, on va plutôt lire le contenu du fichier pour construire un <strong>tableau</strong> dans lequel chaque élément correspond à une ligne de la table. Il est possible de représenter chaque ligne de la table (donc chaque élève) par un <em>tableau</em> ou par un <em>dictionnaire</em>.</p>
 <p>Le chargement dans un <strong>tableau de dictionnaires</strong> est préférable car il est alors facile d'accéder aux données par leurs clés. On ne présente que cette façon de procéder dans ce résumé de cours (voir le TD pour le chargement dans un tableau de tableaux).</p>
-<blockquote><p>Pour cela, la biliothèque standard de Python contient un module <code>csv</code> qui contient des fonctions très pratiques pour lire et écrire des fichiers CSV. La mémorisation dans un tableau devenant alors très rapide. Voici comment on procède.</p>
+<blockquote>
+<p>Pour cela, la biliothèque standard de Python contient un module <code>csv</code> qui contient des fonctions très pratiques pour lire et écrire des fichiers CSV. La mémorisation dans un tableau devenant alors très rapide. Voici comment on procède.</p>
 </blockquote>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Chargement-dans-un-tableau-de-dictionnaires">Chargement dans un tableau de dictionnaires<a class="anchor-link" href="#Chargement-dans-un-tableau-de-dictionnaires">&#182;</a></h2><p>La méthode <code>DictReader</code> du module <code>csv</code> permet de lire la table ligne à ligne et renvoie successivement pour chaque ligne un <em>dictionnaire</em> des champs de cette ligne. La première ligne du fichier a servi à obtenir les clés utilisées pour chaque enregistrement.</p>
+<h2 id="Chargement-dans-un-tableau-de-dictionnaires">Chargement dans un tableau de dictionnaires<a class="anchor-link" href="#Chargement-dans-un-tableau-de-dictionnaires">¶</a></h2><p>La méthode <code>DictReader</code> du module <code>csv</code> permet de lire la table ligne à ligne et renvoie successivement pour chaque ligne un <em>dictionnaire</em> des champs de cette ligne. La première ligne du fichier a servi à obtenir les clés utilisées pour chaque enregistrement.</p>
 <p>On peut alors construire par compréhension le tableau <code>eleves</code> qui mémorise toutes les données de la table, chaque élément de ce tableau étant un <strong>dictionnaire</strong> correspondant à une ligne de la table de données.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span> <span class="c1"># pour utiliser le module csv</span>
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span> <span class="c1"># pour utiliser le module csv</span>
 
 <span class="c1"># Ouverture du fichier</span>
-<span class="n">fichier</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;eleves.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span>
+<span class="n">fichier</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'eleves.csv'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">'UTF-8'</span><span class="p">)</span>
 
 <span class="c1"># Lecture de son contenu avec la méthode DictReader qui renvoie une valeur spéciale représentant le fichier CSV</span>
-<span class="n">table</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">fichier</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>  <span class="c1"># on précise le caractère de séparation, ici la virgule</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">fichier</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">','</span><span class="p">)</span>  <span class="c1"># on précise le caractère de séparation, ici la virgule</span>
 
 <span class="c1"># Construction par compréhension du tableau représentant la table</span>
 <span class="n">eleves</span> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="n">ligne</span><span class="p">)</span> <span class="k">for</span> <span class="n">ligne</span> <span class="ow">in</span> <span class="n">table</span><span class="p">]</span>  <span class="c1"># chaque élément est un dictionnaire</span>
@@ -330,349 +319,329 @@ Amaël,16,9,2007,G,1G1,devenir une rockstar
 <span class="c1"># Fermeture du flux de lecture</span>
 <span class="n">fichier</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-<span class="n">eleves</span> <span class="c1"># pour voir le contenu du tableau &#39;eleves&#39;</span>
+<span class="n">eleves</span> <span class="c1"># pour voir le contenu du tableau 'eleves'</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[3]:</div>
-
-
-
-
+<div class="prompt output_prompt">Out[3]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>[{&#39;prénom&#39;: &#39;Naïma&#39;,
-  &#39;jour&#39;: &#39;7&#39;,
-  &#39;mois&#39;: &#39;9&#39;,
-  &#39;année&#39;: &#39;2007&#39;,
-  &#39;sexe&#39;: &#39;F&#39;,
-  &#39;classe&#39;: &#39;1G4&#39;,
-  &#39;projet&#39;: &#39;apprendre à piloter une Formule 1&#39;},
- {&#39;prénom&#39;: &#39;Jade&#39;,
-  &#39;jour&#39;: &#39;5&#39;,
-  &#39;mois&#39;: &#39;7&#39;,
-  &#39;année&#39;: &#39;2007&#39;,
-  &#39;sexe&#39;: &#39;F&#39;,
-  &#39;classe&#39;: &#39;1G2&#39;,
-  &#39;projet&#39;: &#39;ouvrir un restaurant&#39;},
- {&#39;prénom&#39;: &#39;Mathilda&#39;,
-  &#39;jour&#39;: &#39;9&#39;,
-  &#39;mois&#39;: &#39;7&#39;,
-  &#39;année&#39;: &#39;2007&#39;,
-  &#39;sexe&#39;: &#39;F&#39;,
-  &#39;classe&#39;: &#39;1G4&#39;,
-  &#39;projet&#39;: &#39;gagner au loto&#39;},
- {&#39;prénom&#39;: &#39;Louenn&#39;,
-  &#39;jour&#39;: &#39;8&#39;,
-  &#39;mois&#39;: &#39;7&#39;,
-  &#39;année&#39;: &#39;2007&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
-  &#39;classe&#39;: &#39;1G3&#39;,
-  &#39;projet&#39;: &#39;devenir quelqu’un de célèbre&#39;},
- {&#39;prénom&#39;: &#39;Enola&#39;,
-  &#39;jour&#39;: &#39;13&#39;,
-  &#39;mois&#39;: &#39;2&#39;,
-  &#39;année&#39;: &#39;2007&#39;,
-  &#39;sexe&#39;: &#39;F&#39;,
-  &#39;classe&#39;: &#39;1G3&#39;,
-  &#39;projet&#39;: &#39;avoir une bonne note au prochain devoir&#39;},
- {&#39;prénom&#39;: &#39;Samuel&#39;,
-  &#39;jour&#39;: &#39;26&#39;,
-  &#39;mois&#39;: &#39;4&#39;,
-  &#39;année&#39;: &#39;2007&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
-  &#39;classe&#39;: &#39;1G4&#39;,
-  &#39;projet&#39;: &#39;manger des frites tous les jours à la cantine&#39;},
- {&#39;prénom&#39;: &#39;Lucien&#39;,
-  &#39;jour&#39;: &#39;2&#39;,
-  &#39;mois&#39;: &#39;8&#39;,
-  &#39;année&#39;: &#39;2007&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
-  &#39;classe&#39;: &#39;1G4&#39;,
-  &#39;projet&#39;: &#39;marcher sur la lune&#39;},
- {&#39;prénom&#39;: &#39;Matias&#39;,
-  &#39;jour&#39;: &#39;9&#39;,
-  &#39;mois&#39;: &#39;8&#39;,
-  &#39;année&#39;: &#39;2007&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
-  &#39;classe&#39;: &#39;1G3&#39;,
-  &#39;projet&#39;: &#39;dormir plus longtemps le matin&#39;},
- {&#39;prénom&#39;: &#39;Nathan&#39;,
-  &#39;jour&#39;: &#39;3&#39;,
-  &#39;mois&#39;: &#39;9&#39;,
-  &#39;année&#39;: &#39;2007&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
-  &#39;classe&#39;: &#39;1G2&#39;,
-  &#39;projet&#39;: &#39;aider les autres&#39;},
- {&#39;prénom&#39;: &#39;Théliau&#39;,
-  &#39;jour&#39;: &#39;7&#39;,
-  &#39;mois&#39;: &#39;3&#39;,
-  &#39;année&#39;: &#39;2007&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
-  &#39;classe&#39;: &#39;1G2&#39;,
-  &#39;projet&#39;: &#39;devenir président&#39;},
- {&#39;prénom&#39;: &#39;Ali&#39;,
-  &#39;jour&#39;: &#39;21&#39;,
-  &#39;mois&#39;: &#39;11&#39;,
-  &#39;année&#39;: &#39;2007&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
-  &#39;classe&#39;: &#39;1G2&#39;,
-  &#39;projet&#39;: &#39;devenir un joueur professionnel de billard&#39;},
- {&#39;prénom&#39;: &#39;Anastasia&#39;,
-  &#39;jour&#39;: &#39;24&#39;,
-  &#39;mois&#39;: &#39;9&#39;,
-  &#39;année&#39;: &#39;2006&#39;,
-  &#39;sexe&#39;: &#39;F&#39;,
-  &#39;classe&#39;: &#39;1G4&#39;,
-  &#39;projet&#39;: &#39;créer un jeu vidéo&#39;},
- {&#39;prénom&#39;: &#39;Yohann&#39;,
-  &#39;jour&#39;: &#39;22&#39;,
-  &#39;mois&#39;: &#39;7&#39;,
-  &#39;année&#39;: &#39;2007&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
-  &#39;classe&#39;: &#39;1G2&#39;,
-  &#39;projet&#39;: &#39;gérer sa propre entreprise&#39;},
- {&#39;prénom&#39;: &#39;Bastien&#39;,
-  &#39;jour&#39;: &#39;9&#39;,
-  &#39;mois&#39;: &#39;3&#39;,
-  &#39;année&#39;: &#39;2007&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
-  &#39;classe&#39;: &#39;1G2&#39;,
-  &#39;projet&#39;: &#39;jouer dans le prochain James Bond&#39;},
- {&#39;prénom&#39;: &#39;Noe&#39;,
-  &#39;jour&#39;: &#39;30&#39;,
-  &#39;mois&#39;: &#39;12&#39;,
-  &#39;année&#39;: &#39;2007&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
-  &#39;classe&#39;: &#39;1G3&#39;,
-  &#39;projet&#39;: &#39;monter le tapis rouge à Cannes&#39;},
- {&#39;prénom&#39;: &#39;Lilian&#39;,
-  &#39;jour&#39;: &#39;27&#39;,
-  &#39;mois&#39;: &#39;12&#39;,
-  &#39;année&#39;: &#39;2007&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
-  &#39;classe&#39;: &#39;1G2&#39;,
-  &#39;projet&#39;: &#39;devenir champion du monde de bras de fer&#39;},
- {&#39;prénom&#39;: &#39;Simon&#39;,
-  &#39;jour&#39;: &#39;6&#39;,
-  &#39;mois&#39;: &#39;12&#39;,
-  &#39;année&#39;: &#39;2007&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
-  &#39;classe&#39;: &#39;1G1&#39;,
-  &#39;projet&#39;: &#39;aller à Poudlard&#39;},
- {&#39;prénom&#39;: &#39;Eliott&#39;,
-  &#39;jour&#39;: &#39;12&#39;,
-  &#39;mois&#39;: &#39;11&#39;,
-  &#39;année&#39;: &#39;2007&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
-  &#39;classe&#39;: &#39;1G4&#39;,
-  &#39;projet&#39;: &#39;avoir son émission de TV&#39;},
- {&#39;prénom&#39;: &#39;Amaël&#39;,
-  &#39;jour&#39;: &#39;16&#39;,
-  &#39;mois&#39;: &#39;9&#39;,
-  &#39;année&#39;: &#39;2007&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
-  &#39;classe&#39;: &#39;1G1&#39;,
-  &#39;projet&#39;: &#39;devenir une rockstar&#39;}]</pre>
+<pre>[{'prénom': 'Maïa',
+  'jour': '12',
+  'mois': '6',
+  'année': '2008',
+  'sexe': 'F',
+  'classe': '1G3',
+  'projet': 'apprendre à piloter une Formule 1'},
+ {'prénom': 'Baptiste',
+  'jour': '2',
+  'mois': '10',
+  'année': '2008',
+  'sexe': 'G',
+  'classe': '1G3',
+  'projet': 'ouvrir un restaurant'},
+ {'prénom': 'Batoul',
+  'jour': '4',
+  'mois': '6',
+  'année': '2008',
+  'sexe': 'F',
+  'classe': '1G3',
+  'projet': 'gagner au loto'},
+ {'prénom': 'Gwenola',
+  'jour': '22',
+  'mois': '9',
+  'année': '2008',
+  'sexe': 'F',
+  'classe': '1G3',
+  'projet': 'devenir quelqu’un de célèbre'},
+ {'prénom': 'Nathaël',
+  'jour': '13',
+  'mois': '2',
+  'année': '2008',
+  'sexe': 'G',
+  'classe': '1G3',
+  'projet': 'avoir une bonne note au prochain devoir'},
+ {'prénom': 'Adam',
+  'jour': '21',
+  'mois': '4',
+  'année': '2008',
+  'sexe': 'G',
+  'classe': '1G3',
+  'projet': 'manger des frites tous les jours à la cantine'},
+ {'prénom': 'Corentin',
+  'jour': '16',
+  'mois': '11',
+  'année': '2008',
+  'sexe': 'G',
+  'classe': '1G3',
+  'projet': 'marcher sur la lune'},
+ {'prénom': 'Alexis',
+  'jour': '31',
+  'mois': '10',
+  'année': '2008',
+  'sexe': 'G',
+  'classe': '1G3',
+  'projet': 'devenir Youtuber'},
+ {'prénom': 'Ethan',
+  'jour': '12',
+  'mois': '5',
+  'année': '2008',
+  'sexe': 'G',
+  'classe': '1G3',
+  'projet': 'aider les autres'},
+ {'prénom': 'Firmin',
+  'jour': '19',
+  'mois': '7',
+  'année': '2008',
+  'sexe': 'G',
+  'classe': '1G3',
+  'projet': 'devenir président'},
+ {'prénom': 'Abel',
+  'jour': '9',
+  'mois': '1',
+  'année': '2008',
+  'sexe': 'G',
+  'classe': '1G3',
+  'projet': 'devenir un joueur professionnel de billard'},
+ {'prénom': 'Sean',
+  'jour': '13',
+  'mois': '9',
+  'année': '2008',
+  'sexe': 'G',
+  'classe': '1G3',
+  'projet': 'jouer en NBA'},
+ {'prénom': 'Antoine',
+  'jour': '15',
+  'mois': '2',
+  'année': '2008',
+  'sexe': 'G',
+  'classe': '1G3',
+  'projet': 'gérer sa propre entreprise'},
+ {'prénom': 'Tim',
+  'jour': '20',
+  'mois': '2',
+  'année': '2008',
+  'sexe': 'G',
+  'classe': '1G3',
+  'projet': 'jouer dans le prochain James Bond'},
+ {'prénom': 'Anastasia',
+  'jour': '24',
+  'mois': '9',
+  'année': '2006',
+  'sexe': 'F',
+  'classe': '1G3',
+  'projet': 'monter le tapis rouge à Cannes'},
+ {'prénom': 'Nathanaël',
+  'jour': '29',
+  'mois': '10',
+  'année': '2008',
+  'sexe': 'G',
+  'classe': '1G3',
+  'projet': 'devenir champion du monde de bras de fer'},
+ {'prénom': 'Jules',
+  'jour': '4',
+  'mois': '6',
+  'année': '2008',
+  'sexe': 'G',
+  'classe': '1G3',
+  'projet': 'aller à Poudlard'},
+ {'prénom': 'Alexis',
+  'jour': '29',
+  'mois': '8',
+  'année': '2008',
+  'sexe': 'G',
+  'classe': '1G3',
+  'projet': 'avoir son émission de TV'},
+ {'prénom': 'Lého',
+  'jour': '24',
+  'mois': '10',
+  'année': '2008',
+  'sexe': 'G',
+  'classe': '1G3',
+  'projet': 'devenir une rockstar'},
+ {'prénom': 'Valentin',
+  'jour': '12',
+  'mois': '12',
+  'année': '2008',
+  'sexe': 'G',
+  'classe': '1G3',
+  'projet': 'créer un jeu vidéo'},
+ {'prénom': 'Hugo',
+  'jour': '23',
+  'mois': '7',
+  'année': '2008',
+  'sexe': 'G',
+  'classe': '1G3',
+  'projet': 'écrire un livre'},
+ {'prénom': 'Charlotte',
+  'jour': '30',
+  'mois': '4',
+  'année': '2008',
+  'sexe': 'F',
+  'classe': '1G3',
+  'projet': 'devenir astronaute'},
+ {'prénom': 'Ilyes',
+  'jour': '12',
+  'mois': '11',
+  'année': '2008',
+  'sexe': 'G',
+  'classe': '1G3',
+  'projet': 'inventer la machine à voyager dans le temps'},
+ {'prénom': 'Corentin',
+  'jour': '31',
+  'mois': '5',
+  'année': '2008',
+  'sexe': 'G',
+  'classe': '1G3',
+  'projet': 'dormir plus longtemps le matin'}]</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Chaque ligne est représentée par un dictionnaire. Ici, les informations sur le troisième élève sont mémorisées dans le dictionnaire</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In [4]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">eleves</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">eleves</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[4]:</div>
-
-
-
-
+<div class="prompt output_prompt">Out[4]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;prénom&#39;: &#39;Mathilda&#39;,
- &#39;jour&#39;: &#39;9&#39;,
- &#39;mois&#39;: &#39;7&#39;,
- &#39;année&#39;: &#39;2007&#39;,
- &#39;sexe&#39;: &#39;F&#39;,
- &#39;classe&#39;: &#39;1G4&#39;,
- &#39;projet&#39;: &#39;gagner au loto&#39;}</pre>
-</div>
-
-</div>
-
+<pre>{'prénom': 'Batoul',
+ 'jour': '4',
+ 'mois': '6',
+ 'année': '2008',
+ 'sexe': 'F',
+ 'classe': '1G3',
+ 'projet': 'gagner au loto'}</pre>
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>On peut facilement accéder à n'importe quelle donnée grâce à sa clé. Par exemple, comme la clé correspondant au sexe est <code>'sexe'</code>, on peut accéder au sexe du troisième élève avec l'instruction</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In [5]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">eleves</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;sexe&#39;</span><span class="p">]</span>
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">eleves</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">'sexe'</span><span class="p">]</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[5]:</div>
-
-
-
-
+<div class="prompt output_prompt">Out[5]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;F&#39;</pre>
-</div>
-
-</div>
-
+<pre>'F'</pre>
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>On peut aussi accéder au projet de Yohann avec l'instruction</p>
-
+<p>On peut aussi accéder au projet d'Anastasia avec l'instruction</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In [6]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">eleves</span><span class="p">[</span><span class="mi">12</span><span class="p">][</span><span class="s1">&#39;projet&#39;</span><span class="p">]</span>
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">eleves</span><span class="p">[</span><span class="mi">14</span><span class="p">][</span><span class="s1">'projet'</span><span class="p">]</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[6]:</div>
-
-
-
-
+<div class="prompt output_prompt">Out[6]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;gérer sa propre entreprise&#39;</pre>
-</div>
-
-</div>
-
+<pre>'monter le tapis rouge à Cannes'</pre>
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<blockquote><p>Même en mémorisant chaque ligne de la table dans un dictionnaire, tout n'est pas encore parfait. En effet, pour trouver le projet de Sara, il faut savoir que la ligne la concernant a pour index 8 dans le tableau. Je vous laisse imaginer ce que cela peut donner pour trouver un index dans des fichiers de plusieurs dizaines de milliers de lignes...</p>
+<blockquote>
+<p>Même en mémorisant chaque ligne de la table dans un dictionnaire, tout n'est pas encore parfait. En effet, pour trouver le projet d'Anastasia, il faut savoir que la ligne la concernant a pour index 14 dans le tableau. Je vous laisse imaginer ce que cela peut donner pour trouver un index dans des fichiers de plusieurs dizaines de milliers de lignes...</p>
 <p>Heureusement, il est possible de chercher plus efficacement des données dans une table, c'est ce qui est expliqué ci-après.</p>
 </blockquote>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Rechercher-un-&#233;l&#233;ment-dans-une-table">Rechercher un &#233;l&#233;ment dans une table<a class="anchor-link" href="#Rechercher-un-&#233;l&#233;ment-dans-une-table">&#182;</a></h1><p>Une fois les données chargées dans une table, il est possible de travailler sur ces données en utilisant les opérations de manipulation sur les tableaux et les dictionnaires. En particulier, on va pouvoir effectuer une recherche en <em>parcourant le tableau</em> ligne par ligne, c'est-à-dire dictionnaire par dictionnaire.</p>
-<h2 id="Pr&#233;sence-d'un-&#233;l&#233;ment">Pr&#233;sence d'un &#233;l&#233;ment<a class="anchor-link" href="#Pr&#233;sence-d'un-&#233;l&#233;ment">&#182;</a></h2><p>On cherche ici à détecter la présence d'un élément dans une table (un élève dans notre cas). Nous allons utiliser des techniques de recherche dans un tableau comme celles dans le chapitre "Algorithmes de parcours séquentiel d'un tableau" (Thème 7, Chapitre 1).</p>
+<h1 id="Rechercher-un-%C3%A9l%C3%A9ment-dans-une-table">Rechercher un élément dans une table<a class="anchor-link" href="#Rechercher-un-%C3%A9l%C3%A9ment-dans-une-table">¶</a></h1><p>Une fois les données chargées dans une table, il est possible de travailler sur ces données en utilisant les opérations de manipulation sur les tableaux et les dictionnaires. En particulier, on va pouvoir effectuer une recherche en <em>parcourant le tableau</em> ligne par ligne, c'est-à-dire dictionnaire par dictionnaire.</p>
+<h2 id="Pr%C3%A9sence-d'un-%C3%A9l%C3%A9ment">Présence d'un élément<a class="anchor-link" href="#Pr%C3%A9sence-d'un-%C3%A9l%C3%A9ment">¶</a></h2><p>On cherche ici à détecter la présence d'un élément dans une table (un élève dans notre cas). Nous allons utiliser des techniques de recherche dans un tableau comme celles dans le chapitre "Algorithmes de parcours séquentiel d'un tableau" (Thème 7, Chapitre 1).</p>
 <p>Pour rappel, voici la fonction <code>appartient</code> qui renvoie <code>True</code> ou <code>False</code> selon la présence ou l'absence d'un élément <code>v</code> dans un tableau <code>T</code>.</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">appartient</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Renvoie True si v appartient au tableau T, False sinon.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Renvoie True si v appartient au tableau T, False sinon."""</span>
     <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">T</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">e</span> <span class="o">==</span> <span class="n">v</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">True</span>
     <span class="k">return</span> <span class="kc">False</span>
 </pre></div>
 <p>On va légèrement adapter cette fonction pour chercher un élève désigné par son prénom dans notre table.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">appartient</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">eleves</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">appartient</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">eleves</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">'''</span>
 <span class="sd">    Renvoie True si le prénom p est dans le tableau eleves, et False sinon.</span>
 <span class="sd">    p est un chaîne de caractères et eleves est un tableau de dictionnaires.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    '''</span>
     <span class="k">for</span> <span class="n">eleve</span> <span class="ow">in</span> <span class="n">eleves</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;prénom&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">p</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">'prénom'</span><span class="p">]</span> <span class="o">==</span> <span class="n">p</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">True</span>
     <span class="k">return</span> <span class="kc">False</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Explications :</strong> on passe en revue tous les éléments du tableau (chaque dictionnaire <code>eleve</code>) et on teste si l'un d'entre eux possède un attribut <code>'prénom'</code> égal à <code>p</code>, autrement dit si un des élèves a le prénom <code>p</code>.</p>
-
 </div>
 </div>
 </div>
@@ -680,236 +649,180 @@ Amaël,16,9,2007,G,1G1,devenir une rockstar
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>On peut alors appeler cette fonction pour tester la présence d'un élève :</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In [8]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">appartient</span><span class="p">(</span><span class="s1">&#39;Jade&#39;</span><span class="p">,</span> <span class="n">eleves</span><span class="p">)</span>
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">appartient</span><span class="p">(</span><span class="s1">'Hugo'</span><span class="p">,</span> <span class="n">eleves</span><span class="p">)</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[8]:</div>
-
-
-
-
+<div class="prompt output_prompt">Out[8]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>True</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In [9]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">appartient</span><span class="p">(</span><span class="s1">&#39;Marie&#39;</span><span class="p">,</span> <span class="n">eleves</span><span class="p">)</span>
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">appartient</span><span class="p">(</span><span class="s1">'Marie'</span><span class="p">,</span> <span class="n">eleves</span><span class="p">)</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[9]:</div>
-
-
-
-
+<div class="prompt output_prompt">Out[9]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>False</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="R&#233;cup&#233;rer-une-donn&#233;e-simple-selon-un-crit&#232;re">R&#233;cup&#233;rer une donn&#233;e simple selon un crit&#232;re<a class="anchor-link" href="#R&#233;cup&#233;rer-une-donn&#233;e-simple-selon-un-crit&#232;re">&#182;</a></h2><p>On peut adapter la fonction précédente pour qu'elle renvoie le projet de l'élève dont le prénom est entré en paramètre.</p>
-
+<h2 id="R%C3%A9cup%C3%A9rer-une-donn%C3%A9e-simple-selon-un-crit%C3%A8re">Récupérer une donnée simple selon un critère<a class="anchor-link" href="#R%C3%A9cup%C3%A9rer-une-donn%C3%A9e-simple-selon-un-crit%C3%A8re">¶</a></h2><p>On peut adapter la fonction précédente pour qu'elle renvoie le projet de l'élève dont le prénom est entré en paramètre.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In [10]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">projet_de</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">eleves</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Renvoie le projet de l&#39;élève prénommé p dans le tableau eleves, </span>
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">projet_de</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">eleves</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Renvoie le projet de l'élève prénommé p dans le tableau eleves, </span>
 <span class="sd">    et None si aucun prénom ne correspond.</span>
 <span class="sd">    p est un chaîne de caractères et eleves est un tableau de dictionnaires.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">for</span> <span class="n">eleve</span> <span class="ow">in</span> <span class="n">eleves</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;prénom&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">p</span><span class="p">:</span>   <span class="c1"># si un élève a le prénom p</span>
-            <span class="k">return</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;projet&#39;</span><span class="p">]</span> <span class="c1"># on renvoie le projet de cet élève</span>
+        <span class="k">if</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">'prénom'</span><span class="p">]</span> <span class="o">==</span> <span class="n">p</span><span class="p">:</span>   <span class="c1"># si un élève a le prénom p</span>
+            <span class="k">return</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">'projet'</span><span class="p">]</span> <span class="c1"># on renvoie le projet de cet élève</span>
     <span class="k">return</span> <span class="kc">None</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In [11]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">projet_de</span><span class="p">(</span><span class="s1">&#39;Enola&#39;</span><span class="p">,</span> <span class="n">eleves</span><span class="p">)</span>
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">projet_de</span><span class="p">(</span><span class="s1">'Anastasia'</span><span class="p">,</span> <span class="n">eleves</span><span class="p">)</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[11]:</div>
-
-
-
-
+<div class="prompt output_prompt">Out[11]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;avoir une bonne note au prochain devoir&#39;</pre>
-</div>
-
-</div>
-
+<pre>'monter le tapis rouge à Cannes'</pre>
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<blockquote><p>Vous remarquerez qu'avec cette façon de faire, il n'est plus nécessaire de connaître la position de Sara (son indice) dans la table, son prénom suffit désormais.</p>
+<blockquote>
+<p>Vous remarquerez qu'avec cette façon de faire, il n'est plus nécessaire de connaître la position d'Anastasia (son indice) dans la table, son prénom suffit désormais.</p>
 </blockquote>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="R&#233;cup&#233;rer-une-donn&#233;e-simple-selon-plusieurs-crit&#232;res">R&#233;cup&#233;rer une donn&#233;e simple selon plusieurs crit&#232;res<a class="anchor-link" href="#R&#233;cup&#233;rer-une-donn&#233;e-simple-selon-plusieurs-crit&#232;res">&#182;</a></h2><p>Il est possible de préciser la recherche en combinant les conditions sur plusieurs attributs. On peut par exemple, rechercher le prénom d'un élève né l'année <code>a</code> <strong>et</strong> le mois <code>m</code>.</p>
-
+<h2 id="R%C3%A9cup%C3%A9rer-une-donn%C3%A9e-simple-selon-plusieurs-crit%C3%A8res">Récupérer une donnée simple selon plusieurs critères<a class="anchor-link" href="#R%C3%A9cup%C3%A9rer-une-donn%C3%A9e-simple-selon-plusieurs-crit%C3%A8res">¶</a></h2><p>Il est possible de préciser la recherche en combinant les conditions sur plusieurs attributs. On peut par exemple, rechercher le prénom d'un élève né l'année <code>a</code> <strong>et</strong> le mois <code>m</code>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In [12]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">nom_eleve</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">eleves</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Renvoie le prénom d&#39;un élève né l&#39;année a et le mois m dans le </span>
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">nom_eleve</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">eleves</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Renvoie le prénom d'un élève né l'année a et le mois m dans le </span>
 <span class="sd">    tableau eleves.</span>
 <span class="sd">    a et m sont des entiers et eleves est un tableau de dictionnaire.</span>
-<span class="sd">    &quot;&quot;&quot;</span>    
+<span class="sd">    """</span>    
     <span class="k">for</span> <span class="n">eleve</span> <span class="ow">in</span> <span class="n">eleves</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;année&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="n">a</span> <span class="ow">and</span> <span class="nb">int</span><span class="p">(</span><span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;mois&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="n">m</span><span class="p">:</span>  <span class="c1"># CONVERSION de l&#39;année et du mois en des entiers (int)</span>
-            <span class="k">return</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;prénom&#39;</span><span class="p">]</span> 
+        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">eleve</span><span class="p">[</span><span class="s1">'année'</span><span class="p">])</span> <span class="o">==</span> <span class="n">a</span> <span class="ow">and</span> <span class="nb">int</span><span class="p">(</span><span class="n">eleve</span><span class="p">[</span><span class="s1">'mois'</span><span class="p">])</span> <span class="o">==</span> <span class="n">m</span><span class="p">:</span>  <span class="c1"># CONVERSION de l'année et du mois en des entiers (int)</span>
+            <span class="k">return</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">'prénom'</span><span class="p">]</span> 
     <span class="k">return</span> <span class="kc">None</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In [13]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nom_eleve</span><span class="p">(</span><span class="mi">2007</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="n">eleves</span><span class="p">)</span>
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nom_eleve</span><span class="p">(</span><span class="mi">2008</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="n">eleves</span><span class="p">)</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[13]:</div>
-
-
-
-
+<div class="prompt output_prompt">Out[13]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;Noe&#39;</pre>
-</div>
-
-</div>
-
+<pre>'Corentin'</pre>
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Remarques importantes :</strong></p>
 <ul>
-<li>On a pris soin de convertir les valeurs des attributs <code>'année'</code> et <code>'mois'</code> en type <code>int</code> pour comparer des variables de même type. </li>
-<li>Dans notre table, il y avait trois élèves nés en décembre 2007 (Noé, Lilian et Simon) mais seul celui dont la ligne apparaît en premier a été renvoyé.</li>
+<li>On a pris soin de convertir les valeurs des attributs <code>'année'</code> et <code>'mois'</code> en type <code>int</code> pour comparer des variables de même type.</li>
+<li>Dans notre table, il y avait deux élèves nés en novembre 2008 (Corentin et Ilyes) mais seul celui dont la ligne apparaît en premier a été renvoyé.</li>
 </ul>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<blockquote><p>Les fonctions proposées parcourent la table ligne par ligne jusqu'à trouver la donnée correspondant aux critères de recherche, et la renvoie. Cependant, plusieurs lignes de la table (ici plusieurs élèves) peuvent correspondre à la recherche effectuée et on aimerait pouvoir rechercher dans <em>toutes</em> ces lignes (par exemple, renvoyer les prénoms de <em>tous</em> les élèves nés une certaine année et pas seulement le premier rencontré). Nous allons voir comment procéder dans le paragraphe suivant.</p>
+<blockquote>
+<p>Les fonctions proposées parcourent la table ligne par ligne jusqu'à trouver la donnée correspondant aux critères de recherche, et la renvoie. Cependant, plusieurs lignes de la table (ici plusieurs élèves) peuvent correspondre à la recherche effectuée et on aimerait pouvoir rechercher dans <em>toutes</em> ces lignes (par exemple, renvoyer les prénoms de <em>tous</em> les élèves nés un certain mois et pas seulement le premier rencontré). Nous allons voir comment procéder dans le paragraphe suivant.</p>
 </blockquote>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="S&#233;lection-de-lignes">S&#233;lection de lignes<a class="anchor-link" href="#S&#233;lection-de-lignes">&#182;</a></h1><p>Toutes les opérations précédentes permettent de produire des résultats simples : afficher le projet d'un élève, ou son sexe, ou son prénom...</p>
+<h1 id="S%C3%A9lection-de-lignes">Sélection de lignes<a class="anchor-link" href="#S%C3%A9lection-de-lignes">¶</a></h1><p>Toutes les opérations précédentes permettent de produire des résultats simples : afficher le projet d'un élève, ou son sexe, ou son prénom...</p>
 <p>Or, dans le domaine du traitement de données, il est très souvent nécessaire d'extraire différentes données d'une table pour en construire une nouvelle. Par exemple, extraire tous les élèves qui sont nés un mois donné afin de leur souhaiter un bon anniversaire.</p>
 <p>Pour cela, il suffit de <strong>sélectionner les lignes</strong> vérifiant une certaine condition pour produire une nouvelle table. Cette condition peut combiner plusieurs critères. Pour créer cette nouvelle table, on peut avantageusement la construire par compréhension.</p>
 <p><strong>Syntaxe</strong></p>
@@ -918,77 +831,58 @@ Amaël,16,9,2007,G,1G1,devenir une rockstar
 </pre></div>
 <p>Ainsi, on crée un nouveau tableau <code>selection</code> qui contient uniquement les lignes du tableau <code>table</code> de départ qui vérifient la condition <code>criteres</code>, et pas les autres.</p>
 <p>Par exemple, on peut créer un nouveau tableau <code>nes_en_septembre</code> qui contient tous les (dictionnaires des) élèves de la table <code>eleves</code> qui sont nés en septembre.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In [14]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nes_en_septembre</span> <span class="o">=</span> <span class="p">[</span><span class="n">eleve</span> <span class="k">for</span> <span class="n">eleve</span> <span class="ow">in</span> <span class="n">eleves</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;mois&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">9</span><span class="p">]</span> 
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nes_en_septembre</span> <span class="o">=</span> <span class="p">[</span><span class="n">eleve</span> <span class="k">for</span> <span class="n">eleve</span> <span class="ow">in</span> <span class="n">eleves</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">eleve</span><span class="p">[</span><span class="s1">'mois'</span><span class="p">])</span> <span class="o">==</span> <span class="mi">9</span><span class="p">]</span> 
 <span class="n">nes_en_septembre</span>  <span class="c1"># pour voir le tableau</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[14]:</div>
-
-
-
-
+<div class="prompt output_prompt">Out[14]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>[{&#39;prénom&#39;: &#39;Naïma&#39;,
-  &#39;jour&#39;: &#39;7&#39;,
-  &#39;mois&#39;: &#39;9&#39;,
-  &#39;année&#39;: &#39;2007&#39;,
-  &#39;sexe&#39;: &#39;F&#39;,
-  &#39;classe&#39;: &#39;1G4&#39;,
-  &#39;projet&#39;: &#39;apprendre à piloter une Formule 1&#39;},
- {&#39;prénom&#39;: &#39;Nathan&#39;,
-  &#39;jour&#39;: &#39;3&#39;,
-  &#39;mois&#39;: &#39;9&#39;,
-  &#39;année&#39;: &#39;2007&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
-  &#39;classe&#39;: &#39;1G2&#39;,
-  &#39;projet&#39;: &#39;aider les autres&#39;},
- {&#39;prénom&#39;: &#39;Anastasia&#39;,
-  &#39;jour&#39;: &#39;24&#39;,
-  &#39;mois&#39;: &#39;9&#39;,
-  &#39;année&#39;: &#39;2006&#39;,
-  &#39;sexe&#39;: &#39;F&#39;,
-  &#39;classe&#39;: &#39;1G4&#39;,
-  &#39;projet&#39;: &#39;créer un jeu vidéo&#39;},
- {&#39;prénom&#39;: &#39;Amaël&#39;,
-  &#39;jour&#39;: &#39;16&#39;,
-  &#39;mois&#39;: &#39;9&#39;,
-  &#39;année&#39;: &#39;2007&#39;,
-  &#39;sexe&#39;: &#39;G&#39;,
-  &#39;classe&#39;: &#39;1G1&#39;,
-  &#39;projet&#39;: &#39;devenir une rockstar&#39;}]</pre>
-</div>
-
-</div>
-
+<pre>[{'prénom': 'Gwenola',
+  'jour': '22',
+  'mois': '9',
+  'année': '2008',
+  'sexe': 'F',
+  'classe': '1G3',
+  'projet': 'devenir quelqu’un de célèbre'},
+ {'prénom': 'Sean',
+  'jour': '13',
+  'mois': '9',
+  'année': '2008',
+  'sexe': 'G',
+  'classe': '1G3',
+  'projet': 'jouer en NBA'},
+ {'prénom': 'Anastasia',
+  'jour': '24',
+  'mois': '9',
+  'année': '2006',
+  'sexe': 'F',
+  'classe': '1G3',
+  'projet': 'monter le tapis rouge à Cannes'}]</pre>
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ce tableau <code>nes_en_septembre</code> représente la nouvelle table de données suivante.</p>
 <table>
-<thead><tr>
+<thead>
+<tr>
 <th><strong>prénom</strong></th>
 <th><strong>jour</strong></th>
 <th><strong>mois</strong></th>
@@ -1000,22 +894,22 @@ Amaël,16,9,2007,G,1G1,devenir une rockstar
 </thead>
 <tbody>
 <tr>
-<td>Naïma</td>
-<td>7</td>
+<td>Gwenola</td>
+<td>22</td>
 <td>9</td>
-<td>2007</td>
+<td>2008</td>
 <td>F</td>
-<td>1G4</td>
-<td>apprendre à piloter une Formule 1</td>
+<td>1G1</td>
+<td>devenir quelqu’un de célèbre</td>
 </tr>
 <tr>
-<td>Nathan</td>
-<td>3</td>
+<td>Sean</td>
+<td>13</td>
 <td>9</td>
-<td>2007</td>
+<td>2008</td>
 <td>G</td>
 <td>1G2</td>
-<td>aider les autres</td>
+<td>jouer en NBA</td>
 </tr>
 <tr>
 <td>Anastasia</td>
@@ -1026,212 +920,176 @@ Amaël,16,9,2007,G,1G1,devenir une rockstar
 <td>1G4</td>
 <td>créer un jeu vidéo</td>
 </tr>
-<tr>
-<td>Amaël</td>
-<td>16</td>
-<td>9</td>
-<td>2007</td>
-<td>G</td>
-<td>1G1</td>
-<td>devenir une rockstar</td>
-</tr>
 </tbody>
 </table>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<blockquote><p>On a sélectionné les lignes <em>complètes</em> correspondant à certains critères. Cela signifie que toutes les colonnes ont été ajoutées à la table créée. On peut aussi très facilement construire un nouveau tableau ne contenant que certaines colonnes de la table de départ, ce que nous allons voir maintenant.</p>
+<blockquote>
+<p>On a sélectionné les lignes <em>complètes</em> correspondant à certains critères. Cela signifie que toutes les colonnes ont été ajoutées à la table créée. On peut aussi très facilement construire un nouveau tableau ne contenant que certaines colonnes de la table de départ, ce que nous allons voir maintenant.</p>
 </blockquote>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="S&#233;lectionner-des-lignes-et-des-colonnes">S&#233;lectionner des lignes et des colonnes<a class="anchor-link" href="#S&#233;lectionner-des-lignes-et-des-colonnes">&#182;</a></h1><h2 id="Projection-sur-une-ou-plusieurs-colonnes">Projection sur une ou plusieurs colonnes<a class="anchor-link" href="#Projection-sur-une-ou-plusieurs-colonnes">&#182;</a></h2><p>Si on ne souhaite sélectionner que certaines colonnes de la table de départ, on dit que l'on fait une <strong>projection sur ces colonnes</strong>.</p>
+<h1 id="S%C3%A9lectionner-des-lignes-et-des-colonnes">Sélectionner des lignes et des colonnes<a class="anchor-link" href="#S%C3%A9lectionner-des-lignes-et-des-colonnes">¶</a></h1><h2 id="Projection-sur-une-ou-plusieurs-colonnes">Projection sur une ou plusieurs colonnes<a class="anchor-link" href="#Projection-sur-une-ou-plusieurs-colonnes">¶</a></h2><p>Si on ne souhaite sélectionner que certaines colonnes de la table de départ, on dit que l'on fait une <strong>projection sur ces colonnes</strong>.</p>
 <p>On peut construire un nouveau tableau en faisant une projection sur une seule colonne, par exemple les prénoms.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">t0</span> <span class="o">=</span> <span class="p">[</span><span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;prénom&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">eleve</span> <span class="ow">in</span> <span class="n">eleves</span><span class="p">]</span>
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">t0</span> <span class="o">=</span> <span class="p">[</span><span class="n">eleve</span><span class="p">[</span><span class="s1">'prénom'</span><span class="p">]</span> <span class="k">for</span> <span class="n">eleve</span> <span class="ow">in</span> <span class="n">eleves</span><span class="p">]</span>
 <span class="n">t0</span>  <span class="c1"># pour voir le tableau</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[15]:</div>
-
-
-
-
+<div class="prompt output_prompt">Out[15]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>[&#39;Naïma&#39;,
- &#39;Jade&#39;,
- &#39;Mathilda&#39;,
- &#39;Louenn&#39;,
- &#39;Enola&#39;,
- &#39;Samuel&#39;,
- &#39;Lucien&#39;,
- &#39;Matias&#39;,
- &#39;Nathan&#39;,
- &#39;Théliau&#39;,
- &#39;Ali&#39;,
- &#39;Anastasia&#39;,
- &#39;Yohann&#39;,
- &#39;Bastien&#39;,
- &#39;Noe&#39;,
- &#39;Lilian&#39;,
- &#39;Simon&#39;,
- &#39;Eliott&#39;,
- &#39;Amaël&#39;]</pre>
+<pre>['Maïa',
+ 'Baptiste',
+ 'Batoul',
+ 'Gwenola',
+ 'Nathaël',
+ 'Adam',
+ 'Corentin',
+ 'Alexis',
+ 'Ethan',
+ 'Firmin',
+ 'Abel',
+ 'Sean',
+ 'Antoine',
+ 'Tim',
+ 'Anastasia',
+ 'Nathanaël',
+ 'Jules',
+ 'Alexis',
+ 'Lého',
+ 'Valentin',
+ 'Hugo',
+ 'Charlotte',
+ 'Ilyes',
+ 'Corentin']</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>On peut aussi projeter sur plusieurs colonnes, en reconstruisant des dictionnaires ne contenant que les attributs souhaités, par exemple les prénoms et les projets :</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In [16]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">t1</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;prénom&#39;</span><span class="p">:</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;prénom&#39;</span><span class="p">],</span> <span class="s1">&#39;projet&#39;</span><span class="p">:</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;projet&#39;</span><span class="p">]}</span> <span class="k">for</span> <span class="n">eleve</span> <span class="ow">in</span> <span class="n">eleves</span><span class="p">]</span>
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">t1</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">'prénom'</span><span class="p">:</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">'prénom'</span><span class="p">],</span> <span class="s1">'projet'</span><span class="p">:</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">'projet'</span><span class="p">]}</span> <span class="k">for</span> <span class="n">eleve</span> <span class="ow">in</span> <span class="n">eleves</span><span class="p">]</span>
 <span class="n">t1</span>  <span class="c1"># pour voir le tableau</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[16]:</div>
-
-
-
-
+<div class="prompt output_prompt">Out[16]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>[{&#39;prénom&#39;: &#39;Naïma&#39;, &#39;projet&#39;: &#39;apprendre à piloter une Formule 1&#39;},
- {&#39;prénom&#39;: &#39;Jade&#39;, &#39;projet&#39;: &#39;ouvrir un restaurant&#39;},
- {&#39;prénom&#39;: &#39;Mathilda&#39;, &#39;projet&#39;: &#39;gagner au loto&#39;},
- {&#39;prénom&#39;: &#39;Louenn&#39;, &#39;projet&#39;: &#39;devenir quelqu’un de célèbre&#39;},
- {&#39;prénom&#39;: &#39;Enola&#39;, &#39;projet&#39;: &#39;avoir une bonne note au prochain devoir&#39;},
- {&#39;prénom&#39;: &#39;Samuel&#39;,
-  &#39;projet&#39;: &#39;manger des frites tous les jours à la cantine&#39;},
- {&#39;prénom&#39;: &#39;Lucien&#39;, &#39;projet&#39;: &#39;marcher sur la lune&#39;},
- {&#39;prénom&#39;: &#39;Matias&#39;, &#39;projet&#39;: &#39;dormir plus longtemps le matin&#39;},
- {&#39;prénom&#39;: &#39;Nathan&#39;, &#39;projet&#39;: &#39;aider les autres&#39;},
- {&#39;prénom&#39;: &#39;Théliau&#39;, &#39;projet&#39;: &#39;devenir président&#39;},
- {&#39;prénom&#39;: &#39;Ali&#39;, &#39;projet&#39;: &#39;devenir un joueur professionnel de billard&#39;},
- {&#39;prénom&#39;: &#39;Anastasia&#39;, &#39;projet&#39;: &#39;créer un jeu vidéo&#39;},
- {&#39;prénom&#39;: &#39;Yohann&#39;, &#39;projet&#39;: &#39;gérer sa propre entreprise&#39;},
- {&#39;prénom&#39;: &#39;Bastien&#39;, &#39;projet&#39;: &#39;jouer dans le prochain James Bond&#39;},
- {&#39;prénom&#39;: &#39;Noe&#39;, &#39;projet&#39;: &#39;monter le tapis rouge à Cannes&#39;},
- {&#39;prénom&#39;: &#39;Lilian&#39;, &#39;projet&#39;: &#39;devenir champion du monde de bras de fer&#39;},
- {&#39;prénom&#39;: &#39;Simon&#39;, &#39;projet&#39;: &#39;aller à Poudlard&#39;},
- {&#39;prénom&#39;: &#39;Eliott&#39;, &#39;projet&#39;: &#39;avoir son émission de TV&#39;},
- {&#39;prénom&#39;: &#39;Amaël&#39;, &#39;projet&#39;: &#39;devenir une rockstar&#39;}]</pre>
+<pre>[{'prénom': 'Maïa', 'projet': 'apprendre à piloter une Formule 1'},
+ {'prénom': 'Baptiste', 'projet': 'ouvrir un restaurant'},
+ {'prénom': 'Batoul', 'projet': 'gagner au loto'},
+ {'prénom': 'Gwenola', 'projet': 'devenir quelqu’un de célèbre'},
+ {'prénom': 'Nathaël', 'projet': 'avoir une bonne note au prochain devoir'},
+ {'prénom': 'Adam', 'projet': 'manger des frites tous les jours à la cantine'},
+ {'prénom': 'Corentin', 'projet': 'marcher sur la lune'},
+ {'prénom': 'Alexis', 'projet': 'devenir Youtuber'},
+ {'prénom': 'Ethan', 'projet': 'aider les autres'},
+ {'prénom': 'Firmin', 'projet': 'devenir président'},
+ {'prénom': 'Abel', 'projet': 'devenir un joueur professionnel de billard'},
+ {'prénom': 'Sean', 'projet': 'jouer en NBA'},
+ {'prénom': 'Antoine', 'projet': 'gérer sa propre entreprise'},
+ {'prénom': 'Tim', 'projet': 'jouer dans le prochain James Bond'},
+ {'prénom': 'Anastasia', 'projet': 'monter le tapis rouge à Cannes'},
+ {'prénom': 'Nathanaël', 'projet': 'devenir champion du monde de bras de fer'},
+ {'prénom': 'Jules', 'projet': 'aller à Poudlard'},
+ {'prénom': 'Alexis', 'projet': 'avoir son émission de TV'},
+ {'prénom': 'Lého', 'projet': 'devenir une rockstar'},
+ {'prénom': 'Valentin', 'projet': 'créer un jeu vidéo'},
+ {'prénom': 'Hugo', 'projet': 'écrire un livre'},
+ {'prénom': 'Charlotte', 'projet': 'devenir astronaute'},
+ {'prénom': 'Ilyes', 'projet': 'inventer la machine à voyager dans le temps'},
+ {'prénom': 'Corentin', 'projet': 'dormir plus longtemps le matin'}]</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Combiner-les-s&#233;lections-sur-les-lignes-et-les-colonnes">Combiner les s&#233;lections sur les lignes et les colonnes<a class="anchor-link" href="#Combiner-les-s&#233;lections-sur-les-lignes-et-les-colonnes">&#182;</a></h2><p>Il est bien sûr possible de combiner une sélection sur les colonnes avec une sélection sur les lignes. Ainsi, l'instruction</p>
-
+<h2 id="Combiner-les-s%C3%A9lections-sur-les-lignes-et-les-colonnes">Combiner les sélections sur les lignes et les colonnes<a class="anchor-link" href="#Combiner-les-s%C3%A9lections-sur-les-lignes-et-les-colonnes">¶</a></h2><p>Il est bien sûr possible de combiner une sélection sur les colonnes avec une sélection sur les lignes. Ainsi, l'instruction</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In [17]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">t2</span> <span class="o">=</span> <span class="p">[</span><span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;prénom&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">eleve</span> <span class="ow">in</span> <span class="n">eleves</span> <span class="k">if</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;sexe&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;G&#39;</span><span class="p">]</span>
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">t2</span> <span class="o">=</span> <span class="p">[</span><span class="n">eleve</span><span class="p">[</span><span class="s1">'prénom'</span><span class="p">]</span> <span class="k">for</span> <span class="n">eleve</span> <span class="ow">in</span> <span class="n">eleves</span> <span class="k">if</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">'sexe'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'G'</span><span class="p">]</span>
 <span class="n">t2</span>  <span class="c1"># pour voir le tableau</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[17]:</div>
-
-
-
-
+<div class="prompt output_prompt">Out[17]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>[&#39;Louenn&#39;,
- &#39;Samuel&#39;,
- &#39;Lucien&#39;,
- &#39;Matias&#39;,
- &#39;Nathan&#39;,
- &#39;Théliau&#39;,
- &#39;Ali&#39;,
- &#39;Yohann&#39;,
- &#39;Bastien&#39;,
- &#39;Noe&#39;,
- &#39;Lilian&#39;,
- &#39;Simon&#39;,
- &#39;Eliott&#39;,
- &#39;Amaël&#39;]</pre>
+<pre>['Baptiste',
+ 'Nathaël',
+ 'Adam',
+ 'Corentin',
+ 'Alexis',
+ 'Ethan',
+ 'Firmin',
+ 'Abel',
+ 'Sean',
+ 'Antoine',
+ 'Tim',
+ 'Nathanaël',
+ 'Jules',
+ 'Alexis',
+ 'Lého',
+ 'Valentin',
+ 'Hugo',
+ 'Ilyes',
+ 'Corentin']</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>permet de créer un tableau contenant les prénoms des garçons. On a donc sélectionné la première colonne contenant les prénoms des élèves (avec <code>eleve['prénom']</code>) mais seulement pour les lignes correspondant à des garçons (avec le critère <code>if eleve['sexe'] == 'G')</code>.</p>
-
 </div>
 </div>
 </div>
@@ -1239,56 +1097,47 @@ Amaël,16,9,2007,G,1G1,devenir une rockstar
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>On peut bien sûr aussi sélectionner plusieurs colonnes tout en sélectionnant certaines lignes. Par exemple, on peut sélectionner les attributs <code>'prénom'</code> et <code>'projet'</code> mais uniquement des filles.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In [18]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">t3</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;prénom&#39;</span><span class="p">:</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;prénom&#39;</span><span class="p">],</span> <span class="s1">&#39;projet&#39;</span><span class="p">:</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;projet&#39;</span><span class="p">]}</span> <span class="k">for</span> <span class="n">eleve</span> <span class="ow">in</span> <span class="n">eleves</span> <span class="k">if</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">&#39;sexe&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;F&#39;</span><span class="p">]</span>
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">t3</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">'prénom'</span><span class="p">:</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">'prénom'</span><span class="p">],</span> <span class="s1">'projet'</span><span class="p">:</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">'projet'</span><span class="p">]}</span> <span class="k">for</span> <span class="n">eleve</span> <span class="ow">in</span> <span class="n">eleves</span> <span class="k">if</span> <span class="n">eleve</span><span class="p">[</span><span class="s1">'sexe'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'F'</span><span class="p">]</span>
 <span class="n">t3</span>  <span class="c1"># pour voir le tableau</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area">
-
-    <div class="prompt output_prompt">Out[18]:</div>
-
-
-
-
+<div class="prompt output_prompt">Out[18]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>[{&#39;prénom&#39;: &#39;Naïma&#39;, &#39;projet&#39;: &#39;apprendre à piloter une Formule 1&#39;},
- {&#39;prénom&#39;: &#39;Jade&#39;, &#39;projet&#39;: &#39;ouvrir un restaurant&#39;},
- {&#39;prénom&#39;: &#39;Mathilda&#39;, &#39;projet&#39;: &#39;gagner au loto&#39;},
- {&#39;prénom&#39;: &#39;Enola&#39;, &#39;projet&#39;: &#39;avoir une bonne note au prochain devoir&#39;},
- {&#39;prénom&#39;: &#39;Anastasia&#39;, &#39;projet&#39;: &#39;créer un jeu vidéo&#39;}]</pre>
-</div>
-
-</div>
-
+<pre>[{'prénom': 'Maïa', 'projet': 'apprendre à piloter une Formule 1'},
+ {'prénom': 'Batoul', 'projet': 'gagner au loto'},
+ {'prénom': 'Gwenola', 'projet': 'devenir quelqu’un de célèbre'},
+ {'prénom': 'Anastasia', 'projet': 'monter le tapis rouge à Cannes'},
+ {'prénom': 'Charlotte', 'projet': 'devenir astronaute'}]</pre>
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Bilan">Bilan<a class="anchor-link" href="#Bilan">&#182;</a></h1><ul>
-<li>Les tables de données peuvent peuvent être mémorisées dans des fichiers et notamment dans des fichiers au format CSV.</li>
-<li>Pour traiter ces données (avec Python, ou avec un autre langage) il est nécessaire de <em>lire le fichier</em> et de <em>charger les données</em>. On a vu que le module <code>csv</code> permettait facilement de mémoriser les données d'une table dans un tableau de dictionnaires.</li>
-<li>On peut ensuite utiliser toutes les fonctionnalités du langage de programmation pour le traitement des données. En particulier, on peut y <em>rechercher des informations</em>, <em>sélectionner les colonnes</em> en fonction des attributs qui nous intéressent mais aussi <em>sélectionner des lignes</em> en fonction de certains <em>critères</em>.</li>
-<li>Ces traitements permettent de créer de nouvelles tables que l'on peut aussi <em>écrire</em> dans un fichier CSV pour garder une trace pérenne des informations calculées (fait en activité).</li>
+<h1 id="Bilan">Bilan<a class="anchor-link" href="#Bilan">¶</a></h1><ul>
+<li><p>Les tables de données peuvent peuvent être mémorisées dans des fichiers et notamment dans des fichiers au format CSV.</p>
+</li>
+<li><p>Pour traiter ces données (avec Python, ou avec un autre langage) il est nécessaire de <em>lire le fichier</em> et de <em>charger les données</em>. On a vu que le module <code>csv</code> permettait facilement de mémoriser les données d'une table dans un tableau de dictionnaires.</p>
+</li>
+<li><p>On peut ensuite utiliser toutes les fonctionnalités du langage de programmation pour le traitement des données. En particulier, on peut y <em>rechercher des informations</em>, <em>sélectionner les colonnes</em> en fonction des attributs qui nous intéressent mais aussi <em>sélectionner des lignes</em> en fonction de certains <em>critères</em>.</p>
+</li>
+<li><p>Ces traitements permettent de créer de nouvelles tables que l'on peut aussi <em>écrire</em> dans un fichier CSV pour garder une trace pérenne des informations calculées (fait en activité).</p>
+</li>
 <li><p>Nous verrons au cours d'un TP l'intérêt de faire un <em>prétraitement</em> adapté des données pour répondre aux problématiques suivantes :</p>
 <ul>
 <li>les données chargées dans un tableau le sont sous forme de chaînes de caractères, mêmes les nombres. Il peut donc être intéressant de les convertir une fois pour toutes au départ et éviter les conversions de type dans tous les traitements.</li>
@@ -1298,7 +1147,6 @@ Amaël,16,9,2007,G,1G1,devenir une rockstar
 <li><p>Tout ce qui est fait sur le traitement des données en classe de Première est un avant-goût des bases de données qui seront étudiées en classe de Terminale.</p>
 </li>
 </ul>
-
 </div>
 </div>
 </div>
@@ -1311,18 +1159,14 @@ Amaël,16,9,2007,G,1G1,devenir une rockstar
 <li>Livre <em>Numérique et Sciences Informatiques, 1re</em>, T. BALABONSKI, S. CONCHON, J.-C. FILLIATRE, K. NGUYEN, éditions ELLIPSES pour l'idée du plan de ce cours. Voici le <a href="https://www.nsi-premiere.fr/">site du livre</a>.</li>
 <li>Ressource Eduscol : <a href="https://bit.ly/2BL2lbA">Manipulation de tables</a></li>
 </ul>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p>Germain BECKER &amp; Sébastien POINT, Lycée Mounier, ANGERS <img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Licence Creative Commons"></p>
-
+<hr/>
+<p>Germain BECKER &amp; Sébastien POINT, Lycée Mounier, ANGERS <img alt="Licence Creative Commons" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"/></p>
 </div>
 </div>
 </div>
- 
-
